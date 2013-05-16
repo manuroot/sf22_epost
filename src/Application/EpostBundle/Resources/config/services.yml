@@ -1,0 +1,14 @@
+parameters:
+#    application_epost.example.class: Application\EpostBundle\Example
+
+services:
+    application_epost_twig_extension:
+        class: Application\EpostBundle\Twig\Extensions\ApplicationEpostExtension
+        tags:
+            - { name: twig.extension }
+
+    appli.epost.admin.epost:
+        class: Application\EpostBundle\Admin\EpostAdmin
+        tags:
+        - { name: sonata.admin, manager_type: orm, group: EBlog, label: Articles}
+        arguments: [null, Application\EpostBundle\Entity\Epost,SonataAdminBundle:CRUD]

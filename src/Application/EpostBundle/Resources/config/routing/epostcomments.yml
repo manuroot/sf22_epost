@@ -1,0 +1,15 @@
+epost_comment_create:
+    pattern:  /{epost_id}
+    defaults: { _controller: ApplicationEpostBundle:EpostComments:create }
+    requirements:
+        _method:  POST
+        epost_id: \d+
+
+epost_comment_ownerview:
+    pattern:  /view
+    defaults: { _controller: ApplicationEpostBundle:EpostComments:indexowner }
+    
+epost_comment_ownerblogview:
+    pattern:  /blog
+    defaults: { _controller: ApplicationEpostBundle:EpostComments:indexownerblog }
+     

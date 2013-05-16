@@ -1,0 +1,9 @@
+application_relations_demandegroup:
+    resource: "@ApplicationRelationsBundle/Resources/config/routing/demandeusergroup.yml"
+    prefix:   /groupdemande
+    
+
+_egroup:
+    resource: "@ApplicationRelationsBundle/Resources/config/routing/eservicegroup.yml"
+    prefix:   /egroupes    
+    

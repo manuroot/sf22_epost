@@ -10,11 +10,12 @@ color:#000000;
   <!-- <h4 class="ui-widget-header ui-corner-all">Commentaires Recents</h4>-->
 {% for comment in lastcomments %}
     <!--Catégorie: -->
- {{ comment.epost.proprietaire}} : {{ comment.created | created_ago  }}
-   <span class="badge badge-info">
-             <a class="sidebar" href="{{ path('epost_showstandard', { 'blog_id': comment.epost.id,'slug': comment.epost.slug }) }}">
+ {{ comment.user}} : {{ comment.created | created_ago  }}
+  {# <span class="badge badge-info">#}
+             <a href="{{ path('epost_showstandard', { 'blog_id': comment.epost.id,'slug': comment.epost.slug }) }}">
                
-  {{ comment.epost.name }}</a></span>
+  {{ comment.epost.name }}</a>
+ {#</span>#}
    {# <a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(comment.post) }) }}">#}
  
  

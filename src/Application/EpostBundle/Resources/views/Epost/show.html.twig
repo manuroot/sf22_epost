@@ -107,7 +107,7 @@ collapsible: true
 <div class="sonata-blog-post-container">
        
     <div class="viewpost">
-     
+     <table width="98%"><tr><td align="top">
         {{ entity.createdAt|created_ago }}
    
            {% if entity.globalnote is not null %}
@@ -140,6 +140,9 @@ collapsible: true
    <div class="star" data-score="0"></div>
         {#({{ entity.globalnote }})#}
         {% endif %}
+   </td><td align="right">
+     <img src="{% path entity.imageMedia, 'big' %}" width="150" /> 
+                         </td></tr></table>
    {#
         {% if entity.globalnote is defined %}
        Note Globale: <span class="badge badge-warning"> {{ entity.globalnote }}</span>
@@ -152,11 +155,8 @@ collapsible: true
         <span class="sonata-blog-post-author">
 {{ entity.proprietaire.username }}</span>
     </h1>
-               <table>
-        
-            <tr>
-                <td>
-        <img src="{% path entity.imageMedia, 'big' %}" width="150" /> 
+             
+      
                     {#
         {% if entity.imageName is not null %}               
            
@@ -166,10 +166,10 @@ collapsible: true
            ---
          {% endif %}
          #}
-        </td>
-        <td>{{ entity.description|raw }}</td>
-        </tr>
-       </table>
+        
+       {{ entity.description|raw }}
+     
+     
        
        
         

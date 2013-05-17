@@ -104,7 +104,8 @@ class EpostCommentsController extends Controller {
         $form = $this->createForm(new EpostCommentsType(), $comment);
         $form->bindRequest($request);
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+             $em = $this->getDoctrine()->getManager();
+            //$em = $this->getDoctrine()->getEntityManager();
             $em->persist($comment);
          //   $em->flush();
             // RECUP DES COMMENTS
@@ -128,7 +129,7 @@ class EpostCommentsController extends Controller {
 
     protected function getEpost($epost_id) {
         $em = $this->getDoctrine()
-                ->getEntityManager();
+                ->getManager();
 
         $epost = $em->getRepository('ApplicationEpostBundle:Epost')->find($epost_id);
 

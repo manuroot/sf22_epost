@@ -150,7 +150,7 @@ class EpostRollRepository extends EntityRepository {
      * $criteria=array('author'=>$idauthor)
      */
 
-    public function getMyPager(array $criteria) {
+    public function getMyPager($criteria=array()) {
 
         /* $query = $this->createQueryBuilder('a')
           ->add('orderBy', 'a.id DESC')

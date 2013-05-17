@@ -59,9 +59,15 @@ class EpostController extends Controller {
         //$allcategories = $em->getRepository('ApplicationEpostBundle:EpostCategories')->findByEnabled(1);
         return ($allcategories);
     }
-   private function sidebar_rolls() {
+   private function sidebar_rolls($group=null) {
         $em = $this->container->get('doctrine')->getManager();
-        $allrolls = $em->getRepository('ApplicationEpostBundle:EpostRoll')->findAll();
+        if (isset($group))
+            $allrolls = $em->getRepository('ApplicationEpostBundle:EpostRoll')->getMyPager(array(
+              'group'=>$group,  
+            ))
+                    ->getResult();
+        else
+        $allrolls = $em->getRepository('ApplicationEpostBundle:EpostRoll')->getMyPager()->getResult();
         //$allcategories = $em->getRepository('ApplicationEpostBundle:EpostCategories')->findByEnabled(1);
         return ($allrolls);
     }
@@ -453,7 +459,7 @@ class EpostController extends Controller {
         
           list($user_id, $group_id) = $this->getuserid();
       
-        $allrolls = $this->sidebar_rolls();
+        $allrolls = $this->sidebar_rolls($group_id);
      
         $deleteForm = $this->createDeleteForm($blog_id);
 
@@ -585,8 +591,8 @@ class EpostController extends Controller {
         $request = $this->getRequest();
 
         if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
-            $em = $this->getDoctrine()->getEntityManager();
-             //$em = $this->getDoctrine()->getManager();
+            //$em = $this->getDoctrine()->getEntityManager();
+             $em = $this->getDoctrine()->getManager();
             $id = '';
             $applis = array();
             $cert_app = array();

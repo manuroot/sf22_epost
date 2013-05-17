@@ -40,7 +40,7 @@ class AppKernel extends Kernel {
             new Sonata\IntlBundle\SonataIntlBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
-            new Sonata\NewsBundle\SonataNewsBundle(),
+           // new Sonata\NewsBundle\SonataNewsBundle(),
             new FrequenceWeb\Bundle\CalendRBundle\FrequenceWebCalendRBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Craue\FormFlowBundle\CraueFormFlowBundle(),
@@ -74,7 +74,7 @@ class AppKernel extends Kernel {
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
+         //   $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

@@ -12,8 +12,7 @@
    
 
   <style type="text/css">
- 
-  
+   
 .main-col { width: 70%; display: inline-block; float: left; border-right: 1px solid #ccc; padding: 20px; margin-bottom: 20px; }
 .sidebar {  padding: 10px; display: inline-block; }
  #footer {
@@ -35,15 +34,17 @@
       padding-top: 0;
     }
   }*/
+  .container-fluid {
+       position:relative;
+  }
   </style>
+ 
 {% stylesheets 
- '@ApplicationCertificatsBundle/Resources/public/css/certificatscenter.css' 
+ '@ApplicationEpostBundle/Resources/public/css/certificatscenter.css' 
  output='css/compiled/main.css' filter='yui_css' %}
 <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 {% endstylesheets %}
-{#
-<link rel="stylesheet" href="{{ asset('bundles/applicationcertificats/css/certificatscenter.css') }}" type="text/css" media="all"/>
-#}
+
         {% endblock %}
     </head>
     <body>
@@ -53,96 +54,64 @@
                       {{ block('NAVIGATION_BAR') }}
                    
                 </div>
-                
                    <div class="container-fluid">
     <div class="row-fluid">
   
         
-    <div class="span10">
+    <div class="span9">
                    <center><h1>   {% block title %}CERTIFICATS{% endblock %}</h1></center>
     {% block content %}
   
                 {% endblock %}
     </div>
-          <div class="span2">
+        
+        
+ <div class="span3">
                          <div class="accordion" id="accordion2">
                   <div class="accordion-group">
 <div class="accordion-heading">
 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-     <h4 class="ui-widget-header ui-corner-all">Tags</h4>
+     <h4 class="ui-widget-header ui-corner-all">BlogRoll</h4>
 </a>
 </div>
 <div id="collapseOne" class="accordion-body collapse in">
 <div class="accordion-inner">
-    {% block tags %}
+    {% block roll %}
     {% endblock %}
 </div>
 </div>
 </div>
-<div class="accordion-group">
-<div class="accordion-heading">
-<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-   <h4 class="ui-widget-header ui-corner-all">Commentaires</h4>
-</a>
-</div>
-<div id="collapseTwo" class="accordion-body collapse">
-<div class="accordion-inner">
-  {% block comments %}
-  {% endblock %}
-</div>
-</div>
-</div>
-                      <div class="accordion-group">
-<div class="accordion-heading">
-<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-   <h4 class="ui-widget-header ui-corner-all">Categories</h4>
-</a>
-</div>
-<div id="collapseThree" class="accordion-body collapse">
-<div class="accordion-inner">
-  {% block categories %}
-                                  {% endblock %}
-</div>
-</div>
-</div>
-                    
-                         <div class="accordion-group">
-<div class="accordion-heading">
-<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse4">
-   <h4 class="ui-widget-header ui-corner-all">Archives</h4>
-</a>
-</div>
-<div id="collapse4" class="accordion-body collapse">
-<div class="accordion-inner">
-  {% block archives %}
-                                  {% endblock %}
-</div>
-</div>
-</div>
+
+                  
+
 </div>
             
-        {#      {% include '::accordion.html.twig' with {'categories': 'categories'} %} #}
-  {#  <!--Sidebar content-->
-    sidebar: todo
-    {% block tags %}
-    {% endblock %}
-    <br>
-    {% block categories %}
-    {% endblock %}
-    <br>
-     {% block comments %}
-  {% endblock %}
-#}
+    
     </div>
-    </div>
-                      <div id="footer">
+        
+   </div></div>     
+        
+      </div>  
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                 <div id="footer">
                     <p align="center">{{ 'copyright mroot72000@yahoo.fr'|trans }} © 2012-2013</p>
                      
                 </div>        
-    </div>
               
-               
-                </div>
+        
         
         
                 <!-- Le javascript ================================================== -->
@@ -167,6 +136,7 @@
     
  {% endblock %}
     
-        
            
-            
+        </body>
+
+    </html>

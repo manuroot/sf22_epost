@@ -32,7 +32,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Changements
  *
- * @ORM\Table(name="epost")
+ * @ORM\Table(name="epost_main")
  * @ORM\Entity(repositoryClass="Application\EpostBundle\Repository\EpostRepository")
  * @UniqueEntity(fields="name", message="Ce post existe déjà...")
  * @ORM\HasLifecycleCallbacks()

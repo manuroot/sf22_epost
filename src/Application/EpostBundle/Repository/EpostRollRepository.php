@@ -28,8 +28,6 @@ class EpostRollRepository extends EntityRepository {
 
         $query = $this->createQueryBuilder('a')
                 ->leftJoin('a.proprietaire', 'b')
-                ->leftJoin('a.categorie', 'c')
-                ->leftJoin('a.idStatus', 'd')
                 ->add('orderBy', 'a.id DESC')
                 ->getQuery();
         return $query;
@@ -172,17 +170,11 @@ class EpostRollRepository extends EntityRepository {
         */
         $parameters = array();
         $query = $this->createQueryBuilder('a')
-                ->select('a,b,c,d,e,f,t,u')
+                ->select('a,b')
                 ->add('orderBy', 'a.id DESC')
                 //->where('a.proprietaire = :proprietaire')
                 ->leftJoin('a.proprietaire', 'b')
-              //  ->leftJoin($join, $alias, $conditionType)
-                ->leftJoin('a.categorie', 'c')
-                ->leftJoin('a.idStatus', 'd')
-                ->leftJoin('a.globalnote', 'e')
-                ->leftJoin('a.imageMedia', 'f')
-                ->leftJoin('a.tags', 't')
-                ->leftJoin('a.comments', 'u')
+    
                 ->groupby('a.name')
                 ;
 
@@ -208,17 +200,7 @@ class EpostRollRepository extends EntityRepository {
             $parameters['group_id'] = $criteria['group'];
         }
 
-        if (isset($criteria['categorie']) && $criteria['categorie'] instanceof EpostCategories) {
-            $query->andWhere('a.categorie = :categoryid');
-            $parameters['categoryid'] = $criteria['categorie']->getId();
-        }
-        if (isset($criteria['tag'])) {
-            //    $query->leftJoin('a.tags', 't');
-            $query->andWhere('t.id =:tag');
-            //   ->groupby('a.name');
-
-            $parameters['tag'] = (string) $criteria['tag'];
-        }
+      
         $query->setParameters($parameters);
         //>getQuery();
         //  print_r($query->getQuery());

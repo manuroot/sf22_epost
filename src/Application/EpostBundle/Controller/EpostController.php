@@ -8,6 +8,7 @@ use Application\EpostBundle\Entity\Epost;
 use Application\EpostBundle\Entity\EpostTags;
 use Application\EpostBundle\Entity\EpostComments;
 use Application\EpostBundle\Entity\EpostCategories;
+use Application\EpostBundle\Entity\EpostRoll;
 use Application\EpostBundle\Form\EpostType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -57,6 +58,12 @@ class EpostController extends Controller {
         $allcategories = $em->getRepository('ApplicationEpostBundle:EpostCategories')->findAll();
         //$allcategories = $em->getRepository('ApplicationEpostBundle:EpostCategories')->findByEnabled(1);
         return ($allcategories);
+    }
+   private function sidebar_rolls() {
+        $em = $this->container->get('doctrine')->getManager();
+        $allrolls = $em->getRepository('ApplicationEpostBundle:EpostRoll')->findAll();
+        //$allcategories = $em->getRepository('ApplicationEpostBundle:EpostCategories')->findByEnabled(1);
+        return ($allrolls);
     }
 
     private function sidebar_years() {
@@ -443,12 +450,18 @@ class EpostController extends Controller {
         $session = $this->getRequest()->getSession();
         $myretour = $session->get('buttonretour');
 
+        
+          list($user_id, $group_id) = $this->getuserid();
+      
+        $allrolls = $this->sidebar_rolls();
+     
         $deleteForm = $this->createDeleteForm($blog_id);
 
         return $this->render('ApplicationEpostBundle:Epost:show.html.twig', array(
                     'entity' => $entity,
                     'btnretour' => $myretour,
                     'comments' => $comments,
+               'allrolls'=>$allrolls,
                   'paginationa' => $paginationa,
                     //   'path' => $path,
                     'delete_form' => $deleteForm->createView(),));
@@ -482,6 +495,7 @@ class EpostController extends Controller {
 
         return $this->render('ApplicationEpostBundle:Epost:edit.html.twig', array(
                     'entity' => $entity,
+            
                     'btnretour' => $myretour,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),

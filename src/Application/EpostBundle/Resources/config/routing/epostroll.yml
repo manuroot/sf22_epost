@@ -1,0 +1,36 @@
+epostroll:
+    pattern:  /
+    defaults: { _controller: "ApplicationEpostBundle:EpostRoll:index" }
+
+epostroll_group:
+    pattern:  /groupe
+    defaults: { _controller: "ApplicationEpostBundle:EpostRoll:indexgrouperoll" }
+
+
+
+epostroll_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ApplicationEpostBundle:EpostRoll:show" }
+
+epostroll_new:
+    pattern:  /new
+    defaults: { _controller: "ApplicationEpostBundle:EpostRoll:new" }
+
+epostroll_create:
+    pattern:  /create
+    defaults: { _controller: "ApplicationEpostBundle:EpostRoll:create" }
+    requirements: { _method: post }
+
+epostroll_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ApplicationEpostBundle:EpostRoll:edit" }
+
+epostroll_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ApplicationEpostBundle:EpostRoll:update" }
+    requirements: { _method: post|put }
+
+epostroll_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ApplicationEpostBundle:EpostRoll:delete" }
+    requirements: { _method: post|delete }

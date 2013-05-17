@@ -17,3 +17,7 @@ _epost_tags:
 _epost_notes:
     resource: "@ApplicationEpostBundle/Resources/config/routing/epostnotes.yml"
     prefix:   /epostnotes  
+    
+_epost_roll:
+    resource: "@ApplicationEpostBundle/Resources/config/routing/epostroll.yml"
+    prefix:   /epostroll  

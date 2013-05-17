@@ -253,3 +253,9 @@ collapsible: true
   {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'ghgjh','epost':entity.id} %}
   #} 
          {% endblock %}
+ 
+ 
+{% block roll %}
+{{ parent() }}
+{% include 'ApplicationEpostBundle:sidebar:sidebarroll.html.twig' %}
+{% endblock %}

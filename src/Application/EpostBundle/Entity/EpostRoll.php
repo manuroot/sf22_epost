@@ -125,7 +125,7 @@ class EpostRoll {
      */
     public function setName($name) {
         $this->name = $name;
-        $this->setSlug($this->name);
+    
         return $this;
     }
 
@@ -240,4 +240,50 @@ class EpostRoll {
     }
 
    
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return EpostRoll
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string 
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * Set proprietaire
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $proprietaire
+     * @return EpostRoll
+     */
+    public function setProprietaire(\Application\Sonata\UserBundle\Entity\User $proprietaire = null)
+    {
+        $this->proprietaire = $proprietaire;
+
+        return $this;
+    }
+
+    /**
+     * Get proprietaire
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User 
+     */
+    public function getProprietaire()
+    {
+        return $this->proprietaire;
+    }
 }

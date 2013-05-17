@@ -1,0 +1,60 @@
+{% extends "ApplicationEpostBundle::layout.html.twig" %}
+
+  {% block stylesheets %}
+{{ parent() }}
+      <link rel="stylesheet" href="{{ asset('bundles/applicationepost/css/sliding.css') }}" type="text/css" media="all"/>
+  <link rel="stylesheet" href="{{ asset('css/jquery.rating.css') }}" type="text/css" media="all"/>
+  
+    {{ form_stylesheet(form) }}
+{% endblock %}
+ 
+      
+{% block javascripts %}
+{{ parent() }}
+{{ tinymce_init() }}
+    <script src="{{ asset('js/jquery.rating.js') }}" type="text/javascript"></script>
+        
+    {{ form_javascript(form) }}
+    {#
+ <script>
+$(function() {
+$( "#slider-range-max" ).slider({
+range: "max",
+min: 1,
+max: 10,
+value: 1,
+slide: function( event, ui ) {
+$( "#application_eservicesbundle_eproduitnotestype_note" ).val( ui.value );
+}
+});
+$( "#application_eservicesbundle_eproduitnotestype_note" ).val( $( "#slider-range-max" ).slider( "value" ) );
+});
+</script>#}
+{% endblock %}
+ 
+{% block content_header '' %}
+
+      {% block title %}
+Ajouter Une note  à un Post
+{% endblock %}
+
+
+
+{% block content %}
+    <h1>EpostRoll creation</h1>
+
+    <form action="{{ path('epostroll_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit">Create</button>
+        </p>
+    </form>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('epostroll') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

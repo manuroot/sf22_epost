@@ -12,3 +12,9 @@ services:
         tags:
         - { name: sonata.admin, manager_type: orm, group: EBlog, label: Articles}
         arguments: [null, Application\EpostBundle\Entity\Epost,SonataAdminBundle:CRUD]
+        
+    appli.epost.admin.comment:
+        class: Application\EpostBundle\Admin\EpostCommentsAdmin
+        tags:
+        - { name: sonata.admin, manager_type: orm, group: EBlog, label: Commentaires}
+        arguments: [null, Application\EpostBundle\Entity\EpostComments,SonataAdminBundle:CRUD]

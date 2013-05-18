@@ -8,9 +8,10 @@
             xml mapping          : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/xml-mapping/en
             association mapping  : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en
     -->
+    
     <entity
         name="Application\Sonata\MediaBundle\Entity\Media"
-        table="media__media"
+        table="media__media"  repository-class="Application\Sonata\MediaBundle\Entity\MediaRepository">
         >
 
         <id name="id" type="integer" column="id">

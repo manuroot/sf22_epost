@@ -4,7 +4,6 @@ namespace Application\EpostBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Application\EpostBundle\Entity\EpostRoll;
 use Application\EpostBundle\Form\EpostRollType;
 
@@ -12,10 +11,8 @@ use Application\EpostBundle\Form\EpostRollType;
  * EpostRoll controller.
  *
  */
-class EpostRollController extends Controller
-{
-    
-     /* ====================================================================
+class EpostRollController extends Controller {
+    /* ====================================================================
      * 
      *  CREATION DU PAGINATOR
      * 
@@ -30,7 +27,7 @@ class EpostRollController extends Controller
         $sortFieldParameterName = 'sortFieldParameterName';
         $pagename = 'page'; // Set custom page variable name
         // Ajouter des controles
-        
+
         if (is_array($defaut_paginator)) {
             $pagename = $defaut_paginator['pagename'];
             $sortDirectionParameterName = $defaut_paginator['sortdir'];
@@ -85,44 +82,49 @@ class EpostRollController extends Controller
      * Lists all EpostRoll entities.
      *
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('ApplicationEpostBundle:EpostRoll')->findAll();
 
         return $this->render('ApplicationEpostBundle:EpostRoll:index.html.twig', array(
-            'entities' => $entities,
-        ));
+                    'entities' => $entities,
+                ));
     }
-    
-     public function indexgrouperollAction() {
+
+    public function indexgrouperollAction() {
 
         $em = $this->getDoctrine()->getManager();
         list($user_id, $group_id) = $this->getuserid();
-       
+
         $session = $this->getRequest()->getSession();
         $session->set('buttonretour', 'epostroll');
         $query = $em->getRepository('ApplicationEpostBundle:EpostRoll')->getMyPager(array(
-                 'group' => $group_id,
-           ));
-      //  $query = $em->getRepository('ApplicationEpostBundle:Epost')->myFindOtherAll($user_id, $group_id);
+            'group' => $group_id,
+                ));
+        //  $query = $em->getRepository('ApplicationEpostBundle:Epost')->myFindOtherAll($user_id, $group_id);
         $paginationa = $this->createpaginator($query, 5);
-       return $this->render('ApplicationEpostBundle:EpostRoll:index_group.html.twig', array(
-                  'paginationa' => $paginationa,
-        ));
-       
+        return $this->render('ApplicationEpostBundle:EpostRoll:index_group.html.twig', array(
+                    'paginationa' => $paginationa,
+                ));
     }
-
-    
 
     /**
      * Creates a new EpostRoll entity.
      *
      */
-    public function createAction(Request $request)
-    {
-        $entity  = new EpostRoll();
+    public function createAction(Request $request) {
+        $entity = new EpostRoll();
+        list($user_id, $group_id) = $this->getuserid();
+        $em = $this->getDoctrine()->getManager();
+        if ($user_id == 0) {
+            throw $this->createNotFoundException('Ce user n\'est pas connecté.');
+        }
+
+        $entity_user = $em->getRepository('ApplicationSonataUserBundle:User')->find($user_id);
+
+        $entity->setProprietaire($entity_user);
+
         $form = $this->createForm(new EpostRollType(), $entity);
         $form->bind($request);
 
@@ -135,32 +137,43 @@ class EpostRollController extends Controller
         }
 
         return $this->render('ApplicationEpostBundle:EpostRoll:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+                    'entity' => $entity,
+                    'form' => $form->createView(),
+                ));
     }
 
     /**
      * Displays a form to create a new EpostRoll entity.
      *
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new EpostRoll();
-        $form   = $this->createForm(new EpostRollType(), $entity);
+
+
+        list($user_id, $group_id) = $this->getuserid();
+        $em = $this->getDoctrine()->getManager();
+        if ($user_id == 0) {
+            throw $this->createNotFoundException('Ce user n\'est pas connecté.');
+        }
+
+        $entity_user = $em->getRepository('ApplicationSonataUserBundle:User')->find($user_id);
+
+        $entity->setProprietaire($entity_user);
+
+
+        $form = $this->createForm(new EpostRollType(), $entity);
 
         return $this->render('ApplicationEpostBundle:EpostRoll:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+                    'entity' => $entity,
+                    'form' => $form->createView(),
+                ));
     }
 
     /**
      * Finds and displays a EpostRoll entity.
      *
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ApplicationEpostBundle:EpostRoll')->find($id);
@@ -172,16 +185,15 @@ class EpostRollController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ApplicationEpostBundle:EpostRoll:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+                    'entity' => $entity,
+                    'delete_form' => $deleteForm->createView(),));
     }
 
     /**
      * Displays a form to edit an existing EpostRoll entity.
      *
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ApplicationEpostBundle:EpostRoll')->find($id);
@@ -194,18 +206,17 @@ class EpostRollController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ApplicationEpostBundle:EpostRoll:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
+                ));
     }
 
     /**
      * Edits an existing EpostRoll entity.
      *
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ApplicationEpostBundle:EpostRoll')->find($id);
@@ -226,18 +237,17 @@ class EpostRollController extends Controller
         }
 
         return $this->render('ApplicationEpostBundle:EpostRoll:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
+                ));
     }
 
     /**
      * Deletes a EpostRoll entity.
      *
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
@@ -263,11 +273,11 @@ class EpostRollController extends Controller
      *
      * @return Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
+                        ->add('id', 'hidden')
+                        ->getForm()
         ;
     }
+
 }

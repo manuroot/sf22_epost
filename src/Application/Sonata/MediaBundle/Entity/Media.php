@@ -21,6 +21,9 @@ use Sonata\MediaBundle\Entity\BaseMedia as BaseMedia;
  *
  * @author <yourname> <youremail>
  */
+ /* @ORM\Entity(repositoryClass="Application\Sonata\MediaBundle\Entity\MediaRepository")
+  * 
+  */
 class Media extends BaseMedia
 {
     /**

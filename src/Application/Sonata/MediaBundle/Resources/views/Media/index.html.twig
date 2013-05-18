@@ -28,7 +28,7 @@
         <thead>
             <tr class="title">
                  <th>Name</th>
-                <th>Description</th>
+                {#<th>Description</th>#}
                 <th>Enabled</th>
                {# <th>Providername</th>#}
                 <th>Providerstatus</th>
@@ -52,13 +52,13 @@
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for entity in paginationa %}
             <tr>
                 <td><a href="{{ path('usermedia_show', { 'id': entity.id }) }}">
 {#{{ entity.name }}#}
 <img src="{% path entity.id, 'small' %}" width="50" />
                             </a></td>
-                <td>{{ entity.description }}</td>
+              {#  <td>{{ entity.description }}</td>#}
                 <td>{{ entity.enabled }}</td>
              {#  <td>{{ entity.providerName }}</td>#}
                 <td>{{ entity.providerStatus }}</td>
@@ -75,8 +75,8 @@
              {#   <td>{{ entity.cdnIsFlushable }}</td>
                 <td>{% if entity.cdnFlushAt %}{{ entity.cdnFlushAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ entity.cdnStatus }}</td>#}
-                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d' ) }}{% endif %}</td>
+                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ entity.id }}</td>
                
                     
@@ -102,6 +102,8 @@
         {% endfor %}
         </tbody>
     </table>
+    
+     {{ knp_pagination_render(paginationa) }}
 {#
         <ul>
         <li>

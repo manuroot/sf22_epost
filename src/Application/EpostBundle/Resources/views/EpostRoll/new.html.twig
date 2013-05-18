@@ -42,19 +42,26 @@ Ajouter Une note  à un Post
 
 {% block content %}
     <h1>EpostRoll creation</h1>
+   <form action="{{ path('epostroll_create') }}" method="post" {{ form_enctype(form) }}>
+    <table class="table table-bordered">
+        <tbody>      
+            <tr>
+                <td>{{ form_row(form.name) }} 
+  
+</td><td>
+{{ form_rest(form) }} </td>
+            </tr>
 
-    <form action="{{ path('epostroll_create') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <p>
-            <button type="submit">Create</button>
-        </p>
-    </form>
+            <tr><td colspan="2">
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('epostroll') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+                    <button type="submit" class="btn btn-small btn-warning">Modifier</button>
+
+
+                    </form>       
+       
+                </td></tr>
+        </tbody>
+    </table>
+
+       <a href="{{ path('epostroll')  }}" class="btn btn-small btn-success">Retour</a>
 {% endblock %}

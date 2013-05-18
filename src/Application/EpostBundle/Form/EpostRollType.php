@@ -16,7 +16,8 @@ class EpostRollType extends AbstractType
           //  ->add('createdAt')
          //   ->add('updatedAt')
          //   ->add('isvisible')
-            ->add('proprietaire')
+                 ->add('proprietaire',null,array(  'disabled' => true,'label'=>'Utilisateur'))
+            
         ;
     }
 

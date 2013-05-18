@@ -25,7 +25,7 @@
  
 {% block content_header '' %}
 {% block title %}
-POSTS DISPONIBLES
+ARTICLES
 
 
 {% endblock %}
@@ -52,8 +52,8 @@ POSTS DISPONIBLES
       
 
  <div class="mypost">
-            <div class="sonata-blog-post-date-container">
-           {{ entity.createdAt|created_ago }} -    
+     <table><tr><td>
+               {{ entity.createdAt|created_ago }} -    
                     
         {% if entity.globalnote is not null %}
    {#    Note Globale: #}
@@ -62,20 +62,32 @@ POSTS DISPONIBLES
         {% else %}
    <div class="star" data-score="0"></div>
         {#({{ entity.globalnote }})#}
-        {% endif %}
-            </div>
+        {% endif %}</td><td>
+                          {% if entity.categorie is not null %}               
+                          <span class="label">
+                 
+    <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
+{{ entity.categorie.name }}</a>
+                        </span>
+                  {% else %}
+                  pas de catégorie
+                  {% endif %}
+                   {% for tag in entity.tags %}
+                             <span class="label label-inverse">
+                                 <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
+                            {% if not loop.last%}, {%endif%}
+                             </span>
+                            {% else %}
+                            Pas de Tag
+                        {% endfor %}
+                         </td></tr></table>
+     
+     
+    
              <!--   <h2 class="entry-title">-->
             <h2 class="sonata-blog-post-title">
                       <img src="{% path entity.imageMedia, 'big' %}" width="100" /> 
-   
-   {#         {% if entity.image is not null %}               
-           
-         
-         <img width="100px" src="{{ vich_uploader_asset(entity, 'image') }}" alt="{{ entity.imageName }}" />
-         {% else %}
-           
-         {% endif %}
-     #}      
+     
                 <span class="sonata-blog-post-author"> 
                   
                          <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
@@ -90,31 +102,7 @@ POSTS DISPONIBLES
                   <div class="sonata-blog-post-abtract">
               Extrait:  {{ entity.resume|raw }}
             </div><br>
-               <div class="sonata-blog-post-tag-list">
-                   
-                           {% if entity.categorie is not null %}               
-                          <span class="label">
-                 
-    <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
-{{ entity.categorie.name }}</a>
-                        </span>
-                  {% else %}
-                  pas de catégorie
-                  {% endif %}
-<div class="sonata-blog-post-tag-list">
-                        {% for tag in entity.tags %}
-                             <span class="label label-inverse">
-                                 <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
-                            {% if not loop.last%}, {%endif%}
-                             </span>
-                            {% else %}
-                            Pas de Tag
-                        {% endfor %}
-                    </div>   
-                
-
-                       
-                    </div>
+             
              
             {% if entity.commentscount is not null %}
             {% if entity.commentscount > 1 %}
@@ -126,24 +114,10 @@ POSTS DISPONIBLES
                       <span class="badge badge-warning">0 commentaire</span>
                       
                       {% endif %}
-                
-         {#{% if entity.comments is not null %}
-              {% if entity.comments|length > 1 %}
-                <span class="badge badge-warning">{{ entity.comments|length }} commentaires</span>
-                {% else %}
-                <span class="badge badge-warning">{{ entity.comments|length }} commentaire</span>
-                {% endif %}
-                  {% else %}
-                 ---
-                  {% endif %} 
-           #}      
                     <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
                         <img src="{{ asset('bundles/applicationepost/images/detail.png') }}" alt="show" width="15" height="15" />
                     </a>
-                             
-                    
-            
-       <!-- </div>-->
+  
        </div>
    
     {% endfor %}

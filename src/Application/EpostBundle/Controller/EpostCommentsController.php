@@ -227,7 +227,7 @@ class EpostCommentsController extends Controller {
                     ));
         }
 
-        $editForm = $this->createForm(new EpostCommentsType(), $entity);
+        $editForm = $this->createForm(new EpostCommentsType(true), $entity);
       //  $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ApplicationEpostBundle:EpostComments:edit.html.twig', array(
@@ -261,8 +261,8 @@ class EpostCommentsController extends Controller {
         }
 
            
-        
-        $editForm = $this->createForm(new EpostCommentsType(), $entity);
+         $editForm = $this->createForm(new EpostCommentsType(true), $entity);
+        //$editForm = $this->createForm(new EpostCommentsType(), $entity);
         $editForm->bind($request);
         if ($editForm->isValid()) {
             // Ajout de la note du user pour ce post

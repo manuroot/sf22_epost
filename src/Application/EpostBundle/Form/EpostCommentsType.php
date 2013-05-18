@@ -10,7 +10,18 @@ use Doctrine\ORM\EntityRepository;
 
 class EpostCommentsType extends AbstractType {
 
+    private $IsApproved;
+    private $EpostId;
+
+    public function __construct($isapproved= false) {
+
+        $this->IsApproved = $isapproved;
+     
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options) {
+         
+        
         
            $builder
            ->add('user',null,array( 'disabled' => true,'label'=>'Utilisateur'))
@@ -23,12 +34,12 @@ class EpostCommentsType extends AbstractType {
                        
                         'class' => 'tinymce',
                     'data-theme' => 'simple'
-// simple, advanced, bbcode
-                        )))
-                 ->add('approved',null,array('label'=>'Approuvé','required'=>false))
-//->add('isComment')
-      
-        ;
+                        )));
+           
+           
+                   if ($this->IsApproved)
+                  $builder->add('approved',null,array('label'=>'Approuvé','required'=>false));
+
             
         
     }

@@ -120,7 +120,9 @@ MES POSTS
 <td>           {{  entity.description|raw|slice(0, 20)|raw }}</td>#}
       {#  <td>{{ entity.description|raw|length > 30 ? entity.description|slice(0, 30)|raw  : entity.description|raw  }}</td>
 #}
-  <td class="resume">{{ entity.resume|raw }}</td>
+  
+    <td class="resume">{{ entity.resume|length > 200 ? entity.resume|slice(0, 200)|raw ~ '...'  : entity.resume|raw  }}</td>
+  {#<td class="resume">{{ entity.resume|raw }}</td>#}
  
   {# Marche pas !!!!! #}
       <td>{{ entity.tags|join(', ') }}   </td>

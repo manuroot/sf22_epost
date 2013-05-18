@@ -181,8 +181,10 @@ MES ARTICLES
 {% endif %} 
                                    </td> 
        <td>{{ entity.createdAt|created_ago }}</td>
-     
+       <td>{{ entity.resume|length > 200 ? entity.resume|slice(0, 200)|raw ~ '...'  : entity.resume|raw  }}</td>
+  {#
               <td class="resume">{{ entity.resume|raw }}</td>
+#}
                   {#     <td>
                 {% if entity.image is not null %}               
            #}
@@ -326,7 +328,8 @@ MES ARTICLES
      
 {% endif %} 
                                    </td> 
-                                     <td class="resume">{{ entity.resume|raw }}</td>
+                                  <td class="resume">{{ entity.resume|length > 200 ? entity.resume|slice(0, 200)|raw ~ '...'  : entity.resume|raw  }}</td>
+  {#     <td class="resume">{{ entity.resume|raw }}</td>#}
             
             
              {#          <td>

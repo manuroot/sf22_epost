@@ -112,8 +112,9 @@ ARTICLES
 {% endif %} 
                                    </td> 
   <td>{{ entity.createdAt|created_ago }}</td>
- 
-                <td class="resume">{{ entity.resume|raw }}</td>
+     <td class="resume">{{ entity.resume|length > 200 ? entity.resume|slice(0, 200)|raw ~ '...'  : entity.resume|raw  }}</td>
+     {#
+                <td class="resume">{{ entity.resume|raw }}</td>#}
                 <td>{{ entity.tags|join(', ') }}   </td>
                  <td>           {% if entity.globalnote is not null %}
    {#    Note Globale: #}

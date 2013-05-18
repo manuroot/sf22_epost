@@ -9,22 +9,21 @@
       
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/jquery.rating.js') }}" type="text/javascript"></script>
-    {{ form_javascript(edit_form) }}
- {% endblock %}
+  {% endblock %}
 
 {% block content_header '' %}
 {% block title %}
-
+Edition du Message de {{ entity.user }} sur l'article "{{ entity.epost.name }}"
 {% endblock %}
      
 
 
 {% block content %}
 
-<br><br>
+<br>
+<br>
 
-    <form action="{{ path('epostnotes_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <form action="{{ path('epost_comment_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         <input type="hidden" name="_method" value="PUT" />
         <table class="table table-bordered">
             <tbody>      
@@ -39,27 +38,14 @@
         </td>
                 <td>
 
-{#
-<label for="amount">Minimum number of bedrooms:</label>
-<input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;" />#}
-     {{ form_row(edit_form.note) }}
-{#
-<div id="slider-range-max"></div>#}
 </td><td>
 {{ form_rest(edit_form) }} </td>
             </tr>
 
             <tr><td colspan="2">
-
-                    <button type="submit" class="btn btn-small btn-warning">Modifier</button>
-
-
-                    </form>       
-
-  
-                  
-
-                </td></tr>
+            <button type="submit" class="btn btn-small btn-warning">Modifier</button>
+             </form>       
+            </td></tr>
         </tbody>
     </table>
      <br>

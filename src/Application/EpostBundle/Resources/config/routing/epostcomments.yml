@@ -13,3 +13,11 @@ epost_comment_ownerblogview:
     pattern:  /blog
     defaults: { _controller: ApplicationEpostBundle:EpostComments:indexownerblog }
      
+epost_comment_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ApplicationEpostBundle:EpostComments:edit" }
+    
+epost_comment_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ApplicationEpostBundle:EpostComments:update" }
+    requirements: { _method: post|put }

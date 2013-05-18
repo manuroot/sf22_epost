@@ -25,10 +25,9 @@ class EpostCommentsType extends AbstractType {
                     'data-theme' => 'simple'
 // simple, advanced, bbcode
                         )))
-          //  ->add('approved')
-         //   ->add('created')
-        //    ->add('updated')
-         //   ->add('blog')
+                 ->add('approved',null,array('label'=>'Approuvé','required'=>false))
+//->add('isComment')
+      
         ;
             
         

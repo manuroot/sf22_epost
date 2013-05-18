@@ -57,7 +57,8 @@ COMMENTAIRES SUR MES POSTS
                           <td>{{ entity.user.username }}</td>
            <td>{{ entity.updated|date }}</td>
            <td>{{ entity.created|date }}</td>
-               <td>{{ entity.approved }}</td>
+               <td>
+{% if entity.approved ==1 %} OUI {% else %} NON {% endif %} </td>
    <td>
                              <a href="{{ path('epost_showstandard', { 'blog_id': entity.epost.id,'slug': entity.epost.slug }) }}">
              {#
@@ -71,6 +72,11 @@ COMMENTAIRES SUR MES POSTS
                         <img src="{{ asset('bundles/applicationepost/images/Stara.gif') }}" alt="show" width="15" height="15" />
                     </a>
                 </td> 
+                <td>
+                    <a href="{{ path('epost_comment_edit', { 'id': entity.id }) }}">
+                        <img src="{{ asset('bundles/applicationepost/images/edit.png') }}" alt="edit" width="15" height="15" />
+                    </a>
+                </td>
                     </tr>
         {% endfor %}
                 </tbody>

@@ -6,12 +6,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Application\EpostBundle\Entity\Epost;
 use Application\EpostBundle\Entity\EpostComments;
-use Application\EpostBundle\Form\EpostCommentsType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Application\EpostBundle\Form\EpostType;
+use Application\EpostBundle\Form\EpostCommentsType;
 
 /**
  * Epost controller.
@@ -205,16 +206,20 @@ class EpostCommentsController extends Controller {
         return $pagination;
     }
 
+    /* edition d'un commentaire par le proprietaire du post
+     * 
+     */
     public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('ApplicationEpostBundle:EpostComments')->find($id);
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Epost entity.');
+            throw $this->createNotFoundException('Unable to find EpostComment entity.');
         }
         $session = $this->getRequest()->getSession();
         $myretour = $session->get('buttonretour');
         list($user_id, $group_id) = $this->getuserid();
-        $proprietaire = $entity->getProprietaire()->getId();
+        // propeitaire du post
+        $proprietaire = $entity->getEpost()->getProprietaire()->getId();
         //echo "u=$user_id  p=$proprietaire<br>";
         //    exit(1);
         if ($user_id != $proprietaire) {
@@ -222,14 +227,57 @@ class EpostCommentsController extends Controller {
                     ));
         }
 
-        $editForm = $this->createForm(new EpostType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createForm(new EpostCommentsType(), $entity);
+      //  $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ApplicationEpostBundle:EpostComments:edit.html.twig', array(
                     'entity' => $entity,
                     'btnretour' => $myretour,
                     'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+                   // 'delete_form' => $deleteForm->createView(),
+                ));
+    }
+
+      /**
+     * Edits an existing EpostNotes entity.
+     * id de la note
+     */
+    public function updateAction(Request $request, $id) {
+         $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('ApplicationEpostBundle:EpostComments')->find($id);
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find EpostComment entity.');
+        }
+        $session = $this->getRequest()->getSession();
+        $myretour = $session->get('buttonretour');
+        list($user_id, $group_id) = $this->getuserid();
+        // propeitaire du post
+        $proprietaire = $entity->getEpost()->getProprietaire()->getId();
+        //echo "u=$user_id  p=$proprietaire<br>";
+        //    exit(1);
+        if ($user_id != $proprietaire) {
+            return $this->render('ApplicationEpostBundle:Epost:deny.html.twig', array(
+                    ));
+        }
+
+           
+        
+        $editForm = $this->createForm(new EpostCommentsType(), $entity);
+        $editForm->bind($request);
+        if ($editForm->isValid()) {
+            // Ajout de la note du user pour ce post
+            // gestion par em
+            $em->persist($entity);
+            // execution de la requete en base
+            $em->flush();
+            $session->getFlashBag()->add('warning', "Enregistrement $id update successfull");
+                  return $this->redirect($this->generateUrl('epost_comment_ownerblogview'));
+        }
+         return $this->render('ApplicationEpostBundle:EpostComments:edit.html.twig', array(
+                    'entity' => $entity,
+                    'btnretour' => $myretour,
+                    'edit_form' => $editForm->createView(),
+                   // 'delete_form' => $deleteForm->createView(),
                 ));
     }
 

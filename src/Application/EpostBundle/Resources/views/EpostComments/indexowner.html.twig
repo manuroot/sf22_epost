@@ -57,7 +57,8 @@ MES COMMENTAIRES
                         {#  <td>{{ pager.user.username }}</td>#}
            <td>{{ pager.updated|date }}</td>
            <td>{{ pager.created|date }}</td>
-            <td>{{ pager.approved }}</td>
+            <td>{% if pager.approved ==1 %} OUI {% else %} NON {% endif %} </td>
+           
               <td>
                              <a href="{{ path('epost_showstandard', { 'blog_id': pager.epost.id,'slug': pager.epost.slug }) }}">
              {#

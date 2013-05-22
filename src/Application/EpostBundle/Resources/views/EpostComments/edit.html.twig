@@ -28,13 +28,14 @@ Edition du Message de {{ entity.user }} sur l'article "{{ entity.epost.name }}"
         <table class="table table-bordered">
             <tbody>      
             <tr><td>
-             {% if entity.epost.image is not null %}               
+                    <img src="{% path entity.epost.imageMedia, 'big' %}" width="150" /> 
+             {#{% if entity.epost.image is not null %}               
                         <p>Image Actuelle</p>
                         <img width="150px" src="{{ vich_uploader_asset(entity.epost, 'image') }}" alt="{{ entity.epost.imageName }}" />
          {% else %}
-                        <p>Pas d'Image</p>
+                        <p>Pas d'image</p>
          {% endif %}
-                   
+               #}    
         </td>
                 <td>
 

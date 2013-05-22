@@ -153,7 +153,7 @@ class Epost {
     private $idStatus;
 
     /**
-     * @ORM\OneToMany(targetEntity="EpostComments", mappedBy="epost",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="EpostComments", mappedBy="epost",cascade={"remove", "persist"})
      */
     private $comments;
 
@@ -167,13 +167,13 @@ class Epost {
 
     
     /**
-     * @ORM\OneToMany(targetEntity="EpostCommentsThread", mappedBy="epost",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="EpostCommentsThread", mappedBy="epost",cascade={"remove", "persist"})
      */
     private $commentsthread;
     
     
     /**
-     * @ORM\OneToMany(targetEntity="EpostNotes", mappedBy="epost",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="EpostNotes", mappedBy="epost",cascade={"remove", "persist"})
      */
     private $notes;
 
@@ -842,4 +842,14 @@ class Epost {
       return $this->commentscount;
       //return (count($this->comments));
     }
+    
+    
+     // @ORM\PreRemove
+     // Release all the children on remove
+     
+   /* public function preRemove()
+    {
+        foreach($this->children as $child)
+            $child->setParent(null);
+    }*/
 }

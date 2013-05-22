@@ -4,7 +4,7 @@
         <body>
            <trans-unit id="change_password">
                 <source>change_password</source>
-                <target>Profile Utilisateur - Changer le mot de passe</target>
+                <target>Profil Utilisateur - Changer le mot de passe</target>
             </trans-unit>
            <trans-unit id="title_user_account">
                 <source>title_user_account</source>

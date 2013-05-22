@@ -151,6 +151,13 @@ POST: {{ entity.name }}
    </form>       
                                        
                                 </td></tr>
+<tr class="single"><td colspan="3"><br><br>
+<form action="{{ path('epost_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit"  class="btn btn-medium btn-danger">Delete</button>
+        </form>
+                            </td></tr>
                         </tbody>
                     </table>
       

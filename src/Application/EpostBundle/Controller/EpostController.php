@@ -557,6 +557,7 @@ class EpostController extends Controller {
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
+       // echo "id delete=$id<br>";exit(1);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('ApplicationEpostBundle:Epost')->find($id);
@@ -568,6 +569,7 @@ class EpostController extends Controller {
             $em->remove($entity);
             $em->flush();
         }
+        else {}
 
         return $this->redirect($this->generateUrl('epost'));
     }

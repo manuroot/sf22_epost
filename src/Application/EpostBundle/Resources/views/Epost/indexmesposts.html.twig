@@ -76,7 +76,7 @@ MES POSTS
           <th{% if paginationa.isSorted('a.commentscount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(paginationa, 'Commentaires', 'a.commentscount') }}</th>
              
        {#    {% if is_granted("ROLE_ADMIN") %}#}
- <th colspan="4"><center>Actions</center></th>
+ <th colspan="3"><center>Actions</center></th>
 {#{% else %}
  <th><center>Actions</center></th>
 {% endif %}#}
@@ -174,11 +174,20 @@ MES POSTS
                    </a>
    
                 </td>
-                   <td>
-     <a href="{{ path('epost_delete', { 'id': entity.id }) }}">
-                        <img src="{{ asset('bundles/applicationepost/images/delete.png') }}" alt="delete" width="15" height="15" />
-                    </a>
-                </td>
+                 
+                       
+                 {#
+  <td>
+      <form action="{{ path('epost_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+           
+            <button type="submit"><img src="{{ asset('bundles/applicationepost/images/delete.png') }}" alt="delete" width="15" height="15" /></button>
+        </form>
+     {#<a href="{{ path('epost_delete', { 'id': entity.id }) }}">#}
+                        
+               {#     </a>
+ </td>#}
+               
               
             </tr>
         {% endfor %}

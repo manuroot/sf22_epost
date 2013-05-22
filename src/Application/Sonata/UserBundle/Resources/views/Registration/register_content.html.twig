@@ -1,0 +1,18 @@
+<br><h2><center>Créer un Profil</center></h2>
+   <br>
+  <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+   <table class="table table-bordered">
+    <tbody>      
+        <tr> <td> 
+        {#          <div class="input-prepend">
+     <span class="add-on"><i class="icon-user"></i></span>
+ #}
+  {{ form_widget(form) }}
+              </td></tr>
+                <tr><td>
+        <input type="submit"  class="btn btn-primary" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+       </td></tr>
+    </tbody></table>
+</form>
+
+ 

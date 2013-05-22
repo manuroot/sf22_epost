@@ -12,18 +12,24 @@ file that was distributed with this source code.
 #}
 
 
-{% block fos_user_content %}
+{% block content %}
 
 <div class="sonata-user-edit-profile">
 
-    <h2>{{ "title_user_account" | trans({}, 'SonataUserBundle')}} - {{ "title_user_edit_profile" | trans({}, 'SonataUserBundle')}}</h2>
-
+    <h2><center>{{ "title_user_account" | trans({}, 'SonataUserBundle')}} - {{ "title_user_edit_profile" | trans({}, 'SonataUserBundle')}}</center></h2>
+                 
     <form action="{{ path('sonata_user_profile_edit') }}" method="POST">
-        {{ form_rest(form) }}
-
+   <table class="table table-bordered">
+    <tbody>      
+        <tr> <td>
+       {{ form_rest(form) }}
+                    </td></tr>
+                <tr><td>
          <input type="submit" class="btn btn-primary" name="submit" value="{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}" />
     </form>
+       </td></tr>
+    </tbody></table>
 
 </div>
 
-{% endblock fos_user_content %}
+{% endblock %}

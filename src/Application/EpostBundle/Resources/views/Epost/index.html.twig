@@ -22,7 +22,7 @@
 .demo .warm {
   display: none;
 }  
-.resume {max-width:300px;}
+.resume {max-width:350px;}
 </style>
  {% endblock %}
 
@@ -181,7 +181,7 @@ MES ARTICLES
 {% endif %} 
                                    </td> 
        <td>{{ entity.createdAt|created_ago }}</td>
-       <td>{{ entity.resume|length > 200 ? entity.resume|slice(0, 200)|raw ~ '...'  : entity.resume|raw  }}</td>
+       <td class="resume">{{ entity.resume|length > 200 ? entity.resume|slice(0, 200)|raw ~ '...'  : entity.resume|raw  }}</td>
   {#
               <td class="resume">{{ entity.resume|raw }}</td>
 #}

@@ -503,7 +503,7 @@ class EpostController extends Controller {
                     'entity' => $entity,
             
                     'btnretour' => $myretour,
-                    'edit_form' => $editForm->createView(),
+                    'form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
                 ));
     }
@@ -544,7 +544,7 @@ class EpostController extends Controller {
         return $this->render('ApplicationEpostBundle:Epost:edit.html.twig', array(
                     'entity' => $entity,
                     'btnretour' => $myretour,
-                    'edit_form' => $editForm->createView(),
+                    'form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
                 ));
     }

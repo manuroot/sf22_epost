@@ -57,7 +57,18 @@ MES COMMENTAIRES
                         {#  <td>{{ pager.user.username }}</td>#}
            <td>{{ pager.updated|date }}</td>
            <td>{{ pager.created|date }}</td>
-            <td>{% if pager.approved ==1 %} OUI {% else %} NON {% endif %} </td>
+            <td>
+                   
+{% if pager.approved ==1 %}
+      <img src="{{ asset('bundles/applicationepost/images/cadenas-souvert.png') }}" alt="show" width="15" height="15" />
+
+ {% else %}
+ <img src="{{ asset('bundles/applicationepost/images/cadenas-sferme.png') }}" alt="show" width="15" height="15" />
+        {% endif %} 
+                   
+                 </td>
+                 
+          
            
               <td>
                              <a href="{{ path('epost_showstandard', { 'blog_id': pager.epost.id,'slug': pager.epost.slug }) }}">

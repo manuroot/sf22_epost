@@ -65,8 +65,8 @@ class EpostType extends AbstractType {
                 ->add('description', 'textarea', array(
                     'label' => 'Description du Post',
                     'attr' => array(
-                        'cols' => "60",
-                        'rows' => "15",
+                        'cols' => "35",
+                       'rows' => "15",
                         'class' => 'tinymce',
                         )));
 

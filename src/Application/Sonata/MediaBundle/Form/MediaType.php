@@ -12,7 +12,7 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
+           // ->add('description')
             ->add('enabled')
             ->add('providerName')
           /*  ->add('providerStatus')

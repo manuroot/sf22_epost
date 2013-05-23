@@ -58,7 +58,15 @@ COMMENTAIRES SUR MES POSTS
            <td>{{ entity.updated|date }}</td>
            <td>{{ entity.created|date }}</td>
                <td>
-{% if entity.approved ==1 %} OUI {% else %} NON {% endif %} </td>
+                   
+{% if entity.approved ==1 %}
+      <img src="{{ asset('bundles/applicationepost/images/cadenas-souvert.png') }}" alt="show" width="15" height="15" />
+
+ {% else %}
+ <img src="{{ asset('bundles/applicationepost/images/cadenas-sferme.png') }}" alt="show" width="15" height="15" />
+        {% endif %} 
+                   
+                 </td>
    <td>
                              <a href="{{ path('epost_showstandard', { 'blog_id': entity.epost.id,'slug': entity.epost.slug }) }}">
              {#

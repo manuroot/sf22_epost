@@ -1,0 +1,55 @@
+            <tr class="single"><td>
+                    <div>
+                  {{ form_row(form.name) }}
+                           {{ form_row(form.idStatus) }}
+                        {{ form_errors(form.isvisible) }}
+                        {{ form_widget(form.isvisible) }}
+
+     {% if entity.imageMedia is not null %}    
+                            <img src="{% path entity.imageMedia, 'big' %}" width="150" /> 
+ {% else %}
+                            <p>Pas d'Image</p>
+         {% endif %}
+           {{ form_row(form.imageMedia) }}
+                            <br><br>
+
+                            {{ form_row(form.tags) }}
+                             {{ form_row(form.categorie) }}
+
+                              {{ form_errors(form.commentsEnabled) }}
+                         {{ form_label(form.commentsEnabled) }}
+                         {{ form_widget(form.commentsEnabled) }}
+
+                            {{ form_errors(form.commentsCloseAt) }}
+                          {{ form_label(form.commentsCloseAt) }}
+                         {{ form_widget(form.commentsCloseAt) }}
+                        </div>
+                        <hr>
+
+
+                    </td>
+                    <td>
+
+ {{ form_row(form.description) }}
+                        <hr>
+    {# {{ form_row(form.resume) }}#}
+       {{ form_errors(form.resume) }}
+     {{ form_label(form.resume) }}
+     {{ form_widget(form.resume, { 'attr': {'class': 'myresume'} }) }}
+                    </td>
+ {#<td></td>#}
+
+                </tr>
+
+                <tr class="single"><td colspan="3">
+ {{ form_rest(form) }}                                  
+                                <button type="submit" class="btn btn-small btn-warning">Modifier</button>
+                                <a href="{{ path(btnretour)  }}" class="btn btn-small btn-success">Retour</a>
+                                </form>       
+
+                                     
+                                       
+                                </td></tr>
+                    
+   
+   

@@ -1,0 +1,21 @@
+<script type="text/javascript">
+          
+$(document).ready(function() {
+ $( "#application_eposttype_commentsCloseAt" ).datepicker({
+maxDate: "+3M +10D",
+changeMonth: true,
+changeYeat: true,
+numberOfMonths: 1,
+dateFormat: "yy-mm-dd 18:00",
+onClose: function( selectedDate ) {
+$( "#form_bis" ).datepicker( "option", "minDate", selectedDate );
+}
+});
+  
+});
+
+
+
+</script>
+  
+    

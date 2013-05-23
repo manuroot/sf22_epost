@@ -172,7 +172,7 @@ class EpostRepository extends EntityRepository {
         */
         $parameters = array();
         $query = $this->createQueryBuilder('a')
-                ->select('a,b,c,d,e,f,t,u')
+                ->select('a,b,c,d,e,f,u')
                 ->add('orderBy', 'a.id DESC')
                 //->where('a.proprietaire = :proprietaire')
                 ->leftJoin('a.proprietaire', 'b')
@@ -181,7 +181,7 @@ class EpostRepository extends EntityRepository {
                 ->leftJoin('a.idStatus', 'd')
                 ->leftJoin('a.globalnote', 'e')
                 ->leftJoin('a.imageMedia', 'f')
-                ->leftJoin('a.tags', 't')
+              //  ->leftJoin('a.tags', 't')
                 ->leftJoin('a.comments', 'u')
                 ->groupby('a.name')
                 ;
@@ -216,12 +216,13 @@ class EpostRepository extends EntityRepository {
             $query->andWhere('a.categorie = :categoryid');
             $parameters['categoryid'] = $criteria['categorie']->getId();
         }
-        if (isset($criteria['tag'])) {
-            //    $query->leftJoin('a.tags', 't');
-            $query->andWhere('t.id =:tag');
+        
+          if (isset($criteria['tag'])) {
+               $query->leftJoin('a.tags', 't');
+            $query->andWhere('t.id = :tag');
             //   ->groupby('a.name');
-
-            $parameters['tag'] = (string) $criteria['tag'];
+  $parameters['tag'] = (string) $criteria['tag'];
+     //       $parameters['tag'] = 'tag1';
         }
         $query->setParameters($parameters);
         //>getQuery();

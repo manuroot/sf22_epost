@@ -72,14 +72,17 @@ ARTICLES
                   {% else %}
                   pas de catégorie
                   {% endif %}
+                     {#<span class="label label-inverse">#}
+                {#  {{ entity.tags|join(', ') }}    </span>#}
                    {% for tag in entity.tags %}
                              <span class="label label-inverse">
                                  <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
-                            {% if not loop.last%}, {%endif%}
+                            {% if not loop.last%} {%endif%}
                              </span>
                             {% else %}
                             Pas de Tag
                         {% endfor %}
+
                          </td></tr></table>
      
      

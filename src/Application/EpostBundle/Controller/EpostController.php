@@ -293,14 +293,24 @@ class EpostController extends Controller {
         if ($category) {
             $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
                 'categorie' => $category,
+                'open_status' => 'OPEN',
                     ));
         } else {
-            $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
+            $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
+                'open_status' => 'OPEN',
+                ));
         }
+        
+          // $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPagerStandard(array(open-status));
         return $this->renderBlog(array(
                     'page' => 'ApplicationEpostBundle:Epost:standardblog.html.twig',
                     'query' => $query,
                 ));
+        
+       /* return $this->renderBlog(array(
+                    'page' => 'ApplicationEpostBundle:Epost:standardblog.html.twig',
+                    'query' => $query,
+                ));*/
     }
 
   //====================================================================

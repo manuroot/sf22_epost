@@ -1,0 +1,82 @@
+{% extends "ApplicationEpostBundle::layout.html.twig" %}
+
+  {% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('bundles/applicationepost/css/sliding.css') }}" type="text/css" media="all"/>
+
+ {% endblock %}
+
+
+{% block javascripts %}
+{{ parent() }}
+ 
+ <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
+ <script type="text/javascript">
+    $('.star').raty({
+       /* path: '/images',*/
+        readOnly: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>
+ {% endblock %}
+
+
+{% block content_header '' %}
+{% block title %}
+ ARTICLES: TAGS
+{% endblock %}
+{% block content %}
+
+{% for type, flashMessages in app.session.flashbag.all() %}
+    {% for flashMessage in flashMessages %}
+<div class="alert alert-{{ type }}">
+            {{ flashMessage|trans }}
+    </div>
+    {% endfor %}
+{% endfor %}
+
+ {% if is_granted("ROLE_ADMIN") %}  
+    <a href="{{ path('tags_new') }}" class="btn btn-medium btn-primary">
+        <i class="icon-plus"></i> Ajouter un Tag</a>
+{% endif %}
+    <br><br>
+
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr class="title">
+              <th>Id</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('tags_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.slug }}</td>
+     
+                  <td>
+                      <a href="{{ path('tags_show', { 'id': entity.id }) }}">
+                      
+                                <img src="{{ asset('bundles/applicationepost/images/detail.png') }}" alt="show" width="15" height="15" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('tags_edit', { 'id': entity.id }) }}">
+                                <img src="{{ asset('bundles/applicationepost/images/edit.png') }}" alt="edit" width="15" height="15" />
+                            </a>
+                        </td>
+                        
+                             
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        
+    {% endblock %}

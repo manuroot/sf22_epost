@@ -1,0 +1,11 @@
+epost_categories_index:
+    pattern:  /
+    defaults: { _controller: "ApplicationEpostBundle:Epost:indexAll" }
+
+
+epost_categories_show:
+    pattern:  /{categorie}
+    defaults: { _controller: ApplicationEpostBundle:Epost:indexbycategory }
+    requirements:
+        _method:  GET
+        blog_id: \d+

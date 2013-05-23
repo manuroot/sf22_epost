@@ -208,6 +208,10 @@ class EpostRepository extends EntityRepository {
             $parameters['group_id'] = $criteria['group'];
         }
 
+         if (isset($criteria['open_status'])) {
+            $query->andWhere('d.nom = :open_status');
+            $parameters['open_status'] = $criteria['open_status'];
+        }
         if (isset($criteria['categorie']) && $criteria['categorie'] instanceof EpostCategories) {
             $query->andWhere('a.categorie = :categoryid');
             $parameters['categoryid'] = $criteria['categorie']->getId();

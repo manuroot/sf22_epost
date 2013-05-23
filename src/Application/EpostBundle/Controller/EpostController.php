@@ -248,7 +248,10 @@ class EpostController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $session = $this->getRequest()->getSession();
         $session->set('buttonretour', 'epost_indexstandard');
-        $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPagerStandard(array());
+        $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
+            'open_status' => 'OPEN',
+                ));
+      // $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPagerStandard(array(open-status));
         return $this->renderBlog(array(
                     'page' => 'ApplicationEpostBundle:Epost:standardblog.html.twig',
                     'query' => $query,

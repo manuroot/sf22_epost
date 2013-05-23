@@ -118,7 +118,7 @@
                                                                 </li>
                                                                   {% endif %}
                                                   
-                                                                
+                                           
                                         {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                                                  {% if (foo[0] == 'egroup') or  (foo[0] == 'epostroll') %}
                                                 <li class="dropdown active">
@@ -137,7 +137,8 @@
                                                                      <li><a href="{{ path('groupedemande') }}"><i class="icon-user"></i> {{ 'Demandes de Groupe'|trans }}</a></li>
                                                                      <li><a href="{{ path('groupedemande_mongroupe') }}"><i class="icon-user"></i> {{ 'Demandes MonGroupe'|trans }}</a></li>
                                                                        <li><a href="{{ path('epostroll') }}"><i class="icon-user"></i> {{ 'Roll-Groupe'|trans }}</a></li>
-                                                         
+                                                             <li><a href="{{ path('tags') }}"><i class="icon-user"></i> {{ 'Tags'|trans }}</a></li>
+                                                             <li><a href="{{ path('categories') }}"><i class="icon-user"></i> {{ 'Categories'|trans }}</a></li>
                                                              
 
                                                             </ul>

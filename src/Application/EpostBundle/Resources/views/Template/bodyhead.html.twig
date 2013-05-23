@@ -1,0 +1,24 @@
+ {% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('bundles/applicationepost/css/sliding.css') }}" type="text/css" media="all"/>
+
+ {% endblock %}
+
+
+{% block javascripts %}
+{{ parent() }}
+ 
+ <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
+ <script type="text/javascript">
+    $('.star').raty({
+       /* path: '/images',*/
+        readOnly: true,
+  score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>
+ {% endblock %}
+                    
+   
+   

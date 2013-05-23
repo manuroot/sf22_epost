@@ -1,0 +1,59 @@
+{% extends "ApplicationEpostBundle::layout.html.twig" %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/jquery.rating.css') }}" type="text/css" media="all"/>
+{{ form_stylesheet(edit_form) }}
+ {% endblock %}
+      
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/jquery.rating.js') }}" type="text/javascript"></script>
+ {{ form_javascript(edit_form) }}
+{% endblock %}
+
+{% block content_header '' %}
+{% block title %}
+{% endblock %}
+    
+
+
+{% block content %}
+<br><br>
+
+    <form action="{{ path('categories_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        <table class="table table-bordered">
+        <tbody>      
+            <tr><td>
+        {{ form_widget(edit_form) }}
+       
+ </td>
+            </tr>
+
+            <tr><td>
+
+                    <button type="submit" class="btn btn-small btn-warning">Modifier</button>
+
+
+                    </form>       
+
+  
+                  
+
+                </td></tr>
+        </tbody>
+    </table>
+     </form>
+      <a href="{{ path('categories') }}" class="btn btn-small btn-success">Retour</a>
+       
+    {#<li>
+        <form action="{{ path('categories_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>#}
+{% endblock %}

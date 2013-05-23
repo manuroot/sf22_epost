@@ -1,12 +1,42 @@
 epost_categories_index:
-    pattern:  /index
+    pattern: /index
     defaults: { _controller: "ApplicationEpostBundle:Epost:indexAll" }
 
 
-
 epost_tags_show:
-    pattern:  /{tag}/
+    pattern: /index/{tag}
     defaults: { _controller: ApplicationEpostBundle:Epost:indexbytag }
     requirements:
-        _method:  GET
+        _method: GET
         blog_id: \d+
+        
+tags:
+    pattern:  /
+    defaults: { _controller: "ApplicationEpostBundle:EpostTags:index" }
+
+tags_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ApplicationEpostBundle:EpostTags:show" }
+
+tags_new:
+    pattern:  /new
+    defaults: { _controller: "ApplicationEpostBundle:EpostTags:new" }
+
+tags_create:
+    pattern:  /create
+    defaults: { _controller: "ApplicationEpostBundle:EpostTags:create" }
+    requirements: { _method: post }
+
+tags_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ApplicationEpostBundle:EpostTags:edit" }
+
+tags_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ApplicationEpostBundle:EpostTags:update" }
+    requirements: { _method: post|put }
+
+tags_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ApplicationEpostBundle:EpostTags:delete" }
+    requirements: { _method: post|delete }

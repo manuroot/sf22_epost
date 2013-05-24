@@ -49,12 +49,13 @@
                 <li><a href="{{ path('epost') }}">{{ 'DashBoard'|trans }}</a></li>
                 <li><a href="{{ path('epost_mesposts') }}">{{ 'Mes Posts'|trans }}</a></li>
                 <li><a href="{{ path('epost_propositions') }}">{{ 'Groupe-Posts'|trans }}</a></li>
+                 <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">{{ 'Edit Profile' }}</a>
          {% endif %}
        {% if is_granted("ROLE_ADMIN") %}
              <li><a href="{{ path('sonata_admin_dashboard') }}">{{ 'Admin' }}</a>
        {% endif %}   
 
-                                <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">{{ 'Edit Profile' }}</a>
+                               
                                 <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Register'|trans }}</a>
                                 </li>
 
@@ -79,15 +80,18 @@
                 
               {#  <div id="rightContentlist">#}
             <div class="shortcutHome">
+                <a href="{{ path('epost_indexstandard') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>Standard News</a>
+            </div>  
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+            <div class="shortcutHome">
                 <a href="{{ path('epost_mesposts') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>Mes News</a>
             </div>
             <div class="shortcutHome">
                 <a href="{{ path('epost_propositions') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>News du Groupe</a>
             </div>
-            <div class="shortcutHome">
-                <a href="{{ path('epost_indexstandard') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>Standard News</a>
-            </div>  
-
+            {% endif %}
+                
+                
              <div class="shortcutHome">
                 <a href=""><img src="{{ asset('css/mos-css/img/halaman.png') }}"><br>Utilisateurs du Groupe</a>
             </div>
@@ -142,21 +146,30 @@
 </div>
           #}
             <div id="smallRight"><h3>Mes Informations</h3>
+               
                 <table style="border: none;font-size: 12px;color: #5b5b5b;width: 100%;margin: 10px 0 10px 0;">
+                       {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                     <tr><td style="border: none;padding: 4px;">Mes News</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
                     <tr><td style="border: none;padding: 4px;">Mes Commentaires</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
                     <tr><td style="border: none;padding: 4px;">News de mon groupe</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    {% else %}
+                    <tr><td style="border: none;padding: 4px;">Non connecté</td><td style="border: none;padding: 4px;"><b>--</b></td></tr>
+                    {% endif %}
                 </table>
             </div>
             <div id="smallRight"><h3>Mes Statistiques</h3>
 
                 <table style="border: none;font-size: 12px;color: #5b5b5b;width: 100%;margin: 10px 0 10px 0;">
+                     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                     <tr><td style="border: none;padding: 4px;">Total News</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
                     <tr><td style="border: none;padding: 4px;">Total Groupes</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
                     <tr><td style="border: none;padding: 4px;">Utilisateurs de mon Groupe</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
                     <tr><td style="border: none;padding: 4px;">Pengun 4</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
                     <tr><td style="border: none;padding: 4px;">Total hit</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
-                </table>
+               {% else %}
+                    <tr><td style="border: none;padding: 4px;">Non connecté</td><td style="border: none;padding: 4px;"><b>--</b></td></tr>
+                    {% endif %}
+                    </table>
             </div>
             
               {% block content %}

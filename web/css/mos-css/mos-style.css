@@ -191,7 +191,8 @@ tr.data:hover small {color: #5b5b5b;}
 }
 #leftBar ul {list-style: none;padding: 0; margin: 0;font-size: 13px;}
 #leftBar ul li {
-	width: 164px;
+    width: 184px;
+	/*width: 164px;*/
 	background: url(img/icon-left.png) no-repeat left center, url(img/green.jpg) repeat left center;
 	padding: 10px 0 10px 10px; margin-top: 8px;margin-left: 9px;
 	border: 1px solid #dcdcdc;
@@ -208,7 +209,7 @@ tr.data:hover small {color: #5b5b5b;}
 	-o-transition: padding-left 250ms ease-out;
 }
 #leftBar ul li a:hover {
-    padding-left: 30px;
+    padding-left: 40px;
 	text-decoration: none;
 	color: #fff;
 	text-shadow: 1px 1px #496d2a;
@@ -251,14 +252,11 @@ tr.data:hover small {color: #5b5b5b;}
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
 }
-.shortcutHome a:hover{
-	color: #5b5b5b;
-	text-decoration: none;
-}
+
 .shortcutHome a:hover img{
 	opacity: 1;
 	color: #5b5b5b;
-	padding-top: 10px;
+	padding-top: 15px;
 }
 .shortcutHome img {
 	opacity: 0.8;

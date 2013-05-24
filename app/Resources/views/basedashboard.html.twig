@@ -50,7 +50,7 @@
                 <li><a href="{{ path('epost_propositions') }}">{{ 'Groupe-Posts'|trans }}</a></li>
          {% endif %}
        {% if is_granted("ROLE_ADMIN") %}
-             <li><a href="{{ path('sonata_admin_dashboard') }}">{{ 'Admin Dashboard' }}</a>
+             <li><a href="{{ path('sonata_admin_dashboard') }}">{{ 'Admin' }}</a>
        {% endif %}   
 
                                 <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">{{ 'Edit Profile' }}</a>
@@ -142,16 +142,17 @@
           #}
             <div id="smallRight"><h3>Mes Informations</h3>
                 <table style="border: none;font-size: 12px;color: #5b5b5b;width: 100%;margin: 10px 0 10px 0;">
-                    <tr><td style="border: none;padding: 4px;">fsdfsdfsd</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
-                    <tr><td style="border: none;padding: 4px;">fhghfhfgh</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    <tr><td style="border: none;padding: 4px;">Mes News</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    <tr><td style="border: none;padding: 4px;">Mes Commentaires</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    <tr><td style="border: none;padding: 4px;">News de mon groupe</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
                 </table>
             </div>
             <div id="smallRight"><h3>Mes Statistiques</h3>
 
                 <table style="border: none;font-size: 12px;color: #5b5b5b;width: 100%;margin: 10px 0 10px 0;">
-                    <tr><td style="border: none;padding: 4px;">Pengun 1</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
-                    <tr><td style="border: none;padding: 4px;">Pengun 2</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
-                    <tr><td style="border: none;padding: 4px;">Pengun 3</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    <tr><td style="border: none;padding: 4px;">Total News</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    <tr><td style="border: none;padding: 4px;">Total Groupes</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    <tr><td style="border: none;padding: 4px;">Utilisateurs de mon Groupe</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
                     <tr><td style="border: none;padding: 4px;">Pengun 4</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
                     <tr><td style="border: none;padding: 4px;">Total hit</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
                 </table>

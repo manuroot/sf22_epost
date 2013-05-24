@@ -96,6 +96,7 @@ class EpostNotesRepository extends EntityRepository {
                    ->leftJoin('b.imageMedia', 'c')
                 ->leftJoin('b.proprietaire', 'd')
                    ->leftJoin('b.globalnote', 'e')
+                  ->add('orderBy', 'b.name DESC')
                 // ->leftJoin('a.epost', 'b')
                         ->getQuery();
 

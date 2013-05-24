@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block headtitle %}I-CHANGE MROOT{% endblock %}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+          {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/jquery-ui-1.9.2.custom.css') }}" type="text/css" media="all"/>
+        <link rel="stylesheet" href="{{ asset('bundles/whiteoctoberpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
+   
+
+  <style type="text/css">
+ 
+  #content{ position:relative;}
+  /*@media (max-width: 1024px) {
+    body {
+      padding-top: 0;
+    }
+  }*/
+  </style>
+ 
+{% stylesheets 
+ '@ApplicationEpostBundle/Resources/public/css/certificatscenter.css' 
+ output='css/compiled/main.css' filter='yui_css' %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+{% endstylesheets %}
+
+        {% endblock %}
+    </head>
+    <body>
+        
+<div id="wrapper">
+    <div id="leftBar">
+        <ul>
+       {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <li><a href="{{ path('epost') }}">{{ 'DashBoard'|trans }}</a></li>
+                <li><a href="{{ path('epost_mesposts') }}">{{ 'Mes Posts'|trans }}</a></li>
+                <li><a href="{{ path('epost_propositions') }}">{{ 'Groupe-Posts'|trans }}</a></li>
+         {% endif %}
+       {% if is_granted("ROLE_ADMIN") %}
+             <li><a href="{{ path('sonata_admin_dashboard') }}">{{ 'Admin Dashboard' }}</a>
+       {% endif %}   
+
+                                <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">{{ 'Edit Profile' }}</a>
+                                <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Register'|trans }}</a>
+                                </li>
+
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                                <li><a href="{{ path('fos_user_change_password') }}">{{ 'Password' }}</a></li>
+                                    {% else %}
+                                <li>  <a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+                                    {% endif %}   
+       </ul>
+            
+            
+            
+            
+        </div>
+        <div id="rightContent">
+            <h3>Mon Dashboard</h3>
+            <div class="quoteOfDay">
+                <b>Center :</b><br>
+                <i style="color: #5b5b5b;">"DASHBOARD I-CHANGE"</i>
+            </div>
+            <div class="shortcutHome">
+                <a href="{{ path('epost_mesposts') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>Mes News</a>
+            </div>
+            <div class="shortcutHome">
+                <a href="{{ path('epost_propositions') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>News du Groupe</a>
+            </div>
+            <div class="shortcutHome">
+                <a href="{{ path('epost_indexstandard') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>Standard News</a>
+            </div>  
+
+            <div class="shortcutHome">
+                <a href=""><img src="{{ asset('css/mos-css/img/photo.png') }}"><br>Mes Images</a>
+            </div>
+            <div class="shortcutHome">
+                <a href=""><img src="{{ asset('css/mos-css/img/halaman.png') }}"><br>Utilisateurs du Groupe</a>
+            </div>
+            <div class="shortcutHome">
+                <a href=""><img src="{{ asset('css/mos-css/img/template.png') }}"><br>Pengaturan Template</a>
+            </div>
+            <div class="shortcutHome">
+                <a href="">
+                    <img src="{{ asset('css/mos-css/img/quote.png') }}"><br>Pengaturan Template</a>
+            </div>
+            <div class="shortcutHome">
+
+                <a href="">
+                    <img src="{{ asset('css/mos-css/img/bukutamu.png') }}"><br>Data Buku Tamu</a>
+            </div>
+            <div class="shortcutHome">
+                <a href="">
+                    <img src="{{ asset('css/mos-css/img/icon_media.png') }}"><br>Images</a>
+            </div>
+            <div class="shortcutHome">
+                <a href="">
+                    <img src="{{ asset('css/mos-css/img/icon_reports.png') }}"><br>Rapports</a>
+            </div>
+            <div class="shortcutHome">
+                <a href="">
+                    <img src="{{ asset('css/mos-css/img/icon_users.png') }}"><br>Utilisateurs</a>
+            </div>
+            <div class="clear"></div>
+
+          
+            <div id="smallRight"><h3>Mes Informations</h3>
+                <table style="border: none;font-size: 12px;color: #5b5b5b;width: 100%;margin: 10px 0 10px 0;">
+                    <tr><td style="border: none;padding: 4px;">fsdfsdfsd</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    <tr><td style="border: none;padding: 4px;">fhghfhfgh</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                </table>
+            </div>
+            <div id="smallRight"><h3>Mes Statistiques</h3>
+
+                <table style="border: none;font-size: 12px;color: #5b5b5b;width: 100%;margin: 10px 0 10px 0;">
+                    <tr><td style="border: none;padding: 4px;">Pengun 1</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    <tr><td style="border: none;padding: 4px;">Pengun 2</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    <tr><td style="border: none;padding: 4px;">Pengun 3</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    <tr><td style="border: none;padding: 4px;">Pengun 4</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                    <tr><td style="border: none;padding: 4px;">Total hit</td><td style="border: none;padding: 4px;"><b>12</b></td></tr>
+                </table>
+            </div>
+              {% block content %}
+             {% endblock %}
+        </div>
+        <div class="clear"></div>
+        <div id="footer">
+            &copy; 2013 mroot72000@yahoo.fr | <a href="#">Nama Website Anda</a> | design <a href="http://arirusmanto.com" target="_blank">arirusmanto.com</a><br>
+            redesign <a href="#">Tulis nama anda disini</a> | Silahkan baca <a href="lisensi.txt" target="_blank">Lisensi</a>
+        </div>
+    </div>
+       
+                     <!-- Le javascript ================================================== -->
+                <!-- Placed at the end of the document so the pages load faster -->
+
+       {% block javascripts %}
+                  <script src="{{ asset('jquery/jquery-1.9.1.js') }}" type="text/javascript"></script>
+                <script type="text/javascript" src="{{ asset('jquery/jquery-ui-1.9.2.custom.min.js') }}"></script>
+              <script type="text/javascript" src="{{ asset('jquery/jquery.ui.datepicker.js') }}"></script>
+              <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+ 
+ {% endblock %}
+    
+           
+        </body>
+    </html>
+    
+  
+  
+        
+                    
+              
+        
+        
+   
+    
+

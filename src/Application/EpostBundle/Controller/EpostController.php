@@ -154,7 +154,14 @@ class EpostController extends Controller {
      *  DASHBOARS NEWS
      * 
       =================================================================== */
+  public function indexdashboardAction() {
 
+        return $this->render('ApplicationEpostBundle:Epost:indexdashboard.html.twig', array(
+                   
+                ));
+    }
+
+    
     public function indexAction() {
 
         $em = $this->getDoctrine()->getManager();

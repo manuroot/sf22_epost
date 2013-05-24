@@ -1,0 +1,20 @@
+{% extends "::basedashboard.html.twig" %}
+
+{% block stylesheets %}
+{{ parent() }}
+
+<link rel="stylesheet" type="text/css" href="{{ asset('css/mos-css/mos-style.css') }}"> 
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
+
+
+{% block content_header '' %}
+{% block title %}
+MES ARTICLES 
+{% endblock %}

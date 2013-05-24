@@ -2,12 +2,17 @@ epost_indexadmin:
     pattern:  /epostall
     defaults: { _controller: "ApplicationEpostBundle:Epost:indexAll" }
 
-epost_indexstandard:
-    pattern:  /
-    defaults: { _controller: "ApplicationEpostBundle:Epost:standardblog" }
-    
 epost:
-    pattern:  /postdashboard
+    pattern:  /
+    defaults: { _controller: "ApplicationEpostBundle:Epost:indexdashboard" }
+    
+epost_indexstandard:
+    pattern:  /blog
+    defaults: { _controller: "ApplicationEpostBundle:Epost:standardblog" }
+ 
+    
+epost_index:
+    pattern:  /index
     defaults: { _controller: "ApplicationEpostBundle:Epost:index" }
 
 epost_indexserch:

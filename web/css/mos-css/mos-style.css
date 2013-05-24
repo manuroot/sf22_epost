@@ -4,7 +4,7 @@
 /*YM			: ariecupu@ymail.com*/
 /*Official Site	: arirusmanto.com*/
 body {
-	background: url(img/latar.jpg);
+	/*background: url(img/latar.jpg);*/
 	margin: 0;
 	padding: 0;
 	font-family: Arial;
@@ -65,7 +65,7 @@ tr.data:hover small {color: #5b5b5b;}
 	background: #f7ffe8 url(img/daun.png) no-repeat left center;
 	float: left;
         /*width: 640px;*/
-	width: 940px;
+	width: 840px;
 	padding: 10px 10px 10px 70px;
 	min-height: 50px;
 	font-size: 20px;
@@ -167,19 +167,21 @@ tr.data:hover small {color: #5b5b5b;}
 	margin: 30px 5px 0 140px;
 }
 #wrapper {
-	width: 1250px;
+	width: 1200px;
         /*width: auto;*/
-	padding: 15px 0 0 0;
+	padding: 10px 0 0 0;
 	position: relative;
-	border-left: 1px solid #dcdcdc;
+	/*border-left: 1px solid #dcdcdc;
 	border-right: 1px solid #dcdcdc;
-	border-bottom: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;*/
 	float: center;
 	margin: auto;
 	text-align: left;
-	background: #fff url(img/bg_kiri.png) repeat-y;
-	-moz-box-shadow: 0px 0px 8px #dcdcdc;
-	-webkit-box-shadow: 0px 0px 8px #dcdcdc;
+       /* background: #fff;*/
+	/*background: #fff url(img/bg_kiri.png) repeat-y;*/
+	/*-moz-box-shadow: 0px 0px 8px #dcdcdc;
+	-webkit-box-shadow: 0px 0px 8px #dcdcdc;*/
+    /*background-color: #f0f0f0;*/
 }
 #leftBar {
 	/*width: 15%;*/
@@ -215,25 +217,29 @@ tr.data:hover small {color: #5b5b5b;}
 	text-shadow: 1px 1px #496d2a;
 }
 .rightContentlist {
-    width: 350px;
-	/*width: 925px;*/
+   /* width: 350px;*/
+	width: 800px;
        /* width: 90%;*/
 	padding: 5px;
 	float: right;
 	border-left: 0px solid #dcdcdc;
 	text-align: left;
-	background: #fff;
+	/*background: #fff;*/
 }
 
 #rightContent {
-    width: 1025px;
+    width: 925px;
 	/*width: 925px;*/
        /* width: 90%;*/
 	padding: 5px;
 	float: right;
-	border-left: 0px solid #dcdcdc;
+	/*
+ border-left: 0px solid #dcdcdc;*/
+ border: 1px solid #dcdcdc;
 	text-align: left;
-	background: #fff;
+	/*background: #fff;*/
+        
+    background-color: #fefefe;
 }
 
 
@@ -275,7 +281,13 @@ tr.data:hover small {color: #5b5b5b;}
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
 }
-#smallRight h3 {font-size: 16px; padding: 5px; margin: 0px; border-bottom: 1px solid #dcdcdc;}
+#smallRight h3 {
+    font-size: 16px; 
+    padding: 5px;
+    margin: 0px;
+    border: 1px solid #dcdcdc;
+background: #f7ffe8;
+}
 /*
 #footer {
 	width: 850px;
@@ -291,7 +303,7 @@ tr.data:hover small {color: #5b5b5b;}
 	background: #f7ffe8;
 	float: left;
         /*width: 640px;*/
-	width: 940px;
+	width: 840px;
 	padding: 10px 10px 10px 70px;
 	min-height: 30px;
 	font-size: 11px;

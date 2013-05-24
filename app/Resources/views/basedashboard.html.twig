@@ -27,7 +27,20 @@
         {% endblock %}
     </head>
     <body>
-        
+    <div id="header">
+	<div class="inHeader">
+		<div class="mosAdmin">
+		Bienvenue <br>
+		<a href="">A propos</a> | <a href="">Aide</a> | 
+		 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                {% else %}
+                <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+                {% endif %}
+                </div>
+	<div class="clear"></div>
+	</div>
+</div>    
 <div id="wrapper">
     <div id="leftBar">
         <ul>
@@ -57,10 +70,10 @@
             
         </div>
         <div id="rightContent">
-            <h3>Mon Dashboard</h3>
+            {#<h3>Mon Dashboard</h3>#}
             <div class="quoteOfDay">
-                <b>Center :</b><br>
-                <i style="color: #5b5b5b;">"DASHBOARD I-CHANGE"</i>
+                <b>DASHBOARD :</b><br>
+                <i style="color: #5b5b5b;">"I-CHANGE"</i>
             </div>
             <div class="shortcutHome">
                 <a href="{{ path('epost_mesposts') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>Mes News</a>

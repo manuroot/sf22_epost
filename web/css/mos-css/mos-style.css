@@ -64,7 +64,8 @@ tr.data:hover small {color: #5b5b5b;}
 	border: 1px solid #cbe0b5;
 	background: #f7ffe8 url(img/daun.png) no-repeat left center;
 	float: left;
-	width: 640px;
+        /*width: 640px;*/
+	width: 940px;
 	padding: 10px 10px 10px 70px;
 	min-height: 50px;
 	font-size: 20px;
@@ -115,16 +116,17 @@ tr.data:hover small {color: #5b5b5b;}
 }
 .inHeader {
 	float: center;
-	background: url(img/logo.png) no-repeat left center;
+	/*background: url(img/logo.png) no-repeat left center;*/
 	margin: auto;
-	width: 920px;
+        width: 1200px;
+	/*width: 920px;*/
 	height: 45px;
 	padding: 15px;
 	border-right: 0px solid #dcdcdc;
 	border-left: 0px solid #dcdcdc;
 }
 .inHeaderLogin {
-	background: url(img/logo.png) no-repeat left center;
+	/*background: url(img/logo.png) no-repeat left center;*/
 	height: 75px;
 }
 .mosAdmin {
@@ -165,7 +167,8 @@ tr.data:hover small {color: #5b5b5b;}
 	margin: 30px 5px 0 140px;
 }
 #wrapper {
-	width: 1050px;
+	width: 1250px;
+        /*width: auto;*/
 	padding: 15px 0 0 0;
 	position: relative;
 	border-left: 1px solid #dcdcdc;
@@ -179,7 +182,8 @@ tr.data:hover small {color: #5b5b5b;}
 	-webkit-box-shadow: 0px 0px 8px #dcdcdc;
 }
 #leftBar {
-	width: 185px;
+	/*width: 15%;*/
+        width: 185px;
 	float: left;
 	padding: 0 0 20px 10px;
 	border-right: 0px solid #dcdcdc;
@@ -210,7 +214,9 @@ tr.data:hover small {color: #5b5b5b;}
 	text-shadow: 1px 1px #496d2a;
 }
 #rightContent {
-	width: 725px;
+    width: 1025px;
+	/*width: 925px;*/
+       /* width: 90%;*/
 	padding: 5px;
 	float: right;
 	border-left: 0px solid #dcdcdc;

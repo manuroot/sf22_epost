@@ -76,8 +76,7 @@ class EpostRepository extends EntityRepository {
     public function myFindOtherAll($user_id, $group_id) {
         // A ameliorer
         $query = $this->createQueryBuilder('a')
-                   ->select('a,b,c,d,e,t,f,g')
-             
+                ->select('a,b,c,d,e,t,f,g')
                 ->where('a.proprietaire <> :proprietaire')
                 ->setParameter('proprietaire', $user_id)
                 ->leftJoin('a.proprietaire', 'b')
@@ -85,10 +84,10 @@ class EpostRepository extends EntityRepository {
                 ->setParameter('groupid', $group_id)
                 ->leftJoin('a.categorie', 'c')
                 ->leftJoin('a.idStatus', 'd')
-                  ->leftJoin('a.globalnote', 'e')
-                 ->leftJoin('a.tags', 't')
+                ->leftJoin('a.globalnote', 'e')
+                ->leftJoin('a.tags', 't')
                 ->leftJoin('a.imageMedia', 'f')
-              ->leftJoin('a.comments', 'g')
+                ->leftJoin('a.comments', 'g')
                 ->add('orderBy', 'a.id DESC')
                 ->getQuery();
         return $query;
@@ -165,26 +164,27 @@ class EpostRepository extends EntityRepository {
 
           return $query; */
         /*
-> $query = $query->getResult();
->
-> $adapter = $this->get('knp_paginator.adapter');
-> $adapter->setQuery($query)
-        */
+          > $query = $query->getResult();
+          >
+          > $adapter = $this->get('knp_paginator.adapter');
+          > $adapter->setQuery($query)
+         */
         $parameters = array();
         $query = $this->createQueryBuilder('a')
                 ->select('a,b,c,d,e,f,u')
+                //->select('a,b,c,d,e,f,u,t')
                 ->add('orderBy', 'a.id DESC')
                 //->where('a.proprietaire = :proprietaire')
                 ->leftJoin('a.proprietaire', 'b')
-              //  ->leftJoin($join, $alias, $conditionType)
+                //  ->leftJoin($join, $alias, $conditionType)
                 ->leftJoin('a.categorie', 'c')
                 ->leftJoin('a.idStatus', 'd')
                 ->leftJoin('a.globalnote', 'e')
                 ->leftJoin('a.imageMedia', 'f')
-              //  ->leftJoin('a.tags', 't')
+                // ->leftJoin('a.tags', 't')
                 ->leftJoin('a.comments', 'u')
-                ->groupby('a.name')
-                ;
+
+        ;
 
         // ->setParameter('proprietaire', $criteria['author']);
         /* ->getQuery(); */
@@ -208,7 +208,7 @@ class EpostRepository extends EntityRepository {
             $parameters['group_id'] = $criteria['group'];
         }
 
-         if (isset($criteria['open_status'])) {
+        if (isset($criteria['open_status'])) {
             $query->andWhere('d.nom = :open_status');
             $parameters['open_status'] = $criteria['open_status'];
         }
@@ -216,43 +216,49 @@ class EpostRepository extends EntityRepository {
             $query->andWhere('a.categorie = :categoryid');
             $parameters['categoryid'] = $criteria['categorie']->getId();
         }
-        
-          if (isset($criteria['tag'])) {
-               $query->leftJoin('a.tags', 't');
+
+        if (isset($criteria['alltags'])) {
+            $query->addSelect('t');
+            $query->leftJoin('a.tags', 't');
+        }
+        if (isset($criteria['tag'])) {
+            $query->addSelect('t');
+            $query->leftJoin('a.tags', 't');
             $query->andWhere('t.id = :tag');
             //   ->groupby('a.name');
-  $parameters['tag'] = (string) $criteria['tag'];
-     //       $parameters['tag'] = 'tag1';
+            $parameters['tag'] = (string) $criteria['tag'];
+            //       $parameters['tag'] = 'tag1';
         }
         $query->setParameters($parameters);
+        $query->groupby('a.name');
         //>getQuery();
         //  print_r($query->getQuery());
         //  exit(1);
-         return $query->getQuery();
+        return $query->getQuery();
         //return $query->getQuery()->getResult();
     }
 
-     public function getMyPagerStandard(array $criteria) {
+    public function getMyPagerStandard(array $criteria) {
 
-      
-        
+
+
         $parameters = array();
         $query = $this->createQueryBuilder('a')
-                ->select('a,b,c,d,e,f')
+                ->select('a,b,c,d,e,f,t')
                 ->add('orderBy', 'a.id DESC')
                 //->where('a.proprietaire = :proprietaire')
                 ->leftJoin('a.proprietaire', 'b')
-              //  ->leftJoin($join, $alias, $conditionType)
+                //  ->leftJoin($join, $alias, $conditionType)
                 ->leftJoin('a.categorie', 'c')
                 ->leftJoin('a.idStatus', 'd')
                 ->leftJoin('a.globalnote', 'e')
                 ->leftJoin('a.imageMedia', 'f')
                 //->leftJoin('a.tags', 't')
-             //   ->leftJoin('a.comments', 'u')
+                //   ->leftJoin('a.comments', 'u')
                 ->groupby('a.name')
-                ;
+        ;
 
-       if (isset($criteria['author'])) {
+        if (isset($criteria['author'])) {
             //  print_r($criteria);exit(1);
             $query->andwhere('a.proprietaire = :proprietaire');
             $parameters['proprietaire'] = $criteria['author'];
@@ -286,7 +292,7 @@ class EpostRepository extends EntityRepository {
         //>getQuery();
         //  print_r($query->getQuery());
         //  exit(1);
-         return $query->getQuery();
+        return $query->getQuery();
         //return $query->getQuery()->getResult();
     }
 

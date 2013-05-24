@@ -14,8 +14,10 @@ class EpostTagsRepository extends EntityRepository {
 
     public function myFindAll() {
         return $this->createQueryBuilder('a')
-                        ->getQuery();
-
+                 ->select('a,b')
+                  ->leftJoin('a.posts', 'b')
+                        ->getQuery()
+            ->getResult();
         //->getResult();
     }
 

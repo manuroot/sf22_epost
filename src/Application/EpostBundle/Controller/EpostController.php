@@ -34,7 +34,7 @@ class EpostController extends Controller {
     private function sidebar_tags() {
 
         $em = $this->container->get('doctrine')->getManager();
-        $alltags = $em->getRepository('ApplicationEpostBundle:EpostTags')->findAll();
+        $alltags = $em->getRepository('ApplicationEpostBundle:EpostTags')->myFindAll();
         $tagWeights = $em->getRepository('ApplicationEpostBundle:EpostTags')->getTagWeights($alltags);
         //   print_r($tagWeights);
         //  exit(1);
@@ -164,6 +164,7 @@ class EpostController extends Controller {
 
         $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
             'author' => $user_id,
+            'alltags' => 'yes',
                 ));
         $defaut_paginator_a = array('pagename' => 'page1', 'sortdir' => 'dir1', 'sortfield' => 'sort1');
         $paginationa = $this->createpaginator($query, 5, $defaut_paginator_a);
@@ -171,7 +172,8 @@ class EpostController extends Controller {
          if ($group_id != 0) {
         $query_other = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
             'non-author' => $user_id,
-            'group' => $group_id
+            'group' => $group_id,
+            'alltags' => 'yes',
                 ));
 
         
@@ -207,10 +209,12 @@ class EpostController extends Controller {
         $parameters = array(
             'paginationa' => $paginationa,
             'allcategories' => $allcategories,
-            'alltags' => $alltags,
             'all_years' => $all_years,
             'lastcomments' => $lastcomments,
-            'tagweight' => $tagWeights,
+          
+            'alltags' => $alltags,
+           'tagweight' => $tagWeights,
+           
                 // 'route' => $this->getRequest()->get('_route'),
                 //   'route_parameters' => $this->getRequest()->get('_route_params')
         );
@@ -251,6 +255,7 @@ class EpostController extends Controller {
         $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
             'open_status' => 'OPEN',
                 ));
+        //  print_r($query);   exit(1);
       // $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPagerStandard(array(open-status));
         return $this->renderBlog(array(
                     'page' => 'ApplicationEpostBundle:Epost:standardblog.html.twig',
@@ -351,6 +356,7 @@ class EpostController extends Controller {
         $session->set('buttonretour', 'epost_mesposts');
            $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
                 'author' => $user_id,
+               'alltags' => 'yes',
            ));
        
 
@@ -377,6 +383,7 @@ class EpostController extends Controller {
             $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
                 'non-author' => $user_id,
                 'group' => $group_id,
+                'alltags' => 'yes',
            ));
       //  $query = $em->getRepository('ApplicationEpostBundle:Epost')->myFindOtherAll($user_id, $group_id);
         $paginationa = $this->createpaginator($query, 5);

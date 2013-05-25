@@ -2121,6 +2121,7 @@ table {
 .table-striped tbody > tr:nth-child(odd) > th {
   background-color: #f9f9f9;
 }
+
 .table-striped tbody > tr:nth-child(even) > td,
 .table-striped tbody > tr:nth-child(even) > th {
   background-color: #fefefe;
@@ -4788,7 +4789,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
-  color: #00ffff;
+  color: #ffffff;
   background-color: #111111;
 }
 

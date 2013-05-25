@@ -10,21 +10,20 @@
         <div class="container">#}
 
 
-    <div class="navbar navbar-fixed-top navbar-inverse">
-        <div class="navbar-inner">
-            <div class="container-fluid"> 
-                          {#  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span> 
-                                <span class="icon-bar"></span> 
-                            </a>
-                        #}
+   <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container-fluid"> 
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+                 <span class="icon-bar"></span> 
+            </a>
+                     
                     <a class="brand" href="{{ path('epost') }}">
                         <i class="icon-white icon-home"></i>
                                 {% block toto %}I-CHANGE(v1.2a){% endblock %}</a>
-
-
-                    <div class="btn-group pull-right"> 
+            <div class="btn-group pull-right"> 
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i>
                                         {% if is_granted("ROLE_USER") or is_granted("ROLE_USER") %}
                                         {{ app.user.username }} 
@@ -55,7 +54,8 @@
                                     {% endif %}   
                             </ul>
                         </div>
-                        <div class="nav-collapse collapse">
+                
+                  <div class="nav-collapse collapse">
                             <ul class="nav">
 
                                  {% if foo[0] == 'epost' %}
@@ -64,7 +64,7 @@
                                                             <li class="dropdown">
                                     {% endif %}
 
-                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-shopping-cart"></i>
+                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-book"></i>
                                                                         Blog<b class="caret"></b> </a>
                                                                     <ul class="dropdown-menu">
                                                        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
@@ -75,8 +75,8 @@
                                                                         
 
                                                                      {% endif %}
-                                                                             <li><a href="{{ path('epost_indexstandard') }}"><i class="icon-camera"></i> {{ 'Standard Blog'|trans }}</a></li>
-                                                          <li><a href="{{ path('epost_indexadmin') }}"><i class="icon-camera"></i> {{ 'Tous les Posts'|trans }}</a></li>
+                                                                             <li><a href="{{ path('epost_indexstandard') }}"><i class="icon-plus-sign"></i> {{ 'Standard Blog'|trans }}</a></li>
+                                                          <li><a href="{{ path('epost_indexadmin') }}"><i class="icon-plus-sign"></i> {{ 'Tous les Posts'|trans }}</a></li>
 
                                                                     </ul>
                                                                 </li>
@@ -85,7 +85,7 @@
                                                                     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                                                           <li class="dropdown">
                                 
-                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-shopping-cart"></i>
+                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-pencil"></i>
                                                                         Commentaires<b class="caret"></b> </a>
                                                                     <ul class="dropdown-menu">
                                                                            
@@ -98,18 +98,18 @@
                                                               
                                                                  <li class="dropdown">
                                 
-                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-shopping-cart"></i>
+                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-tags"></i>
                                                                         Notes<b class="caret"></b> </a>
                                                                     <ul class="dropdown-menu">
                                                                            
-                                                                           <li><a href="{{ path('epostnotes') }}"><i class="icon-camera"></i> {{ 'Notes-Posts'|trans }}</a></li>
+                                                                           <li><a href="{{ path('epostnotes') }}"><i class="icon-tags"></i> {{ 'Notes-Posts'|trans }}</a></li>
                                                                           
                                                                     </ul>
                                                                 </li>
                                                                  
                                                                  <li class="dropdown">
                                 
-                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-shopping-cart"></i>
+                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-film"></i>
                                                                         Media<b class="caret"></b> </a>
                                                                     <ul class="dropdown-menu">
                                                                              <li><a href="{{ path('usermedia') }}"><i class="icon-camera"></i> {{ 'Medias'|trans }}</a></li>
@@ -128,7 +128,7 @@
 
                                                             
                                                             
-                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-user"></i>
+                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-user-md"></i>
                                                                 Groupes<b class="caret"></b> </a>
                                                             <ul class="dropdown-menu">
                                                                 <li><a href="{{ path('egroup_groupes') }}"><i class="icon-user"></i> {{ 'Dashboard Groupes'|trans }}</a></li>
@@ -160,12 +160,14 @@
                                                                     </ul>  
 
                                                                 </div>
-                                                                <!--/.nav-collapse -->
-                            {#  <form class="navbar-search pull-left">
-    <input type="text" class="search-query" placeholder="Search">
-    </form>#}
-                                                            </div>
-                                                        </div> 
+   
+                
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+       
+    </div>
 
-                                                    </div>
 {% endblock %}    
+
+                       

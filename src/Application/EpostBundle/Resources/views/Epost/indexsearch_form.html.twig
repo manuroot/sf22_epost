@@ -1,0 +1,43 @@
+  
+    
+    <form  class="form" action="{{ path('epost_indexadmin') }}" method="GET" {{ form_enctype(search_form) }}>
+          <table class="table table-bordered">
+            <tbody>
+                <tr class="single">
+  
+                       <td>
+    {{ form_errors(search_form.name) }}
+    {{ form_label(search_form.name, 'Nom'|trans) }}
+    {{ form_widget(search_form.name) }}
+                            
+    {{ form_errors(search_form.categorie) }}
+    {{ form_label(search_form.categorie, 'Catégorie'|trans) }}
+    {{ form_widget(search_form.categorie) }}
+   
+   
+    </td>
+                                <td> 
+   {{ form_errors(search_form.createdAt) }}
+    {{ form_label(search_form.createdAt, 'Date de Création'|trans) }}
+    {{ form_widget(search_form.createdAt) }}
+    
+     {{ form_errors(search_form.updatedAt) }}
+    {{ form_label(search_form.updatedAt, 'Date de MAJ'|trans) }}
+    {{ form_widget(search_form.updatedAt) }}
+                                        
+                                        
+{{ form_rest(search_form) }}</td>
+                                </tr>
+                    <tr class="single"><td colspan="2">
+                                    
+                                    <input type="submit" name="submit-filter" class="btn btn-medium btn-warning" value="Filter" />
+                              
+                                   
+                                        </tr></tbody></table>
+ </form>
+
+ 
+
+
+    
+                

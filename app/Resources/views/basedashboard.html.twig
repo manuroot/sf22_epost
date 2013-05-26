@@ -80,8 +80,12 @@
                 
               {#  <div id="rightContentlist">#}
             <div class="shortcutHome">
-                <a href="{{ path('epost_indexstandard') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>Standard News</a>
-            </div>  
+                <a href="{{ path('epost_indexstandard') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>News</a>
+            </div>
+                 <div class="shortcutHome">
+                <a href="{{ path('epost_indexadmin') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>News DataGrid</a>
+            </div>
+                
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
             <div class="shortcutHome">
                 <a href="{{ path('epost_mesposts') }}"><img src="{{ asset('css/mos-css/img/posting.png') }}"><br>Mes News</a>

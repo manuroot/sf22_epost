@@ -74,11 +74,21 @@ class EpostController extends Controller {
         return ($allrolls);
     }
 
-    private function sidebar_years() {
+    private function sidebar_oyears() {
         $em = $this->container->get('doctrine')->getManager();
         $myarr = array();
         $myarr['current_year'] = date('Y');
         $arr_years = $em->getRepository('ApplicationEpostBundle:Epost')->findaByYear($myarr['current_year']);
+        //   print_r($arr_years);
+        //   exit(1);
+        return ($arr_years);
+    }
+
+    private function sidebar_years() {
+        $em = $this->container->get('doctrine')->getManager();
+        $myarr = array();
+        // $myarr['current_year'] = date('Y');
+        $arr_years = $em->getRepository('ApplicationEpostBundle:Epost')->CountByYears();
         //   print_r($arr_years);
         //   exit(1);
         return ($arr_years);
@@ -239,64 +249,65 @@ class EpostController extends Controller {
 
         return $response;
     }
+
     /*
- public function addmyimageAction(Request $request, $id) {
-             if ($request->isMethod('POST')) {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
-                
-     */           
-                
+      public function addmyimageAction(Request $request, $id) {
+      if ($request->isMethod('POST')) {
+      $form->bind($request);
+      if ($form->isValid()) {
+      $data = $form->getData();
+
+     */
+
     // @Secure(roles="ROLE_ADMIN")
     //====================================================================
     // BLOG ALL
     //====================================================================
-    public function indexAllooAction(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $session = $this->getRequest()->getSession();
-        $session->set('buttonretour', 'epost_indexadmin');
-   
-        $searchForm = $this->createForm(new EpostTypeFiltres());
-         if ($request->isMethod('POST')) {
-     //   if ($this->get('request')->query->has('submit-filter')) {
-            // bind values from the request
-       /*        $form = $this->createForm(new EpostType(), $entity);
-        $form->bind($request);
-       */
-            $searchForm->bind($request);
-            //$form->$searchForm($request);
-           // $data = $form->getData();
-            //var_dump($searchForm);
-            $query_tmp = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(), 'query');
-            $query = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($searchForm, $query_tmp);
-            
-         //     $data = $searchForm->getData();
-        $session->set('post_search', $searchForm);
-      
-            }else {
-             $data_session=$session->get('post_search');
-             if (isset($data_session)){
-               //   var_dump($data_session);exit(1);
-                 $searchForm->bind($data_session);
-                    // $data = $searchForm->getData();
-                     $query_tmp = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(), 'query');
-           // $query = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($data_session, $query_tmp);
-         
-             }
-             else {
-            // $em = $this->getDoctrine()->getManager();
-            $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
-             }
-        }
-        $paginationa = $this->createpaginator($query, 5);
-        return $this->render('ApplicationEpostBundle:Epost:indexall.html.twig', array(
-                    'paginationa' => $paginationa,
-                    'search_form' => $searchForm->createView(),
-                ));
-    }
+    /* public function indexAllhjkhAction(Request $request) {
+      $em = $this->getDoctrine()->getManager();
+      $session = $this->getRequest()->getSession();
+      $session->set('buttonretour', 'epost_indexadmin');
 
-     //====================================================================
+      $searchForm = $this->createForm(new EpostTypeFiltres());
+      if ($request->isMethod('POST')) {
+      //   if ($this->get('request')->query->has('submit-filter')) {
+      // bind values from the request
+      $form = $this->createForm(new EpostType(), $entity);
+      $form->bind($request);
+
+      $searchForm->bind($request);
+      //$form->$searchForm($request);
+      // $data = $form->getData();
+      //var_dump($searchForm);
+      $query_tmp = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(), 'query');
+      $query = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($searchForm, $query_tmp);
+
+      //     $data = $searchForm->getData();
+      $session->set('post_search', $searchForm);
+
+      }else {
+      $data_session=$session->get('post_search');
+      if (isset($data_session)){
+      //   var_dump($data_session);exit(1);
+      $searchForm->bind($data_session);
+      // $data = $searchForm->getData();
+      $query_tmp = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(), 'query');
+      // $query = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($data_session, $query_tmp);
+
+      }
+      else {
+      // $em = $this->getDoctrine()->getManager();
+      $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
+      }
+      }
+      $paginationa = $this->createpaginator($query, 5);
+      return $this->render('ApplicationEpostBundle:Epost:indexall.html.twig', array(
+      'paginationa' => $paginationa,
+      'search_form' => $searchForm->createView(),
+      ));
+      } */
+
+    //====================================================================
     // BLOG ALL
     //====================================================================
     public function indexAllAction() {
@@ -305,15 +316,17 @@ class EpostController extends Controller {
         $session->set('buttonretour', 'epost_indexadmin');
         $searchForm = $this->createForm(new EpostTypeFiltres());
         if ($this->get('request')->query->has('submit-filter')) {
+            //  var_dump($this->get('request')->query);exit(1);
             // bind values from the request
             $searchForm->bind($this->get('request'));
             //var_dump($searchForm);
             $query_tmp = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(), 'query');
             $query = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($searchForm, $query_tmp);
-            //     var_dump($query->getDql());exit(1);
+            //  var_dump($query->getDql());exit(1);
         } else {
             // $em = $this->getDoctrine()->getManager();
             $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
+            //var_dump($query->getDql());exit(1);
         }
         $paginationa = $this->createpaginator($query, 5);
         return $this->render('ApplicationEpostBundle:Epost:indexall.html.twig', array(
@@ -321,6 +334,7 @@ class EpostController extends Controller {
                     'search_form' => $searchForm->createView(),
                 ));
     }
+
     //====================================================================
     // BLOG STANDARD: ALL
     //====================================================================
@@ -673,7 +687,7 @@ class EpostController extends Controller {
         ;
     }
 
-     public function listByProjetAction() {
+    public function listByProjetAction() {
         $request = $this->getRequest();
 
         if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
@@ -712,7 +726,27 @@ class EpostController extends Controller {
     // TODO:
     public function searchPostAction() {
         $request = $this->getRequest();
-
+/*
+ $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retrieve more than 2 months
+ 
+while ($check_date != $end_date)
+{
+    // check if any incomplete todos exist on this date
+    if (mysql_result(mysql_query("SELECT COUNT(id) FROM " . DB_TODOS . " WHERE date_due = '$check_date'"), 0) == 0)
+    {
+        $result[] = array('freeDate' => $check_date);
+    }
+ 
+    // +1 day to the check date
+    $check_date = date('Y-m-d', strtotime("$check_date +1 day"));
+ 
+    // break from loop if its looking like an infinite loop
+    $i++;
+    if ($i > $cutoff) break;
+}
+ * 
+ * 
+ */
         if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
             //$em = $this->getDoctrine()->getEntityManager();
             $em = $this->getDoctrine()->getManager();
@@ -747,44 +781,24 @@ class EpostController extends Controller {
         // return new Response();
     }
 
-       // TODO:
+    // TODO:
     public function CalendarEventsAction() {
+
         $request = $this->getRequest();
-
         if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
-            //$em = $this->getDoctrine()->getEntityManager();
+            $month = $request->request->get('month');
+            if ($month < 10)
+                $month = "0" . $month;
+            $year = $request->request->get('year');
+            $date = $year . '-' . $month;
+            // echo "year=$year month=$month<br>";exit(1); 
             $em = $this->getDoctrine()->getManager();
-            $id = '';
-            $applis = array();
-            $cert_app = array();
-
-            /*$id = $request->request->get('id_projet');
-            $projet = $em->getRepository('ApplicationEpostBundle:CertificatsProjet')->find($id);
-
-            $id_cert = $request->request->get('id_cert');
-            if (isset($id_cert) && $id_cert != "create") {
-                //    var_dump($id_cert);
-                $cert = $em->getRepository('ApplicationEpostBundle:CertificatsCenter')->find($id_cert);
-                foreach ($cert->getIdapplis() as $appli) {
-                    array_push($cert_app, $appli->getId());
-                }
-                $applis['cert'] = $cert_app;
-            }
-            foreach ($projet->getIdapplis() as $appli) {
-                //$applis[] = array($appli);
-                $applis['applis'][$appli->getId()] = $appli->getNomapplis();
-                //      $applis[] = array($appli->getId(), $appli->getNomapplis());
-            }*/
-            // retour ??
-            // "title":{"$t":"Cinco de Mayo","type":"text"}
-            //$applis[]["gdwhen"]=[{"endTime":"2013-05-13","startTime":"2013-05-12"}];
-            //    $appli=array(3,4);
-            $applis[]=array('event'=>1,'startdate'=>'2013-05-12');
-            //=array"endTime":"2013-05-13","startTime":"2013-05-12"};
-            $response = new Response(json_encode($applis));
+            // recuperation des parametres
+            $events_date = $em->getRepository('ApplicationEpostBundle:Epost')->getMyDate($date);
+            /*   print_r($events_date); */
+            $response = new Response(json_encode($events_date));
             $response->headers->set('Content-Type', 'application/json');
-
-            return $response;
+      return $response;
         }
         // return new Response();
     }

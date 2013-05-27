@@ -43,120 +43,61 @@
    });
    // declare freeDays global
    var eventsDays = [];
- 
    // perform initial json request for free days
 /*fetchFreeDays();*/
-   
-   
+   $('#datepicker').datepicker({
+       dateFormat: 'dd-m-yy',
+       inline: true,
+       changeMonth: true,
+       changeYear: true,
+       showOtherMonths: true,
+       selectOtherMonths: true,
+       beforeShowDay: highlightDays,
+       onChangeMonthYear: fetchEvents,
+       firstDay: 1 // rows starts on Monday
+           });
    function fetchEvents(year, month){
-        /* console.log("month:" + month);*/
+         console.log("month:" + month);
         var dataAjax = {
        'year':year,
         'month':month
     };
-    
-   $.ajax({
-      async: false,
-      url: "{{ path('epost_calendar') }}", 
-       type: "POST", 
-      dataType: "json",
-      data : dataAjax, 
-      success: function(reponse) {
-          var optionData = reponse;
-        // loop over dayUsage array result
-         $.each(optionData, function(index, value) {
-                console.log("added value=" + value.date);
+     $.ajax({
+           async: false,
+           url: "{{ path('epost_calendar') }}", 
+           type: "POST", 
+           data : dataAjax, 
+           dataType: "json", 
+           success: function(reponse){
+               // Sur Succès de la réponse AJAX
+               var optionData = reponse;
+                /* console.log("datas:" + optionData);*/
+                  $.each(optionData, function(index, value) {
+                  /*    console.log("value=" + value);*/
                eventsDays.push(value.date); 
               // add this date to the freeDays array
            });
-          /* highlightDays(date);*/
-         /* $('#datepicker').trigger('click');*/
-       
-     /* $("#datepicker").datepicker({
-          changeMonth: true,
-          changeYear: true,
-          showOtherMonths: true,
-          selectOtherMonths: true,
-          //numberOfMonths: 2,
-          dateFormat: 'yy, d MM, DD',
-          altField: '#date_due',
-          altFormat: 'yy-mm-dd',
-          //beforeShowDay: $.datepicker.noWeekends,
-           dateFormat: 'yy-dd-mm',
-        beforeShowDay: editDays,
-        onChangeMonthYear: fetchEvents,
-          firstDay: 1 // rows starts on Monday
-        });*/
     
-} 
-       
-        });
-        
-        }
+    console.log("datas=" +  eventsDays);
+    /*highlightDays(date);*/
+       }
+       });
+       }
     
-   
-   
-   function dateToYMD(date) {
-    var d = date.getDate();
-    var m = date.getMonth() + 1;
-    var y = date.getFullYear();
-    return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
-}
-/*var eventsDays = ['05/01/2013', '05/11/2013'];*/
-
-$("#datepicker").datepicker({
-          changeMonth: true,
-          changeYear: true,
-          showOtherMonths: true,
-          selectOtherMonths: true,
-          //numberOfMonths: 2,
-          dateFormat: 'yy, d MM, DD',
-     
-          altField: '#date_due',
-          altFormat: 'yy-mm-dd',
-              dateFormat: 'yy-dd-mm',
-        beforeShowDay: editDays,
-        onChangeMonthYear: fetchEvents,
-          firstDay: 1 // rows starts on Monday
-        });
-   
-   function editDays(date) {
-          for (var i = 0; i < eventsDays.length; i++) {
-     
-      
-           /* var t=new Date(eventsDays[i]).toString("mm-dd-yy");*/
-             var t=new Date(eventsDays[i]).toString();
-             console.log("events=" + eventsDays[i] + "--" + t + " date=" + date.toString() + " i=" + i);
-           
-           /*    if (t == date.toString()) {     */        
-            if (new Date(eventsDays[i]).toString() == date.toString()) {           
-                   return [true, 'free-day', 'no to-do items due'];
-            }
-        }
-        return [true];
-     }   
-   /*
- function editBDays(date) {
-        for (var i = 0; i < disabledDates.length; i++) {
-              if (new Date(disabledDates[i]).toString() == date.toString()) {           
-                   return [true, 'free-day', 'no to-do items due'];
-            }
-        }
-        return [true];
-     }   
-*/
-   /* function editDays(date) {
-          for (var i = 0; i < eventsDays.length; i++) {
-             console.log("events=" + t + " date=" + date.toString() + " i=" + i);
-             if (new Date(eventsDays[i]).toString() == date.toString()) {           
-                   return [true, 'free-day', 'no to-do items due'];
-            }
-        }
-        return [true];
-     } */  
-     
-   
-           
+    
+       // runs for every day displayed in datepicker, adds class and tooltip if matched to days in freeDays array
+   function highlightDays(date)
+   {
+       for (var i = 0; i < eventsDays.length; i++) {
+         if (new Date(eventsDays[i]).toString() == date.toString()) {
+              console.log("found DAY datas=" +  eventsDays[i]);
+            return [true, 'free-day', 'no to-do items due'];
+          // [0] = true | false if this day is selectable, [1] = class to add, [2] = tooltip to display
+         }
+       }
+ 
+       return [true, ''];
+   }
         </script>
 
 {% endblock %}

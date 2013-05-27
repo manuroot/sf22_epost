@@ -109,7 +109,48 @@ class EpostRepository extends EntityRepository {
       return $query;
 
       } */
-
+//getMyDate
+  /*$i = 0; // counter prevents infinite loop
+$cutoff = '61'; // limit on timespan (in days)
+$result = array();
+ 
+// if date is provided, use it, otherwise default to today
+$start_date = (!empty($start_date)) ? mysql_real_escape_string($start_date) : date('Y-m-d');
+$check_date = $start_date;
+$end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retrieve more than 2 months
+ */
+     
+       public function getMyDate($date) {
+           $myarr=array();
+      //     echo "date=$date";exit(1);
+        $qb = $this->createQueryBuilder('a')
+        ->select('a.createdAt')
+        ->where('a.createdAt LIKE :mydate')
+        ->setParameter('mydate', "%" . $date . "%" );
+       // return $qb->getQuery()->getResult();
+        
+        foreach ($qb->getQuery()->getResult() as $d) {
+            /*$year = $d['createdAt']->format('Y');
+             $month = $d['createdAt']->format('m');
+             $day = $d['createdAt']->format('d');*/
+            
+            //  echo "year=$year<br>";
+            //  $cat=$d['category'];
+            /*04/30/2013*/
+           /*'04/30/2013', '05/12/2013'];*/
+              $value=$d['createdAt']->format('m\/d\/Y');
+             // $value=$d['createdAt']=mysql_real_escape_string($value); 
+            
+         //  $value=$day . '/' . $month . '/' . $year;
+          
+          //  if (! array_key_exists($key, $myarr))
+                 array_push($myarr,array('date'=>"$value"));
+           
+        }
+        return ($myarr);
+        print_r($myarr);
+      
+    }
     public function findaByYear($year) {
         $qb = $this->createQueryBuilder('p');
         $qb->select('p.id,p.createdAt');
@@ -122,6 +163,24 @@ class EpostRepository extends EntityRepository {
             if (!(isset($arr["$year"])))
                 $arr["$year"] = 0;
             $arr["$year"] = $arr["$year"] + 1;
+        }
+        return ($arr);
+    }
+
+    public function CountByYears() {
+        $qb = $this->createQueryBuilder('p');
+        $qb->select('p.id,p.createdAt');
+        $arr = array();
+
+        foreach ($qb->getQuery()->getResult() as $d) {
+             $year = $d['createdAt']->format('Y');
+             
+               if ((isset($year))){
+                   if (!(isset($arr["$year"])))
+                        $arr["$year"] = 0;
+                $arr[$year]+=1;
+      
+        }
         }
         return ($arr);
     }

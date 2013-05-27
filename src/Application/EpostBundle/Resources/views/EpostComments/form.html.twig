@@ -6,7 +6,8 @@
         <tbody>         <tr><td>
                     <div>
                   {#{{ form_row(form.user) }}#}
-                          {{ form_row(form.comment) }}
+                              {{ form_widget(form.comment, { 'attr': {'class': 'myresume'} }) }}
+                         {# {{ form_row(form.comment) }}#}
 {{ form_rest(form) }}
                         </div> 
                     </td>

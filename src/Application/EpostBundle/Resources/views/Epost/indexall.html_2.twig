@@ -18,35 +18,74 @@
  
  <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
  <script type="text/javascript">
-  var myarray = [
-"#epost_filter_createdAt_left_date",
-"#epost_filter_createdAt_right_date",
-"#epost_filter_updatedAt_left_date",
-"#epost_filter_updatedAt_right_date",
-];
-
-$(document).ready(function() {
-jQuery.each( myarray, function( index, value ) {
-$( value ).datepicker({
-    minDate: "-1Y",
-    maxDate: "+10Y",
-    changeMonth: true,
-    changeYear: true,
-    numberOfMonths: 1,
-    dateFormat: "yy-mm-dd",
-    onClose: function( selectedDate ) {
-    $( "#form_bis" ).datepicker( "option", "minDate", selectedDate );
-}
-});
-  
-});
-$('.star').raty({
+    $('.star').raty({
        /* path: '/images',*/
         readOnly: true,
   score: function() {
     return $(this).attr('data-score');
   }
 });
+</script>
+<script type="text/javascript">
+ 
+ 
+  
+  var myarray = [
+"#epost_filter_createdAt_left_date",
+"#epost_filter_createdAt_right_date",
+"#epost_filter_updatedAt_left_date",
+"#epost_filter_updatedAt_right_date",
+];
+ 
+$(document).ready(function() {
+//$(function() {
+jQuery.each( myarray, function( index, value ) {
+$( value ).datepicker({
+/*  $( "#epost_filter_createdAt_left_date" ).datepicker({*/
+minDate: "-1Y",
+maxDate: "+10Y",
+changeMonth: true,
+changeYear: true,
+numberOfMonths: 1,
+dateFormat: "yy-mm-dd",
+onClose: function( selectedDate ) {
+$( "#form_bis" ).datepicker( "option", "minDate", selectedDate );
+}
+});
+  /*  $( "#epost_filter_createdAt_right_date" ).datepicker({
+maxDate: "+10Y",
+minDate: "-1Y",
+changeMonth: true,
+changeYear: true,
+numberOfMonths: 1,
+dateFormat: "yy-mm-dd",
+onClose: function( selectedDate ) {
+$( "#form_bis" ).datepicker( "option", "minDate", selectedDate );
+}
+});
+$( "#epost_filter_updatedAt_left_date" ).datepicker({
+minDate: "-1Y",
+maxDate: "+10Y",
+changeMonth: true,
+changeYear: true,
+numberOfMonths: 1,
+dateFormat: "yy-mm-dd",
+onClose: function( selectedDate ) {
+$( "#form_bis" ).datepicker( "option", "minDate", selectedDate );
+}
+});
+    $( "#epost_filter_updatedAt_right_date" ).datepicker({
+maxDate: "+10Y",
+minDate: "-1Y",
+changeMonth: true,
+changeYear: true,
+numberOfMonths: 1,
+dateFormat: "yy-mm-dd",
+onClose: function( selectedDate ) {
+$( "#form_bis" ).datepicker( "option", "minDate", selectedDate );
+}*/
+});
+
 }); //Eof:: ready
     </script>
  {% endblock %}

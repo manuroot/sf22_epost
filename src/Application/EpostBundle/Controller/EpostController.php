@@ -21,7 +21,6 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Application\EpostBundle\Form\EpostTypeFiltres;
 
-
 /**
  * Epost controller.
  *
@@ -90,13 +89,14 @@ class EpostController extends Controller {
      *  CREATION DU PAGINATOR
      * 
       =================================================================== */
- /*$paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-                $query, $this->get('request')->query->get('page', 1), 10
-        );
-        $pagination->setTemplate('ApplicationCertificatsBundle:pagination:sliding.html.twig');
-       
-    //$defaut_paginator=array('pagename'=>'page1','sort'=>'sort1','sortfield'=>'sort1');*/
+    /* $paginator = $this->get('knp_paginator');
+      $pagination = $paginator->paginate(
+      $query, $this->get('request')->query->get('page', 1), 10
+      );
+      $pagination->setTemplate('ApplicationCertificatsBundle:pagination:sliding.html.twig');
+
+      //$defaut_paginator=array('pagename'=>'page1','sort'=>'sort1','sortfield'=>'sort1'); */
+
     private function createpaginator($query, $num_perpage = 5, $defaut_paginator = null) {
 
         $paginator = $this->get('knp_paginator');
@@ -119,8 +119,8 @@ class EpostController extends Controller {
             "sortDirectionParameterName" => $sortDirectionParameterName,
             'sortFieldParameterName' => $sortFieldParameterName)
         );
-     //  $pagination->setTemplate('ApplicationEpostBundle:pagination:sliding.html.twig');
-             
+        //  $pagination->setTemplate('ApplicationEpostBundle:pagination:sliding.html.twig');
+
         $pagination->setTemplate('ApplicationEpostBundle:pagination:twitter_bootstrap_pagination.html.twig');
         return $pagination;
     }
@@ -162,14 +162,13 @@ class EpostController extends Controller {
      *  DASHBOARS NEWS
      * 
       =================================================================== */
-  public function indexdashboardAction() {
+
+    public function indexdashboardAction() {
 
         return $this->render('ApplicationEpostBundle:Epost:indexdashboard.html.twig', array(
-                   
                 ));
     }
 
-    
     public function indexAction() {
 
         $em = $this->getDoctrine()->getManager();
@@ -240,71 +239,88 @@ class EpostController extends Controller {
 
         return $response;
     }
-
+    /*
+ public function addmyimageAction(Request $request, $id) {
+             if ($request->isMethod('POST')) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $data = $form->getData();
+                
+     */           
+                
     // @Secure(roles="ROLE_ADMIN")
     //====================================================================
+    // BLOG ALL
+    //====================================================================
+    public function indexAllooAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $session = $this->getRequest()->getSession();
+        $session->set('buttonretour', 'epost_indexadmin');
+   
+        $searchForm = $this->createForm(new EpostTypeFiltres());
+         if ($request->isMethod('POST')) {
+     //   if ($this->get('request')->query->has('submit-filter')) {
+            // bind values from the request
+       /*        $form = $this->createForm(new EpostType(), $entity);
+        $form->bind($request);
+       */
+            $searchForm->bind($request);
+            //$form->$searchForm($request);
+           // $data = $form->getData();
+            //var_dump($searchForm);
+            $query_tmp = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(), 'query');
+            $query = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($searchForm, $query_tmp);
+            
+         //     $data = $searchForm->getData();
+        $session->set('post_search', $searchForm);
+      
+            }else {
+             $data_session=$session->get('post_search');
+             if (isset($data_session)){
+               //   var_dump($data_session);exit(1);
+                 $searchForm->bind($data_session);
+                    // $data = $searchForm->getData();
+                     $query_tmp = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(), 'query');
+           // $query = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($data_session, $query_tmp);
+         
+             }
+             else {
+            // $em = $this->getDoctrine()->getManager();
+            $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
+             }
+        }
+        $paginationa = $this->createpaginator($query, 5);
+        return $this->render('ApplicationEpostBundle:Epost:indexall.html.twig', array(
+                    'paginationa' => $paginationa,
+                    'search_form' => $searchForm->createView(),
+                ));
+    }
+
+     //====================================================================
     // BLOG ALL
     //====================================================================
     public function indexAllAction() {
         $em = $this->getDoctrine()->getManager();
         $session = $this->getRequest()->getSession();
         $session->set('buttonretour', 'epost_indexadmin');
-     
-          $searchForm = $this->createForm(new EpostTypeFiltres());
-          if ($this->get('request')->query->has('submit-filter')) {
-             // echo "submit filters";exit(1);
+        $searchForm = $this->createForm(new EpostTypeFiltres());
+        if ($this->get('request')->query->has('submit-filter')) {
             // bind values from the request
-                 $searchForm->bind($this->get('request'));
-          //var_dump($searchForm);
-         //   $searchForm->bind($this->get('request')->get('submit-filter'));
-          //  $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
-               //$querya = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
-           $filterBuilder = $this->get('doctrine.orm.entity_manager')
-                    ->getRepository('ApplicationEpostBundle:Epost')
-                   // ->createQueryBuilder('e');
-          ->createQueryBuilder('a')
-                      ->select('a,c,e,d,f,b')
-                     ->leftJoin('a.categorie', 'c')
-                     ->leftJoin('a.globalnote', 'e')
-                    ->leftJoin('a.idStatus', 'd')
-                    ->leftJoin('a.imageMedia', 'f')
-                     ->leftJoin('a.proprietaire', 'b')
-                   
-                //   ->leftJoin('a.comments', 'u')
-              /*  ->leftJoin('a.globalnote', 'e')
-                ->leftJoin('a.imageMedia', 'f')
-                 ->leftJoin('a.comments', 'u')
-               */
-                 //   ->select('a,c,d,e,f,u')
-            /*   ->select('a,b,c,d,e,f,u')
-                 ->leftJoin('a.proprietaire', 'b')
-               
-                ->leftJoin('a.idStatus', 'd')
-                ->leftJoin('a.globalnote', 'e')
-                ->leftJoin('a.imageMedia', 'f')
-                 ->leftJoin('a.comments', 'u')*/
-                   ->add('orderBy', 'a.id DESC')
-                ;
-                 $query = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($searchForm, $filterBuilder)->getQuery();
-      
+            $searchForm->bind($this->get('request'));
+            //var_dump($searchForm);
+            $query_tmp = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(), 'query');
+            $query = $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($searchForm, $query_tmp);
             //     var_dump($query->getDql());exit(1);
-                   
-                   } else {
-           // $em = $this->getDoctrine()->getManager();
-           $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
+        } else {
+            // $em = $this->getDoctrine()->getManager();
+            $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
         }
-         
-
- 
-       
-    //$defaut_paginator=array('pagename'=>'page1','sort'=>'sort1','sortfield'=>'sort1');
         $paginationa = $this->createpaginator($query, 5);
         return $this->render('ApplicationEpostBundle:Epost:indexall.html.twig', array(
                     'paginationa' => $paginationa,
-                'search_form' => $searchForm->createView(),
+                    'search_form' => $searchForm->createView(),
                 ));
     }
-
     //====================================================================
     // BLOG STANDARD: ALL
     //====================================================================

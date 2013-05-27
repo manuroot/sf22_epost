@@ -151,7 +151,7 @@ class EpostRepository extends EntityRepository {
      * $criteria=array('author'=>$idauthor)
      */
 
-    public function getMyPager(array $criteria) {
+    public function getMyPager(array $criteria,$ret='getquery') {
 
         /* $query = $this->createQueryBuilder('a')
           ->add('orderBy', 'a.id DESC')
@@ -171,7 +171,8 @@ class EpostRepository extends EntityRepository {
          */
         $parameters = array();
         $query = $this->createQueryBuilder('a')
-                ->select('a,b,c,d,e,f,u')
+                ->select('a,b,c,d,e,f')
+                 //->select('a,b,c,d,e,f,u')
                 //->select('a,b,c,d,e,f,u,t')
                 ->add('orderBy', 'a.id DESC')
                 //->where('a.proprietaire = :proprietaire')
@@ -182,7 +183,7 @@ class EpostRepository extends EntityRepository {
                 ->leftJoin('a.globalnote', 'e')
                 ->leftJoin('a.imageMedia', 'f')
                 // ->leftJoin('a.tags', 't')
-                ->leftJoin('a.comments', 'u')
+               // ->leftJoin('a.comments', 'u')
 
         ;
 
@@ -230,16 +231,19 @@ class EpostRepository extends EntityRepository {
             //       $parameters['tag'] = 'tag1';
         }
         $query->setParameters($parameters);
-        $query->groupby('a.name');
+        // ??
+       $query->groupby('a.name');
         //>getQuery();
         //  print_r($query->getQuery());
         //  exit(1);
+       if ($ret =='query')
+           return $query;
+           else
         return $query->getQuery();
         //return $query->getQuery()->getResult();
     }
 
     public function getMyPagerStandard(array $criteria) {
-
 
 
         $parameters = array();

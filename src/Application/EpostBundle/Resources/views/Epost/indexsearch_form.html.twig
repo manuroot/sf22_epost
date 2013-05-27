@@ -1,6 +1,6 @@
   
-    
-    <form  class="form" action="{{ path('epost_indexadmin') }}" method="GET" {{ form_enctype(search_form) }}>
+   {#  <form  class="form" action="{{ path('epost_indexadmin') }}" method="GET" {{ form_enctype(search_form) }}>#}
+    <form  class="form" action="{{ path('epost_indexadmin') }}" method="POST" {{ form_enctype(search_form) }}>
           <table class="table table-bordered">
             <tbody>
                 <tr class="single">

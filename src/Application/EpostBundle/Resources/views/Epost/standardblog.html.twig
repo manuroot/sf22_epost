@@ -65,7 +65,7 @@
           var optionData = reponse;
         // loop over dayUsage array result
          $.each(optionData, function(index, value) {
-                console.log("added value=" + value.date);
+            /*   console.log("added value=" + value.date);*/
                eventsDays.push(value.date); 
               // add this date to the freeDays array
            });
@@ -126,8 +126,8 @@ $("#datepicker").datepicker({
       
            /* var t=new Date(eventsDays[i]).toString("mm-dd-yy");*/
              var t=new Date(eventsDays[i]).toString();
-             console.log("events=" + eventsDays[i] + "--" + t + " date=" + date.toString() + " i=" + i);
-           
+            /* console.log("events=" + eventsDays[i] + "--" + t + " date=" + date.toString() + " i=" + i);
+           */
            /*    if (t == date.toString()) {     */        
             if (new Date(eventsDays[i]).toString() == date.toString()) {           
                    return [true, 'free-day', 'no to-do items due'];

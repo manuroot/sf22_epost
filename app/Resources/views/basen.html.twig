@@ -4,8 +4,8 @@
           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
           <title>{% block headtitle %}BLOG MROOT PROJET{% endblock %}</title>
           {% block stylesheets %}
-        {#   <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />#}
-        {#<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" type="text/css" />#}
+           <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" type="text/css" />
        
 
      
@@ -110,8 +110,9 @@ background-image:url(/images/ravenna.png);
 </div>
 </div>
 </div>
-            
-    
+    {% block datepick %}        
+    <br>
+     {% endblock %}
     </div>
         
    </div></div>     

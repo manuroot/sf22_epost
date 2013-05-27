@@ -4,18 +4,9 @@
 {{ parent() }}
       <link rel="stylesheet" href="{{ asset('bundles/applicationepost/css/sliding.css') }}" type="text/css" media="all"/>
        <link rel="stylesheet" href="{{ asset('css/news.css') }}" type="text/css" media="all"/>
-       <style>  
-               div.ui-datepicker {
+       <style>  div.ui-datepicker {
     font-size: 95%;
 }
-	/*.dp-highlight-unknown .ui-state-default {
-			background: #800;
-			color: #FFF;
-		}
-		.dp-highlight-holiday .ui-state-default {
-			background: #484;
-			color: #FFF;
-		}*/
   </style>
 {% endblock %}
 
@@ -33,61 +24,10 @@
   }
 });
 
-/*$("#datepicker").datepicker($.datepicker.regional["fr"]);*/
+$("#datepicker").datepicker($.datepicker.regional["fr"]);
 /*$( "#datepicker-2" ).datepicker();*/
 
- 
-		/*
-		 * jQuery UI Datepicker: Update Datepicker Using AJAX
-		 * http://salman-w.blogspot.com/2013/01/jquery-ui-datepicker-examples.html
-		 */
-			var dateList = null;
-			var date1 = new Date;
-			date1.setHours(0, 0, 0, 0);
-			date1.setDate(1);
-			var date2 = new Date;
-			date2.setHours(0, 0, 0, 0);
-			date2.setMonth(date2.getMonth() + 12, 0);
-			$("#datepicker").datepicker({
-				minDate: date1,
-				maxDate: date2,
-				beforeShowDay: function(date) {
-					var r = [true, ""];
-					if (dateList === null) {
-						r[1] = "dp-highlight-unknown";
-					} else {
-						var key = $.datepicker.formatDate("yy-mm-dd", date);
-						if (key in dateList) {
-							r[1] = "dp-highlight-holiday";
-							r[2] = dateList[key].join(", ");
-						}
-					}
-					return r;
-				}
-			});
-                          
-			$("#dateloader").on("click", function() {
-				$(this).prop("disabled", true);
-				$.getJSON('{{ path('epost_calendar')}}', {
-					"alt": "json",
-					"start-min": $.datepicker.formatDate("yy-mm-dd", date1),
-					"start-max": $.datepicker.formatDate("yy-mm-dd", new Date(date2.getTime() + 86400000)),
-					"orderby": "starttime",
-					"max-results": 100
-				}, function(data) {
-					dateList = {};
-					$.each(data.feed.entry, function(i, entry) {
-						var key = entry.mydate.startTime.substr(0, 10);
-						if (key in dateList == false) {
-							dateList[key] = [];
-						}
-						dateList[key].push(entry.title.titre);
-					});
-					$("#datepicker").datepicker("refresh");
-				});
-			});
-	</script>
-	
+    </script>
 {% endblock %}
  
  
@@ -225,7 +165,5 @@ ARTICLES
 
 {% block datepick %}
 {{ parent() }}
-	
-	<p><input id="dateloader" type="button" value=" Load dates "></p>
-        <div id="datepicker"></div>
+<div id="datepicker"></div>
 {% endblock %}

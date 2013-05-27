@@ -19,6 +19,10 @@ epost_indexserch:
     pattern:  /search
     defaults: { _controller: "ApplicationEpostBundle:Epost:indexsearch" }
 
+epost_calendar:
+    pattern:  /calendar
+    defaults: { _controller: "ApplicationEpostBundle:Epost:CalendarEvents" }
+
 
 
 epost_mesposts:

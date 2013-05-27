@@ -673,6 +673,42 @@ class EpostController extends Controller {
         ;
     }
 
+     public function listByProjetAction() {
+        $request = $this->getRequest();
+
+        if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
+            $em = $this->getDoctrine()->getEntityManager();
+            $id = '';
+            $applis = array();
+            $cert_app = array();
+
+            $id = $request->request->get('id_projet');
+            $projet = $em->getRepository('ApplicationCertificatsBundle:Projet')->find($id);
+
+            $id_cert = $request->request->get('id_cert');
+            if (isset($id_cert) && $id_cert != "create") {
+                //    var_dump($id_cert);
+                $cert = $em->getRepository('ApplicationCertificatsBundle:CertificatsCenter')->find($id_cert);
+                foreach ($cert->getIdapplis() as $appli) {
+                    array_push($cert_app, $appli->getId());
+                }
+                $applis['cert'] = $cert_app;
+            }
+            foreach ($projet->getIdapplis() as $appli) {
+                //$applis[] = array($appli);
+                $applis['applis'][$appli->getId()] = $appli->getNomapplis();
+                //      $applis[] = array($appli->getId(), $appli->getNomapplis());
+            }
+
+            //    $appli=array(3,4);
+            $response = new Response(json_encode($applis));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
+        // return new Response();
+    }
+
     // TODO:
     public function searchPostAction() {
         $request = $this->getRequest();
@@ -703,6 +739,48 @@ class EpostController extends Controller {
             }
 
             //    $appli=array(3,4);
+            $response = new Response(json_encode($applis));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
+        // return new Response();
+    }
+
+       // TODO:
+    public function CalendarEventsAction() {
+        $request = $this->getRequest();
+
+        if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
+            //$em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
+            $id = '';
+            $applis = array();
+            $cert_app = array();
+
+            /*$id = $request->request->get('id_projet');
+            $projet = $em->getRepository('ApplicationEpostBundle:CertificatsProjet')->find($id);
+
+            $id_cert = $request->request->get('id_cert');
+            if (isset($id_cert) && $id_cert != "create") {
+                //    var_dump($id_cert);
+                $cert = $em->getRepository('ApplicationEpostBundle:CertificatsCenter')->find($id_cert);
+                foreach ($cert->getIdapplis() as $appli) {
+                    array_push($cert_app, $appli->getId());
+                }
+                $applis['cert'] = $cert_app;
+            }
+            foreach ($projet->getIdapplis() as $appli) {
+                //$applis[] = array($appli);
+                $applis['applis'][$appli->getId()] = $appli->getNomapplis();
+                //      $applis[] = array($appli->getId(), $appli->getNomapplis());
+            }*/
+            // retour ??
+            // "title":{"$t":"Cinco de Mayo","type":"text"}
+            //$applis[]["gdwhen"]=[{"endTime":"2013-05-13","startTime":"2013-05-12"}];
+            //    $appli=array(3,4);
+            $applis[]=array('event'=>1,'startdate'=>'2013-05-12');
+            //=array"endTime":"2013-05-13","startTime":"2013-05-12"};
             $response = new Response(json_encode($applis));
             $response->headers->set('Content-Type', 'application/json');
 

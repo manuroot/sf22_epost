@@ -49,8 +49,7 @@ class EpostRepository extends EntityRepository {
     }
 
     public function myFindAll($user_id) {
-
-        $query = $this->createQueryBuilder('a')
+       $query = $this->createQueryBuilder('a')
                 ->add('orderBy', 'a.id DESC')
                 ->where('a.proprietaire = :proprietaire')
                 ->leftJoin('a.proprietaire', 'b')
@@ -139,7 +138,20 @@ class EpostRepository extends EntityRepository {
                         ->getResult();
     }
 
-    /* criteres a passer:
+   
+    
+     public function getOwnerCount($user_id, $group_id) {
+             
+        $query = $this->createQueryBuilder('a')
+         ->where('a.proprietaire = :proprietaire')
+                ->leftJoin('a.proprietaire', 'b')
+                ->setParameter('proprietaire', $user_id)
+                ->getQuery();
+
+        return $query;
+     }
+     
+      /* criteres a passer:
      * array(
      *  'proprietaire'=>
      *  'categorie' =>

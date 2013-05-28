@@ -2,47 +2,38 @@
 
   {% block stylesheets %}
 {{ parent() }}
+
 <link rel="stylesheet" href="{{ asset('bundles/applicationepost/css/sliding.css') }}" type="text/css" media="all"/>
 <link rel="stylesheet" href="{{ asset('css/news.css') }}" type="text/css" media="all"/>
+{#<link rel="stylesheet" href="{{ asset('css/datepicker.css') }}" type="text/css" media="all"/>#}
 <style>  
         /* override free days background in jquery ui datepicker */
 .free-day {
   background: #2e9500;
 }
- 
+     div.ui-datepicker {
+            font-size: 95%;
+        }
 .free-day a {
   opacity: 0.7;
 }
-        div.ui-datepicker {
-            font-size: 95%;
-        }
-        /*.dp-highlight-unknown .ui-state-default {
-                        background: #800;
-                        color: #FFF;
-                }
-                .dp-highlight-holiday .ui-state-default {
-                        background: #484;
-                        color: #FFF;
-                }*/
-    </style>
+  </style>
 {% endblock %}
 
 
 {% block javascripts %}
 {{ parent() }}
-<!--<script type="text/javascript" src="{{ asset('bundles/applicationepost/js/selectapplis.js') }}"></script>
-    -->
-    <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
-    <script type="text/javascript">
-       /* $(document).ready(function(){*/
-       $('.star').raty({
-           readOnly: true,
+  <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
+  <script type="text/javascript">
+   /* $(document).ready(function(){*/
+   $('.star').raty({
+     readOnly: true,
      score: function() {
        return $(this).attr('data-score');
      }
    });
    // declare freeDays global
-   var eventsDays = [];
+ var eventsDays = [];
  var eventsTitle = [];
    // perform initial json request for free days
 /*fetchFreeDays();*/
@@ -66,6 +57,7 @@
         // loop over dayUsage array result
          $.each(optionData, function(index, value) {
             /*   console.log("added value=" + value.date);*/
+           /*  eventsDays.push(value.date,value.title); */
                eventsDays.push(value.date); 
                 eventsTitle.push(value.title); 
               // add this date to the freeDays array
@@ -86,6 +78,18 @@
 }
 /*var eventsDays = ['05/01/2013', '05/11/2013'];*/
 fetchEvents();
+
+function pickDate(dateStr) {
+          // Do something with the chosen date...
+          window.location.href = links[dateStr];
+}
+/*
+ $('.selector').datepicker({
+                                   onSelect: function(dateText, inst) {
+
+                                      window.location.href = '/go-to-page?date='+dateText;
+                                   }
+                                }); */
 $("#datepicker").datepicker({
           changeMonth: true,
           changeYear: true,
@@ -97,6 +101,11 @@ $("#datepicker").datepicker({
           altFormat: 'yy-mm-dd',
           dateFormat: 'yy-dd-mm',
           beforeShowDay: editDays,
+          onSelect: function(dateText, inst) {
+               window.location.href ="{{ path('epost_indexstandard') }}" + '/' + dateText;
+                /*window.location.href = {{ 'epost_indexstandard' }} + '/' + dateText;
+               /*window.location.href = {{ 'epost_indexstandard' }} + '/' + dateText;*/
+          },
           onChangeMonthYear: fetchEvents,
          /* create: function(event, ui) {
         fetchEvents()

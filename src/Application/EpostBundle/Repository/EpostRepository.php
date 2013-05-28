@@ -133,20 +133,10 @@ $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retr
             /*$year = $d['createdAt']->format('Y');
              $month = $d['createdAt']->format('m');
              $day = $d['createdAt']->format('d');*/
-            
-            //  echo "year=$year<br>";
-            //  $cat=$d['category'];
-            /*04/30/2013*/
-           /*'04/30/2013', '05/12/2013'];*/
               $value=$d['createdAt']->format('m\/d\/Y');
               $name=$d['name'];
-             // $value=$d['createdAt']=mysql_real_escape_string($value); 
-            
-         //  $value=$day . '/' . $month . '/' . $year;
-          
           //  if (! array_key_exists($key, $myarr))
                  array_push($myarr,array('date'=>"$value",'title'=>$name));
-           
         }
         return ($myarr);
         print_r($myarr);

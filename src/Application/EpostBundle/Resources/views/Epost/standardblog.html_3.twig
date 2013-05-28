@@ -98,6 +98,47 @@
  
        return [true, ''];
    }
+     $(function () {
+        function getJsonDate(year, month) {
+            var theYear = year;
+            var theMonth = month;
+            alert('You are in, baby!');
+            $.post('GetMonthCalendar', {
+                data: { year: theYear, month: theMonth },
+                success: function(data) {
+                    //TODO: make determination on ResourceScheduleTypeId for correct css
+                    var i = 0;
+                    for (i = 0; i < data.data.length; i++) {
+                        $('.ui-datepicker-calendar td a:exactly(' + data.data[i]['d'] + ')')
+                            .css({ color: 'blue' })
+                            .attr('href', data.data[i]['link'])
+                            .parent().attr('onclick', '');
+                    }
+
+                }
+            });
+        }
+
+
+        $.expr[":"].exactly = function (el, i, m) {
+            var s = m[3];
+            if (!s) return false;
+            return eval("/^" + s + "$/i").test($(el).text());
+        };
+        $('#date').datepicker({
+            inline: true,
+            onSelect: function (dateText, inst) {
+                Date.prototype.toString = function () { return isNaN(this) ? 'NaN' : [this.getDate(), this.getMonth(), this.getFullYear()].join('/'); };
+                d = new Date(dateText);
+                //alert(d.getDate() + ", " + d.getFullYear());
+                getJsonDate(d.getFullYear(), d.getDate());
+            },
+            onChangeMonthYear: function (year, month, inst) {
+                //alert(year + ", " + month);
+                getJsonDate(year, month);
+            }
+        });
+    });
         </script>
 
 {% endblock %}

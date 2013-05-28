@@ -723,79 +723,34 @@ class EpostController extends Controller {
         // return new Response();
     }
 
-    // TODO:
-    public function searchPostAction() {
-        $request = $this->getRequest();
-/*
- $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retrieve more than 2 months
- 
-while ($check_date != $end_date)
-{
-    // check if any incomplete todos exist on this date
-    if (mysql_result(mysql_query("SELECT COUNT(id) FROM " . DB_TODOS . " WHERE date_due = '$check_date'"), 0) == 0)
-    {
-        $result[] = array('freeDate' => $check_date);
-    }
- 
-    // +1 day to the check date
-    $check_date = date('Y-m-d', strtotime("$check_date +1 day"));
- 
-    // break from loop if its looking like an infinite loop
-    $i++;
-    if ($i > $cutoff) break;
-}
- * 
- * 
- */
-        if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
-            //$em = $this->getDoctrine()->getEntityManager();
-            $em = $this->getDoctrine()->getManager();
-            $id = '';
-            $applis = array();
-            $cert_app = array();
-
-            $id = $request->request->get('id_projet');
-            $projet = $em->getRepository('ApplicationEpostBundle:CertificatsProjet')->find($id);
-
-            $id_cert = $request->request->get('id_cert');
-            if (isset($id_cert) && $id_cert != "create") {
-                //    var_dump($id_cert);
-                $cert = $em->getRepository('ApplicationEpostBundle:CertificatsCenter')->find($id_cert);
-                foreach ($cert->getIdapplis() as $appli) {
-                    array_push($cert_app, $appli->getId());
-                }
-                $applis['cert'] = $cert_app;
-            }
-            foreach ($projet->getIdapplis() as $appli) {
-                //$applis[] = array($appli);
-                $applis['applis'][$appli->getId()] = $appli->getNomapplis();
-                //      $applis[] = array($appli->getId(), $appli->getNomapplis());
-            }
-
-            //    $appli=array(3,4);
-            $response = new Response(json_encode($applis));
-            $response->headers->set('Content-Type', 'application/json');
-
-            return $response;
-        }
-        // return new Response();
-    }
-
+   
     // TODO:
     public function CalendarEventsAction() {
 
-        $request = $this->getRequest();
+          
+          $request = $this->getRequest();
+          $session = $this->getRequest()->getSession();
         if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
             $month = $request->request->get('month');
             if ($month < 10)
                 $month = "0" . $month;
             $year = $request->request->get('year');
             $date = $year . '-' . $month;
+           // $session_event=$date;
+             $current_session_events = $session->get($date);
+         if (!isset($current_session_events)){
             // echo "year=$year month=$month<br>";exit(1); 
             $em = $this->getDoctrine()->getManager();
             // recuperation des parametres
             $events_date = $em->getRepository('ApplicationEpostBundle:Epost')->getMyDate($date);
-            /*   print_r($events_date); */
+              $session->set($date, $events_date); 
+            //  print_r($events_date); 
+              
+       }else {
+            $events_date= $current_session_events;
+          //   print_r($events_date); 
+       }
+             //  print_r($events_date); 
             $response = new Response(json_encode($events_date));
             $response->headers->set('Content-Type', 'application/json');
       return $response;

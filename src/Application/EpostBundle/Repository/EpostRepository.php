@@ -124,7 +124,7 @@ $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retr
            $myarr=array();
       //     echo "date=$date";exit(1);
         $qb = $this->createQueryBuilder('a')
-        ->select('a.createdAt')
+        ->select('a.createdAt,a.name')
         ->where('a.createdAt LIKE :mydate')
         ->setParameter('mydate', "%" . $date . "%" );
        // return $qb->getQuery()->getResult();
@@ -139,12 +139,13 @@ $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retr
             /*04/30/2013*/
            /*'04/30/2013', '05/12/2013'];*/
               $value=$d['createdAt']->format('m\/d\/Y');
+              $name=$d['name'];
              // $value=$d['createdAt']=mysql_real_escape_string($value); 
             
          //  $value=$day . '/' . $month . '/' . $year;
           
           //  if (! array_key_exists($key, $myarr))
-                 array_push($myarr,array('date'=>"$value"));
+                 array_push($myarr,array('date'=>"$value",'title'=>$name));
            
         }
         return ($myarr);

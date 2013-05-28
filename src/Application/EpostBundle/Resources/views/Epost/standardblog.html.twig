@@ -34,7 +34,7 @@
     -->
     <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
     <script type="text/javascript">
-      /*  $(document).ready(function(){*/
+       /* $(document).ready(function(){*/
        $('.star').raty({
            readOnly: true,
      score: function() {
@@ -43,7 +43,7 @@
    });
    // declare freeDays global
    var eventsDays = [];
- 
+ var eventsTitle = [];
    // perform initial json request for free days
 /*fetchFreeDays();*/
    
@@ -67,32 +67,14 @@
          $.each(optionData, function(index, value) {
             /*   console.log("added value=" + value.date);*/
                eventsDays.push(value.date); 
+                eventsTitle.push(value.title); 
               // add this date to the freeDays array
            });
           /* highlightDays(date);*/
          /* $('#datepicker').trigger('click');*/
-       
-     /* $("#datepicker").datepicker({
-          changeMonth: true,
-          changeYear: true,
-          showOtherMonths: true,
-          selectOtherMonths: true,
-          //numberOfMonths: 2,
-          dateFormat: 'yy, d MM, DD',
-          altField: '#date_due',
-          altFormat: 'yy-mm-dd',
-          //beforeShowDay: $.datepicker.noWeekends,
-           dateFormat: 'yy-dd-mm',
-        beforeShowDay: editDays,
-        onChangeMonthYear: fetchEvents,
-          firstDay: 1 // rows starts on Monday
-        });*/
-    
-} 
-       
-        });
-        
-        }
+    } 
+    });
+}
     
    
    
@@ -103,7 +85,7 @@
     return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 }
 /*var eventsDays = ['05/01/2013', '05/11/2013'];*/
-
+fetchEvents();
 $("#datepicker").datepicker({
           changeMonth: true,
           changeYear: true,
@@ -111,52 +93,34 @@ $("#datepicker").datepicker({
           selectOtherMonths: true,
           //numberOfMonths: 2,
           dateFormat: 'yy, d MM, DD',
-     
           altField: '#date_due',
           altFormat: 'yy-mm-dd',
-              dateFormat: 'yy-dd-mm',
-        beforeShowDay: editDays,
-        onChangeMonthYear: fetchEvents,
+          dateFormat: 'yy-dd-mm',
+          beforeShowDay: editDays,
+          onChangeMonthYear: fetchEvents,
+         /* create: function(event, ui) {
+        fetchEvents()
+    },*/
+        /*  onLoad:fetchEvents,*/
           firstDay: 1 // rows starts on Monday
         });
    
    function editDays(date) {
+       /* console.log("edit days");*/
           for (var i = 0; i < eventsDays.length; i++) {
-     
-      
            /* var t=new Date(eventsDays[i]).toString("mm-dd-yy");*/
              var t=new Date(eventsDays[i]).toString();
             /* console.log("events=" + eventsDays[i] + "--" + t + " date=" + date.toString() + " i=" + i);
            */
            /*    if (t == date.toString()) {     */        
             if (new Date(eventsDays[i]).toString() == date.toString()) {           
-                   return [true, 'free-day', 'no to-do items due'];
+                   return [true, 'free-day', eventsTitle[i]];
             }
         }
         return [true];
      }   
-   /*
- function editBDays(date) {
-        for (var i = 0; i < disabledDates.length; i++) {
-              if (new Date(disabledDates[i]).toString() == date.toString()) {           
-                   return [true, 'free-day', 'no to-do items due'];
-            }
-        }
-        return [true];
-     }   
-*/
-   /* function editDays(date) {
-          for (var i = 0; i < eventsDays.length; i++) {
-             console.log("events=" + t + " date=" + date.toString() + " i=" + i);
-             if (new Date(eventsDays[i]).toString() == date.toString()) {           
-                   return [true, 'free-day', 'no to-do items due'];
-            }
-        }
-        return [true];
-     } */  
-     
-   
-           
+   /*});*/
+  
         </script>
 
 {% endblock %}

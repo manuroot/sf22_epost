@@ -260,6 +260,7 @@ class EpostRollRepository extends EntityRepository {
             $parameters['tag'] = (string) $criteria['tag'];
         }
         $query->setParameters($parameters);
+        $query->add('orderBy', 'a.name DESC');
         //>getQuery();
         //  print_r($query->getQuery());
         //  exit(1);

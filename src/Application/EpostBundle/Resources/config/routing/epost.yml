@@ -90,3 +90,8 @@ epost_mesposts_testa:
     pattern:  /posttesta
     defaults: { _controller: "ApplicationEpostBundle:Epost:indextesta" }
         
+ 
+epost_mesposts_testb:
+    pattern:  /posttestb
+    defaults: { _controller: "ApplicationEpostBundle:Epost:indextestb" }
+        

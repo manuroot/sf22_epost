@@ -2,7 +2,8 @@
 body,img,p,h1,h2,h3,h4,h5,h6,ul,ol {margin:0; padding:0; list-style:none; border:none;}
 /* End Reset */
 
-body {font-size:0.8em; font-family:Arial,Verdana,Sans-Serif; background: #000;}
+body {font-size:0.8em; font-family:Arial,Verdana,Sans-Serif;background-image:url(/images/ravenna.png);
+}
 a {color:white;}
 
 /* Colors */
@@ -47,16 +48,33 @@ a {color:white;}
 }
 
 /* Column dividers (background-images) : */
-	#columns #column1 { background: url(img/column-bg-left.png) no-repeat right top; }
-	#columns #column3 { background: url(img/column-bg-right.png) no-repeat left top; }
-	
-#columns #column1 .widget { margin: 30px 35px 0 25px; }
+	/*#columns #column1 { background: url(img/column-bg-left.png) no-repeat right top; }
+	#columns #column3 { background: url(img/column-bg-right.png) no-repeat left top; }*/
+/*	
+#columns #column1 .widget { margin: 0px 35px 0 25px; }
 #columns #column3 .widget { margin: 30px 25px 0 35px; }
+*/
+
+/*#columns #column1 .widget { margin: 30px 35px 0 25px; }
+#columns #column3 .widget { margin: 30px 25px 0 35px; }*/
+
+/*
 #columns .widget {
-    margin: 30px 20px 0 20px;
+    margin: 10px 10px 0 20px;
     padding: 2px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
+}
+*/
+
+#columns .widget {
+    margin: 10px 15px 10px 15px;
+    padding: 2px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    width:90%;
+   
+    
 }
 #columns .widget .widget-head {
     color: #000;
@@ -80,6 +98,7 @@ a {color:white;}
     line-height: 1.2em;
     overflow: hidden;
 }
+
 #columns .widget .widget-content p {
     padding: 0.8em 0;
     border-bottom: 1px solid #666;

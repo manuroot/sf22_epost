@@ -165,6 +165,8 @@ background-image:url(/images/ravenna.png);
    $('.container').shapeshift({
   // Features
   centerGrid: true, // Center the grid inside the container.
+  enableAnimation: true, // Objects will animate into their new position when shapeshift() is initialized, or when the container is resized.
+  
   enableAnimationOnInit: true, // Determines if objects will be animated into position when the page initially loads.
   enableAutoHeight: true, // If this is set to true the parent containers height will be automatically be adjusted to compensate for all of the child elements.
   enableDrag: true,
@@ -175,7 +177,7 @@ background-image:url(/images/ravenna.png);
  
   // Options
   animateSpeed: 150,
-  columns: null,
+ /* columns: null,
   dragClone: false,
   dragRate: 100,
   dragWhitelist: "*",
@@ -186,8 +188,8 @@ background-image:url(/images/ravenna.png);
   minHeight: 100,
   paddingY: 0,
   paddingX: 0,
-  selector: "",
-   minColumns: 3,
+  selector: "",*/
+  /* minColumns: 3,*/
 });
     })
    

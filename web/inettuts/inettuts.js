@@ -145,10 +145,22 @@ var iNettuts = {
                         if(!this.id) {
                             this.id = 'widget-no-id-' + i;
                         }
-                        notSortable += '#' + this.id + ',';
+             /*           
+if(notSortable!='')
+notSortable += ',';
+notSortable += '#' + this.id;*/
+                      notSortable += '#' + this.id + ',';
                     }
                 });
-                return $('> li:not(' + notSortable + ')', settings.columns);
+              /*  return $('> li:not(' + notSortable + ')', settings.columns);*/
+                if (notSortable.substr(notSortable.length - 1, 1) == ',') {
+notSortable = notSortable.substr(0, notSortable.length - 1);
+}
+if (notSortable && !(notSortable == '')) {
+return $('> li:not(' + notSortable + ')', settings.columns);
+} else {
+return $('> ', settings.columns);
+}
             })();
         
         $sortableItems.find(settings.handleSelector).css({

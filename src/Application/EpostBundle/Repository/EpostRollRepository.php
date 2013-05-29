@@ -202,7 +202,7 @@ class EpostRollRepository extends EntityRepository {
 
       
         $query->setParameters($parameters);
-          $query->add('orderBy', 'a.name DESC');
+          $query->add('orderBy', 'a.name ASC');
         //>getQuery();
         //  print_r($query->getQuery());
         //  exit(1);

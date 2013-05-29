@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>iNettuts - Welcome!</title>
+    {% block stylesheets %}
+           <link rel="stylesheet" href="{{ asset('inettuts/inettuts.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('inettuts/inettuts.js.css') }}" type="text/css" />
+       <link rel="stylesheet" href="{{ asset('bundles/applicationepost/css/sliding.css') }}" type="text/css" media="all"/>
+
+{% endblock %} 
+    
+     
+    
+</head>
+<body>
+    
+    <div id="head">
+        <h1>LISTE DES ARTICLES</h1>
+    </div>
+
+    <div id="columns">
+        
+         <ul id="column1" class="column">
+         {% for entity in paginationa %}
+                   {% if entity.idStatus is not null %}
+                        {% if entity.idStatus.nom == 'OPEN' %}
+                              <li class="widget color-red">  
+                        {% else %}
+                              <li class="widget color-blue">  
+                        {% endif %} 
+                    {% else %}
+                          <li class="widget color-yellow">  
+                    {% endif %} 
+       
+           {#   <li class="widget color-red">  #}
+                <div class="widget-head">
+                    <h3>{{ entity.name }}</h3>
+                </div>
+                <div class="widget-content">
+                
+                <p> {{ entity.id }}</p>
+                     <img src="{% path entity.imageMedia, 'small' %}" width="40" /> 
+                <p>{{ entity.resume|raw }}</p>
+                </div>
+            </li>
+          
+                      
+    
+    
+      {% endfor %}
+        </ul>
+         <ul id="column2" class="column">
+            <li class="widget color-blue">  
+                <div class="widget-head">
+                    <h3>Widget title</h3>
+                </div>
+                <div class="widget-content">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa. Donec id nibh eu dui auctor tempor. Morbi laoreet eleifend dolor. Suspendisse pede odio, accumsan vitae, auctor non, suscipit at, ipsum. Cras varius sapien vel lectus.</p>
+                </div>
+            </li>
+            <li class="widget color-yellow">  
+                <div class="widget-head">
+                    <h3>Widget title</h3>
+                </div>
+                <div class="widget-content">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa. Donec id nibh eu dui auctor tempor. Morbi laoreet eleifend dolor. Suspendisse pede odio, accumsan vitae, auctor non, suscipit at, ipsum. Cras varius sapien vel lectus.</p>
+                </div>
+            </li>
+        </ul>
+        
+        <ul id="column3" class="column">
+            <li class="widget color-orange">  
+                <div class="widget-head">
+                    <h3>Widget title</h3>
+                </div>
+                <div class="widget-content">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa. Donec id nibh eu dui auctor tempor. Morbi laoreet eleifend dolor. Suspendisse pede odio, accumsan vitae, auctor non, suscipit at, ipsum. Cras varius sapien vel lectus.</p>
+                </div>
+            </li>
+            <li class="widget color-white">  
+                <div class="widget-head">
+                    <h3>Widget title</h3>
+                </div>
+                <div class="widget-content">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa. Donec id nibh eu dui auctor tempor. Morbi laoreet eleifend dolor. Suspendisse pede odio, accumsan vitae, auctor non, suscipit at, ipsum. Cras varius sapien vel lectus.</p>
+                </div>
+            </li>
+            
+        </ul>
+   </div>  
+
+  {{ knp_pagination_render(paginationa) }}   
+   
+
+                            <br><br>
+    
+   {% block javascripts %}
+                <script src="{{ asset('jquery/jquery-1.9.1.js') }}" type="text/javascript"></script>
+                <script type="text/javascript" src="{{ asset('jquery/jquery-ui-1.9.2.custom.min.js') }}"></script>
+                   <script type="text/javascript" src="{{ asset('inettuts/inettuts.js') }}"></script>
+               {#    <script type="text/javascript" src="{{ asset('jquery/jquery-ui-personalized-1.6rc2.min') }}"></script>#}
+            {#    <script type="text/javascript" src="{{ asset('jquery/jquery.ui.datepicker.js') }}"></script>#}
+            
+          
+ {% endblock %}
+</body>
+</html>

@@ -25,15 +25,12 @@ var iNettuts = {
                 removable: false,
                 collapsible: false,
                 editable: false
-            },
-            gallery : {
-                colorClasses : ['color-yellow', 'color-red', 'color-white']
             }
         }
     },
 
     init : function () {
-        this.attachStylesheet('inettuts.css');
+        this.attachStylesheet('../inettuts.js.css');
         this.addWidgetControls();
         this.makeSortable();
     },

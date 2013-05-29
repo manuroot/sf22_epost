@@ -24,7 +24,7 @@ a {color:white;}
 
 /* Head section */
 #head {
-    background: #000 url(img/head-bg.png) repeat-x;
+    background: #000 url('img/head-bg.png') repeat-x;
     height: 100px;
 }
 #head h1 {

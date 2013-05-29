@@ -85,3 +85,8 @@ epost_show:
     requirements:
         _method:  GET
         blog_id: \d+
+        
+epost_mesposts_testa:
+    pattern:  /posttesta
+    defaults: { _controller: "ApplicationEpostBundle:Epost:indextesta" }
+        

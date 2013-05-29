@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>iNettuts - Welcome!</title>
+    {% block stylesheets %}
+           <link rel="stylesheet" href="{{ asset('inettuts/inettuts.css') }}" type="text/css" />
+  
+       
+{% endblock %} 
+        
+</head>
+<body>
+    
+    <div id="head">
+        <h1>iNettuts</h1>
+    </div>
+
+    <div id="columns">
+        
+         {% for entity in paginationb %}
+            <tr>
+                
+                
+                <td>{{ entity.id }}</td>
+                 <td><a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+                          {{ entity.name }}
+               </a> </td>
+                  {# <td><a href="{{ path('epost_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+            #}
+                 {% if entity.categorie is not null %}               
+                  <td>{{ entity.categorie.name }}</td>
+                  {% else %}
+                  <td>---</td>
+                  {% endif %}
+                     {% if entity.proprietaire is not null %}               
+                    <td>{{ entity.proprietaire.username }}</td>
+                 {% else %}
+                  <td>---</td>
+                     {% endif %}
+                    <td>
+                                   {% if entity.idStatus is not null %}
+                               {% if entity.idStatus.nom == 'OPEN' %}
+
+                                            <img src="{{ asset('bundles/applicationepost/images/cadenas-souvert.png') }}" alt="show" width="15" height="15" />
+
+ {% else %}
+
+                                            <img src="{{ asset('bundles/applicationepost/images/cadenas-sferme.png') }}" alt="show" width="15" height="15" />
+        {% endif %} 
+ {% else %}
+
+                                            <img src="{{ asset('bundles/applicationepost/images/cadenas-sferme.png') }}" alt="show" width="15" height="15" />
+     
+{% endif %} 
+                                   </td> 
+                                  <td class="resume">{{ entity.resume|length > 200 ? entity.resume|slice(0, 200)|raw ~ '...'  : entity.resume|raw  }}</td>
+  {#     <td class="resume">{{ entity.resume|raw }}</td>#}
+            
+            
+             {#          <td>
+                {% if entity.image is not null %}               
+           
+         
+         <img width="40px" src="{{ vich_uploader_asset(entity, 'image') }}" alt="{{ entity.imageName }}" />
+         {% else %}
+           ---
+         {% endif %}
+           </td>#}
+            <td>
+{#<img src="/sf1/{% path post.image, 'small' %}" width="50" /> #}
+<img src="{% path entity.imageMedia, 'small' %}" width="50" /> 
+         {% endfor %}
+       
+        <ul id="column1" class="column">
+            <li class="widget color-green" id="intro">
+                <div class="widget-head">
+                    <h3>Welcome to iNettuts</h3>
+                </div>
+                <div class="widget-content">
+                    <p>Hello, welcome to the <strong>iNettuts</strong> demonstration. The tutorial which details how this interface was created can be found on <a href="http://nettuts.com">NETTUTS.com</a>.</p>
+                    <p>This demo and its accompanying tutorial were made by <a href="http://james.padolsey.com">James Padolsey</a>.</p>
+                <p>NOTE: You'll notice that you cannot move, edit, remove or collapse this particular widget - the script which this is running on allows for per-widget settings and this widget has been set not to allow closing, editing, collapsing or moving.</p>
+                </div>
+            </li>
+            <li class="widget color-red">  
+                <div class="widget-head">
+                    <h3>Random Information</h3>
+                </div>
+                <div class="widget-content">
+                    <p><img src="img/photos/9.jpg" alt="photo9" />Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa. Donec id nibh eu dui auctor tempor. Morbi laoreet eleifend dolor. Suspendisse pede odio, accumsan vitae, auctor non, suscipit at, ipsum. Cras varius sapien vel lectus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa.</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+      {#  <ul id="column2" class="column">
+            <li class="widget color-blue" id="instructions">  
+                <div class="widget-head">
+                    <h3>Instructions</h3>
+                </div>
+                <div class="widget-content">
+                    <ul>
+                        <li>To move a widget just hold your mouse down over the top coloured bar of the widget and then move it to where you want.</li>
+                        <li>You can also close a widget by clicking the 'X' on the top right of any widget. Collapsing a widget is just as easy; click the down/up arrow on the top left of each widget.</li>
+                        <li>To edit the color of a widget or it's title just click the 'edit' button.</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="widget color-yellow">  
+                <div class="widget-head">
+                    <h3>Extra Info</h3>
+                </div>
+                <div class="widget-content">
+                    <p>Try clicking the 'X' in the top right of this widget... Just watch how cool the animaton is! :D</p>
+                    <ul>
+                        <li>Since this is just a demo your settings will NOT be saved anywhere when you leave the page.</li>
+                        <li>This demo has been tested successfully on a Windows XP PC in the following browsers: Firefox 2, Firefox 3, Chrome, Safari 3, Opera 9.5, IE6, IE7</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="widget color-green">  
+                <div class="widget-head">
+                    <h3>Some Random Title</h3>
+                </div>
+                <div class="widget-content">
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa. Donec id nibh eu dui auctor tempor. Morbi laoreet eleifend dolor. Suspendisse pede odio, accumsan vitae, auctor non, suscipit at, ipsum. Cras varius sapien vel lectus.</li>  
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        #}
+        <ul id="column3" class="column">
+            <li class="widget color-orange">  
+                <div class="widget-head">
+                    <h3>Some Random Title</h3>
+                </div>
+                <div class="widget-content">
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa. Donec id nibh eu dui auctor tempor. Morbi laoreet eleifend dolor. Suspendisse pede odio, accumsan vitae, auctor non, suscipit at, ipsum. Cras varius sapien vel lectus.</li>  
+                    </ul>
+                </div>
+            </li>
+            <li class="widget color-white" id="gallery">  
+                <div class="widget-head">
+                    <h3>The Gallery</h3>
+                </div>
+                <div class="widget-content">
+                    <p>NOTE: This widget can only be switched between three different colours (via 'edit').</p>
+                    
+                    <ul class="images">
+                        <li><img src="img/photos/1.jpg" alt="photo1" /></li>
+                        <li><img src="img/photos/2.jpg" alt="photo2" /></li>
+                        <li><img src="img/photos/3.jpg" alt="photo3" /></li>
+                        <li><img src="img/photos/4.jpg" alt="photo4" /></li>
+                        <li><img src="img/photos/5.jpg" alt="photo5" /></li>
+                        <li><img src="img/photos/6.jpg" alt="photo6" /></li>
+                    </ul>
+                </div>
+            </li>
+            
+        </ul>
+        
+    </div>
+    
+     {% block javascripts %}
+                <script src="{{ asset('jquery/jquery-1.8.3.js') }}" type="text/javascript"></script>
+                <script type="text/javascript" src="{{ asset('jquery/jquery-ui-1.9.2.custom.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('jquery/jquery.ui.datepicker.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('inettuts/inettuts.js') }}"></script>
+          
+ {% endblock %}
+    
+
+</body>
+</html>

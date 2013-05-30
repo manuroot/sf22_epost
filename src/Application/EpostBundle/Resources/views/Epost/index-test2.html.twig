@@ -4,12 +4,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>iNettuts - Welcome!</title>
     {% block stylesheets %}
-      <link rel="stylesheet" href="{{ asset('bundles/applicationepost/css/sliding.css') }}" type="text/css" media="all"/>
-
-   {#    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />#}
-      
-       {#<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" type="text/css" />
- #}
+         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
+       <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" type="text/css" />
+ 
  
 <link rel="stylesheet" href="{{ asset('bundles/applicationepost/css/sliding.css') }}" type="text/css" media="all"/>
          <link rel="stylesheet" href="{{ asset('inettuts/inettuts.css') }}" type="text/css" />
@@ -225,21 +222,39 @@ a:hover {
   color: #005580;
   text-decoration: underline;
 }
+h3 {
+    font-size: 14px;
+}
+h1, h2, h3 {
+    line-height: 20px;
+}
 </style>
 {% endblock %} 
     
      
     
 </head>
+        
+
+{% use '::navbar.html.twig' %}
+
+        <body>
+            <div class="page-header">
+                      {{ block('NAVIGATION_BAR') }}
+
+                </div>
 <body>
     
-    <div id="head">
+   {# <div id="head">
         <h1>LISTE DES ARTICLES</h1>
-    </div>
+    </div>#}
     <div>
 {{ knp_pagination_render(paginationa) }}   
    </div>
     <div id="columns">
+        <div class="column-head">
+                   hjk
+                </div>
         <ul id="column1" class="column">
             <li class="widget color-blue">  
                 <div class="widget-head">
@@ -266,10 +281,25 @@ a:hover {
        
            {#   <li class="widget color-red">  #}
                 <div class="widget-head">
-                    <h3>  {{ entity.name }}</h3>
+                   
+                    <h3 class=inets> 
+                     <table><tr><td>
+        {% if entity.globalnote is not null %}
+   {#    Note Globale: #}
+                                                    <div class="star" data-score="{{ entity.globalnote }}"></div>
+           {#({{ entity.globalnote }})#}
+        {% else %}
+                                                    <div class="star" data-score="0"></div>
+        {#({{ entity.globalnote }})#}
+        {% endif %}   </td><td>      - {{ entity.name }} </td><td>
+                        ({{ entity.createdAt|created_ago }})  </td> 
+                                 </tr></table>
+
+        
+                    </h3>
                 </div>
                 <div class="widget-content">
-                
+                   
                 <p> {{ entity.id }}</p>
                  {% if entity.imageMedia is not null %}               
                                         <img src="{% path entity.imageMedia, 'small' %}" width="50" /> 
@@ -301,18 +331,27 @@ a:hover {
         </ul>
    </div>  
 
- 
-
                             <br><br>
     
    {% block javascripts %}
                 <script src="{{ asset('jquery/jquery-1.9.1.js') }}" type="text/javascript"></script>
                 <script type="text/javascript" src="{{ asset('jquery/jquery-ui-1.9.2.custom.min.js') }}"></script>
-                   <script type="text/javascript" src="{{ asset('inettuts/inettuts.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('inettuts/inettuts.js') }}"></script>
                {#    <script type="text/javascript" src="{{ asset('jquery/jquery-ui-personalized-1.6rc2.min') }}"></script>#}
             {#    <script type="text/javascript" src="{{ asset('jquery/jquery.ui.datepicker.js') }}"></script>#}
             
-          
+           
+  <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
+  <script type="text/javascript">
+   /* $(document).ready(function(){*/
+   $('.star').raty({
+     readOnly: true,
+     score: function() {
+       return $(this).attr('data-score');
+     }
+   });
+   </script>
  {% endblock %}
 </body>
 </html>

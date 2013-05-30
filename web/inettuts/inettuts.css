@@ -40,13 +40,23 @@ a {color:white;}
 /* Columns section */
 #columns .column {
     float: left;
-    width: 33.3%;
+    width: 32%;
 		/* Min-height: */
-		min-height: 400px;
+		min-height: 600px;
 		height: auto !important; 
-		height: 400px;
+		height: 600px;
+                
+                
+               margin:  5px;
+               border: 1px solid #999;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
 }
 
+#columns .head  {
+    padding: 0 5px;
+    float: left;
+}
 /* Column dividers (background-images) : */
 	/*#columns #column1 { background: url(img/column-bg-left.png) no-repeat right top; }
 	#columns #column3 { background: url(img/column-bg-right.png) no-repeat left top; }*/

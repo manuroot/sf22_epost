@@ -1,15 +1,16 @@
 div.mypost
 {
 border:1px solid;
-border-radius:20px;
--moz-border-radius:20px; /* Old Firefox */
+border-radius:5px;
+-moz-border-radius:5px; /* Old Firefox */
 padding-bottom:10px;
 padding-left:10px;
 margin-bottom:20px;
 margin-left:10px;
 margin-right:10px;
 box-shadow: 7px 7px 5px #888888;
-background-color:  #e3e3e3;
+/*background-color:  #e3e3e3;*/
+background-color:  #f1f1f1;
 } 
 
 div.lescategories {

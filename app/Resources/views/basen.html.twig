@@ -5,22 +5,24 @@
           <title>{% block headtitle %}BLOG MROOT PROJET{% endblock %}</title>
           {% block stylesheets %}
         
-       {# no compil #}   
-          {#
+       {# no compil 'css/font-awesome.css'#}   
+          
           <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/redmond/jquery-ui-1.10.2.custom.css') }}" type="text/css" media="all"/>
-      {#<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" /> #}
-{#<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css" />#} #}
- 
+   {#  <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css" />#}
+
+ {#
 {% stylesheets 
 'css/redmond/jquery-ui-1.10.2.custom.css'
  'bootstrap/css/bootstrap.css' 
  'bootstrap/css/bootstrap-responsive.css'
- 'css/font-awesome.css'
+ 
    output='css/compiled/bootstrapresp.css' filter='yui_css' %}
 <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
 {% endstylesheets %}
+#}
+     
 {# <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" type="text/css" />#}
  
 

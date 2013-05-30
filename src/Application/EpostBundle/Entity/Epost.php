@@ -59,7 +59,8 @@ class Epost {
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=50, nullable=false)
+     * @Assert\Length(min = 5,max=100)
+     * @ORM\Column(name="name", type="string", length=100, nullable=false)
      */
     private $name;
 

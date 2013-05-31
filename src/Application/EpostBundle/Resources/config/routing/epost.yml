@@ -100,4 +100,20 @@ epost_mesposts_testb:
 epost_mesposts_testc:
     pattern:  /posttestc
     defaults: { _controller: "ApplicationEpostBundle:Epost:indextestc" }
-       
+      
+      
+
+epost_mesposts_testd:
+    pattern:  /posttestd
+    defaults: { _controller: "ApplicationEpostBundle:Epost:indextestquicksand" }
+      
+
+epost_mesposts_testd:
+    pattern:  /posttestd
+    defaults: { _controller: "ApplicationEpostBundle:Epost:indextestd" }
+    
+    
+epost_mesposts_teste:
+    pattern:  /postteste
+    defaults: { _controller: "ApplicationEpostBundle:Epost:indextestisotope" }
+    

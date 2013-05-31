@@ -12,7 +12,28 @@
          <link rel="stylesheet" href="{{ asset('inettuts/inettuts.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('inettuts/inettuts.js.css') }}" type="text/css" />
   <style>
-    
+  
+         ul > h3 {
+  /*  margin-left: 7px;*/
+    /*    margin-left-value: 0px;*/
+      /*  margin-left-ltr-source: physical;
+        margin-left-rtl-source: physical;*/
+      padding:2px;
+      margin:2px;
+       background-color: #d1d1d1;
+         border: 1px solid #000000;
+}
+.ul > h3 {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    text-overflow: ellipsis;
+   /* border: 1px #FF00CC;*/
+  }
 .pagination {
   margin: 20px 0;
 }
@@ -256,6 +277,7 @@ h1, h2, h3 {
                    hjk
                 </div>
         <ul id="column1" class="column">
+            <h3>ARTICLES</h3>    
             <li class="widget color-blue">  
                 <div class="widget-head">
                     <h3>Widget title</h3>
@@ -264,9 +286,10 @@ h1, h2, h3 {
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam magna sem, fringilla in, commodo a, rutrum ut, massa. Donec id nibh eu dui auctor tempor. Morbi laoreet eleifend dolor. Suspendisse pede odio, accumsan vitae, auctor non, suscipit at, ipsum. Cras varius sapien vel lectus.</p>
                 </div>
             </li>
-           
+         
         </ul>
          <ul id="column2" class="column">
+             <h3>ARTICLES A VALIDER</h3>    
          {% for entity in paginationa %}
                  
                    {% if entity.idStatus is not null %}
@@ -319,6 +342,7 @@ h1, h2, h3 {
          
         
         <ul id="column3" class="column">
+            <h3>ARTICLES FAVORIS</h3>    
             <li class="widget color-orange">  
                 <div class="widget-head">
                     <h3>Widget title</h3>

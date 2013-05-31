@@ -87,7 +87,7 @@ padding: 0.1em;
        
     <div class="viewpost">
      <table width="98%"><tr><td align="top">
-        {{ entity.createdAt|created_ago }}
+        {{ entity.createdAt|created_ago }}, {{ entity.proprietaire.username }}
    
            {% if entity.globalnote is not null %}
    {#    Note Globale: #}
@@ -120,15 +120,17 @@ padding: 0.1em;
    <div class="star" data-score="0"></div>
         {#({{ entity.globalnote }})#}
         {% endif %}
-   </td><td align="right">
+                         </td>
+
+                         
+                         <td align="right">
      <img src="{% path entity.imageMedia, 'big' %}" width="150" /> 
                          </td></tr></table>
  
-    <h1 class="sonata-blog-post-title">
-    {{ entity.name }} Par
-        <span class="sonata-blog-post-author">
-{{ entity.proprietaire.username }}</span>
-    </h1>
+    <h3 class="sonata-blog-post-title">
+    {{ entity.name }} 
+       
+    </h3>
        <br>      
       
                     {#

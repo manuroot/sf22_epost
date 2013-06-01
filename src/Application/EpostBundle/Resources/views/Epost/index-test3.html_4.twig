@@ -17,57 +17,36 @@
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/applicationepost/css/sliding.css') }}" type="text/css" media="all"/>
     #}    <style>
-/* main page layout */
-#w { display: block; min-width: 850px; max-width: 1150px; margin: 0 auto; padding: 0 15px; padding-top: 45px; }
 
-/* sorting and filtering */
-.sort { display: block; font-family: 'Kite One', Arial, sans-serif; font-size: 1.4em; line-height: 0.9em; color: #444; }
+                .resume {max-width:250px;}
 
-.sort .label { margin-right: 11px; }
+                #effect h2 { margin: 0; padding: 0.4em; text-align: center; }
 
-.sort a { margin-right: 4px; padding: 0px 3px; }
-.sort a:hover { color: #989caa; text-decoration: none; border-bottom: 1px dotted #989caa; }
 
-.sort a.selected { color: #85878f; border-bottom: 1px solid #85878f; }
-    /* portfolio items */
-.portfolio { display: block; margin-bottom: 10px; padding-top: 20px; width: 100%; }
+                .container {
+                    border: 1px dashed #CCC;
+                    position: relative;
+                    width:100%;
+                    height: 500px;
 
-.portfolio li { 
-  float: left; 
-  margin-right: 18px; 
-  margin-bottom: 1.55em;
-  -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,0.45);
-  -moz-box-shadow: 1px 2px 3px rgba(0,0,0,0.45);
-  box-shadow: 1px 2px 3px rgba(0,0,0,0.45);
-  
-  
-  border:1px solid;
-                    border:1px solid;
-                    border-radius:5px;
-                    -moz-border-radius:5px; /* Old Firefox */
-                  /*  padding-bottom:10px;
-                    padding-left:10px;
-                    margin-bottom:20px;
+                }
+
+                .container > div {
+                    background: #AAA;
+                    position: absolute;
+                   /* height: auto;*/
+                    width: 280px;
+                }
+
+                /*.container > div.ss-placeholder-child {
+                    background: transparent;
+                    border: 1px dashed blue;
                     margin-left:10px;
                     margin-right:10px;
-                    box-shadow: 7px 7px 5px #888888;*/
-                    background-color:  #e3e3e3;
-                     font-size: 10px;
-                      width: 280px;
-}
-.portfolio li a { 
-  display: block; 
-  padding: 4px; 
-  background: #fff; 
-  border: 1px solid #ccc; 
-  -webkit-transition: all 0.35s linear; 
-  -moz-transition: all 0.35s linear; 
-  -o-transition: all 0.35s linear;
-  transition: all 0.35s linear;
-}
-.portfolio li a:hover { opacity: 0.65; }
+                      position: absolute;
+                     height: auto;
 
-
+                }*/
                 .mypost
                 {
                     float: left;
@@ -119,7 +98,7 @@
                 }*/
             
         /*- GENERIC BODY STYLES -*/
-      /*  ul.ourHolder {
+        ul.ourHolder {
 	width: 100%;
 	height: 850px;
 	overflow: hidden;
@@ -132,7 +111,7 @@ ul.ourHolder li.item {
 	overflow: hidden;
            border:1px solid;
                     border-radius:5px;
-                    -moz-border-radius:5px; 
+                    -moz-border-radius:5px; /* Old Firefox */
                     padding-bottom:10px;
                     padding-left:10px;
                     margin-bottom:20px;
@@ -142,7 +121,7 @@ ul.ourHolder li.item {
                     background-color:  #e3e3e3;
                      font-size: 10px;
         
-}*/
+}
 </style>
 {% endblock %} 
     
@@ -162,38 +141,43 @@ ul.ourHolder li.item {
    </div>
     cvcvbcvb
     
- 
+   <p id="load-webbies">
+            <a href="#">Webbies</a>: 
+            <a href="ajax/ajax-brits.html" class="button">Brits</a>
+            <a href="ajax/ajax-developers.html" class="button">Developers</a>
+            <a href="ajax/ajax-westerners.html" class="button">Westerners</a>
+            <a href="ajax/ajax-designers.html" class="button">Designers</a>
+            <a href="ajax/ajax-legends.html" class="button">Legends</a>
+          </p>
   
-<div class="sort" id="sort">
-	<span class="label">Filter By:</span> 
-        <a href="#" class="all selected">All</a>
-        <a href="#" class="prem">prem</a> 
-        <a href="#" class="champ">champ</a> 
-        <a href="#" class="print">other</a>
-</div>
+
+  <ul id="filterOptions">
+    <li class="active"><a href="#" class="all">All</a></li>
+    <li><a href="#" class="prem">FERME</a></li>
+    <li><a href="#" class="champ">Championship</a></li>
+    <li><a href="#" class="league1">League 1</a></li>
+    <li><a href="#" class="league2">Ouvert</a></li>
+  </ul>
     
   {#<div class="containera" style="position: relative;">#}
-    
-    <ul class="portfolio clearfix">
-        
-          {% for entity in paginationa %}
+       <div class="container" style="position: relative;">
+     {% for entity in paginationa %}
 
 
                
                {% if entity.idStatus is not null %}
-             {% if entity.idStatus.nom == 'OPEN' %}
-        <li data-id="id-{{ loop.index }}" class="prem">
-                      
+                        {% if entity.idStatus.nom == 'OPEN' %}
+       <div class="mypost" data-id="id-{{ loop.index }}" data-type="league2">
+                {#  <li class="item" data-id="id-{{ loop.index }}" data-type="league2">#}
+                        
                      {% else %}
-                     <li data-id="id-{{ loop.index }}" class="champ">
+                      <div class="mypost" data-id="id-{{ loop.index }}" data-type="prem">
                             
                         {% endif %} 
                 {% else %}
-                           <li data-id="id-{{ loop.index }}" class="other">
+                          <div class="mypost" data-id="id-{{ loop.index }}" data-type="champ">
                                 
               {% endif %} 
-     
-          
                         
                             <table><tr><td>
                {{ entity.createdAt|created_ago }} -    
@@ -269,14 +253,14 @@ ul.ourHolder li.item {
                                                         <img src="{{ asset('bundles/applicationepost/images/detail.png') }}" alt="show" width="15" height="15" />
                                                     </a>
 
-                                                </li>
+                                                </div>
 
     {% endfor %}
 
 
 
-                                       
-                                            </ul>
+                                                <br><br>                
+                                            </div>
 
   
   
@@ -297,62 +281,151 @@ ul.ourHolder li.item {
   <script type="text/javascript" src="{{ asset('jquery/jquery.quicksand.js') }}"></script>
                                             <script type="text/javascript">
                                              $(document).ready(function() {
-                                                 
-                                           var pclone = $(".portfolio").clone();
-  
-  $("#sort a").on("click", function(e){
-    e.preventDefault();
-    var sorttype = $(this).attr("class");
-    
-    // determine if another link is selected
-    if(!$(this).hasClass("selected")) {
-      $("#sort a").removeClass("selected");
-      $(this).addClass("selected");
-    }
-    
-    // check filter sort type
-    if(sorttype == "all") {
-      var filterselect = pclone.find("li");
-    } else {
-      var filterselect = pclone.find("li[class="+sorttype+"]");
-    }
-    
-    $(".portfolio").quicksand(filterselect, 
-    {
-      adjustHeight: 'auto',
-      duration: 550
-    }, function() { 
-      // callback function
-    });
-    
-  }); // end click event listener
                                              $('.star').raty({
                                                readOnly: true,
                                                score: function() {
                                                  return $(this).attr('data-score');
                                                }
                                              });
-             $('ul.portfolio').shapeshift({
+                                             $('.container').shapeshift({
                                             // Features
-                                            centerGrid: false, // Center the grid inside the container.
+                                            centerGrid: true, // Center the grid inside the container.
                                             enableAnimation: true, // Objects will animate into their new position when shapeshift() is initialized, or when the container is resized.
   
                                             enableAnimationOnInit: true, // Determines if objects will be animated into position when the page initially loads.
-                                            enableAutoHeight: false, // If this is set to true the parent containers height will be automatically be adjusted to compensate for all of the child elements.
+                                            enableAutoHeight: true, // If this is set to true the parent containers height will be automatically be adjusted to compensate for all of the child elements.
                                             enableDrag: true,
                                             enableDragAnimation: true,
                                             enableRearrange: true,
-                                            enableResize: false,
+                                            enableResize: true,
                                             enableTrash: false,
  
                                             // Options
                                             animateSpeed: 150,
-                                         
+                                           /* columns: null,
+                                            dragClone: false,
+                                            dragRate: 100,
+                                            dragWhitelist: "*",
+                                            dropCutoff: 0,
+                                            dropWhitelist: "*",
+                                            gutterX: 10,
+                                            gutterY: 10,
+                                            minHeight: 100,
+                                            paddingY: 0,
+                                            paddingX: 0,
+                                            selector: "",*/
+                                            /* minColumns: 3,*/
                                           });
                                           
                                           
                                           // get the action filter option item on page load
+  var $filterType = $('#filterOptions li.active a').attr('class');
+	
+  // get and assign the ourHolder element to the
+	// $holder varible for use later
+        // clone objet en cours
+  /*var $holder = $('ul.ourHolder');*/
+var $holder = $('div.container');
+  // clone all items within the pre-assigned $holder element
+  var $data = $holder.clone();
+
+  // attempt to call Quicksand when a filter option
+	// item is clicked
+	$('#filterOptions li a').click(function(e) {
+		// reset the active class on all the buttons
+		$('#filterOptions li').removeClass('active');
+		
+		// assign the class of the clicked filter option
+		// element to our $filterType variable
+		var $filterType = $(this).attr('class');
+		$(this).parent().addClass('active');
+		
+		if ($filterType == 'all') {
+			// assign all li items to the $filteredData var when
+			// the 'All' filter option is clicked
+			var $filteredData = $data.find('.mypost');
+		} 
+		else {
+			// find all li elements that have our required $filterType
+			// values for the data-type element
+			var $filteredData = $data.find('.mypost[data-type=' + $filterType + ']');
+		}
+		
+		// call quicksand and assign transition parameters
+		$holder.quicksand($filteredData, {
+			duration: 800,
+			easing: 'easeInOutQuad',
+                        
+		},function (){
+                   $('.container').shapeshift({
+                                            // Features
+                                            centerGrid: true, // Center the grid inside the container.
+                                            enableAnimation: true, // Objects will animate into their new position when shapeshift() is initialized, or when the container is resized.
   
+                                            enableAnimationOnInit: true, // Determines if objects will be animated into position when the page initially loads.
+                                            enableAutoHeight: true, // If this is set to true the parent containers height will be automatically be adjusted to compensate for all of the child elements.
+                                            enableDrag: true,
+                                            enableDragAnimation: true,
+                                            enableRearrange: false,
+                                            enableResize: true,
+                                            enableTrash: false,
+ 
+                                            // Options
+                                            animateSpeed: 150,
+                                           /* columns: null,
+                                            dragClone: false,
+                                            dragRate: 100,
+                                            dragWhitelist: "*",
+                                            dropCutoff: 0,
+                                            dropWhitelist: "*",
+                                            gutterX: 10,
+                                            gutterY: 10,
+                                            minHeight: 100,
+                                            paddingY: 0,
+                                            paddingX: 0,
+                                            selector: "",*/
+                                            /* minColumns: 3,*/
+                                          });
+                                          
+
+               }
+            
+        
+    );
+                
+                 $('.container').shapeshift({
+                                            // Features
+                                            centerGrid: true, // Center the grid inside the container.
+                                            enableAnimation: true, // Objects will animate into their new position when shapeshift() is initialized, or when the container is resized.
+  
+                                            enableAnimationOnInit: true, // Determines if objects will be animated into position when the page initially loads.
+                                            enableAutoHeight: true, // If this is set to true the parent containers height will be automatically be adjusted to compensate for all of the child elements.
+                                            enableDrag: true,
+                                            enableDragAnimation: true,
+                                            enableRearrange: false,
+                                            enableResize: true,
+                                            enableTrash: false,
+ 
+                                            // Options
+                                            animateSpeed: 150,
+                                           /* columns: null,
+                                            dragClone: false,
+                                            dragRate: 100,
+                                            dragWhitelist: "*",
+                                            dropCutoff: 0,
+                                            dropWhitelist: "*",
+                                            gutterX: 10,
+                                            gutterY: 10,
+                                            minHeight: 100,
+                                            paddingY: 0,
+                                            paddingX: 0,
+                                            selector: "",*/
+                                            /* minColumns: 3,*/
+                                          });
+                                          
+             /*   myshape();*/
+		return false;
+	});
                                               })
    
                                                 </script>        

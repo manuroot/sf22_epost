@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>iNettuts - Welcome!</title>
+    {% block stylesheets %}
+          <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
+           <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('css/redmond/jquery-ui-1.10.2.custom.css') }}" type="text/css" media="all"/>
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" type="text/css" />
+     
+        
+{#      <link rel="stylesheet" href="{{ asset('css/quicksand.css') }}" type="text/css" />#}
+ 
+<style>
+  
+                .resume {max-width:250px;}
+
+                #effect h2 { margin: 0; padding: 0.4em; text-align: center; }
+
+                ul.ourHolder{
+                    border: 1px dashed #CCC;
+                 /*   position: fixed;*/
+                    width:100%;
+
+                }
+
+                ul.ourHolder > li {
+                    background: #AAA;
+                   /* position: absolute;
+                    height: auto;
+                    width: auto;*/
+                }
+
+                /*ul.ourHolder > .ss-placeholder-child {
+                    background: transparent;
+                    border: 1px dashed blue;
+                    margin-left:10px;
+                    margin-right:10px;
+                      position: absolute;
+                     height: auto;
+
+                }*/
+                
+               /* div.mypost
+                {
+                    border:1px solid;
+                    border-radius:5px;
+                    -moz-border-radius:5px; 
+                    padding-bottom:10px;
+                    padding-left:10px;
+                    margin-bottom:20px;
+                    margin-left:10px;
+                    margin-right:10px;
+                    box-shadow: 7px 7px 5px #888888;
+                    background-color:  #e3e3e3;
+                     font-size: 12px;
+                } */  
+                body {
+                    background-image:url(/images/ravenna.png);
+                }
+        
+        /*- GENERIC BODY STYLES -*/
+        
+</style>
+{% endblock %} 
+    
+     
+    
+</head>
+        
+
+                
+<body>
+    
+   {# <div id="head">
+        <h1>LISTE DES ARTICLES</h1>
+    </div>#}
+    <div>
+{{ knp_pagination_render(paginationa) }}   
+   </div>
+    
+   ghj 
+  {# <p id="load-webbies">
+            <a href="#">Webbies</a>: 
+            <a href="ajax/ajax-brits.html" class="button">Brits</a>
+            <a href="ajax/ajax-developers.html" class="button">Developers</a>
+            <a href="ajax/ajax-westerners.html" class="button">Westerners</a>
+            <a href="ajax/ajax-designers.html" class="button">Designers</a>
+            <a href="ajax/ajax-legends.html" class="button">Legends</a>
+          </p>
+   #}
+
+  <ul id="filterOptions">
+    <li class="active"><a href="#" class="all">All</a></li>
+    <li><a href="#" class="prem">FERME</a></li>
+    <li><a href="#" class="champ">Championship</a></li>
+    <li><a href="#" class="league1">League 1</a></li>
+    <li><a href="#" class="league2">Ouvert</a></li>
+  </ul>
+    
+  {#<div class="containera" style="position: relative;">#}
+      <div id="container" class="clickable clearfix">
+  <ul class="ourHolder">
+       {% for entity in paginationa %}
+         
+                {% if entity.idStatus is not null %}
+                        {% if entity.idStatus.nom == 'OPEN' %}
+      
+                  <li class="item" data-id="id-{{ loop.index }}" data-type="league2">
+                        
+                     {% else %}
+                            <li class="item" data-id="id-{{ loop.index }}" data-type="prem">
+                        {% endif %} 
+                {% else %}
+                                <li class="item" data-id="id-{{ loop.index }}" data-type="champ">
+              {% endif %} 
+ 
+               <table><tr><td>
+               {{ entity.createdAt|created_ago }} -    
+
+        {% if entity.globalnote is not null %}
+   {#    Note Globale: #}
+                                                    <div class="star" data-score="{{ entity.globalnote }}"></div>
+           {#({{ entity.globalnote }})#}
+        {% else %}
+                                                    <div class="star" data-score="0"></div>
+        {#({{ entity.globalnote }})#}
+        {% endif %}</td><td>
+                                          {% if entity.imageMedia is not null %}               
+                                                    <img src="{% path entity.imageMedia, 'small' %}" width="50" /> 
+                           {% else %} ---
+
+           {% endif %}</td><td style="align:right"> {% if entity.proprietaire is not null %}               
+                                             {{ entity.proprietaire.username }}
+                 {% else %}
+                                                    xxx
+                     {% endif %}
+
+                                                </td></tr></table>
+
+
+
+                                        <!--   <h2 class="entry-title">-->
+                                        <h3>
+             <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+                          {{ entity.name }}</a>
+                                                   
+                                                </h3>
+
+                                                <div class="resume">
+                                                  {{  entity.resume|slice(0, 150)|replace({"\n":"--"})|raw }}
+                                                  
+                                                </div>
+                                             
+
+            {% if entity.commentscount is not null %}
+            {% if entity.commentscount > 1 %}
+                                                <span class="badge badge-warning">{{ entity.commentscount }} commentaires</span>
+              {% else %}
+                                                <span class="badge badge-warning">{{ entity.commentscount }} commentaire</span>
+                  {% endif %}
+              {% else %}
+                                                <span class="badge badge-warning">0 commentaire</span>
+
+                      {% endif %}
+                                                <br>
+                                     {% if entity.categorie is not null %}               
+                                                <span class="label">
+
+                                                    <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
+{{ entity.categorie.name }}</a>
+                                                    </span>
+                  {% else %}
+                                                    pas de catégorie
+                  {% endif %}
+                     {#<span class="label label-inverse">#}
+                {#  {{ entity.tags|join(', ') }}    </span>#}
+                   {% for tag in entity.tags %}
+                                                    <span class="label label-inverse">
+                                                        <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
+                            {% if not loop.last%} {%endif%}
+                                                    </span>
+                            {% else %}
+                                                    Pas de Tag
+                        {% endfor %}
+
+                                                    <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+                                                        <img src="{{ asset('bundles/applicationepost/images/detail.png') }}" alt="show" width="15" height="15" />
+                                                    </a>
+  
+      </li>
+                                    
+      {% endfor %}
+        
+ </ul>                          
+       
+</div>
+
+  
+  
+     
+                       
+    
+   {% block javascripts %}
+                <script src="{{ asset('jquery/jquery-1.10.0.js') }}" type="text/javascript"></script>
+                <script type="text/javascript" src="{{ asset('jquery/jquery-ui-1.9.2.custom.min.js') }}"></script>
+                
+  <script type="text/javascript" src="{{ asset('jquery/jquery.easing.1.3.js') }}"></script>
+                                <script src="{{ asset('jquery/shapeshift/vendor/jquery.touch-punch.min.js') }}" type="text/javascript"></script>
+                                            <script src="{{ asset('jquery/shapeshift/jquery.shapeshift.js') }}" type="text/javascript"></script>
+                                            <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('jquery/jquery.quicksand.js') }}"></script>
+                                           
+  {#<script type="text/javascript" src="{{ asset('jquery/main.js') }}"></script>#}
+  <script type="text/javascript">
+  $(document).ready(function() {
+
+  // get the action filter option item on page load
+  var $filterType = $('#filterOptions li.active a').attr('class');
+	
+  // get and assign the ourHolder element to the
+	// $holder varible for use later
+  var $holder = $('ul.ourHolder');
+
+  // clone all items within the pre-assigned $holder element
+  var $data = $holder.clone();
+
+  // attempt to call Quicksand when a filter option
+	// item is clicked
+	$('#filterOptions li a').click(function(e) {
+		// reset the active class on all the buttons
+		$('#filterOptions li').removeClass('active');
+		
+		// assign the class of the clicked filter option
+		// element to our $filterType variable
+		var $filterType = $(this).attr('class');
+		$(this).parent().addClass('active');
+		
+		if ($filterType == 'all') {
+			// assign all li items to the $filteredData var when
+			// the 'All' filter option is clicked
+			var $filteredData = $data.find('li');
+		} 
+		else {
+			// find all li elements that have our required $filterType
+			// values for the data-type element
+			var $filteredData = $data.find('li[data-type=' + $filterType + ']');
+		}
+		$('.ourHolder').shapeshift();
+                /*{
+                                            // Features
+                                            centerGrid: true, // Center the grid inside the container.
+                                            enableAnimation: true, // Objects will animate into their new position when shapeshift() is initialized, or when the container is resized.
+  
+                                            enableAnimationOnInit: true, // Determines if objects will be animated into position when the page initially loads.
+                                            enableAutoHeight: true, // If this is set to true the parent containers height will be automatically be adjusted to compensate for all of the child elements.
+                                            enableDrag: true,
+                                            enableDragAnimation: true,
+                                            enableRearrange: true,
+                                            enableResize: true,
+                                            enableTrash: false,
+ 
+                                            // Options
+                                            animateSpeed: 150,
+                            });*/
+		// call quicksand and assign transition parameters
+		$holder.quicksand($filteredData, {
+			duration: 800,
+			easing: 'easeInOutQuad',
+                        
+		});
+             /*   myshape();*/
+		return false;
+	});
+        
+          $('.star').raty({
+                                               readOnly: true,
+                                               score: function() {
+                                                 return $(this).attr('data-score');
+                                               }
+                                             });
+      /* $('.ourHolder').shapeshift({
+                                            // Features
+                                            centerGrid: false, // Center the grid inside the container.
+                                          /*  enableAnimation: true, // Objects will animate into their new position when shapeshift() is initialized, or when the container is resized.
+  
+                                            enableAnimationOnInit: true, // Determines if objects will be animated into position when the page initially loads.
+                                           // enableAutoHeight: true, // If this is set to true the parent containers height will be automatically be adjusted to compensate for all of the child elements.
+                                            enableDrag: true,
+                                            enableDragAnimation: true,
+                                            enableRearrange: true,
+                                          //  enableResize: true,
+                                            enableTrash: false,*/
+ 
+                                            // Options
+                              /*              animateSpeed: 150,
+                            });*/
+});
+
+   </script>
+ {% endblock %}
+</body>
+</html>
+

@@ -213,12 +213,12 @@ class EpostController extends Controller {
             //var_dump($query->getDql());exit(1);
          $paginationa = $this->createpaginator($query, 10);
 
-        return $this->render('ApplicationEpostBundle:Epost:index-test4.html.twig', array(
+        return $this->render('ApplicationEpostBundle:Epost:index-testquicksand.html.twig', array(
                     'paginationa' => $paginationa,
                   
                 ));
     }
-    public function indextestdAction() {
+    /*public function indextestAction() {
         $em = $this->getDoctrine()->getManager();
           $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
             //var_dump($query->getDql());exit(1);
@@ -228,7 +228,7 @@ class EpostController extends Controller {
                     'paginationa' => $paginationa,
                   
                 ));
-    }
+    }*/
        public function indextestisotopeAction() {
         $em = $this->getDoctrine()->getManager();
           $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());

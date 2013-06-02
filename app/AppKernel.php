@@ -54,6 +54,7 @@ class AppKernel extends Kernel {
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
+            new Application\MyNotesBundle\ApplicationMyNotesBundle(),
             //new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
             new Application\RelationsBundle\ApplicationRelationsBundle(),
             //new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),

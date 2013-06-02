@@ -59,7 +59,9 @@ media:
 #  prefix: /event
   
 
-
+notes:
+    resource: '@ApplicationMyNotesBundle/Resources/config/routing.yml'
+    prefix: /notes  
 usermedia:
     resource: '@ApplicationSonataMediaBundle/Resources/config/routing.yml'
     prefix: /

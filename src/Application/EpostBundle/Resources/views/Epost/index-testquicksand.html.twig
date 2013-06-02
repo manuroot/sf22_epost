@@ -81,7 +81,7 @@
 {{ knp_pagination_render(paginationa) }}   
    </div>
     
-   ghj 
+   ghj cc
   {# <p id="load-webbies">
             <a href="#">Webbies</a>: 
             <a href="ajax/ajax-brits.html" class="button">Brits</a>
@@ -102,8 +102,8 @@
     
   
      {# <div id="container" class="clickable clearfix">#}
-  <ul class="ourHolder">
-      <div class="clontainera">
+
+     <ul class="ourHolder">
        {% for entity in paginationa %}
          
                 {% if entity.idStatus is not null %}
@@ -194,9 +194,10 @@
       </li>
                                     
       {% endfor %}
-</div>
+</ul> 
+{#</div>#}
         
- </ul>                          
+                          
        
 
   
@@ -230,7 +231,7 @@
 
   // attempt to call Quicksand when a filter option
 	// item is clicked
-	$('#filterOptions li a').click(function(e) {
+	$('#filterOptions cli a').click(function(e) {
 		// reset the active class on all the buttons
 		$('#filterOptions li').removeClass('active');
 		
@@ -249,8 +250,8 @@
 			// values for the data-type element
 			var $filteredData = $data.find('li[data-type=' + $filterType + ']');
 		}
-		$('.ourHolder').shapeshift();
-                /*{
+		/*$('.oubrHolder').shapeshift();
+                {
                                             // Features
                                             centerGrid: true, // Center the grid inside the container.
                                             enableAnimation: true, // Objects will animate into their new position when shapeshift() is initialized, or when the container is resized.
@@ -282,22 +283,7 @@
                                                  return $(this).attr('data-score');
                                                }
                                              });
-       $('.clontainera').shapeshift({
-                                            // Features
-                                            centerGrid: true, // Center the grid inside the container.
-                                            enableAnimation: true, // Objects will animate into their new position when shapeshift() is initialized, or when the container is resized.
-  
-                                            enableAnimationOnInit: true, // Determines if objects will be animated into position when the page initially loads.
-                                           // enableAutoHeight: true, // If this is set to true the parent containers height will be automatically be adjusted to compensate for all of the child elements.
-                                            enableDrag: true,
-                                            enableDragAnimation: true,
-                                            enableRearrange: true,
-                                          //  enableResize: true,
-                                            enableTrash: false,
- 
-                                            // Options
-                                            animateSpeed: 150,
-                            });
+    
 });
 
    </script>

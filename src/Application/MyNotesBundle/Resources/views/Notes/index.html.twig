@@ -41,7 +41,7 @@
             <tr>
 
                 <td>{{ entity.id }}</td>
-                <td>{{ entity.text }}</td>
+                <td>{{ entity.text|raw }}</td>
                 <td>{{ entity.name }}</td>
                 <td>{{ entity.xyz }}</td>
                 <td>{% if entity.dt %}{{ entity.dt|date('Y-m-d') }}{% endif %}</td>

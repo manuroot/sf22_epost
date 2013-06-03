@@ -24,6 +24,22 @@ class NotesRepository extends EntityRepository
         return $this->createQueryBuilder('a')
                         ->leftJoin('a.categories', 'b')
                         ->leftJoin('a.color', 'c')
+                ->leftJoin('a.proprietaire', 'd')
                         ->getQuery();
+    }
+    
+   
+    
+     public function myFindamoi($user_id) {
+       $query = $this->createQueryBuilder('a')
+                ->add('orderBy', 'a.id DESC')
+                ->where('a.proprietaire = :proprietaire')
+                ->leftJoin('a.proprietaire', 'b')
+                 ->setParameter('proprietaire', $user_id)
+                ->getQuery();
+
+        return $query;
+
+       
     }
 }

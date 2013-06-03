@@ -74,10 +74,6 @@ $('.note').mouseout(function()
 });
 
 */
-
-    /*==============================================================
- * Action sur div note: recalcul de l'index
- =============================================================*/
     $('.note').mousedown(function(e){
         console.log( '$(this)', $(this) );
         console.log( '$(e.target)', $(e.target) );
@@ -188,7 +184,7 @@ $('.note').mouseout(function()
             }
         });
     }
-    /*====================================================
+/*====================================================
  * MAIN()
  ====================================================*/
     $("#dialog-message").hide();
@@ -218,21 +214,16 @@ $('.note').mouseout(function()
     //   onCleanup   : function() {alert ('test2'); return window.location.reload(); }
     });
     
-    $(".xxeditnote").fancybox({
-        'overlayShow'	: true,
+    $(".editnote").fancybox({
+        'overlayShow'	: false,
         'transitionIn'	: 'elastic',
         'transitionOut'	: 'elastic',
         'padding' : 0,
- 
-          /*  'easingIn'			: 'easeOutBack',
-            'easingOut'			: 'easeInBack',*/
-            openEffect  : 'fade',
-            closeEffect : 'fade',
         'hideOnContentClick': false,
+                                       
+        'padding'			: 15,
         'type':'iframe'
     });
-       
-            
           
     $("#orderButton").fancybox({
         'zoomSpeedIn'		: 600,
@@ -265,11 +256,11 @@ $('.note').mouseout(function()
     /* 
      * BOUTON SUBMIT
      * The submit button dans la modale form: */
-    /*===================================================================================
+    /*============================================================
     *     AJOUTER NOTE
     *     Ajout new note
     *     Bouton submit
-    ===================================================================================*/               
+    ===========================================================*/               
     function test_elements(){
       
         var status=true;
@@ -304,7 +295,7 @@ $('.note').mouseout(function()
         if (status==false){
             return false;
         }
-        /*  <img src="{{ asset('bundles/applicationmynotes/images/edit.png') }}" alt="notes_edit" width="15" height="15" />*/
+           /*  <img src="{{ asset('bundles/applicationmynotes/images/edit.png') }}" alt="notes_edit" width="15" height="15" />*/
                   
         $(this).replaceWith('<img src="' +  '"/images/sticky/ajax_load.gif" style="margin:30px auto;display:block" />');
         var data=get_datas();
@@ -348,22 +339,20 @@ $('.note').mouseout(function()
 		
         e.preventDefault();
     //   window.location.reload();
-    });
+    })
 	
-    // formulaire de modification
-    $('.form-horizontal').live('submit',function(e){
+    $('.note-form').live('submit',function(e){
         e.preventDefault();
     });
     /*============================================================
     *     EDIT NOTE
     *     
     *    Bouton notes-modifier
-    *    input button
-    ===========================================================*/               
+    *      <button type="submit" class="btn btn-warning">Modifier</button>
+     ===========================================================*/               
 
 
-    $('#modifier').live('click',function(e){
-         e.preventDefault();
+    $('#note-modifier').live('click',function(e){
         var status=test_elements();	
         if (status==false){
             return false;
@@ -389,12 +378,12 @@ $('.note').mouseout(function()
         // console.log ("color_class="+color);
         });
 		
-      //  e.preventDefault();
-    //   return;
-    });
-    zIndex = 0;
+        e.preventDefault();
+        return;
+    })
+    var zIndex = 0;
     /*============================================================
-    *     INTIALISER LE DRAGABBLE
+    *     DRAGABLE
     ===========================================================*/               
   
     function make_draggable(elements)
@@ -403,19 +392,25 @@ $('.note').mouseout(function()
         /*   var width = $(elements).css('width');
            var height = $(elements).css('height');*/
         /*  var id = $(this).find(attr("id"));*/
-       
+         
         elements.draggable({
-            handle:$("div.bar_titre"),
+            handle:$("div#center div.bar_titre"),
             snap: ".ui-widget-header",
             containment:$("#main"),
+            /*  containment:'parent.parent',*/
+            //'parent.parent',
+            /*  animate: true,*/
             start:function(e,ui){
-                console.log("make dragabble");
+              
                 ui.helper.css('z-index',++zIndex);
-                $(ui.helper).css("opacity", "0.6")
+                /* ui.helper.css("width","50px");
+                  ui.helper.css("height","50px");*/
+                $(ui.helper).css("opacity", "0.7")
                 console.log("drag zindex current=" + zIndex);
             },
             stop:function(e,ui){
                 console.info('ui.helper.attr("id"):' + ui.helper.attr('id'));
+                /*   console.log("id=",id);*/
                 var dataAjax = {
                     id:  parseInt( ui.helper.attr('id')),
                     x: parseInt(ui.position.left),
@@ -424,8 +419,10 @@ $('.note').mouseout(function()
        
         
                 };
+                /* $.post('{{path('AcmeHomeBundle_ajax_update_mydata')}}',               
+                {data1: 'mydata1', data2:'mydata2'}, */
                 $.ajax({
-                    url: "/notes/updatepos", 
+                     url: "/notes/updatepos", 
                     type: "POST", 
                     data : dataAjax, 
                     dataType: "json", 
@@ -433,6 +430,8 @@ $('.note').mouseout(function()
                     }
                 });  //Eof:: ajax 
                 $(ui.helper).css("opacity", "1");
+            //remplacer bar titre
+            // $notes .='<div class="bar_titre" style="width:' . $width . 'px;">';
             }
         });
               
@@ -449,30 +448,30 @@ $('.note').mouseout(function()
         //getter
 
         elements.resizable({
+            
             containment:$("#main"),
             /*  containment:'parent',*/
             /*   animate: true,*/
             /*    ghost:true,*/
             minHeight: 200,
             minWidth: 200,
-            maxHeight: 400,
-            maxWidth: 400,
+            maxHeight: 350,
+            maxWidth: 350,
             /*   animateEasing: "swing",*/
             /*  handles:"n, e, s, w",*/
             start:function(e,ui){
-                console.log("resizable start");
                 ui.helper.css('z-index',++zIndex);
-                $(ui.helper).css("opacity", "0.6")
+                $(ui.helper).css("opacity", "0.7")
             },
             stop:function(e,ui){
-                var dataAjax = {
+                    var dataAjax = {
                     id:  parseInt( ui.helper.attr('id')),
                     w		: parseInt(ui.size.width),
                     h		: parseInt(ui.size.height),
                     z		: zIndex
-                };
-                $.ajax({
-                    url: "/notes/updatepos", 
+             };
+             $.ajax({
+                     url: "/notes/updatepos", 
                     type: "POST", 
                     data : dataAjax, 
                     dataType: "json", 
@@ -528,12 +527,10 @@ $('.note').mouseout(function()
         $(".deltsticky").click(function(e) {
             e.preventDefault();
             var id = $(this).attr("id");
-            // pas top
-            //var parent =   $(this).parent().parent().parent();
-            var parent =   $(this).closest("div.note");
+            var parent =   $(this).parent().parent();
             console.log (id) ; 
-        
-
+            id = id.replace("stickynote-","");
+            var dataAjax = {id: id};
             $("#dialogbox").dialog({
                 /*  effect: ("shake", { times: 5 }, 100),*/
                 resizable: false,
@@ -544,53 +541,26 @@ $('.note').mouseout(function()
        
                 buttons: {
                     "Oui": function() {
-                       // $( this ).dialog( "close" );
+                        $( this ).dialog( "close" );
                         if (id != '') {
-                            /*  baseUrl*/
-                            /* $.post('/uzf04new/notes/delete',*/
                             
-                    var dataAjax = {
-                /*id:  parseInt( ui.helper.attr('id')),*/
-                  id: id,
-                  classement:"mini"
-            };        
-               $.ajax({
-                url: "/notes/ajaxdelete", 
-                type: "POST", 
-                data : dataAjax, 
-                dataType: "json", 
-                success: function(reponse){
-                     console.log ("reponse="+reponse) ;
-                   
-                    $("div#trash").removeClass('emptytrash').addClass('noemptytrash');
-                     $("#cart").append('<p>Post-it ' + dataAjax['id'] + ' supprimé</p>');
-                       $(parent).remove();   
-                    // deleteImage(  );
-                // $("#trash").css("background",'url("/uzf04new/images/full.png")');
+                     $.ajax({
+                     url: "/notes/delete", 
+                    type: "POST", 
+                    data : dataAjax, 
+                    dataType: "json", 
+                    success: function(reponse){
+                        if(reponse.response == false){
+                console.log('could not update');
                 }
-            });
-                                
-                          /*  $.post(baseUrl + '/notes/delete', 
-                            {
-                                'id' : id
-                            }, 
-                            function (respond) {
-                                console.log ("reponse="+respond) ; 
-        
-                                if(parseInt(respond)){
-                                    ////Display the success message in the modal box
-                                    var msg="mon test";
-                                    //   modal_message();
-                                    $('#'+id).remove();
-                                }
-                                else {
-                                    alert("probleme sur la suppression de "+id);
-                                }
-                            }
-                            );*/
-                             
-                            $( this ).dialog( "close" );     
-                        } 
+                else {
+                     $('#'+id).remove();
+                }
+                }
+                 
+                });  //Eof:: ajax 
+                $( this ).dialog( "close" );     
+                } 
               
                     },
                     Cancel: function() {
@@ -605,37 +575,41 @@ $('.note').mouseout(function()
 
         });
     }
-     
-    /*============================================================
-    *     UPDATE TEXTAREA
-    ===========================================================*/               
-    function reload_textarea() {
+     function reload_textarea() {
         $('#sticky-notes').on('keyup', 'textarea', function(e){
-            /*  $(e.parent).css({
-               'z-index':500
-            });*/
-            console.log("text area zindex=" + zIndex);
+             console.log("text area zindex=" + zIndex);
             $(this).css('z-index',zIndex);
             /*$(this).parents('.note').css('z-index',zIndex);*/
             var $stickynote = $(this);
             var id = $stickynote.attr('id');
-            /*  console.log("atr="+id);*/
-            var update_content = $stickynote.val();
-            /* console.log("content="+update_content);*/
-            //recup de l'id :
             id = id.replace("stickynote-","");
-            /*   console.log("atr="+id);*/
-            $.post("notes/updatetext", {
-                id: id,
-                content: update_content
-            },function(data){
-                if(data.response == false){
-                /* console.log('could not update');*/
+           /* console.log("atr="+id);*/
+            var update_content = $stickynote.val();
+             
+            //recup de l'id :
+           /* id = id.replace("stickynote-","");*/
+                  var dataAjax = {
+                    id:  id,
+                    datatext : update_content 
+             };
+             /*console.log("content="+ update_content + "id=" + ui.helper.attr('id'));*/
+            $.ajax({
+                     url: "/notes/updatepos", 
+                    type: "POST", 
+                    data : dataAjax, 
+                    dataType: "json", 
+                    success: function(reponse){
+                        if(reponse.response == false){
+                console.log('could not update');
                 }
-            }, 'json');
-
+                    }
+                });  //Eof:: ajax 
         });
     }
+    /*============================================================
+    *     UPDATE TEXTAREA
+    ===========================================================*/               
+   
     function reload_editnote() {
         $("a#editnote").fancybox({
             'zoomSpeedIn'		: 500,
@@ -669,32 +643,25 @@ $('.note').mouseout(function()
     }
     
     /* let the trash be droppable, accepting the gallery items*/
-    /* $("#trash").droppable({
+    $("#trash").droppable({
         accept: ".note",
         activeClass: "ui-state-highlight",
         drop: function( event, ui ) {
             ui.helper.css("width","100px");
             ui.helper.css("height","100px");
-       }
-        deleteImage( ui.draggable );
+        //}
+        // deleteImage( ui.draggable );
         }
-    });*/
+    });
     // let the notes be droppable as well, accepting items from the trash
-    /*$('.note').droppable({
-        accept: "#trash,#cart",
+    $('.note').droppable({
+        accept: "#trash",
         activeClass: "custom-state-active",
         drop: function( event, ui ) {
-            recycleImage( ui.draggable );
-        }
-    });*/
-     $("#sticky-notes").droppable({
-        accept: "#trash,#cart",
-        activeClass: "custom-state-active",
-        drop: function( event, ui ) {
-              console.log("passage dans partie centrale");
             recycleImage( ui.draggable );
         }
     });
+    
     $( "#cart" ).droppable({
         accept: ".note",
         tolerance: "touch",  
@@ -703,66 +670,98 @@ $('.note').mouseout(function()
         drop: function( event, ui ) {
             ui.helper.css("width","50px");
             ui.helper.css("height","50px");
-      
-            var dataAjax = {
-                /*id:  parseInt( ui.helper.attr('id')),*/
-                id: parseInt( ui.helper.attr('id')),
-                x:  ui.position.left,
-                y: 20,
-                z: zIndex,
-                classement      : "1"
-            };
-            console.log("drop cart id=" + dataAjax['id']);
-            ui.helper.css("top","10px");
-            $.ajax({
-                url: "/notes/updatepos", 
-                type: "POST", 
-                data : dataAjax, 
-                dataType: "json", 
-                success: function(reponse){
-                    // supprimer text,edit, laisser barre
-                    $('#cart').append('<p>Post-it ' + dataAjax['id'] + ' ajouté aux favoris</p>');
-                }
-            });  //Eof:: ajax 
-        
+
+            ui.helper.css("top","0px");
+            /* ui.helper.css("font-size","6px");*/
+            /* $( this )
+            .addClass( "ui-state-highlight" )
+            .html( "Dropped!" );*/
+            $.get(baseUrl + '/notes/updatesnap',{
+                x		: ui.position.left,
+                y		: 1,
+                z		: zIndex,
+                w		: 50,
+                h		: 50,
+                classement      : "mini",
+                id	: parseInt(ui.helper.find('span.data').html())
+            });
+         
+    
         }
     
     });
     
-    $( "#trash" ).droppable({
+   
+    $( "#snaptarget" ).droppable({
         accept: ".note",
         tolerance: "touch",  
         activeClass: "ui-state-highlight",
       
         drop: function( event, ui ) {
-            console.log("drop trash");
             ui.helper.css("width","50px");
             ui.helper.css("height","50px");
-            var dataAjax = {
-                /*id:  parseInt( ui.helper.attr('id')),*/
-                  id: parseInt( ui.helper.attr('id')),
-                  classement:"mini"
-            };
+
             ui.helper.css("top","0px");
-            $.ajax({
-                url: "/notes/ajaxdelete", 
-                type: "POST", 
-                data : dataAjax, 
-                dataType: "json", 
-                success: function(reponse){
-                   /* $('#cart').html(html);
-                    $("#cart .note").draggable();*/
-                    $("div#trash").removeClass('emptytrash').addClass('noemptytrash');
-                    
-                    $('#cart').append('<p>Post-it ' + dataAjax['id'] + ' supprimé</p>');
-                    deleteImage( ui.draggable );
-                // $("#trash").css("background",'url("/uzf04new/images/full.png")');
-                }
+            /* ui.helper.css("font-size","6px");*/
+            /* $( this )
+            .addClass( "ui-state-highlight" )
+            .html( "Dropped!" );*/
+            $.get(baseUrl + '/notes/updatesnap',{
+                x		: ui.position.left,
+                y		: 1,
+                z		: zIndex,
+                w		: 50,
+                h		: 50,
+                classement      : "mini",
+                id	: parseInt(ui.helper.find('span.data').html())
             });
+         
+    
         }
     
     });
-     
+    /*  $("#snaptarget").each(function(){
+       
+        $("snaptarget > div").children().css({"font-size": "8px","color": "orange"}); 
+    });*/
+    /*  $("#snaptarget > .note").children().css({"font-size": "8px","color": "orange"});*/   
+    /* $("#sticky-notes").children().css({"font-size": "8px","color": "orange"});   */
+    $( "#center" ).droppable({
+        accept: ".note",
+        tolerance: "pointer",  
+        activeClass: "ui-state-highlight",
+      
+        drop: function( event, ui ) {
+            /*   $(this + ".note").css("width","250px");
+                $(this + ".note").css("height","250px");*/
+            /*  if(outside == 1){
+            alert('Dropped outside!');
+             }*/
+        
+        
+            /* var wi=ui.size.width;
+        var he=ui.size.height;*/
+            /*if (wi < 100){
+            ui.helper.css("width","250px");
+            ui.helper.css("height","250px");
+        }*/
+            /* ui.helper.css("top","0px");*/
+            /*  ui.helper.css("font-size","6px");*/
+            /* $( this )
+            .addClass( "ui-state-highlight" )
+            .html( "Dropped!" );*/
+            $.get(baseUrl + '/notes/updatesnap',{
+                /*       w		: ui.size.width,
+                    h		: ui.size.height,*/
+                x		: ui.position.left,
+                y		: ui.position.top,
+                z		: zIndex,
+                classement : "main",
+           
+                id	: parseInt(ui.helper.find('span.data').html())
+            });
+        }
+    });
     
     
     function deleteImage( $item ) {

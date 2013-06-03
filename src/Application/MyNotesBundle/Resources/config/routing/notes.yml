@@ -15,6 +15,12 @@ notesupdatepos:
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:updatepos" }
     requirements: { _method: post }
 
+notes_ajax_delete:
+    pattern:  /ajaxdelete
+    defaults: { _controller: "ApplicationMyNotesBundle:Notes:ajaxdelete" }
+    requirements: { _method: post }
+    
+    
 notesfanta:
     pattern:  /fanta/{page}
     defaults: { _controller: ApplicationMyNotesBundle:Notes:viewfanta,page: 1 }
@@ -52,3 +58,4 @@ notes_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:delete" }
    # requirements: { _method: post }
+

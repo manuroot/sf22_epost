@@ -114,31 +114,26 @@
     }
     ul.items li{ float:left;margin:0 10px; }
     
-    div.emptytrash
+    div.emptytrash,div.noemptytrash
     {
-        float:left;
+        float:right;
         margin-top:5px;
-      background: url("/images/emptysmall.gif") no-repeat;
         width:70px;
         height:70px;
         margin-right:40px;
     }
-     div.emptytrash:hover
+    
+    div.emptytrash {background: url("/images/emptysmall.gif") no-repeat;}
+    div.noemptytrash {background: url("/images/fullsmall.gif") no-repeat;}
+   
+     div.emptytrash:hover,div.noemptytrash:over
     {
       border-color: #CC0000;
       border-style: solid;
           
     }
     /* class="full"*/
-   div.noemptytrash {
-   /*.full {*/
-     float:left;
-        margin-top:5px;
-  background: url("/images/fullsmall.gif") no-repeat;
-    width:70px;
-        height:70px;
-        margin-left:80px;
-   }
+   
 
 .over {
     background-color: #cedae3;
@@ -188,6 +183,7 @@
              </div>
              <div id="sticky-notes">
 {% for entity in pagination %}
+                      {#{{ entity.text|raw }}#}
                       {% set mypos = entity.xyz|split('x') %}
                      {% set mysize = entity.wh|split('x') %}
 <!--<tr {% if loop.index is odd %}class="color"{% endif %}>-->
@@ -198,7 +194,16 @@
    <div class="categories">{{ entity.categories.nom }}</div>
    <div class="delnote"><a  class="deltsticky ui-icon ui-icon-trash" id="stickynote-{{ entity.id }}" href="#"></a></div>
    </div>
-   <textarea class="area-note" id="stickynote-{{ entity.id }}">{{entity.text}}</textarea>
+    
+   {#<textarea class="area-note" id="stickynote-{{ entity.id }}">{{entity.text|raw}}</textarea>#}
+   
+   <table class="table">
+       <tr><td>{{ entity.text|raw }}</td></tr>
+   </table>
+   
+   
+   
+   
     <div class="author">{{ entity.proprietaire }}</div>
    
      <a class="editnote ui-icon ui-icon-pencil " href="{{ path('notes_edit', { 'id': entity.id }) }}">
@@ -258,10 +263,25 @@
     {{ knp_pagination_render(pagination) }}
 <!--</div>-->
 
+{#
+<table class="table table-striped table-bordered table-hover">
+       <tr>
+        
+{% for entity in pagination %}
+<td>
+ {{ entity.text|raw }}
+            
+    
+    </td>
+  
+    
+    {% endfor %}</tr>
+   </table>
+    
+        
 
+#}
 {% endblock %}
-
-
 
 
  {% block javascripts %}
@@ -278,10 +298,10 @@
   <script type="text/javascript">
  $(document).ready(function(){
    
-        $("div#trash").droppable({
+     /*   $("div#trash").droppable({
             accept: '.note',
             tolererance:"touch",
-              /*tolerance: "pointer",  */
+              //tolerance: "pointer",  
             hoverClass: 'trashhover',
              over: function() {
                        $(this).removeClass('out').addClass('over');
@@ -308,7 +328,7 @@
                         }
                     }
                  
-                });  //Eof:: ajax 
+                }); */ //Eof:: ajax 
                 /*$.ajax({
                     type: "POST",
                     url:  '/notes/delete',
@@ -323,9 +343,9 @@
                           $('#cart').append('<p>Post-it ' + prod_id + ' supprimé</p>');
                        // $("#trash").css("background",'url("/uzf04new/images/full.png")');
                     }
-                });*/
+                });
                }
-    });
+    });*/
     /*	$("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled (Adds empty span tag after ul.subnav*)
 	
 	$("ul.topnav li span").click(function() { //When trigger is clicked...

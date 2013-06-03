@@ -104,7 +104,34 @@ class Notes
     private $color;
 
 
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        //   $this->history = new \Doctrine\Common\Collections\ArrayCollection();
+    
+        $this->setDt(new \DateTime());
+       $this->setClassement("0");
+       $this->setWh("200x200");
+       $this->setXyz("200x200x200");
+       
+    }
 
+    
+    
+    //@ORM\PreUpdate
+    /*
+    public function setUpdatedAtValue() {
+        $this->setUpdatedAt(new \DateTime());
+       // $this->setUpdatedAt(new \DateTime());
+        $this->setSlug($this->getName());
+        // reclaculer la note globale ??
+    }*/
+
+    
+    
+    
+    
     /**
      * Get id
      *

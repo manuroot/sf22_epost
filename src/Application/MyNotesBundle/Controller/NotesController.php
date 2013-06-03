@@ -54,8 +54,17 @@ class NotesController extends Controller {
     }
 
     public function indexstickyAction() {
-        $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('ApplicationMyNotesBundle:Notes')->myFindaAll();
+        
+         $em = $this->getDoctrine()->getManager();
+        $user_id= $this->getuserid();
+        
+        $session = $this->getRequest()->getSession();
+        $session->set('buttonretour', 'notes_sticky');
+        
+
+        
+        
+        $entities = $em->getRepository('ApplicationMyNotesBundle:Notes')-> myFindamoi($user_id);
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $entities, $this->get('request')->query->get('page', 1)/* page number */, 20/* limit per page */
@@ -329,12 +338,18 @@ class NotesController extends Controller {
      *
      */
     public function createAction(Request $request) {
+        
+            
         $entity = new Notes();
         $form = $this->createForm(new NotesType(), $entity);
         $form->bind($request);
-
+        $user_id = $this->getuserid();
+        //echo "id=$user_id<br>";
+        //exit(1);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $current_user = $em->getRepository('ApplicationSonataUserBundle:User')->find($user_id);
+            $entity->setProprietaire($current_user);
             $em->persist($entity);
             $em->flush();
 
@@ -407,10 +422,42 @@ class NotesController extends Controller {
                 ));
     }
 
+    
+     //==============================================
+   
     /**
      * Deletes a Notes entity.
      *
      */
+      //==============================================
+    // SUPPRIMER ACTEUR
+    //==============================================
+    public function ajaxdeleteAction() {
+       $request = $this->getRequest();
+
+        $output=array();
+         $response = new Response();
+         if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
+            $em = $this->getDoctrine()->getManager();
+            $id = $request->request->get('id');
+           // echo "id=$id<br>";
+           // $classement = $request->request->get('classement');
+                $note_entity = $em->getRepository('ApplicationMyNotesBundle:Notes')->find($id);
+            if (!$note_entity) {
+                throw $this->createNotFoundException('Unable to find Notes entity.');
+            }
+         
+            $em->remove($note_entity);
+            $em->flush();
+              $output[] = array('success' => true);
+            
+         }else {  $output[] = array('success' => false);}
+       
+        
+         $response->headers->set('Content-Type', 'application/json');
+         $response->setContent(json_encode($output));
+        return $response;
+    }
     //==============================================
     // SUPPRIMER ACTEUR
     //==============================================
@@ -439,7 +486,7 @@ class NotesController extends Controller {
            
         }
 
-        else {
+      else {
          $em = $this->container->get('doctrine')->getManager();
         $note = $em->find('ApplicationMyNotesBundle:Notes', $id);
         if (!$note) {
@@ -460,4 +507,27 @@ class NotesController extends Controller {
         ;
     }
 
+     /* ====================================================================
+     * 
+     *  RECUP USER_ID ET GROUP_ID
+     * 
+     * =================================================================== */
+
+    private function getuserid() {
+
+
+        $em = $this->getDoctrine()->getManager();
+        $user_security = $this->container->get('security.context');
+        // authenticated REMEMBERED, FULLY will imply REMEMBERED (NON anonymous)
+        if ($user_security->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $user = $this->get('security.context')->getToken()->getUser();
+            $user_id = $user->getId();
+        } else {
+            $user_id = 0;
+          
+        }
+
+        return ($user_id);
+       
+    }
 }

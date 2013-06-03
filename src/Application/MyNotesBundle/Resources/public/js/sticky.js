@@ -348,7 +348,8 @@ $('.note').mouseout(function()
     *     EDIT NOTE
     *     
     *    Bouton notes-modifier
-    ===========================================================*/               
+    *      <button type="submit" class="btn btn-warning">Modifier</button>
+     ===========================================================*/               
 
 
     $('#note-modifier').live('click',function(e){
@@ -528,8 +529,8 @@ $('.note').mouseout(function()
             var id = $(this).attr("id");
             var parent =   $(this).parent().parent();
             console.log (id) ; 
-        
-
+            id = id.replace("stickynote-","");
+            var dataAjax = {id: id};
             $("#dialogbox").dialog({
                 /*  effect: ("shake", { times: 5 }, 100),*/
                 resizable: false,
@@ -542,29 +543,24 @@ $('.note').mouseout(function()
                     "Oui": function() {
                         $( this ).dialog( "close" );
                         if (id != '') {
-                            /*  baseUrl*/
-                            /* $.post('/uzf04new/notes/delete',*/
-                            $.post(baseUrl + '/notes/delete', 
-                            {
-                                'id' : id
-                            }, 
-                            function (respond) {
-                                console.log ("reponse="+respond) ; 
-        
-                                if(parseInt(respond)){
-                                    ////Display the success message in the modal box
-                                    var msg="mon test";
-                                    //   modal_message();
-                                    $('#'+id).remove();
-                                }
-                                else {
-                                    alert("probleme sur la suppression de "+id);
-                                }
-                            }
-                            );
-                             
-                            $( this ).dialog( "close" );     
-                        } 
+                            
+                     $.ajax({
+                     url: "/notes/delete", 
+                    type: "POST", 
+                    data : dataAjax, 
+                    dataType: "json", 
+                    success: function(reponse){
+                        if(reponse.response == false){
+                console.log('could not update');
+                }
+                else {
+                     $('#'+id).remove();
+                }
+                }
+                 
+                });  //Eof:: ajax 
+                $( this ).dialog( "close" );     
+                } 
               
                     },
                     Cancel: function() {
@@ -579,37 +575,41 @@ $('.note').mouseout(function()
 
         });
     }
-     
-    /*============================================================
-    *     UPDATE TEXTAREA
-    ===========================================================*/               
-    function reload_textarea() {
+     function reload_textarea() {
         $('#sticky-notes').on('keyup', 'textarea', function(e){
-            /*  $(e.parent).css({
-               'z-index':500
-            });*/
-            console.log("text area zindex=" + zIndex);
+             console.log("text area zindex=" + zIndex);
             $(this).css('z-index',zIndex);
             /*$(this).parents('.note').css('z-index',zIndex);*/
             var $stickynote = $(this);
             var id = $stickynote.attr('id');
-            /*  console.log("atr="+id);*/
-            var update_content = $stickynote.val();
-            /* console.log("content="+update_content);*/
-            //recup de l'id :
             id = id.replace("stickynote-","");
-            /*   console.log("atr="+id);*/
-            $.post("notes/updatetext", {
-                id: id,
-                content: update_content
-            },function(data){
-                if(data.response == false){
-                /* console.log('could not update');*/
+           /* console.log("atr="+id);*/
+            var update_content = $stickynote.val();
+             
+            //recup de l'id :
+           /* id = id.replace("stickynote-","");*/
+                  var dataAjax = {
+                    id:  id,
+                    datatext : update_content 
+             };
+             /*console.log("content="+ update_content + "id=" + ui.helper.attr('id'));*/
+            $.ajax({
+                     url: "/notes/updatepos", 
+                    type: "POST", 
+                    data : dataAjax, 
+                    dataType: "json", 
+                    success: function(reponse){
+                        if(reponse.response == false){
+                console.log('could not update');
                 }
-            }, 'json');
-
+                    }
+                });  //Eof:: ajax 
         });
     }
+    /*============================================================
+    *     UPDATE TEXTAREA
+    ===========================================================*/               
+   
     function reload_editnote() {
         $("a#editnote").fancybox({
             'zoomSpeedIn'		: 500,
@@ -649,8 +649,8 @@ $('.note').mouseout(function()
         drop: function( event, ui ) {
             ui.helper.css("width","100px");
             ui.helper.css("height","100px");
-        /*}*/
-        /* deleteImage( ui.draggable );*/
+        //}
+        // deleteImage( ui.draggable );
         }
     });
     // let the notes be droppable as well, accepting items from the trash
@@ -690,6 +690,8 @@ $('.note').mouseout(function()
         }
     
     });
+    
+   
     $( "#snaptarget" ).droppable({
         accept: ".note",
         tolerance: "touch",  

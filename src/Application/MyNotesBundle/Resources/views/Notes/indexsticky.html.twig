@@ -116,12 +116,12 @@
     
     div.emptytrash
     {
-        float:right;
+        float:left;
         margin-top:5px;
       background: url("/images/emptysmall.gif") no-repeat;
         width:70px;
         height:70px;
-        margin-right:20px;
+        margin-right:40px;
     }
      div.emptytrash:hover
     {
@@ -185,6 +185,7 @@
       {#  Updating <img src="/uzf04new/images/ajax-loader.gif" />#}
             
     </div>
+             </div>
              <div id="sticky-notes">
 {% for entity in pagination %}
                       {% set mypos = entity.xyz|split('x') %}
@@ -195,7 +196,7 @@
         style="padding-top:0px;  width:{{mysize[0]}}px;height:{{mysize[1]}}px;left:{{mypos[0]}}px;top:{{mypos[1]}}px;">
    <div class="bar_titre" style="width:100%;">
    <div class="categories">{{ entity.categories.nom }}</div>
-   <div class="delnote"><a  class="deltsticky ui-icon ui-icon-trash" id="{{ entity.id }}" href="#"></a></div>
+   <div class="delnote"><a  class="deltsticky ui-icon ui-icon-trash" id="stickynote-{{ entity.id }}" href="#"></a></div>
    </div>
    <textarea class="area-note" id="stickynote-{{ entity.id }}">{{entity.text}}</textarea>
     <div class="author">{{ entity.proprietaire }}</div>
@@ -208,7 +209,7 @@
     {% endfor %}
 
 </div>
-</div>
+
    
     <!-- La Poubelle -->
 <div id="trash" class="emptytrash">
@@ -279,21 +280,41 @@
    
         $("div#trash").droppable({
             accept: '.note',
-              tolerance: "pointer",  
+            tolererance:"touch",
+              /*tolerance: "pointer",  */
             hoverClass: 'trashhover',
-            /* over: function() {
+             over: function() {
                        $(this).removeClass('out').addClass('over');
-                },*/
+                },
           
             drop: function( event, ui ) {
              console.log('pass dans poubelle'); 
-            
-                  prod_id = ui.draggable.attr("id");
+             var dataAjax = {id: id};
+           
+             prod_id = ui.draggable.attr("id");
+                var dataAjax = {id: prod_id};
                 ui.draggable.remove();
-                $.ajax({
+                 $.ajax({
+                     url: "/notes/delete", 
+                    type: "POST", 
+                    data : dataAjax, 
+                    dataType: "json", 
+                    success: function(reponse){
+                        if(reponse.response == false){
+                            console.log('could not update');
+                            }
+                        else {
+                            $('#'+id).remove();
+                        }
+                    }
+                 
+                });  //Eof:: ajax 
+                /*$.ajax({
                     type: "POST",
-                    url: baseUrl + '/notes/delete',
-                    data: "id=" + prod_id  + "&act=delete",
+                    url:  '/notes/delete',
+                     data : dataAjax, 
+                    dataType: "json", 
+                   // data: "id=" + prod_id  + "&act=delete",
                     cache: false,
                     success: function(html){
                         $('#cart').html(html);
@@ -302,7 +323,7 @@
                           $('#cart').append('<p>Post-it ' + prod_id + ' supprimé</p>');
                        // $("#trash").css("background",'url("/uzf04new/images/full.png")');
                     }
-                });
+                });*/
                }
     });
     /*	$("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled (Adds empty span tag after ul.subnav*)

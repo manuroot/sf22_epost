@@ -102,6 +102,7 @@ class NotesController extends Controller {
             $z = $request->request->get('z');
             $w = $request->request->get('w');
             $h = $request->request->get('h');
+            $text=$request->request->get('datatext');
             
             $note_entity = $em->getRepository('ApplicationMyNotesBundle:Notes')->find($id);
             if (!$note_entity) {
@@ -116,9 +117,13 @@ class NotesController extends Controller {
                     $data['xyz'] = $x . 'x' . $y . 'x' . $z;
            $note_entity->setXyz($data['xyz']);
           }
-            if (isset($w) && isset($h)){
+          if (isset($w) && isset($h)){
                     $data['wh'] = $w . 'x' . $h;
                     $note_entity->setWh($data['wh']);
+            }
+            if (isset($text)){
+                    $data['text'] = $text;
+                    $note_entity->setText($text);
             }
             $em->persist($note_entity);
             $em->flush();
@@ -347,7 +352,13 @@ class NotesController extends Controller {
      *
      */
     public function editAction($id) {
-        $em = $this->getDoctrine()->getManager();
+        
+         $request = $this->getRequest();
+     $em = $this->getDoctrine()->getManager();
+       
+        if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
+        }
+        else {
         $entity = $em->getRepository('ApplicationMyNotesBundle:Notes')->find($id);
 
         if (!$entity) {
@@ -362,6 +373,7 @@ class NotesController extends Controller {
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
                 ));
+    }
     }
 
     /**
@@ -403,7 +415,32 @@ class NotesController extends Controller {
     // SUPPRIMER ACTEUR
     //==============================================
     public function deleteAction($id) {
-        $em = $this->container->get('doctrine')->getManager();
+       $request = $this->getRequest();
+
+        if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
+            $em = $this->getDoctrine()->getManager();
+             $id = $request->request->get('id');
+             $note_entity = $em->getRepository('ApplicationMyNotesBundle:Notes')->find($id);
+            if (!$note_entity) {
+                throw $this->createNotFoundException('Unable to find Notes entity.');
+            }
+         
+            $em->remove($note_entity);
+            $em->flush();
+        
+            $output = array();
+            $response = new Response();
+            $output[] = array('success' => true);
+            $response->headers->set('Content-Type', 'application/json');
+            $response->setContent(json_encode($output));
+            return $response;
+
+       
+           
+        }
+
+        else {
+         $em = $this->container->get('doctrine')->getManager();
         $note = $em->find('ApplicationMyNotesBundle:Notes', $id);
         if (!$note) {
             throw new NotFoundHttpException("Note non trouvée");
@@ -411,27 +448,10 @@ class NotesController extends Controller {
         $em->remove($note);
         $em->flush();
         return $this->redirect($this->generateUrl('notes'));
-        // return new RedirectResponse($this->container->get('router')->generate('notesfanta'));
+    }
     }
 
-    public function deleteActionqq(Request $request, $id) {
-        $form = $this->createDeleteForm($id);
-        $form->bind($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ApplicationMyNotesBundle:Notes')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Notes entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
-        }
-
-        return $this->redirect($this->generateUrl('notes'));
-    }
 
     private function createDeleteForm($id) {
         return $this->createFormBuilder(array('id' => $id))

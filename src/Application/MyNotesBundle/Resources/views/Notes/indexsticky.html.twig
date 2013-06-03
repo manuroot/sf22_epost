@@ -80,7 +80,7 @@
         width:75%;float:left;height:50px;
         margin-left:10px;
         background-color:#869cbf;
-        padding:10px;
+        /*padding:10px;*/
         -moz-border-radius:5px;
         -webkit-border-radius:5px;
         border-radius:5px;
@@ -278,10 +278,12 @@
   <script type="text/javascript">
  $(document).ready(function(){
    
-        $("div#trash").droppable({
+        $("#trash").droppable({
             accept: '.note',
             tolererance:"touch",
-              /*tolerance: "pointer",  */
+             activeClass: "ui-state-highlight",
+        hoverClass: 'trashhover',
+            //olerance: "pointer",  
             hoverClass: 'trashhover',
              over: function() {
                        $(this).removeClass('out').addClass('over');
@@ -309,7 +311,8 @@
                     }
                  
                 });  //Eof:: ajax 
-                /*$.ajax({
+              /* 
+                $.ajax({
                     type: "POST",
                     url:  '/notes/delete',
                      data : dataAjax, 
@@ -323,8 +326,8 @@
                           $('#cart').append('<p>Post-it ' + prod_id + ' supprimé</p>');
                        // $("#trash").css("background",'url("/uzf04new/images/full.png")');
                     }
-                });*/
-               }
+                });
+               }*/
     });
     /*	$("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled (Adds empty span tag after ul.subnav*)
 	

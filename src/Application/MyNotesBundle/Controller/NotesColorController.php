@@ -29,6 +29,8 @@ class NotesColorController extends Controller
         ));
     }
 
+
+    
     /**
      * Finds and displays a NotesColor entity.
      *

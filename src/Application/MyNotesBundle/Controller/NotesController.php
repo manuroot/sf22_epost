@@ -53,6 +53,19 @@ class NotesController extends Controller {
                 ));
     }
 
+     public function indextodoAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+    $entities = $em->getRepository('ApplicationMyNotesBundle:Notes')->myFindaAll();
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $entities, $this->get('request')->query->get('page', 1)/* page number */, 10/* limit per page */
+        );
+        $pagination->setTemplate('ApplicationMyNotesBundle:pagination:sliding.html.twig');
+        return $this->render('ApplicationMyNotesBundle:Notes:indextodolist.html.twig', array(
+                    'pagination' => $pagination,
+                ));
+    }
     public function indexstickyAction() {
         
          $em = $this->getDoctrine()->getManager();

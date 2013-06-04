@@ -10,6 +10,10 @@ notesisotpe:
     pattern: /isotope
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:indexisotope" }
 
+notestodolist:
+    pattern: /todo
+    defaults: { _controller: "ApplicationMyNotesBundle:Notes:indextodo" }
+    
 notesupdatepos:
     pattern: /updatepos
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:updatepos" }

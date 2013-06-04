@@ -18,15 +18,15 @@ use APY\DataGridBundle\Grid\Action\RowAction;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Notes controller.
- *
- */
+* Notes controller.
+*
+*/
 class NotesController extends Controller {
 
     /**
-     * Lists all Notes entities.
-     *
-     */
+* Lists all Notes entities.
+*
+*/
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('ApplicationMyNotesBundle:Notes')->myFindaAll();
@@ -54,8 +54,17 @@ class NotesController extends Controller {
     }
 
     public function indexstickyAction() {
-        $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('ApplicationMyNotesBundle:Notes')->myFindaAll();
+        
+         $em = $this->getDoctrine()->getManager();
+        $user_id= $this->getuserid();
+        
+        $session = $this->getRequest()->getSession();
+        $session->set('buttonretour', 'notes_sticky');
+        
+
+        
+        
+        $entities = $em->getRepository('ApplicationMyNotesBundle:Notes')-> myFindamoi($user_id);
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
                 $entities, $this->get('request')->query->get('page', 1)/* page number */, 20/* limit per page */
@@ -67,24 +76,24 @@ class NotesController extends Controller {
     }
 
     /* ============================================================
-     * Update position xyz Fonction
-     * ============================================================ */
+* Update position xyz Fonction
+* ============================================================ */
 
     //resizable
     /*
-      public function resizableAction() {
-      $table = new Application_Model_DbTable_Notes();
-      $params = $this->_request->getParams();
-      // if (isset($id)&& $id>0){
-      $id = (int) $params['id'];
-      $where['id = ?'] = $id;
-      $w = (int) $params['w'];
-      $h = (int) $params['h'];
-      $data['wh'] = $w . "x" . $h;
-      $table->update($data, $where);
-      return;
-      }
-     */
+public function resizableAction() {
+$table = new Application_Model_DbTable_Notes();
+$params = $this->_request->getParams();
+// if (isset($id)&& $id>0){
+$id = (int) $params['id'];
+$where['id = ?'] = $id;
+$w = (int) $params['w'];
+$h = (int) $params['h'];
+$data['wh'] = $w . "x" . $h;
+$table->update($data, $where);
+return;
+}
+*/
     public function updateposAction() {
 
 
@@ -93,9 +102,9 @@ class NotesController extends Controller {
         if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
             $em = $this->getDoctrine()->getManager();
             $id = '';
-            /*  $applis = array();
-              $cert_app = array();
-             */
+            /* $applis = array();
+$cert_app = array();
+*/
             $id = $request->request->get('id');
             $x = $request->request->get('x');
             $y = $request->request->get('y');
@@ -135,18 +144,18 @@ class NotesController extends Controller {
             $response->setContent(json_encode($output));
             return $response;
 
-            /*   $applis=array(3,4);
-              $response = new Response(json_encode($output));
-              $response->headers->set('Content-Type', 'application/json');
+            /* $applis=array(3,4);
+$response = new Response(json_encode($output));
+$response->headers->set('Content-Type', 'application/json');
 
-              return $response; */
+return $response; */
        /* } else {
-            $response = new Response();
-            $output[] = array('success' => false);
-            $response->headers->set('Content-Type', 'application/json');
-            $response->setContent(json_encode($output));
-            return $response;
-        }*/
+$response = new Response();
+$output[] = array('success' => false);
+$response->headers->set('Content-Type', 'application/json');
+$response->setContent(json_encode($output));
+return $response;
+}*/
         }
 
 
@@ -154,48 +163,48 @@ class NotesController extends Controller {
     }
 
     /* return $this->render('ApplicationMyNotesBundle:Notes:edit.html.twig', array(
-      'entity' => $entity,
-      'edit_form' => $editForm->createView(),
-      'delete_form' => $deleteForm->createView(),
-      ));
-      } */
-    /*  $this->view->addHelperPath(
-      "ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");
-      $layout = Zend_Layout::getMVCInstance();
-      $table = new Application_Model_DbTable_Notes();
-      $params = $this->_request->getParams();
-      $id = (int) $params['id'];
-      $where['id = ?'] = $id;
-      $x = (int) $params['x'];
-      $y = (int) $params['y'];
-      $z = (int) $params['z'];
-      $data['xyz'] = $x . "x" . $y . "x" . $z;
-      $table->update($data, $where);
-      return;
-      } */
+'entity' => $entity,
+'edit_form' => $editForm->createView(),
+'delete_form' => $deleteForm->createView(),
+));
+} */
+    /* $this->view->addHelperPath(
+"ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");
+$layout = Zend_Layout::getMVCInstance();
+$table = new Application_Model_DbTable_Notes();
+$params = $this->_request->getParams();
+$id = (int) $params['id'];
+$where['id = ?'] = $id;
+$x = (int) $params['x'];
+$y = (int) $params['y'];
+$z = (int) $params['z'];
+$data['xyz'] = $x . "x" . $y . "x" . $z;
+$table->update($data, $where);
+return;
+} */
     /*
-      public function updatesnapAction() {
-      $this->view->addHelperPath(
-      "ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");
-      $layout = Zend_Layout::getMVCInstance();
-      $table = new Application_Model_DbTable_Notes();
-      $params = $this->_request->getParams();
-      $id = (int) $params['id'];
-      $where['id = ?'] = $id;
-      $x = (int) $params['x'];
-      $y = (int) $params['y'];
-      $z = (int) $params['z'];
-      $w = (int) $params['w'];
-      $h = (int) $params['h'];
-      $data['classement'] = $params['classement'];
-      if ($w != 0 && $h != 0)
-      $data['wh'] = $w . "x" . $h;
-      $data['xyz'] = $x . "x" . $y . "x" . $z;
-      $table->update($data, $where);
-      return;
-      }
+public function updatesnapAction() {
+$this->view->addHelperPath(
+"ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");
+$layout = Zend_Layout::getMVCInstance();
+$table = new Application_Model_DbTable_Notes();
+$params = $this->_request->getParams();
+$id = (int) $params['id'];
+$where['id = ?'] = $id;
+$x = (int) $params['x'];
+$y = (int) $params['y'];
+$z = (int) $params['z'];
+$w = (int) $params['w'];
+$h = (int) $params['h'];
+$data['classement'] = $params['classement'];
+if ($w != 0 && $h != 0)
+$data['wh'] = $w . "x" . $h;
+$data['xyz'] = $x . "x" . $y . "x" . $z;
+$table->update($data, $where);
+return;
+}
 
-     */
+*/
 
     private function mypager($adapter = null, $max = 5, $page = 1) {
         if (isset($adapter)) {
@@ -228,13 +237,13 @@ class NotesController extends Controller {
     //==============================================
     public function viewfantaAction($page = null) {
         /* Automatique
-          $request = $this->get('request');
-          $page = $request->query->get('page',1);
-         */
+$request = $this->get('request');
+$page = $request->query->get('page',1);
+*/
         $em = $this->container->get('doctrine')->getManager();
         $repo = $em->getRepository('ApplicationMyNotesBundle:Notes')->myFindAll();
         //
-        //  $entityQuery = $em->getRepository('MyAppFilmothequeBundle:Acteur')->myXFindAll();
+        // $entityQuery = $em->getRepository('MyAppFilmothequeBundle:Acteur')->myXFindAll();
         $adapter = new DoctrineORMAdapter($repo);
         $pagerfanta = $this->mypager($adapter);
         try {
@@ -255,8 +264,8 @@ class NotesController extends Controller {
     //==============================================
     public function viewapyAction($page = 1) {
 
-        //    $em = $this->container->get('doctrine')->getManager();
-        //  $source = $em->getRepository('ApplicationMyNotesBundle:Notes');
+        // $em = $this->container->get('doctrine')->getManager();
+        // $source = $em->getRepository('ApplicationMyNotesBundle:Notes');
 
         $source = new Entity('ApplicationMyNotesBundle:Notes');
         // Get a Grid instance
@@ -265,7 +274,7 @@ class NotesController extends Controller {
         // Attach the source to the grid
         $grid->setSource($source);
         $grid->setDefaultOrder('id', 'desc');
-        //   $grid->addExport(new XMLExport('XML Export', 'export'));
+        // $grid->addExport(new XMLExport('XML Export', 'export'));
         // Set the selector of the number of items per page
         $grid->setLimits(array(5, 10, 15));
 
@@ -291,9 +300,9 @@ class NotesController extends Controller {
     }
 
     /**
-     * Finds and displays a Notes entity.
-     *
-     */
+* Finds and displays a Notes entity.
+*
+*/
     public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
@@ -311,9 +320,9 @@ class NotesController extends Controller {
     }
 
     /**
-     * Displays a form to create a new Notes entity.
-     *
-     */
+* Displays a form to create a new Notes entity.
+*
+*/
     public function newAction() {
         $entity = new Notes();
         $form = $this->createForm(new NotesType(), $entity);
@@ -325,16 +334,22 @@ class NotesController extends Controller {
     }
 
     /**
-     * Creates a new Notes entity.
-     *
-     */
+* Creates a new Notes entity.
+*
+*/
     public function createAction(Request $request) {
+        
+            
         $entity = new Notes();
         $form = $this->createForm(new NotesType(), $entity);
         $form->bind($request);
-
+        $user_id = $this->getuserid();
+        //echo "id=$user_id<br>";
+        //exit(1);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $current_user = $em->getRepository('ApplicationSonataUserBundle:User')->find($user_id);
+            $entity->setProprietaire($current_user);
             $em->persist($entity);
             $em->flush();
 
@@ -348,9 +363,9 @@ class NotesController extends Controller {
     }
 
     /**
-     * Displays a form to edit an existing Notes entity.
-     *
-     */
+* Displays a form to edit an existing Notes entity.
+*
+*/
     public function editAction($id) {
         
          $request = $this->getRequest();
@@ -377,9 +392,9 @@ class NotesController extends Controller {
     }
 
     /**
-     * Edits an existing Notes entity.
-     *
-     */
+* Edits an existing Notes entity.
+*
+*/
     public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
@@ -407,10 +422,42 @@ class NotesController extends Controller {
                 ));
     }
 
+    
+     //==============================================
+   
     /**
-     * Deletes a Notes entity.
-     *
-     */
+* Deletes a Notes entity.
+*
+*/
+      //==============================================
+    // SUPPRIMER ACTEUR
+    //==============================================
+    public function ajaxdeleteAction() {
+       $request = $this->getRequest();
+
+        $output=array();
+         $response = new Response();
+         if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
+            $em = $this->getDoctrine()->getManager();
+            $id = $request->request->get('id');
+           // echo "id=$id<br>";
+           // $classement = $request->request->get('classement');
+                $note_entity = $em->getRepository('ApplicationMyNotesBundle:Notes')->find($id);
+            if (!$note_entity) {
+                throw $this->createNotFoundException('Unable to find Notes entity.');
+            }
+         
+            $em->remove($note_entity);
+            $em->flush();
+              $output[] = array('success' => true);
+            
+         }else { $output[] = array('success' => false);}
+       
+        
+         $response->headers->set('Content-Type', 'application/json');
+         $response->setContent(json_encode($output));
+        return $response;
+    }
     //==============================================
     // SUPPRIMER ACTEUR
     //==============================================
@@ -439,7 +486,7 @@ class NotesController extends Controller {
            
         }
 
-        else {
+      else {
          $em = $this->container->get('doctrine')->getManager();
         $note = $em->find('ApplicationMyNotesBundle:Notes', $id);
         if (!$note) {
@@ -460,4 +507,29 @@ class NotesController extends Controller {
         ;
     }
 
+     /* ====================================================================
+*
+* RECUP USER_ID ET GROUP_ID
+*
+* =================================================================== */
+
+    private function getuserid() {
+
+
+        $em = $this->getDoctrine()->getManager();
+        $user_security = $this->container->get('security.context');
+        // authenticated REMEMBERED, FULLY will imply REMEMBERED (NON anonymous)
+        if ($user_security->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $user = $this->get('security.context')->getToken()->getUser();
+            $user_id = $user->getId();
+        } else {
+            $user_id = 0;
+          
+        }
+
+        return ($user_id);
+       
+    }
 }
+
+

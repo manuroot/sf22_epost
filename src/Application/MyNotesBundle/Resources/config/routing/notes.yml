@@ -1,54 +1,60 @@
 notes:
-    pattern:  /
+    pattern: /
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:index" }
 
 notessticky:
-    pattern:  /sticky
+    pattern: /sticky
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:indexsticky" }
 
 notesisotpe:
-    pattern:  /isotope
+    pattern: /isotope
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:indexisotope" }
 
 notesupdatepos:
-    pattern:  /updatepos
+    pattern: /updatepos
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:updatepos" }
     requirements: { _method: post }
 
+notes_ajax_delete:
+    pattern: /ajaxdelete
+    defaults: { _controller: "ApplicationMyNotesBundle:Notes:ajaxdelete" }
+    requirements: { _method: post }
+    
+    
 notesfanta:
-    pattern:  /fanta/{page}
+    pattern: /fanta/{page}
     defaults: { _controller: ApplicationMyNotesBundle:Notes:viewfanta,page: 1 }
     requirements:
-       _method:  GET
+       _method: GET
        page: \d+
 
 notesapy:
-    pattern:  /apy
+    pattern: /apy
     defaults: { _controller: ApplicationMyNotesBundle:Notes:viewapy }
        
 notes_show:
-    pattern:  /{id}/show
+    pattern: /{id}/show
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:show" }
 
 notes_new:
-    pattern:  /new
+    pattern: /new
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:new" }
 
 notes_create:
-    pattern:  /create
+    pattern: /create
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:create" }
     requirements: { _method: post }
 
 notes_edit:
-    pattern:  /{id}/edit
+    pattern: /{id}/edit
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:edit" }
 
 notes_update:
-    pattern:  /{id}/update
+    pattern: /{id}/update
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:update" }
     requirements: { _method: post }
 
 notes_delete:
-    pattern:  /{id}/delete
+    pattern: /{id}/delete
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:delete" }
    # requirements: { _method: post }

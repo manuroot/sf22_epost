@@ -1,24 +1,24 @@
 jQuery(document).ready(function(){
     /* This code is executed after the DOM has been completely loaded */
     /* $.zoomooz.setup({
-        root:$("#sticky-notes"),
-        targetsize:0.4        
-    });*/
+root:$("#sticky-notes"),
+targetsize:0.4
+});*/
     /*$("#element").click(function(evt) {
-        $(this).zoomTo({targetsize:0.75, duration:600});
-        evt.stopPropagation();
-    });*/
-	
+$(this).zoomTo({targetsize:0.75, duration:600});
+evt.stopPropagation();
+});*/
+
     
     
     /* $container.isotope({
-           animationOptions: {
-     duration: 750,
-     easing: 'linear',
-     queue: false
-   },
-        itemSelector: '.note'
-      });*/
+animationOptions: {
+duration: 750,
+easing: 'linear',
+queue: false
+},
+itemSelector: '.note'
+});*/
       
       
     var tmp;
@@ -39,41 +39,44 @@ jQuery(document).ready(function(){
     
     
     /* zdata.sort(function(a, b) { return a - b });
-    var i=0;
-     $('.note').each(function(){
-       tmp = $(this).css('z-index');
-            zdata.push(tmp);
-           $(this).css({
-               'z-index':1
-            });
-        if(tmp>zIndex) zIndex = tmp;
-  
-    });*/
-    /*   var items = $("#sticky-notes note").toArray();
+var i=0;
+$('.note').each(function(){
+tmp = $(this).css('z-index');
+zdata.push(tmp);
+$(this).css({
+'z-index':1
+});
+if(tmp>zIndex) zIndex = tmp;
+});*/
+    /* var items = $("#sticky-notes note").toArray();
 items.sort(function(a, b) {
-    return(Number(a.style.zIndex) - Number(b.style.zIndex));
+return(Number(a.style.zIndex) - Number(b.style.zIndex));
 });*/
     /*
-     $(this).css({
-               'z-index':maxZ+1
-            });
+$(this).css({
+'z-index':maxZ+1
+});
 */
     // passer par function
-    //  $('#note-modifier').live('click',function(e){
-    /*  $('.note').live('click',function(e){*/
-    /* 
-    $('.note').mouseover(function()
+    // $('#note-modifier').live('click',function(e){
+    /* $('.note').live('click',function(e){*/
+    /*
+$('.note').mouseover(function()
 {
-   $(this).css("cursor","pointer");
-   $(this).animate({width: "500px"}, 'slow');
+$(this).css("cursor","pointer");
+$(this).animate({width: "500px"}, 'slow');
 });
 
 $('.note').mouseout(function()
 {
-   $(this).animate({width: "200px"}, 'slow');
+$(this).animate({width: "200px"}, 'slow');
 });
 
 */
+
+    /*==============================================================
+* Action sur div note: recalcul de l'index
+=============================================================*/
     $('.note').mousedown(function(e){
         console.log( '$(this)', $(this) );
         console.log( '$(e.target)', $(e.target) );
@@ -85,7 +88,7 @@ $('.note').mouseout(function()
         });
         console.log("maxZ=" + maxZ);
         /* $(this).css('z-index',500);
-        zIndex=500;*/
+zIndex=500;*/
         if($(e.target).hasClass("bar_titre"))
         {
             zIndex=maxZ+1;
@@ -94,8 +97,8 @@ $('.note').mouseout(function()
                 'z-index':maxZ+1
             });
             /* $(e.target).css({
-               'z-index':maxZ+1
-            });*/
+'z-index':maxZ+1
+});*/
             
             console.log("a zindex current=" + zIndex);
         }
@@ -106,28 +109,26 @@ $('.note').mouseout(function()
                 'z-index':maxZ+1
             });
         /*$(e.target).closest('.note').css({
-                   zIndex:100
-        });*/
+zIndex:100
+});*/
         }
         /* $(e.target).css({
-               'z-index':maxZ+1
-            });*/
+'z-index':maxZ+1
+});*/
            
         /* zIndex=maxZ+1;*/
         console.log("final zindex current=" + zIndex);
     /* ui.helper.css('z-index',++zIndex);*/
     });
     /* $("#sticky-notes").mousedown(function(e){
-         console.log( '$(this)', $(this) );
-         console.log( '$(e.target)', $(e.target) );
-          $("#sticky-notes").css({
-               'z-index':zIndex
-            });
-            
-         zIndex=maxZ+1;
-         console.log("text final zindex current=" + zIndex);
-        
-    });*/
+console.log( '$(this)', $(this) );
+console.log( '$(e.target)', $(e.target) );
+$("#sticky-notes").css({
+'z-index':zIndex
+});
+zIndex=maxZ+1;
+console.log("text final zindex current=" + zIndex);
+});*/
          
     function swapFirstLast(isFirst) {
         if(inAnimation) return false; //if already swapping pictures just return
@@ -168,8 +169,8 @@ $('.note').mouseout(function()
         return false; //don't follow the clicked link
     }
     /*============================================================
-    *     MODAL DELETE NOTE END
-    *===========================================================*/     
+* MODAL DELETE NOTE END
+*===========================================================*/
 
     /*a Function to Initialise a Dialog instance for the modal box */
     function modal_message()
@@ -184,9 +185,9 @@ $('.note').mouseout(function()
             }
         });
     }
-/*====================================================
- * MAIN()
- ====================================================*/
+    /*====================================================
+* MAIN()
+====================================================*/
     $("#dialog-message").hide();
     $("#confirmation_dialog").hide();
 
@@ -201,37 +202,42 @@ $('.note').mouseout(function()
 
         
     $("#myaddButton").fancybox({
-        'zoomSpeedIn'		: 500,
-        'zoomSpeedOut'		: 500,
+        'zoomSpeedIn'	: 500,
+        'zoomSpeedOut'	: 500,
         'frameWidth':600,
-        'easingIn'			: 'easeOutBack',
-        'easingOut'			: 'easeInBack',
-        openEffect  : 'fade',
+        'easingIn'	: 'easeOutBack',
+        'easingOut'	: 'easeInBack',
+        openEffect : 'fade',
         closeEffect : 'fade',
         'hideOnContentClick': false,
-        'padding'			: 15
-    //  'onClosed': function() { parent.location.reload(true);; }
-    //   onCleanup   : function() {alert ('test2'); return window.location.reload(); }
+        'padding'	: 15
+    // 'onClosed': function() { parent.location.reload(true);; }
+    // onCleanup : function() {alert ('test2'); return window.location.reload(); }
     });
     
-    $(".editnote").fancybox({
-        'overlayShow'	: false,
+    $(".xxeditnote").fancybox({
+        'overlayShow'	: true,
         'transitionIn'	: 'elastic',
         'transitionOut'	: 'elastic',
         'padding' : 0,
+ 
+          /* 'easingIn' : 'easeOutBack',
+'easingOut' : 'easeInBack',*/
+            openEffect : 'fade',
+            closeEffect : 'fade',
         'hideOnContentClick': false,
-                                       
-        'padding'			: 15,
         'type':'iframe'
     });
+       
+            
           
     $("#orderButton").fancybox({
-        'zoomSpeedIn'		: 600,
-        'zoomSpeedOut'		: 500,
-        'easingIn'			: 'easeOutBack',
-        'easingOut'			: 'easeInBack',
+        'zoomSpeedIn'	: 600,
+        'zoomSpeedOut'	: 500,
+        'easingIn'	: 'easeOutBack',
+        'easingOut'	: 'easeInBack',
         'hideOnContentClick': false,
-        'padding'			: 15,
+        'padding'	: 15,
         'autoopen':false,
         'callbackOnClose' : function() {
             parent.location.reload(true);
@@ -243,24 +249,24 @@ $('.note').mouseout(function()
     $('.pr-body,.pr-author').live('keyup',function(e){
         if(!this.preview)
             this.preview=$('#fancy_ajax .note');
-		
+
         /* Setting the text of the preview to the contents of the input field, and stripping all the HTML tags: */
         this.preview.find($(this).attr('class').replace('pr-','.')).html($(this).val().replace(/<[^>]+>/ig,''));
     });
-	
+
     /* Changing the color of the preview note: */
     $('.color').live('click',function(){
         $('#fancy_ajax .note').removeClass('yellow green blue red').addClass($(this).attr('class').replace('color',''));
     });
-	
-    /* 
-     * BOUTON SUBMIT
-     * The submit button dans la modale form: */
-    /*============================================================
-    *     AJOUTER NOTE
-    *     Ajout new note
-    *     Bouton submit
-    ===========================================================*/               
+
+    /*
+* BOUTON SUBMIT
+* The submit button dans la modale form: */
+    /*===================================================================================
+* AJOUTER NOTE
+* Ajout new note
+* Bouton submit
+===================================================================================*/
     function test_elements(){
       
         var status=true;
@@ -281,11 +287,11 @@ $('.note').mouseout(function()
     function get_datas(){
         var data = {
             'zindex'	: ++zIndex,
-            'body'		: $('.pr-body').val(),
-            'author'		: $('.pr-author').val(),
-            'categories'      : $('.pr-categories').val(),
-            'proprio'		: $('.pr-myuserid').val(),
-            'color'		: $.trim($('#fancy_ajax .note').attr('class').replace('note',''))
+            'body'	: $('.pr-body').val(),
+            'author'	: $('.pr-author').val(),
+            'categories' : $('.pr-categories').val(),
+            'proprio'	: $('.pr-myuserid').val(),
+            'color'	: $.trim($('#fancy_ajax .note').attr('class').replace('note',''))
         };
         return data;
     }
@@ -295,24 +301,24 @@ $('.note').mouseout(function()
         if (status==false){
             return false;
         }
-           /*  <img src="{{ asset('bundles/applicationmynotes/images/edit.png') }}" alt="notes_edit" width="15" height="15" />*/
+        /* <img src="{{ asset('bundles/applicationmynotes/images/edit.png') }}" alt="notes_edit" width="15" height="15" />*/
                   
-        $(this).replaceWith('<img src="' +  '"/images/sticky/ajax_load.gif" style="margin:30px auto;display:block" />');
+        $(this).replaceWith('<img src="' + '"/images/sticky/ajax_load.gif" style="margin:30px auto;display:block" />');
         var data=get_datas();
     
 
         /*============================================================
-    *     ADD NOTE
-    *     Ajout new note
-     ===========================================================*/   
+* ADD NOTE
+* Ajout new note
+===========================================================*/
         $.ajax({
-            type:     "POST",
-            data:     data,
-            url:      baseUrl + '/notes/edit',
+            type: "POST",
+            data: data,
+            url: baseUrl + '/notes/edit',
             dataType: "json",
-            async:    false,
+            async: false,
             cache: false,
-            success:  function(msg) {
+            success: function(msg) {
                 var tmp=create_note(data,msg);
                 make_draggable(tmp);
                 make_resizable(tmp);
@@ -323,36 +329,35 @@ $('.note').mouseout(function()
         reload_editnote();
         reload_sticky();
         /* $.post(baseUrl + '/notes/edit',data,function(msg){
-						 
-            if(parseInt(msg))
-            {
-                var tmp=create_note(data,msg);
-                make_draggable(tmp);
-                make_resizable(tmp);
-              
-            }
-			
-            $("#myaddButton").fancybox.close();
-            reload_editme();
-            reload_sticky();
-        });*/
-		
+if(parseInt(msg))
+{
+var tmp=create_note(data,msg);
+make_draggable(tmp);
+make_resizable(tmp);
+}
+$("#myaddButton").fancybox.close();
+reload_editme();
+reload_sticky();
+});*/
+
         e.preventDefault();
-    //   window.location.reload();
-    })
-	
-    $('.note-form').live('submit',function(e){
+    // window.location.reload();
+    });
+
+    // formulaire de modification
+    $('.form-horizontal').live('submit',function(e){
         e.preventDefault();
     });
     /*============================================================
-    *     EDIT NOTE
-    *     
-    *    Bouton notes-modifier
-    *      <button type="submit" class="btn btn-warning">Modifier</button>
-     ===========================================================*/               
+* EDIT NOTE
+*
+* Bouton notes-modifier
+* input button
+===========================================================*/
 
 
-    $('#note-modifier').live('click',function(e){
+    $('#modifier').live('click',function(e){
+         e.preventDefault();
         var status=test_elements();	
         if (status==false){
             return false;
@@ -363,9 +368,9 @@ $('.note').mouseout(function()
         // valeur supplementaire: cas modifier
         data['id']= $('.pr-myid').val();
         /* console.log("myid=" + data['id']);
-        console.log("body=" + data['body']);*/
+console.log("body=" + data['body']);*/
         $.post(baseUrl + '/notes/editer',data,function(msg){
-            //  console.log ("datas="+data['id']);
+            // console.log ("datas="+data['id']);
             if(parseInt(msg))
             {
                 var tmp = $('#fancy_ajax .note').clone();
@@ -377,61 +382,51 @@ $('.note').mouseout(function()
             var color=$("#"+data['id']).attr('class','note '+data['color']);
         // console.log ("color_class="+color);
         });
-		
-        e.preventDefault();
-        return;
-    })
-    var zIndex = 0;
+
+      // e.preventDefault();
+    // return;
+    });
+    zIndex = 0;
     /*============================================================
-    *     DRAGABLE
-    ===========================================================*/               
+* INTIALISER LE DRAGABBLE
+===========================================================*/
   
     function make_draggable(elements)
     {
         /* Elements is a jquery object: */
-        /*   var width = $(elements).css('width');
-           var height = $(elements).css('height');*/
-        /*  var id = $(this).find(attr("id"));*/
-         
+        /* var width = $(elements).css('width');
+var height = $(elements).css('height');*/
+        /* var id = $(this).find(attr("id"));*/
+       
         elements.draggable({
-            handle:$("div#center div.bar_titre"),
+            handle:$("div.bar_titre"),
             snap: ".ui-widget-header",
             containment:$("#main"),
-            /*  containment:'parent.parent',*/
-            //'parent.parent',
-            /*  animate: true,*/
             start:function(e,ui){
-              
+                console.log("make dragabble");
                 ui.helper.css('z-index',++zIndex);
-                /* ui.helper.css("width","50px");
-                  ui.helper.css("height","50px");*/
-                $(ui.helper).css("opacity", "0.7")
+                $(ui.helper).css("opacity", "0.6")
                 console.log("drag zindex current=" + zIndex);
             },
             stop:function(e,ui){
                 console.info('ui.helper.attr("id"):' + ui.helper.attr('id'));
-                /*   console.log("id=",id);*/
                 var dataAjax = {
-                    id:  parseInt( ui.helper.attr('id')),
+                    id: parseInt( ui.helper.attr('id')),
                     x: parseInt(ui.position.left),
                     y: parseInt(ui.position.top),
                     z: zIndex
        
         
                 };
-                /* $.post('{{path('AcmeHomeBundle_ajax_update_mydata')}}',               
-                {data1: 'mydata1', data2:'mydata2'}, */
                 $.ajax({
-                     url: "/notes/updatepos", 
-                    type: "POST", 
-                    data : dataAjax, 
-                    dataType: "json", 
+                    url: "/notes/updatepos",
+                    type: "POST",
+                    data : dataAjax,
+                    dataType: "json",
                     success: function(reponse){
                     }
-                });  //Eof:: ajax 
+                }); //Eof:: ajax
                 $(ui.helper).css("opacity", "1");
-            //remplacer bar titre
-            // $notes .='<div class="bar_titre" style="width:' . $width . 'px;">';
             }
         });
               
@@ -440,50 +435,50 @@ $('.note').mouseout(function()
 
    
     /*============================================================
-    *     RESIZABLE
-    ===========================================================*/               
+* RESIZABLE
+===========================================================*/
 
     function make_resizable(elements)
     {
         //getter
 
         elements.resizable({
-            
             containment:$("#main"),
-            /*  containment:'parent',*/
-            /*   animate: true,*/
-            /*    ghost:true,*/
+            /* containment:'parent',*/
+            /* animate: true,*/
+            /* ghost:true,*/
             minHeight: 200,
             minWidth: 200,
-            maxHeight: 350,
-            maxWidth: 350,
-            /*   animateEasing: "swing",*/
-            /*  handles:"n, e, s, w",*/
+            maxHeight: 400,
+            maxWidth: 400,
+            /* animateEasing: "swing",*/
+            /* handles:"n, e, s, w",*/
             start:function(e,ui){
+                console.log("resizable start");
                 ui.helper.css('z-index',++zIndex);
-                $(ui.helper).css("opacity", "0.7")
+                $(ui.helper).css("opacity", "0.6")
             },
             stop:function(e,ui){
-                    var dataAjax = {
-                    id:  parseInt( ui.helper.attr('id')),
-                    w		: parseInt(ui.size.width),
-                    h		: parseInt(ui.size.height),
-                    z		: zIndex
-             };
-             $.ajax({
-                     url: "/notes/updatepos", 
-                    type: "POST", 
-                    data : dataAjax, 
-                    dataType: "json", 
+                var dataAjax = {
+                    id: parseInt( ui.helper.attr('id')),
+                    w	: parseInt(ui.size.width),
+                    h	: parseInt(ui.size.height),
+                    z	: zIndex
+                };
+                $.ajax({
+                    url: "/notes/updatepos",
+                    type: "POST",
+                    data : dataAjax,
+                    dataType: "json",
                     success: function(reponse){
                     }
-                });  //Eof:: ajax 
+                }); //Eof:: ajax
                 /* Sending the z-index and positon of the note to update_position.php via AJAX GET: */
                 $(ui.helper).css("opacity", "1");
             }
         });
     }
-	
+
    
     function fancyAlert(msg) {
         jQuery.fancybox({
@@ -522,17 +517,19 @@ $('.note').mouseout(function()
 
     function reload_sticky() {
         /*============================================================
-    *     DELETE NOTE CLICK
-    ===========================================================*/     
+* DELETE NOTE CLICK
+===========================================================*/
         $(".deltsticky").click(function(e) {
             e.preventDefault();
             var id = $(this).attr("id");
-            var parent =   $(this).parent().parent();
-            console.log (id) ; 
-            id = id.replace("stickynote-","");
-            var dataAjax = {id: id};
+            // pas top
+            //var parent = $(this).parent().parent().parent();
+            var parent = $(this).closest("div.note");
+            console.log (id) ;
+        
+
             $("#dialogbox").dialog({
-                /*  effect: ("shake", { times: 5 }, 100),*/
+                /* effect: ("shake", { times: 5 }, 100),*/
                 resizable: false,
                 height:180,
                 width:350,
@@ -541,33 +538,59 @@ $('.note').mouseout(function()
        
                 buttons: {
                     "Oui": function() {
-                        $( this ).dialog( "close" );
+                       // $( this ).dialog( "close" );
                         if (id != '') {
+                            /* baseUrl*/
+                            /* $.post('/uzf04new/notes/delete',*/
                             
-                     $.ajax({
-                     url: "/notes/delete", 
-                    type: "POST", 
-                    data : dataAjax, 
-                    dataType: "json", 
-                    success: function(reponse){
-                        if(reponse.response == false){
-                console.log('could not update');
+                    var dataAjax = {
+                /*id: parseInt( ui.helper.attr('id')),*/
+                  id: id,
+                  classement:"mini"
+            };
+               $.ajax({
+                url: "/notes/ajaxdelete",
+                type: "POST",
+                data : dataAjax,
+                dataType: "json",
+                success: function(reponse){
+                     console.log ("reponse="+reponse) ;
+                   
+                    $("div#trash").removeClass('emptytrash').addClass('noemptytrash');
+                     $("#cart").append('<p>Post-it ' + dataAjax['id'] + ' supprimé</p>');
+                       $(parent).remove();
+                    // deleteImage( );
+                // $("#trash").css("background",'url("/uzf04new/images/full.png")');
                 }
-                else {
-                     $('#'+id).remove();
-                }
-                }
-                 
-                });  //Eof:: ajax 
-                $( this ).dialog( "close" );     
-                } 
+            });
+                                
+                          /* $.post(baseUrl + '/notes/delete',
+{
+'id' : id
+},
+function (respond) {
+console.log ("reponse="+respond) ;
+if(parseInt(respond)){
+////Display the success message in the modal box
+var msg="mon test";
+// modal_message();
+$('#'+id).remove();
+}
+else {
+alert("probleme sur la suppression de "+id);
+}
+}
+);*/
+                             
+                            $( this ).dialog( "close" );
+                        }
               
                     },
                     Cancel: function() {
                         $( this ).dialog( "close" );
                     }
                 }
-            }); 
+            });
         
             $('#dialogbox').dialog('open');
             //Display confirmation Dialog when user clicks on "delete Image"
@@ -575,49 +598,45 @@ $('.note').mouseout(function()
 
         });
     }
-     function reload_textarea() {
+     
+    /*============================================================
+* UPDATE TEXTAREA
+===========================================================*/
+    function reload_textarea() {
         $('#sticky-notes').on('keyup', 'textarea', function(e){
-             console.log("text area zindex=" + zIndex);
+            /* $(e.parent).css({
+'z-index':500
+});*/
+            console.log("text area zindex=" + zIndex);
             $(this).css('z-index',zIndex);
             /*$(this).parents('.note').css('z-index',zIndex);*/
             var $stickynote = $(this);
             var id = $stickynote.attr('id');
-            id = id.replace("stickynote-","");
-           /* console.log("atr="+id);*/
+            /* console.log("atr="+id);*/
             var update_content = $stickynote.val();
-             
+            /* console.log("content="+update_content);*/
             //recup de l'id :
-           /* id = id.replace("stickynote-","");*/
-                  var dataAjax = {
-                    id:  id,
-                    datatext : update_content 
-             };
-             /*console.log("content="+ update_content + "id=" + ui.helper.attr('id'));*/
-            $.ajax({
-                     url: "/notes/updatepos", 
-                    type: "POST", 
-                    data : dataAjax, 
-                    dataType: "json", 
-                    success: function(reponse){
-                        if(reponse.response == false){
-                console.log('could not update');
+            id = id.replace("stickynote-","");
+            /* console.log("atr="+id);*/
+            $.post("notes/updatetext", {
+                id: id,
+                content: update_content
+            },function(data){
+                if(data.response == false){
+                /* console.log('could not update');*/
                 }
-                    }
-                });  //Eof:: ajax 
+            }, 'json');
+
         });
     }
-    /*============================================================
-    *     UPDATE TEXTAREA
-    ===========================================================*/               
-   
     function reload_editnote() {
         $("a#editnote").fancybox({
-            'zoomSpeedIn'		: 500,
-            'zoomSpeedOut'		: 500,
+            'zoomSpeedIn'	: 500,
+            'zoomSpeedOut'	: 500,
             'margin': 25,
-            'easingIn'			: 'easeOutBack',
-            'easingOut'			: 'easeInBack',
-            openEffect  : 'fade',
+            'easingIn'	: 'easeOutBack',
+            'easingOut'	: 'easeInBack',
+            openEffect : 'fade',
             closeEffect : 'fade',
             'frameWidth':600,
             'frameHeight':600,
@@ -628,14 +647,14 @@ $('.note').mouseout(function()
     function create_note(data,msg) {
      
         var d= $('<div class="note ' + data['color'] + '" id="' + msg['id'] + '" '
-            + 'style="padding-top:0px;  width:300px;height:300px; left: 100px;top:100px;z-index:' + zIndex + '">'
+            + 'style="padding-top:0px; width:300px;height:300px; left: 100px;top:100px;z-index:' + zIndex + '">'
             + '<div class="bar_titre" style="width:100%;"></div>'
             + '<textarea class="area-note" id="stickynote-' + msg['id'] + '" width="200px;">' + data['body'] + '</textarea>'
-            + ' <div class="categories">' + msg['categories'] +  '</div>'
-            + ' <div class="author">' + data['author'] +  '</div>'
+            + ' <div class="categories">' + msg['categories'] + '</div>'
+            + ' <div class="author">' + data['author'] + '</div>'
             + '<a class="editnote" href="notes/editer/id/' + msg['id'] + '" title="Note: ' + msg['id'] + '" id="page1-anchor">++</a>'
-            +  '<div class="delnote"><a id="' + msg['id'] + '" class="deltsticky" href="#">x</a></div>'
-            +  '<span class="data">'  + msg['id'] + '</span>'
+            + '<div class="delnote"><a id="' + msg['id'] + '" class="deltsticky" href="#">x</a></div>'
+            + '<span class="data">' + msg['id'] + '</span>'
             + '</div>');
         var main=$("#sticky-notes")
         d.appendTo(main);
@@ -643,125 +662,100 @@ $('.note').mouseout(function()
     }
     
     /* let the trash be droppable, accepting the gallery items*/
-    $("#trash").droppable({
-        accept: ".note",
-        activeClass: "ui-state-highlight",
-        drop: function( event, ui ) {
-            ui.helper.css("width","100px");
-            ui.helper.css("height","100px");
-        //}
-        // deleteImage( ui.draggable );
-        }
-    });
+    /* $("#trash").droppable({
+accept: ".note",
+activeClass: "ui-state-highlight",
+drop: function( event, ui ) {
+ui.helper.css("width","100px");
+ui.helper.css("height","100px");
+}
+deleteImage( ui.draggable );
+}
+});*/
     // let the notes be droppable as well, accepting items from the trash
-    $('.note').droppable({
-        accept: "#trash",
+    /*$('.note').droppable({
+accept: "#trash,#cart",
+activeClass: "custom-state-active",
+drop: function( event, ui ) {
+recycleImage( ui.draggable );
+}
+});*/
+     $("#sticky-notes").droppable({
+        accept: "#trash,#cart",
         activeClass: "custom-state-active",
         drop: function( event, ui ) {
+              console.log("passage dans partie centrale");
             recycleImage( ui.draggable );
         }
     });
-    
     $( "#cart" ).droppable({
         accept: ".note",
-        tolerance: "touch",  
+        tolerance: "touch",
         activeClass: "ui-state-highlight",
       
         drop: function( event, ui ) {
             ui.helper.css("width","50px");
             ui.helper.css("height","50px");
-
-            ui.helper.css("top","0px");
-            /* ui.helper.css("font-size","6px");*/
-            /* $( this )
-            .addClass( "ui-state-highlight" )
-            .html( "Dropped!" );*/
-            $.get(baseUrl + '/notes/updatesnap',{
-                x		: ui.position.left,
-                y		: 1,
-                z		: zIndex,
-                w		: 50,
-                h		: 50,
-                classement      : "mini",
-                id	: parseInt(ui.helper.find('span.data').html())
-            });
-         
-    
+      
+            var dataAjax = {
+                /*id: parseInt( ui.helper.attr('id')),*/
+                id: parseInt( ui.helper.attr('id')),
+                x: ui.position.left,
+                y: 20,
+                z: zIndex,
+                classement : "1"
+            };
+            console.log("drop cart id=" + dataAjax['id']);
+            ui.helper.css("top","10px");
+            $.ajax({
+                url: "/notes/updatepos",
+                type: "POST",
+                data : dataAjax,
+                dataType: "json",
+                success: function(reponse){
+                    // supprimer text,edit, laisser barre
+                    $('#cart').append('<p>Post-it ' + dataAjax['id'] + ' ajouté aux favoris</p>');
+                }
+            }); //Eof:: ajax
+        
         }
     
     });
     
-   
-    $( "#snaptarget" ).droppable({
+    $( "#trash" ).droppable({
         accept: ".note",
-        tolerance: "touch",  
+        tolerance: "touch",
         activeClass: "ui-state-highlight",
       
         drop: function( event, ui ) {
+            console.log("drop trash");
             ui.helper.css("width","50px");
             ui.helper.css("height","50px");
-
+            var dataAjax = {
+                /*id: parseInt( ui.helper.attr('id')),*/
+                  id: parseInt( ui.helper.attr('id')),
+                  classement:"mini"
+            };
             ui.helper.css("top","0px");
-            /* ui.helper.css("font-size","6px");*/
-            /* $( this )
-            .addClass( "ui-state-highlight" )
-            .html( "Dropped!" );*/
-            $.get(baseUrl + '/notes/updatesnap',{
-                x		: ui.position.left,
-                y		: 1,
-                z		: zIndex,
-                w		: 50,
-                h		: 50,
-                classement      : "mini",
-                id	: parseInt(ui.helper.find('span.data').html())
+            $.ajax({
+                url: "/notes/ajaxdelete",
+                type: "POST",
+                data : dataAjax,
+                dataType: "json",
+                success: function(reponse){
+                   /* $('#cart').html(html);
+$("#cart .note").draggable();*/
+                    $("div#trash").removeClass('emptytrash').addClass('noemptytrash');
+                    
+                    $('#cart').append('<p>Post-it ' + dataAjax['id'] + ' supprimé</p>');
+                    deleteImage( ui.draggable );
+                // $("#trash").css("background",'url("/uzf04new/images/full.png")');
+                }
             });
-         
-    
         }
     
     });
-    /*  $("#snaptarget").each(function(){
-       
-        $("snaptarget > div").children().css({"font-size": "8px","color": "orange"}); 
-    });*/
-    /*  $("#snaptarget > .note").children().css({"font-size": "8px","color": "orange"});*/   
-    /* $("#sticky-notes").children().css({"font-size": "8px","color": "orange"});   */
-    $( "#center" ).droppable({
-        accept: ".note",
-        tolerance: "pointer",  
-        activeClass: "ui-state-highlight",
-      
-        drop: function( event, ui ) {
-            /*   $(this + ".note").css("width","250px");
-                $(this + ".note").css("height","250px");*/
-            /*  if(outside == 1){
-            alert('Dropped outside!');
-             }*/
-        
-        
-            /* var wi=ui.size.width;
-        var he=ui.size.height;*/
-            /*if (wi < 100){
-            ui.helper.css("width","250px");
-            ui.helper.css("height","250px");
-        }*/
-            /* ui.helper.css("top","0px");*/
-            /*  ui.helper.css("font-size","6px");*/
-            /* $( this )
-            .addClass( "ui-state-highlight" )
-            .html( "Dropped!" );*/
-            $.get(baseUrl + '/notes/updatesnap',{
-                /*       w		: ui.size.width,
-                    h		: ui.size.height,*/
-                x		: ui.position.left,
-                y		: ui.position.top,
-                z		: zIndex,
-                classement : "main",
-           
-                id	: parseInt(ui.helper.find('span.data').html())
-            });
-        }
-    });
+     
     
     
     function deleteImage( $item ) {

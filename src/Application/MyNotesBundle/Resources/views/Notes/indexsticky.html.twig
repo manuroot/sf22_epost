@@ -22,7 +22,7 @@
           background: linear-gradient(#F9EFAF, #F7E98D);
           background: -webkit-linear-gradient(#F9EFAF, #F7E98D);
           box-shadow:0 4px 6px rgba(0,0,0,0.1);*/
-        overflow:hidden;
+        overflow: hidden;
         /*transition:box-shadow 0.5s ease;
         transition:-webkit-box-shadow 0.5s ease;*/
         font-smoothing:subpixel-antialiased;
@@ -195,12 +195,12 @@
    <div class="delnote"><a  class="deltsticky ui-icon ui-icon-trash" id="stickynote-{{ entity.id }}" href="#"></a></div>
    </div>
     
-   {#<textarea class="area-note" id="stickynote-{{ entity.id }}">{{entity.text|raw}}</textarea>#}
+   <textarea class="area-note" id="stickynote-{{ entity.id }}">{{entity.text|raw}}</textarea>
    
-   <table class="table">
+  {# <table class="table">
        <tr><td>{{ entity.text|raw }}</td></tr>
    </table>
-   
+   #}
    
    
    

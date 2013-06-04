@@ -1,28 +1,29 @@
-{% extends "ApplicationMyNotesBundle::layout.html.twig" %}
+{% extends app.request.isXmlHttpRequest ? 'ApplicationMyNotesBundle::layoutajax.html.twig' : 'ApplicationMyNotesBundle::layout.html.twig' %}
 
-{% block title %}Symfony 2.1- Demos {% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ tinymce_init() }}
+{% endblock %}
+
+
+{% block title %}Sticky Notes: Edition{% endblock %}
 
 {% block content_header '' %}
 
 {% block content %}
+{% if app.request.isXmlHttpRequest == '' %}
 
-<h1>Notes list</h1>
-
-<h1>Notes creation</h1>
-
-<form action="{{ path('notes_create') }}" method="post" {{ form_enctype(form) }}>
+{% endif %}
+<br>
+<form class="form-horizontal" action="{{ path('notes_create')}}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
-        <button type="submit">Create</button>
+        <button type="submit" class="modifier btn btn-warning">Ajouter</button>
+ 
+        <a href="{{ path('notes') }}" class="btn btn-small btn-success">Retour</a>
+
     </p>
 </form>
-
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('notes') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 
 {% endblock %}

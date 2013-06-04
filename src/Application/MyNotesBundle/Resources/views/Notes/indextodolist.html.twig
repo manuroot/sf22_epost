@@ -1,11 +1,25 @@
-  <!DOCTYPE html>
-  <html>
-      <head>
-        <title>{% block title %}Sticky Notes{% endblock %}</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <link rel="stylesheet" href="{{ asset('css/jquery-ui-1.9.2.custom.css') }}" type="text/css" media="all"/>
+{% extends "ApplicationMyNotesBundle::layouttodo.html.twig" %}
+
+  {% block stylesheets %}
+   {{parent()}}
+     <link rel="stylesheet" href="{{ asset('bundles/applicationepost/css/sliding.css') }}" type="text/css" media="all"/>
+   <link rel="stylesheet" href="{{ asset('css/jquery-ui-1.9.2.custom.css') }}" type="text/css" media="all"/>
       <link rel="stylesheet" href="{{ asset('bundles/applicationmynotes/css/todo.css') }}" type="text/css" media="all"/>
-</head>
+
+ {% endblock %}
+
+{% block title %}{{ parent() }} Liste- {% endblock %}
+
+{% block content_header '' %}
+
+{% block content %}
+
+ <a href="{{ path('notes_new') }}" class="btn btn-warning">Ajouter Note</a>
+<br><br>
+
+
+    
+<div id="main">
        
           <body>
 		
@@ -26,7 +40,10 @@
 			
 		</div>
 <div class="done"></div>
-	</body>
+</div>
+{% endblock %}
+
+	
 
          
     {% block javascripts %}
@@ -36,6 +53,4 @@
  <script type="text/javascript" src="{{ asset('bundles/applicationmynotes/js/script.js') }}"></script>
     
 {% endblock %}
-    </body>
-
-</html>
+ 

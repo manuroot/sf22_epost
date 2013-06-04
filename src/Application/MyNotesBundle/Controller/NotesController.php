@@ -9,12 +9,13 @@ use Application\MyNotesBundle\Form\NotesType;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Exception\NotValidCurrentPageException;
+/*
 use APY\DataGridBundle\Grid\Source\Entity;
 use APY\DataGridBundle\Grid\Grid;
 use APY\DataGridBundle\Grid\Column\ActionsColumn;
 use APY\DataGridBundle\Grid\Action\MassAction;
 use APY\DataGridBundle\Grid\Action\DeleteMassAction;
-use APY\DataGridBundle\Grid\Action\RowAction;
+use APY\DataGridBundle\Grid\Action\RowAction;*/
 use Symfony\Component\HttpFoundation\Response;
 
 /**

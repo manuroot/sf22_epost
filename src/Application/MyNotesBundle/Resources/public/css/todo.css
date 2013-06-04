@@ -31,6 +31,7 @@ a{
         float: left;
     	background:url("/images/notebook.gif") repeat;
 	font-style:normal;
+        margin-left:20px;
 	padding:60px 0 0 40px;
 	width:400px;
 	height:448px;

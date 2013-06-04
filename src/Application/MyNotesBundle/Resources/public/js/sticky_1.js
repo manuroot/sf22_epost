@@ -191,7 +191,6 @@ console.log("text final zindex current=" + zIndex);
     $("#dialog-message").hide();
     $("#confirmation_dialog").hide();
 
-    //$( init );
     console.log("recharge tout v1");
     reload_textarea();
     reload_sticky();
@@ -222,10 +221,10 @@ console.log("text final zindex current=" + zIndex);
         'transitionOut'	: 'elastic',
         'padding' : 0,
  
-        /* 'easingIn' : 'easeOutBack',
+          /* 'easingIn' : 'easeOutBack',
 'easingOut' : 'easeInBack',*/
-        openEffect : 'fade',
-        closeEffect : 'fade',
+            openEffect : 'fade',
+            closeEffect : 'fade',
         'hideOnContentClick': false,
         'type':'iframe'
     });
@@ -358,7 +357,7 @@ reload_sticky();
 
 
     $('#modifier').live('click',function(e){
-        e.preventDefault();
+         e.preventDefault();
         var status=test_elements();	
         if (status==false){
             return false;
@@ -384,7 +383,7 @@ console.log("body=" + data['body']);*/
         // console.log ("color_class="+color);
         });
 
-    // e.preventDefault();
+      // e.preventDefault();
     // return;
     });
     zIndex = 0;
@@ -539,33 +538,33 @@ var height = $(elements).css('height');*/
        
                 buttons: {
                     "Oui": function() {
-                        // $( this ).dialog( "close" );
+                       // $( this ).dialog( "close" );
                         if (id != '') {
                             /* baseUrl*/
                             /* $.post('/uzf04new/notes/delete',*/
                             
-                            var dataAjax = {
-                                /*id: parseInt( ui.helper.attr('id')),*/
-                                id: id,
-                                classement:"mini"
-                            };
-                            $.ajax({
-                                url: "/notes/ajaxdelete",
-                                type: "POST",
-                                data : dataAjax,
-                                dataType: "json",
-                                success: function(reponse){
-                                    console.log ("reponse="+reponse) ;
+                    var dataAjax = {
+                /*id: parseInt( ui.helper.attr('id')),*/
+                  id: id,
+                  classement:"mini"
+            };
+               $.ajax({
+                url: "/notes/ajaxdelete",
+                type: "POST",
+                data : dataAjax,
+                dataType: "json",
+                success: function(reponse){
+                     console.log ("reponse="+reponse) ;
                    
-                                    $("div#trash").removeClass('emptytrash').addClass('noemptytrash');
-                                    /*  $("#cart").append('<p>Post-it ' + dataAjax['id'] + ' supprimé</p>');*/
-                                    $(parent).remove();
-                                // deleteImage( );
-                                // $("#trash").css("background",'url("/uzf04new/images/full.png")');
-                                }
-                            });
+                    $("div#trash").removeClass('emptytrash').addClass('noemptytrash');
+                     $("#cart").append('<p>Post-it ' + dataAjax['id'] + ' supprimé</p>');
+                       $(parent).remove();
+                    // deleteImage( );
+                // $("#trash").css("background",'url("/uzf04new/images/full.png")');
+                }
+            });
                                 
-                            /* $.post(baseUrl + '/notes/delete',
+                          /* $.post(baseUrl + '/notes/delete',
 {
 'id' : id
 },
@@ -681,118 +680,62 @@ drop: function( event, ui ) {
 recycleImage( ui.draggable );
 }
 });*/
-    $("#sticky-notes").droppable({
-        accept: "#trash,#cart div",
+     $("#sticky-notes").droppable({
+        accept: "#trash,#cart",
         activeClass: "custom-state-active",
         drop: function( event, ui ) {
-            console.log("passage dans partie centrale");
+              console.log("passage dans partie centrale");
             recycleImage( ui.draggable );
         }
     });
-    
-    /*=================================================================
-     *
-     =================================================================*/
     $( "#cart" ).droppable({
         accept: ".note",
         tolerance: "touch",
         activeClass: "ui-state-highlight",
         over: function(event, ui){
-            // On ajoute la classe "hover" au div .trash
-            $(this).addClass("hover");
-                
-            // On cache l'élément déplacé
-            //ui.draggable.hide();
-            // On indique via un petit message si l'on veut bien supprimer cet élément
-            $('#update').append('Preparation: ajouter aux favoris...');
-     
-            //	$("#update").text("Ajouter aux Favoris "+ui.draggable.find(".item").text());
-            // On change le curseur
-            $(this).css("cursor", "pointer");
-        },
-        // Lorsque l'on quitte la poubelle
-        out: function(event, ui){
-            // On retire la classe "hover" au div .trash
-            $(this).removeClass("hover");
-            $('#update').append('Annulé: ajouter aux favoris...');
-            // On réaffiche l'élément déplacé
-            //ui.draggable.show();
-            // On remet le texte par défaut
-            // $(this).text("Favoris");
-            // Ainsi que le curseur par défaut
-            $(this).css("cursor", "move");
-        },
+	// On ajoute la classe "hover" au div .trash
+		$(this).addClass("hover");
+		// On cache l'élément déplacé
+		ui.draggable.hide();
+		// On indique via un petit message si l'on veut bien supprimer cet élément
+		$(this).text("Remove "+ui.draggable.find(".item").text());
+		// On change le curseur
+		$(this).css("cursor", "pointer");
+				},
+				// Lorsque l'on quitte la poubelle
+				out: function(event, ui){
+					// On retire la classe "hover" au div .trash
+					$(this).removeClass("hover");
+					// On réaffiche l'élément déplacé
+					ui.draggable.show();
+					// On remet le texte par défaut
+					$(this).text("Trash");
+					// Ainsi que le curseur par défaut
+					$(this).css("cursor", "normal");
+				},
                                 
         drop: function( event, ui ) {
-            ui.helper.css("width","100px");
-            ui.helper.css("height","60px");
-     
+            ui.helper.css("width","50px");
+            ui.helper.css("height","50px");
+      
             var dataAjax = {
+                /*id: parseInt( ui.helper.attr('id')),*/
                 id: parseInt( ui.helper.attr('id')),
                 x: ui.position.left,
-                y: 10,
+                y: 20,
                 z: zIndex,
                 classement : "1"
             };
             console.log("drop cart id=" + dataAjax['id']);
-            ui.helper.css("top","1px");
+            ui.helper.css("top","10px");
             $.ajax({
                 url: "/notes/updatepos",
                 type: "POST",
                 data : dataAjax,
                 dataType: "json",
                 success: function(reponse){
-                    var myclone = $(ui.draggable).clone();
-                    var mybartitre = $(ui.draggable).children(".bar_titre").clone();
                     // supprimer text,edit, laisser barre
-                    $('#update').append('<p>Post-it ' + dataAjax['id'] + ' ajouté aux favoris</p>');
-               
-                    // $('#cart').append('<div #cardSlots>' + dataAjax['id'] + ' </div>');
-                    /*  $(ui.draggable).children(".categories").remove();
-     $(ui.draggable).children(".delnote").remove();
-     $(ui.draggable).children(".area-note").remove();*/
-                    
-                    // on clone et on supprime
-                    mybartitre.children(".delnote").remove();
-                    $(myclone).children(".delnote").remove();
-                    $(myclone).children(".area-note").remove();
-                    $(myclone).children(".author").remove();
-                    $(myclone).children(".editnote").remove();
-                    $(ui.draggable).remove();
-                    //  $(this).remove();
-                    //  $(myclone).empty();
-      
-                    $('#cart').append(myclone);
-     
-     
-                /*
-     <div class="note zoomTarget {{ entity.color }}" id="{{ entity.id }}"
-        style="padding-top:0px; width:{{mysize[0]}}px;height:{{mysize[1]}}px;left:{{mypos[0]}}px;top:{{mypos[1]}}px;">
-   <div class="bar_titre" style="width:100%;">
-   <div class="categories">{{ entity.categories.nom }}</div>
-   <div class="delnote"><a class="deltsticky ui-icon ui-icon-trash" id="stickynote-{{ entity.id }}" href="#"></a></div>
-   </div>
-    
-   <textarea class="area-note" id="stickynote-{{ entity.id }}">{{entity.text|raw}}</textarea>
-   
-  {# <table class="table">
-<tr><td>{{ entity.text|raw }}</td></tr>
-</table>
-#}
-   
-   
-   
-    <div class="author">{{ entity.proprietaire }}</div>
-   
-     <a class="editnote ui-icon ui-icon-pencil " href="{{ path('notes_edit', { 'id': entity.id }) }}">
-             <i class="icon-arrow-down"></i></a>
-   </div>
-    
-    
-    **/
- 
-    
-  
+                    $('#cart').append('<p>Post-it ' + dataAjax['id'] + ' ajouté aux favoris</p>');
                 }
             }); //Eof:: ajax
         
@@ -804,24 +747,15 @@ recycleImage( ui.draggable );
         accept: ".note",
         tolerance: "touch",
         activeClass: "ui-state-highlight",
-        over: function(event, ui){
-            /*$(this).addClass("hover");*/
-            $('#update').append('Preparation: suppression...');
-            // On change le curseur
-            $(this).css("cursor", "pointer");
-        },
-        out: function(event, ui){
-            $('#update').append('Annulé: suppression...');
-            $(this).css("cursor", "normal");
-        },
+      
         drop: function( event, ui ) {
             console.log("drop trash");
             ui.helper.css("width","50px");
             ui.helper.css("height","50px");
             var dataAjax = {
                 /*id: parseInt( ui.helper.attr('id')),*/
-                id: parseInt( ui.helper.attr('id')),
-                classement:"mini"
+                  id: parseInt( ui.helper.attr('id')),
+                  classement:"mini"
             };
             ui.helper.css("top","0px");
             $.ajax({
@@ -830,7 +764,7 @@ recycleImage( ui.draggable );
                 data : dataAjax,
                 dataType: "json",
                 success: function(reponse){
-                    /* $('#cart').html(html);
+                   /* $('#cart').html(html);
 $("#cart .note").draggable();*/
                     $("div#trash").removeClass('emptytrash').addClass('noemptytrash');
                     
@@ -863,67 +797,4 @@ $("#cart .note").draggable();*/
             });
         });
     }
-    
-    
-    
-   
-/*
-function init() {
-
- 
-  // Reset the game
-  correctCards = 0;
- //vider les slots
-  $('#cardSlots').html( '' );
- 
-  // Create the pile of shuffled cards
-  var numbers = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
-  numbers.sort( function() { return Math.random() - .5 } );
- 
- 
-  // Create the card slots
-  var words = [ 'Slot' ];
-  for ( var i=1; i<=12; i++ ) {
-    $('<div>' + words[0] + '</div>').data( 'number', i ).appendTo( '#cardSlots' ).droppable( {
-        accept: ".note",
-      hoverClass: 'hovered',
-      drop: handleCardDrop
-    } );
-  }
- 
-}*/
-/*
-function handleCardDrop( event, ui ) {
-  var slotNumber = $(this).data( 'number' );
-  var cardNumber = ui.draggable.data( 'number' );
- 
-  // If the card was dropped to the correct slot,
-  // change the card colour, position it directly
-  // on top of the slot, and prevent it being dragged
-  // again
- 
-  if ( slotNumber == cardNumber ) {
-    ui.draggable.addClass( 'correct' );
-    ui.draggable.draggable( 'disable' );
-    $(this).droppable( 'disable' );
-    ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-    ui.draggable.draggable( 'option', 'revert', false );
-    correctCards++;
-  }
-   
-  // If all the cards have been placed correctly then display a message
-  // and reset the cards for another go
- 
-  if ( correctCards == 10 ) {
-    $('#successMessage').show();
-    $('#successMessage').animate( {
-      left: '380px',
-      top: '200px',
-      width: '400px',
-      height: '100px',
-      opacity: 1
-    } );
-  }
- 
-}*/
 });

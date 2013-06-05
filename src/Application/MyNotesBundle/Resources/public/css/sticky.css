@@ -187,8 +187,8 @@ transition:-webkit-box-shadow 0.5s ease;*/
         margin-right:40px;
     }
     
-    div.emptytrash {background: url("/images/emptysmall.gif") no-repeat;}
-    div.noemptytrash {background: url("/images/fullsmall.gif") no-repeat;}
+    div.emptytrash {background: url("../images/emptysmall.gif") no-repeat;}
+    div.noemptytrash {background: url("../images/fullsmall.gif") no-repeat;}
    
      div.emptytrash:hover,div.noemptytrash:over
     {

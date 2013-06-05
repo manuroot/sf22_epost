@@ -17,11 +17,6 @@ use APY\DataGridBundle\Grid\Action\MassAction;
 use APY\DataGridBundle\Grid\Action\DeleteMassAction;
 use APY\DataGridBundle\Grid\Action\RowAction;*/
 use Symfony\Component\HttpFoundation\Response;
-
-
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Application\MyNotesBundle\Entity\Todolist;
 use Application\MyNotesBundle\Form\TodolistType;
 

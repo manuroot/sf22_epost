@@ -100,7 +100,28 @@ p {margin-bottom: 1em;}
 	text-align: center;
 }
 
-
+.ui-sortable-placeholder {  
+        border: 3px dashed #aaa;  
+       /* height: 60px; */
+        margin-bottom: 5px;
+	padding: 20px 0;
+	
+        /*width: 100%;  */
+        background: #ccc;  
+    }  
+    .ui-sortable li.ui-state-default:after {  
+        content: "\f0c9";  
+        display: inline-block;  
+        font-family: "FontAwesome";  
+        position: absolute;  
+        right: 18px;  
+        top: 9px;  
+        text-align: center;  
+        line-height: 35px;  
+        color: rgba(255,255,255,.2);  
+        text-shadow: 0px 0px 0px rgba(0,0,0,0);  
+        cursor: move;  
+    }  
 /* Disabled list */
 
 #example-2-4 .sortable-list {background-color: #CCC;}

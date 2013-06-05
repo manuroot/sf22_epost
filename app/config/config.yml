@@ -29,7 +29,19 @@ framework:
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_proxies: ~
-    session:         ~
+    #session:         ~
+    session:
+        name: TheSession
+        cookie_lifetime: 0 # expire on browser close
+        #lifetime:       60
+        #auto_start:     true
+        gc_probability: 1000
+        gc_divisor: 1
+        gc_maxlifetime: 3600 # expire after 1 hours of inactivity
+        #gc_maxlifetime: 7200 # expire after 2 hours of inactivity
+        #handler_id: session.handler.pdo
+
+
     fragments:       ~
 
    

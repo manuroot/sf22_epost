@@ -13,6 +13,10 @@ notesisotpe:
 notestodolist:
     pattern: /todo
     defaults: { _controller: "ApplicationMyNotesBundle:Notes:indextodo" }
+ 
+notestodolista:
+    pattern: /todoa
+    defaults: { _controller: "ApplicationMyNotesBundle:Notes:indextodoa" }
     
 notesupdatepos:
     pattern: /updatepos

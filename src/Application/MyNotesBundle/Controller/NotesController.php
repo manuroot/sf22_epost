@@ -67,6 +67,20 @@ class NotesController extends Controller {
                     'pagination' => $pagination,
                 ));
     }
+    
+      public function indextodoaAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+    $entities = $em->getRepository('ApplicationMyNotesBundle:Notes')->myFindaAll();
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+                $entities, $this->get('request')->query->get('page', 1)/* page number */, 10/* limit per page */
+        );
+        $pagination->setTemplate('ApplicationMyNotesBundle:pagination:sliding.html.twig');
+        return $this->render('ApplicationMyNotesBundle:Notes:indextodolista.html.twig', array(
+                    'pagination' => $pagination,
+                ));
+    }
     public function indexstickyAction() {
         
          $em = $this->getDoctrine()->getManager();

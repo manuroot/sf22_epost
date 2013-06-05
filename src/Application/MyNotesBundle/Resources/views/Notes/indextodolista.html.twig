@@ -1,0 +1,244 @@
+{% extends "ApplicationMyNotesBundle::layouttodo.html.twig" %}
+
+  {% block stylesheets %}
+   {{parent()}}
+     <link rel="stylesheet" href="{{ asset('bundles/applicationmynotes/css/style.css') }}" type="text/css" media="all"/>
+<link rel="stylesheet" href="{{ asset('bundles/applicationmynotes/css/devheart-examples.css') }}" type="text/css" media="all"/>
+{#
+http://devheart.org/examples/jquery-customizable-layout-using-drag-and-drop/2-saving-and-loading-items/index.html
+#}
+<style>
+             h2 {
+  /*  margin-left: 7px;*/
+    /*    margin-left-value: 0px;*/
+      /*  margin-left-ltr-source: physical;
+        margin-left-rtl-source: physical;*/
+      padding:2px;
+      margin:2px;
+       background-color: #d1d1d1;
+         border: 1px solid #000000;
+}
+
+/*
+ li {
+     background-color: #d1d1d1;
+         border: 1px solid #000000;
+
+  *display: inline;
+  margin-bottom: 0;
+  margin-left: 0;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  *zoom: 1;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+*/
+
+/*
+ h2 {
+    color: rgb(0, 0, 0);
+    overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    width: 100%;
+    height: 20px;
+    line-height: 25px;
+    background-color: #F93;
+ 
+    margin: 0;
+    min-height: 30px;
+    padding: 5px;
+}*/
+</style>
+ {% endblock %}
+
+{% block title %}{{ parent() }} Liste- {% endblock %}
+
+{% block content_header '' %}
+
+{% block content %}
+
+ <a href="{{ path('notes_new') }}" class="btn btn-warning">Ajouter Note</a>
+<br><br>
+
+
+    
+<div id="main">
+     <div class="dhe-example-section" id="ex-2-1">
+		<div class="dhe-example-section-header">
+			<h3 class="dhe-h3 dhe-example-title">NOTES</h3>
+			<div class="dhe-example-description">Get a string representing the items (re-order the items to see that it changes).</div>
+		</div>
+		<div class="dhe-example-section-content">
+
+			<!-- BEGIN: XHTML for example 2.1 -->
+
+			<div id="example-2-1">
+
+<p><input class="input-button" id="btn-get" value="Get items" type="submit"></p>
+<p><input class="input-button" id="btn-get" value="Save items" type="submit"></p>
+
+				<div class="column left first">
+                                  
+  <h2>col1</h2>	
+			<ul class="sortable-list ui-sortable">
+				
+                                                   {% for entity in pagination %}
+                      {#{{ entity.text|raw }}#}
+                      {% set mypos = entity.xyz|split('x') %}
+                     {% set mysize = entity.wh|split('x') %}
+<!--<tr {% if loop.index is odd %}class="color"{% endif %}>-->
+             {#% debug entities.categories%#}
+                          <li style="" class="sortable-item" id="{{entity.id}}">{{entity.text|raw}}</li>
+   
+    
+    {% endfor %}     
+                          </ul>
+						
+					
+
+				</div>
+
+				<div class="column left">
+                                    <h2>col2</h2>
+
+					<ul class="sortable-list ui-sortable">
+						<li class="sortable-item" id="C">Sortable item C</li><li style="" class="sortable-item" id="A">Sortable item A</li><li style="" class="sortable-item" id="B">Sortable item B</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="column left">
+                                    <h2>col3</h2>
+
+					<ul class="sortable-list ui-sortable">
+						<li style="" class="sortable-item" id="D">Sortable item D</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+			<div class="clearer">&nbsp;</div>
+
+			<!-- END: XHTML for example 2.1 -->
+
+		</div>
+	</div>
+        
+
+{% endblock %}
+
+	
+
+         
+    {% block javascripts %}
+    <script src="{{ asset('jquery/jquery-1.8.3.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('jquery/jquery-ui-1.9.2.custom.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/applicationmynotes/js/jquery_cookies.js') }}"></script>
+    
+<!-- Example jQuery code (JavaScript)  -->
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	// Get items
+	function getItems(exampleNr)
+	{
+		var columns = [];
+
+		$(exampleNr + ' ul.sortable-list').each(function(){
+			columns.push($(this).sortable('toArray').join(','));				
+		});
+
+		return columns.join('|');
+	}
+
+	// Load items from cookie
+	function loadItemsFromCookie(name)
+	{
+		if ( $.cookie(name) != null )
+		{
+			renderItems($.cookie(name));
+		}
+		else 
+		{
+			alert('No items saved in "' + name + '".');
+		}	
+	}
+
+	// Render items
+	function renderItems(items)
+	{
+		var html = '';
+                //y()=("1,2,4"|)
+		var columns = items.split('|');
+		for ( var c in columns )
+		{
+			html += '<div class="column left';
+            		if ( c == 0 )
+			{
+				html += ' first';
+			}
+        		html += '"><ul class="sortable-list">';
+        		if ( columns[c] != '' )
+			{
+				var items = columns[c].split(',');
+                		for ( var i in items )
+				{
+					html += '<li class="sortable-item" id="' + items[i] + '">Sortable item ' + items[i] + '</li>';
+				}
+			}
+
+			html += '</ul></div>';
+		}
+		$('#example-2-4-renderarea').html(html);
+	}
+
+	// Example 2.1: Get items
+	/*$('#example-2-1 .sortable-list').sortable({
+		connectWith: '#example-2-1 .sortable-list'
+	});*/
+
+	$('#btn-get').click(function(){
+		alert(getItems('#example-2-1'));
+	});
+        // Example 2.2: Save items
+	$('#btn-save').click(function(){
+		$.cookie('cookie-a', getItems('#example-2-1'));
+
+		alert('Items saved (' + $.cookie('cookie-a') + ')');
+	});
+
+	// Example 2.3: Save items automaticly
+	$('#example-2-1 .sortable-list').sortable({
+		connectWith: '#example-2-1 .sortable-list',
+		update: function(){
+			$.cookie('cookie-a', getItems('#example-2-1'));
+		}
+	});
+
+
+	// Example 2.4: Load items
+	$('#btn-load-example').click(function(){
+		renderItems(getItems('#example-2-1'));
+	});
+
+	$('#btn-load-cookie-a').click(function(){
+		loadItemsFromCookie('cookie-a');	
+	});
+
+	$('#btn-load-cookie-b').click(function(){
+		loadItemsFromCookie('cookie-b');	
+	});
+
+});
+
+</script>
+  
+{% endblock %}
+ 

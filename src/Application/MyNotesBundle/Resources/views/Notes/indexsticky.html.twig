@@ -51,18 +51,8 @@
    <div class="categories">{{ entity.categories.nom }}</div>
    <div class="delnote"><a class="deltsticky ui-icon ui-icon-trash" id="stickynote-{{ entity.id }}" href="#"></a></div>
    </div>
-    
    <textarea class="area-note" id="stickynote-{{ entity.id }}">{{entity.text|raw}}</textarea>
-   
-  {# <table class="table">
-<tr><td>{{ entity.text|raw }}</td></tr>
-</table>
-#}
-   
-   
-   
     <div class="author">{{ entity.proprietaire }}</div>
-   
      <a class="editnote ui-icon ui-icon-pencil " href="{{ path('notes_edit', { 'id': entity.id }) }}">
              <i class="icon-arrow-down"></i></a>
    </div>
@@ -90,9 +80,6 @@
 
 
 <div id="dialogbox" style="display:none">Confirmer la suppression ?</div>
-<!--
-<span style="cursor:pointer" class="btn orange delete dialog-confirm" id="1">Remove Bookmark</span>
--->
 
 <div id="dialog-message" style="display:none" title="Message">
     <p> <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span> Post-it supprimé. </p>

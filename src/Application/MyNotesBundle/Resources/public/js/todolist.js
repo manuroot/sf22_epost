@@ -65,7 +65,20 @@ $(document).ready(function(){
         // Example 2.2: Save items
 	$('#btn-save').click(function(){
 		$.cookie('cookie-a', getItems('#example-2-1'));
-
+/*
+ <h3 class="color-yellow">STANDARD</h3>
+    <ul class="sortable-list ui-sortable">
+        <li style="" class="sortable-item widget color-yellow" id="D">
+  
+    */
+   
+   /*
+$("h3").find("li").each(function(){
+			//console.log("this"+ $(this).)			// On actualise sa position
+						index = parseInt($(this).index()+1);
+						// On la met à jour dans la page
+						$(this).find(".count").text(index);
+					});*/
 		alert('Items saved (' + $.cookie('cookie-a') + ')');
 	});
         
@@ -139,7 +152,7 @@ $(document).ready(function(){
 						index = parseInt($(this).index()+1);
 						// On la met à jour dans la page
 						$(this).find(".count").text(index);
-                                                  $(this).prepend('<span class="count">'+parseInt($(elt).index()+1)+'</span>');
+                                               //   $(this).prepend('<span class="count">'+parseInt($(elt).index()+1)+'</span>');
 					});
                                       
 				},
@@ -162,8 +175,41 @@ $(document).ready(function(){
 	$('#btn-load-cookie-b').click(function(){
 		loadItemsFromCookie('cookie-b');	
 	});
+        
+        $("span.check").click(function(){
+            if ($(this).hasClass("unchecked")){
+                
+                $(this).removeClass("unchecked").addClass("checked");
+               
+            }else{
+                 $(this).removeClass("checked").addClass("unchecked");
+            }
+             $(this).parent().toggleClass("bought");
+				// On alterne la classe de l'item (le <li>), le CSS associé fera que l'élément sera barré
+			/*	$(this).parent().toggleClass("bought");*/
+				
+				// Si cet élément est acheté
+				//if($(this).parent().hasClass("bought"))
+					// On modifie la classe en ajoutant la classe "checked"
+				//	$(this).removeClass("unchecked").addClass("checked");
+				// Le cas contraire
+				/*else
+					// On modifie la classe en retirant la classe "checked"
+					$(this).removeClass("checked").addClass("unchecked");*/
+			});
 
 $(".trash").droppable({
+    
+  /*  stop: function(event, ui){
+					// Pour chaque item de liste
+					$(obj).find("li").each(function(){
+						// On actualise sa position
+						index = parseInt($(this).index()+1);
+						// On la met à jour dans la page
+						$(this).find(".count").text(index);
+					});
+				},*/
+			
 				// Lorsque l'on relache un élément sur la poubelle
 				drop: function(event, ui){
 					// On retire la classe "hover" associée au div .trash
@@ -171,13 +217,32 @@ $(".trash").droppable({
 					// On ajoute la classe "deleted" au div .trash pour signifier que l'élément a bien été supprimé
 					$(this).addClass("deleted");
 					// On affiche un petit message "Cet élément a été supprimé" en récupérant la valeur textuelle de l'élément relaché
-					$(this).text(ui.draggable.find(".item").text()+" removed !");
+				
+                                      //  $(this).text(ui.draggable.find(".item").text()+" supprimé !");
+				
 					// On supprimer l'élément de la page, le setTimeout est un fix pour IE (http://dev.jqueryui.com/ticket/4088)
 					setTimeout(function() { ui.draggable.remove(); }, 1);
+                                     //   setTimeout(function() {   $(this).text("g"); }, 3000);
+                                      
+					 $(".trash").removeClass('emptytrash').addClass('noemptytrash');
+                   //   setTimeout(function() {   $(this).text("g"); }, 3000);
+                                   $(this).text("Corbeille");
+                 
+                                        //setTimeout(function() { ui.draggable.remove(); }, 1);
 					
 					// On retourne à l'état originel de la poubelle après 2000 ms soit 2 secondes
-					elt = $(this);
-					setTimeout(function(){ elt.removeClass("deleted"); elt.text("Trash"); }, 2000);
+					/*var elt = $(this);
+					setTimeout(function(){ elt.removeClass("deleted"); */
+                                        /*setTimeout(function(){ 
+                                             $(this).text(ui.draggable.find(".item").text()+" Corbeille");
+                                             }, 2000);*/
+                                            
+                                          //  elt.text("Trash"); }, 4000);*/
+			
+                        
+					// On retourne à l'état originel de la poubelle après 2000 ms soit 2 secondes
+					//elt = $(this);
+					//setTimeout(function(){ elt.removeClass("deleted"); elt.text("Trash"); }, 2000);
 				},
 				// Lorsque l'on passe un élément au dessus de la poubelle
 				over: function(event, ui){
@@ -195,10 +260,11 @@ $(".trash").droppable({
 				out: function(event, ui){
 					// On retire la classe "hover" au div .trash
 					$(this).removeClass("hover");
+                                         ui.draggable.removeClass("hover");
 					// On réaffiche l'élément déplacé
-					ui.draggable.show();
+				//	ui.draggable.show();
 					// On remet le texte par défaut
-					$(this).text("Trash");
+					$(this).text("");
 					// Ainsi que le curseur par défaut
 					$(this).css("cursor", "normal");
 				}

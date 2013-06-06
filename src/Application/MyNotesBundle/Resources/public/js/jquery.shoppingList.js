@@ -37,7 +37,7 @@
 				}
 			});
 			
-			// On ajoute l'élément Poubelle à notre liste
+			// On ajoute l'élément Poubelle à notre liste*
 			$(obj).after("<div class='trash'>Trash</div>");
 			// On ajoute un petit formulaire pour ajouter des items
 			$(obj).after("<div class='add'><input class='addValue' /> <input type='button' value='Add' class='addBtn' /></div>");

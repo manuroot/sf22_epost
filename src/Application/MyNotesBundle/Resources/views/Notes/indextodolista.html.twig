@@ -9,11 +9,16 @@
 http://devheart.org/examples/jquery-customizable-layout-using-drag-and-drop/2-saving-and-loading-items/index.html
 #}
 <style>
-h2 {
+h3 {
     margin:2px;
     background-color: #d1d1d1;
     border: 1px solid #000000;
     text-align: center;
+    font-size: 12px;
+     border: 1px solid #999;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    opacity: 1;
 }
 /* JS-Enabled CSS */
 
@@ -93,7 +98,7 @@ h2 {
 
 body {font-size:0.8em; font-family:Arial,Verdana,Sans-Serif;background-image:url(/images/ravenna.png);
 }
-#content {padding-left:10px;padding-right:10px;}
+#content {padding-left:20px;padding-right:20px;}
 a {color:white;}
 
 /* Colors */
@@ -147,6 +152,21 @@ a {color:white;}
     padding: 0 5px;
     float: left;
 }
+
+ .trash {
+    position: absolute;
+    bottom: 70px;
+    height: 60px;
+    width: 330px;
+    opacity: 0.6;
+    line-height: 60px;
+    font-style: italic;
+    text-shadow: 0px 1px 0px rgb(204, 204, 204);
+    font-size: 1.5em;
+    background: url("/images/trash.png") no-repeat scroll 2.5em center rgb(238, 238, 238);
+    padding-left: 100px;
+}
+
 /* Column dividers (background-images) : */
 	/*#columns #column1 { background: url(img/column-bg-left.png) no-repeat right top; }
 	#columns #column3 { background: url(img/column-bg-right.png) no-repeat left top; }*/
@@ -250,6 +270,11 @@ li .checked{
 li .unchecked{
 	background:url("/images/tick_circle.png") center center no-repeat;
 }
+
+li .count{
+	float:right;
+	padding-right:20px;
+}
 </style>
  {% endblock %}
 
@@ -276,12 +301,12 @@ li .unchecked{
 <input class="input-button btn btn-warning" id="btn-save" value="Save items" type="submit"></p>
 
 <div class="column left first">
-    <h2>URGENT</h2>	
+    <h3 class="color-red">URGENT</h3>	
 		<ul class="sortable-list ui-sortable">
 		{% for entity in pagination %}
                     {% set mypos = entity.xyz|split('x') %}
                     {% set mysize = entity.wh|split('x') %}
-                    <li style="" class="sortable-item widget color-yellow" id="{{entity.id}}">
+                    <li style="" class="sortable-item widget color-red" id="{{entity.id}}">
                     <span class="check unchecked"></span>
                     {{entity.name}}({{entity.id}})</li>
                 {% endfor %}     
@@ -289,17 +314,17 @@ li .unchecked{
 </div>
 
 <div class="column left">
-    <h2>IMPORTANT</h2>
+    <h3 class="color-blue">IMPORTANT</h3>
     <ul class="sortable-list ui-sortable">
-        <li class="sortable-item widget color-red" id="C">
+        <li class="sortable-item widget color-blue" id="C">
         <span class="check unchecked"></span>Sortable item C</li>
     </ul>
 </div>
 
 <div class="column left">
-    <h2>STANDARD</h2>
+    <h3 class="color-yellow">STANDARD</h3>
     <ul class="sortable-list ui-sortable">
-        <li style="" class="sortable-item widget color-blue" id="D">
+        <li style="" class="sortable-item widget color-yellow" id="D">
         <span class="check unchecked"></span>
         Sortable item D
         </li>
@@ -309,6 +334,8 @@ li .unchecked{
 </div>
 			<div class="clearer">&nbsp;</div>
 		</div>
+             
+             <div class='trash'>Trash</div>
 	</div>
         
 

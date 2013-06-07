@@ -64,6 +64,7 @@ class AppKernel extends Kernel {
             //====================================================
             new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
             new Savvy\FilterNatorBundle\SavvyFilterNatorBundle(),
+             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
              //====================================================
             // FOSCOMMENT
             //====================================================

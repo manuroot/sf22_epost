@@ -8,128 +8,128 @@
 {#<link rel="stylesheet" href="{{ asset('css/datepicker.css') }}" type="text/css" media="all"/>#}
 <style>  
         /* override free days background in jquery ui datepicker */
-.free-day {
-  background: #2e9500;
-}
-     div.ui-datepicker {
+        .free-day {
+            background: #2e9500;
+        }
+        div.ui-datepicker {
             font-size: 95%;
         }
-.free-day a {
-  opacity: 0.7;
-}
-  </style>
+        .free-day a {
+            opacity: 0.7;
+        }
+    </style>
 {% endblock %}
 
 
 {% block javascripts %}
 {{ parent() }}
-  <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
-  <script type="text/javascript">
-   /* $(document).ready(function(){*/
-   $('.star').raty({
-     readOnly: true,
-     score: function() {
-       return $(this).attr('data-score');
-     }
-   });
-   // declare freeDays global
- var eventsDays = [];
- var eventsTitle = [];
-   // perform initial json request for free days
-/*fetchFreeDays();*/
-   
-   
-   function fetchEvents(year, month){
-        /* console.log("month:" + month);*/
-        var dataAjax = {
-       'year':year,
-        'month':month
-    };
-    
-   $.ajax({
-      async: false,
-      url: "{{ path('epost_calendar') }}", 
-       type: "POST", 
-      dataType: "json",
-      data : dataAjax, 
-      success: function(reponse) {
-          var optionData = reponse;
-        // loop over dayUsage array result
-         $.each(optionData, function(index, value) {
-            /*   console.log("added value=" + value.date);*/
-           /*  eventsDays.push(value.date,value.title); */
-               eventsDays.push(value.date); 
-                eventsTitle.push(value.title + ' (' + value.date + ')'); 
-              // add this date to the freeDays array
-           });
-          /* highlightDays(date);*/
-         /* $('#datepicker').trigger('click');*/
-    } 
-    });
-}
-    
-   
-   
-   function dateToYMD(date) {
-    var d = date.getDate();
-    var m = date.getMonth() + 1;
-    var y = date.getFullYear();
-    return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
-}
-/*var eventsDays = ['05/01/2013', '05/11/2013'];*/
-fetchEvents();
-
-function pickDate(dateStr) {
-          // Do something with the chosen date...
-          window.location.href = links[dateStr];
-}
-/*
- $('.selector').datepicker({
-                                   onSelect: function(dateText, inst) {
-
-                                      window.location.href = '/go-to-page?date='+dateText;
-                                   }
-                                }); */
-$("#datepicker").datepicker({
-          changeMonth: true,
-          changeYear: true,
-          showOtherMonths: true,
-          selectOtherMonths: true,
-          //numberOfMonths: 2,
-          dateFormat: 'yy, d MM, DD',
-          altField: '#date_due',
-          altFormat: 'yy-mm-dd',
-          dateFormat: 'yy-mm-dd',
-          beforeShowDay: editDays,
-          onSelect: function(dateText, inst) {
-              window.location.href ="{{ path('epost_index') }}" + '/' + dateText;
-                  
-              
-          },
-          onChangeMonthYear: fetchEvents,
-         /* create: function(event, ui) {
-        fetchEvents()
-    },*/
-        /*  onLoad:fetchEvents,*/
-          firstDay: 1 // rows starts on Monday
-        });
-   
-   function editDays(date) {
-       /* console.log("edit days");*/
-          for (var i = 0; i < eventsDays.length; i++) {
-           /* var t=new Date(eventsDays[i]).toString("mm-dd-yy");*/
-             var t=new Date(eventsDays[i]).toString();
-            /* console.log("events=" + eventsDays[i] + "--" + t + " date=" + date.toString() + " i=" + i);
-           */
-           /*    if (t == date.toString()) {     */        
-            if (new Date(eventsDays[i]).toString() == date.toString()) {           
-                   return [true, 'free-day', eventsTitle[i]];
+    <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
+    <script type="text/javascript">
+        /* $(document).ready(function(){*/
+        $('.star').raty({
+            readOnly: true,
+            score: function() {
+                return $(this).attr('data-score');
             }
+        });
+        // declare freeDays global
+        var eventsDays = [];
+        var eventsTitle = [];
+        // perform initial json request for free days
+        /*fetchFreeDays();*/
+
+
+        function fetchEvents(year, month) {
+            /* console.log("month:" + month);*/
+            var dataAjax = {
+                'year': year,
+                'month': month
+            };
+
+            $.ajax({
+                async: false,
+                url: "{{ path('epost_calendar') }}",
+                type: "POST",
+                dataType: "json",
+                data: dataAjax,
+                success: function(reponse) {
+                    var optionData = reponse;
+                    // loop over dayUsage array result
+                    $.each(optionData, function(index, value) {
+                        /*   console.log("added value=" + value.date);*/
+                        /*  eventsDays.push(value.date,value.title); */
+                        eventsDays.push(value.date);
+                        eventsTitle.push(value.title + ' (' + value.date + ')');
+                        // add this date to the freeDays array
+                    });
+                    /* highlightDays(date);*/
+                    /* $('#datepicker').trigger('click');*/
+                }
+            });
         }
-        return [true];
-     }   
-   /*});*/
-  
+
+
+
+        function dateToYMD(date) {
+            var d = date.getDate();
+            var m = date.getMonth() + 1;
+            var y = date.getFullYear();
+            return '' + y + '-' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+        }
+        /*var eventsDays = ['05/01/2013', '05/11/2013'];*/
+        fetchEvents();
+
+        function pickDate(dateStr) {
+            // Do something with the chosen date...
+            window.location.href = links[dateStr];
+        }
+        /*
+         $('.selector').datepicker({
+         onSelect: function(dateText, inst) {
+         
+         window.location.href = '/go-to-page?date='+dateText;
+         }
+         }); */
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            //numberOfMonths: 2,
+            dateFormat: 'yy, d MM, DD',
+            altField: '#date_due',
+            altFormat: 'yy-mm-dd',
+            dateFormat: 'yy-mm-dd',
+                    beforeShowDay: editDays,
+            onSelect: function(dateText, inst) {
+                window.location.href = "{{ path('epost_index') }}" + '/' + dateText;
+
+
+            },
+            onChangeMonthYear: fetchEvents,
+            /* create: function(event, ui) {
+             fetchEvents()
+             },*/
+            /*  onLoad:fetchEvents,*/
+            firstDay: 1 // rows starts on Monday
+        });
+
+        function editDays(date) {
+            /* console.log("edit days");*/
+            for (var i = 0; i < eventsDays.length; i++) {
+                /* var t=new Date(eventsDays[i]).toString("mm-dd-yy");*/
+                var t = new Date(eventsDays[i]).toString();
+                /* console.log("events=" + eventsDays[i] + "--" + t + " date=" + date.toString() + " i=" + i);
+                 */
+                /*    if (t == date.toString()) {     */
+                if (new Date(eventsDays[i]).toString() === date.toString()) {
+                    return [true, 'free-day', eventsTitle[i]];
+                }
+            }
+            return [true];
+        }
+        /*});*/
+
         </script>
 
 {% endblock %}
@@ -158,8 +158,6 @@ $("#datepicker").datepicker({
 {% endif %}#}
             <br><br>
 
- {#{{ knp_pagination_render(paginationa) }}#}
-  {#{% for post in pager.getResults() %}#}
       {% for entity in paginationa %}
 
 
@@ -174,67 +172,68 @@ $("#datepicker").datepicker({
         {% else %}
                                         <div class="star" data-score="0"></div>
         {#({{ entity.globalnote }})#}
-        {% endif %}</td><td><i class="icon-tasks"></i> 
+        {% endif %}
+                                    </td><td><i class="icon-tasks"></i> 
                           {% if entity.categorie is not null %}               
-                                        <span class="label">
+                                            <span class="label">
 
-                                            <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
+                                                <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
 {{ entity.categorie.name }}</a>
-                                            </span>
+                                                </span>
                   {% else %}
-                                            pas de catégorie
+                                                pas de catégorie
                   {% endif %}
                      {#<span class="label label-inverse">#}
                 {#  {{ entity.tags|join(', ') }}    </span>#}
-                                             <i class="icon-tags"></i> 
+                                                <i class="icon-tags"></i> 
                    {% for tag in entity.tags %}
-                                            <span class="label label-inverse">
-                                                <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
+                                                <span class="label label-inverse">
+                                                    <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
                             {% if not loop.last%} {%endif%}
-                                            </span>
+                                                </span>
                             {% else %}
-                                            Pas de Tag
+                                                Pas de Tag
                         {% endfor %}
 
-                                    </td><td> &nbsp; <i class="icon-user"></i> {{ entity.proprietaire.username }}</td></tr></table>
+                                            </td><td> &nbsp; <i class="icon-user"></i> {{ entity.proprietaire.username }}</td></tr></table>
 
 
 
-                                <!--   <h2 class="entry-title">-->
-                                <h3 class="sonata-blog-post-title">
-                                    <img src="{% path entity.imageMedia, 'small' %}" width="100" /> 
+                                    <!--   <h2 class="entry-title">-->
+                                    <h3 class="sonata-blog-post-title">
+                                        <img src="{% path entity.imageMedia, 'small' %}" width="100" /> 
 
-                                    <span class="sonata-blog-post-author"> 
+                                        <span class="sonata-blog-post-author"> 
 
-                                        <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+                                            <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
                           {{ entity.name }}</a>
     {% if entity.proprietaire is not null %}               
-                                           
+
                  {% else %}
-                                            ---
+                                                ---
                      {% endif %}</span>
-                                    </h3>
-                                    <br>
-                                    <div class="sonata-blog-post-abtract">
-                                        Extrait:  {{ entity.resume|raw }}
-                                    </div><br>
+                                        </h3>
+                                        <br>
+                                        <div class="sonata-blog-post-abtract">
+                                            Extrait:  {{ entity.resume|raw }}
+                                        </div><br>
 
 
             {% if entity.commentscount is not null %}
             {% if entity.commentscount > 1 %}
-                                    <span class="badge badge-warning">{{ entity.commentscount }} commentaires</span>
+                                        <span class="badge badge-warning">{{ entity.commentscount }} commentaires</span>
               {% else %}
-                                    <span class="badge badge-warning">{{ entity.commentscount }} commentaire</span>
+                                        <span class="badge badge-warning">{{ entity.commentscount }} commentaire</span>
                   {% endif %}
               {% else %}
-                                    <span class="badge badge-warning">0 commentaire</span>
+                                        <span class="badge badge-warning">0 commentaire</span>
 
                       {% endif %}
-                                    <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
-                                        <img src="{{ asset('bundles/applicationepost/images/detail.png') }}" alt="show" width="15" height="15" />
-                                    </a>
+                                        <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+                                            <img src="{{ asset('bundles/applicationepost/images/detail.png') }}" alt="show" width="15" height="15" />
+                                        </a>
 
-                                </div>
+                                    </div>
 
     {% endfor %}
  {{ knp_pagination_render(paginationa) }}
@@ -242,26 +241,19 @@ $("#datepicker").datepicker({
 {% endblock %}
 
 
-
-
 {% block categories %}
 {{ parent() }}
 {% include 'ApplicationEpostBundle:sidebar:sidebarcategories.html.twig' %}
 {% endblock %}
-
-
 
 {% block tags %}
 {{ parent() }}
 {% include 'ApplicationEpostBundle:sidebar:sidebartags.html.twig' %}
 {% endblock %}
 
-
-
 {% block comments %}
 {% include 'ApplicationEpostBundle:sidebar:lastcomments.html.twig' %}
 {% endblock %}
-
 
 {% block archives %}
 {{ parent() }}
@@ -270,7 +262,5 @@ $("#datepicker").datepicker({
 
 {% block datepick %}
 {{ parent() }}
-
-	{#<p><input id="dateloader" type="button" value=" Load dates "></p>#}
-                                <div id="datepicker"></div>
+<div id="datepicker"></div>
 {% endblock %}

@@ -69,14 +69,14 @@
                                                                     <ul class="dropdown-menu">
                                                        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                                                                             
-                                                                        <li><a href="{{ path('epost') }}"><i class="icon-plus-sign"></i> {{ 'DashBoard Posts'|trans }}</a></li>
-                                                                        <li><a href="{{ path('epost_mesposts') }}"><i class="icon-plus-sign"></i> {{ 'Mes Posts'|trans }}</a></li>
-                                                                         <li><a href="{{ path('epost_propositions') }}"><i class="icon-plus-sign"></i> {{ 'Groupe-Posts'|trans }}</a></li>
+                                                                        <li><a href="{{ path('epost') }}"><i class="icon-plus-sign"></i> {{ 'DashBoard Articles'|trans }}</a></li>
+                                                                        <li><a href="{{ path('epost_mesposts') }}"><i class="icon-plus-sign"></i> {{ 'Mes Artciles'|trans }}</a></li>
+                                                                         <li><a href="{{ path('epost_propositions') }}"><i class="icon-plus-sign"></i> {{ 'Groupe-Articles'|trans }}</a></li>
                                                                         
 
                                                                      {% endif %}
                                                                              <li><a href="{{ path('epost_indexstandard') }}"><i class="icon-plus-sign"></i> {{ 'Standard Blog'|trans }}</a></li>
-                                                          <li><a href="{{ path('epost_indexadmin') }}"><i class="icon-plus-sign"></i> {{ 'Tous les Posts'|trans }}</a></li>
+                                                          <li><a href="{{ path('epost_indexadmin') }}"><i class="icon-plus-sign"></i> {{ 'Tous les Articles'|trans }}</a></li>
 
                                                                     </ul>
                                                                 </li>
@@ -90,7 +90,7 @@
                                                                     <ul class="dropdown-menu">
                                                                            
                                                                          <li><a href="{{ path('epost_comment_ownerview') }}"><i class="icon-plus-sign"></i> {{ 'Mes Commentaires'|trans }}</a></li>
-                                                                        <li><a href="{{ path('epost_comment_ownerblogview') }}"><i class="icon-plus-sign"></i> {{ 'Mes Posts-Commentaires'|trans }}</a></li>
+                                                                        <li><a href="{{ path('epost_comment_ownerblogview') }}"><i class="icon-plus-sign"></i> {{ 'Mes Articles-Commentaires'|trans }}</a></li>
                                                                              
                                                   
                                                                     </ul>
@@ -102,7 +102,7 @@
                                                                         Notes<b class="caret"></b> </a>
                                                                     <ul class="dropdown-menu">
                                                                            
-                                                                           <li><a href="{{ path('epostnotes') }}"><i class="icon-tags"></i> {{ 'Notes-Posts'|trans }}</a></li>
+                                                                           <li><a href="{{ path('epostnotes') }}"><i class="icon-tags"></i> {{ 'Notes-Articles'|trans }}</a></li>
                                                                           
                                                                     </ul>
                                                                 </li>

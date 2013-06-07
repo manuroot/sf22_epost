@@ -21,7 +21,8 @@
 
             $.ajax({
                 async: false,
-                url: "{{ path('epost_calendar') }}",
+                url: Routing.generate('epost_index'),
+                /*url: "{{ path('epost_calendar') }}",*/
                 type: "POST",
                 dataType: "json",
                 data: dataAjax,
@@ -76,7 +77,9 @@
             firstDay: 1,
             beforeShowDay: editDays,
             onSelect: function(dateText, inst) {
-                window.location.href = "{{ path('epost_index') }}" + '/' + dateText;
+                var url = Routing.generate('epost_index');
+                 window.location.href = url + '/' + dateText;
+              /*  window.location.href = "{{ path('epost_index') }}" + '/' + dateText;*/
 
 
             },

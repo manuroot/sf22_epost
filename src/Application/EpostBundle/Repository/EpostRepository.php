@@ -284,6 +284,16 @@ $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retr
             $query->addSelect('t');
             $query->leftJoin('a.tags', 't');
         }
+        if (isset($criteria['year'])) {
+            // echo "year=" . $criteria['year'] . "<br>";exit(1);
+             $query->andWhere('a.createdAt LIKE :year');
+            $parameters['year'] = '%' . $criteria['year'] . '%';
+        }
+        if (isset($criteria['date'])) {
+            // echo "year=" . $criteria['year'] . "<br>";exit(1);
+             $query->andWhere('a.createdAt LIKE :date');
+            $parameters['date'] = '%' . $criteria['date'] . '%';
+        }
         if (isset($criteria['tag'])) {
             $query->addSelect('t');
             $query->leftJoin('a.tags', 't');

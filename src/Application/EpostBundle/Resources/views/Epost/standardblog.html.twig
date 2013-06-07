@@ -59,7 +59,7 @@
             /*   console.log("added value=" + value.date);*/
            /*  eventsDays.push(value.date,value.title); */
                eventsDays.push(value.date); 
-                eventsTitle.push(value.title); 
+                eventsTitle.push(value.title + ' (' + value.date + ')'); 
               // add this date to the freeDays array
            });
           /* highlightDays(date);*/
@@ -99,12 +99,12 @@ $("#datepicker").datepicker({
           dateFormat: 'yy, d MM, DD',
           altField: '#date_due',
           altFormat: 'yy-mm-dd',
-          dateFormat: 'yy-dd-mm',
+          dateFormat: 'yy-mm-dd',
           beforeShowDay: editDays,
           onSelect: function(dateText, inst) {
-               window.location.href ="{{ path('epost_indexstandard') }}" + '/' + dateText;
-                /*window.location.href = {{ 'epost_indexstandard' }} + '/' + dateText;
-               /*window.location.href = {{ 'epost_indexstandard' }} + '/' + dateText;*/
+              window.location.href ="{{ path('epost_index') }}" + '/' + dateText;
+                  
+              
           },
           onChangeMonthYear: fetchEvents,
          /* create: function(event, ui) {

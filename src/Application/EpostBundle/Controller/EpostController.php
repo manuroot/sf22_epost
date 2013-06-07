@@ -453,13 +453,9 @@ $response->headers->setCookie(new Cookie('tabopen', '1'));
 
     public function indexbyyearAction($year) {
         $em = $this->getDoctrine()->getManager();
-        $entity_year = $em->getRepository('ApplicationEpostBundle:Epost')->findOneBy(array(
-            'slug' => $year,
-                ));
-
-        if ($entity_year) {
+        if ($year) {
             $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
-                'categorie' => $entity_year,
+                'year' => $year,
                     ));
         } else {
             $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());

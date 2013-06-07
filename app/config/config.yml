@@ -45,7 +45,7 @@ framework:
     fragments:       ~
 
 fos_js_routing:
-     routes_to_expose: [ (.*) ]  
+     routes_to_expose: [ epost_index, epost_calendar ]  
      
 #==================================================
 # TWIG Configuration

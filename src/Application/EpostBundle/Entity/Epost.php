@@ -190,9 +190,9 @@ class Epost {
     private $isvisible;
 
     /**
-     * @orm\Column(name="comments_enabled",type="boolean",nullable=true)
+     * @orm\Column(name="comments_disabled",type="boolean",nullable=true)
      */
-    private $commentsEnabled;
+    private $commentsDisabled;
 
     /**
      * @var datetime $commentsCloseAt
@@ -201,7 +201,7 @@ class Epost {
      */
     protected $commentsCloseAt;
 
-    //protected $commentsEnabled = true;
+    //protected $commentsDisabled = true;
     //  protected $commentsCloseAt;
 
     /**
@@ -273,7 +273,8 @@ class Epost {
         $this->setUpdatedAt(new \DateTime());
         $this->globalnote=new \Application\EpostBundle\Entity\EpostGlobalNotes();
         $this->isvisible = true; // Default value for column is_visible
-        $this->commentsEnabled = true;
+        // enable commentaires: disable: 
+        $this->commentsDisabled = false;
     }
 
     /**
@@ -655,15 +656,15 @@ class Epost {
     /**
      * {@inheritdoc}
      */
-    public function setCommentsEnabled($commentsEnabled) {
-        $this->commentsEnabled = $commentsEnabled;
+    public function setCommentsDisabled($commentsDisabled) {
+        $this->commentsDisabled = $commentsDisabled;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCommentsEnabled() {
-        return $this->commentsEnabled;
+    public function getCommentsDisabled() {
+        return $this->commentsDisabled;
     }
 
     /**

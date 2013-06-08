@@ -81,7 +81,7 @@ public function getTemplate($name)
                 ->add('idStatus',null,array('label'=>'Status'))
                  ->add('isvisible', null, array('editable' => true))
                 
-                ->add('commentsEnabled', null, array('editable' => true))
+                ->add('commentsDisabled', null, array('editable' => true))
             /*    ->add('_action', 'actions', array(
                 'actions' => array(
                 'view' => array(),
@@ -141,7 +141,7 @@ public function getTemplate($name)
                 ->add('proprietaire')
                 ->add('idStatus')
                 ->add('isvisible')
-                ->add('commentsEnabled')
+                ->add('commentsDisabled')
                 /*  ->add('rawContent', 'textarea', array(
                   'attr' => array(
                   //  'cols'=>"60",

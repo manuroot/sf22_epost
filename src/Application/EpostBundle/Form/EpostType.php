@@ -112,7 +112,7 @@ class EpostType extends AbstractType {
                     'required' => false,
                 ))*/
                 $builder->add('isvisible', null, array('label' => "Post Actif"))
-                ->add('commentsEnabled', null, array('label' => "Fermer les Commentaires"));
+                ->add('commentsDisabled', null, array('label' => "Fermer les Commentaires"));
 
         $builder->add('categorie', 'entity', array(
                     //'class' => 'Application\EpostBundle\Entity\CertificatsProjet',

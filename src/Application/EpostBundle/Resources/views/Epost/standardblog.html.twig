@@ -17,6 +17,9 @@
         .free-day a {
             opacity: 0.7;
         }
+      /* td.ui-datepicker-today:after{
+    content: "Today"
+}*/
     </style>
 {% endblock %}
 
@@ -113,18 +116,31 @@
                                             Extrait:  {{ entity.resume|raw }}
                                         </div><br>
 
-
-            {% if entity.commentscount is not null %}
+        {% if entity.commentscount is not null %}
             {% if entity.commentscount > 1 %}
-                                        <span class="badge badge-warning">{{ entity.commentscount }} commentaires</span>
-              {% else %}
-                                        <span class="badge badge-warning">{{ entity.commentscount }} commentaire</span>
-                  {% endif %}
-              {% else %}
-                                        <span class="badge badge-warning">0 commentaire</span>
+                <span class="badge badge-warning">{{ entity.commentscount }} commentaires</span>
+                {% else %}
+                    <span class="badge badge-warning">{{ entity.commentscount }} commentaire</span>
+            {% endif %}
+        {% else %}
+                <span class="badge badge-warning">0 commentaire</span>
+        {% endif %}
+                
+                
+     {#   TESTER Commentaires fermés: tester la date             #}
+   
 
-                      {% endif %}
-                                        <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+ {% if entity.commentsDisabled == 1 %}
+    {% if (date(entity.commentsCloseAt) > date()) %}
+                <span class="badge badge-warning">Commentaires fermés a partir du {{ entity.commentsCloseAt|date('Y-m-d H') ~ 'h' }}
+                </span>
+                {% else %}
+                    <span class="badge badge-warning">Commentaires fermés</span>
+        {% endif %}
+   {% endif %}
+        
+        
+ <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
                                             <img src="{{ asset('bundles/applicationepost/images/detail.png') }}" alt="show" width="15" height="15" />
                                         </a>
 

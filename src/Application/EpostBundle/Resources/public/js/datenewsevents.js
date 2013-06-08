@@ -21,7 +21,7 @@
 
             $.ajax({
                 async: false,
-                url: Routing.generate('epost_index'),
+                url: Routing.generate('epost_calendar'),
                 /*url: "{{ path('epost_calendar') }}",*/
                 type: "POST",
                 dataType: "json",
@@ -71,10 +71,12 @@
             selectOtherMonths: true,
             //numberOfMonths: 2,
             dateFormat: 'yy-mm-dd',
-            altField: '#date_due',
-            altFormat: 'yy-mm-dd',
+            /*altField: '#date_due',
+            altFormat: 'yy-mm-dd',*/
              showWeek: true,
             firstDay: 1,
+        
+            
             beforeShowDay: editDays,
             onSelect: function(dateText, inst) {
                 var url = Routing.generate('epost_index');

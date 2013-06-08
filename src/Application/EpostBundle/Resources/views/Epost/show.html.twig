@@ -182,14 +182,18 @@ padding: 0.1em;
         </section>
     </section>
    
-     
-   <section class="comments" id="comments">
+     <section class="comments" id="comments">
+         <hr>
+ {% if entity.commentsDisabled == 1 and date(entity.commentsCloseAt) <= date()%}
+      <span class="badge badge-warning">Commentaires fermés a partir du {{ entity.commentsCloseAt|date('Y-m-d H') ~ 'h' }}
+      </span>
+         <br><br>
+   {% else %}
         {# .. #}
-
-           <hr>
+      
         <h3>Ajouter un commentaire</h3>
         {% render controller('ApplicationEpostBundle:EpostComments:new', { 'epost_id': entity.id }) %}
-
+{% endif %}
     </section>
  
  {# l'id du thread est l'id , ancestor est la reference du thread #}

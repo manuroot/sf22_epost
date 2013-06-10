@@ -1,7 +1,6 @@
 <?php
 
 namespace Application\MyNotesBundle\Controller;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Application\MyNotesBundle\Entity\Notes;

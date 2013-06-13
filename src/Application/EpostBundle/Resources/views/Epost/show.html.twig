@@ -206,8 +206,9 @@ padding: 0.1em;
   #} 
          {% endblock %}
  
- 
+  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 {% block roll %}
 {{ parent() }}
 {% include 'ApplicationEpostBundle:sidebar:sidebarroll.html.twig' %}
 {% endblock %}
+         {% endif %}

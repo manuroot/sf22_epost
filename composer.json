@@ -25,7 +25,7 @@
         "doctrine/data-fixtures": "dev-master",
         "kriswallsmith/assetic": "v1.1.0-alpha4",
         "mopa/composer-bridge": "dev-master",
-      "mopa/bootstrap-bundle": "2.2.*@dev",
+        "mopa/bootstrap-bundle": "2.2.*@dev",
         "apy/datagrid-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "v1.3.1",
         "knplabs/knp-paginator-bundle": "dev-master", 
@@ -74,9 +74,6 @@
         "friendsofsymfony/comment-bundle": "2.0.*@dev",
         "knplabs/knp-markdown-bundle": "1.1.1",
         "friendsofsymfony/jsrouting-bundle": "1.1.*@dev"
-
- 
-         
         
     },
     "scripts": {

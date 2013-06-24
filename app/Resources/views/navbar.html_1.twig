@@ -1,0 +1,173 @@
+{% block NAVIGATION_BAR %}
+ {% set foo = app.request.attributes.get('_route') %}
+ {#{{ foo }}#}
+{% set foo = foo|split('_') %}
+{#{{ foo[0] }} #}
+
+    {#        
+  <div class="navbar-inverse navbar-static-top">
+        <div class="navbar-inner">
+        <div class="container">#}
+
+
+   <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container-fluid"> 
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+                 <span class="icon-bar"></span> 
+            </a>
+                     
+                    <a class="brand" href="{{ path('epost') }}">
+                        <i class="icon-white icon-home"></i>
+                                {% block toto %}I-CHANGE(v1.2a){% endblock %}</a>
+            <div class="btn-group pull-right"> 
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i>
+                                        {% if is_granted("ROLE_USER") or is_granted("ROLE_USER") %}
+                                        {{ app.user.username }} 
+                                     {% else %}
+                                Username
+                                    {% endif %}
+                                <span class="caret"></span> 
+                            </a>
+
+
+                            <ul class="dropdown-menu">
+                                <!--  <li class="divider"></li>-->
+
+                                       {% if is_granted("ROLE_ADMIN") %}
+                                <li><a href="{{ path('sonata_admin_dashboard') }}">{{ 'Admin Dashboard' }}</a>
+
+                                       {% endif %}   
+
+                                <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">{{ 'Edit Profile' }}</a>
+                                <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Register'|trans }}</a>
+                                </li>
+
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                                <li><a href="{{ path('fos_user_change_password') }}">{{ 'Changer password' }}</a></li>
+                                    {% else %}
+                                <li>  <a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+                                    {% endif %}   
+                            </ul>
+                        </div>
+                
+                  <div class="nav-collapse collapse">
+                            <ul class="nav">
+
+                                 {% if foo[0] == 'epost' %}
+                                                        <li class="dropdown active">
+                                    {% else %}  
+                                                            <li class="dropdown">
+                                    {% endif %}
+
+                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-book"></i>
+                                                                        Blog<b class="caret"></b> </a>
+                                                                    <ul class="dropdown-menu">
+                                                       {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                                                                            
+                                                                        <li><a href="{{ path('epost') }}"><i class="icon-plus-sign"></i> {{ 'DashBoard Articles'|trans }}</a></li>
+                                                                        <li><a href="{{ path('epost_mesposts') }}"><i class="icon-plus-sign"></i> {{ 'Mes Artciles'|trans }}</a></li>
+                                                                         <li><a href="{{ path('epost_propositions') }}"><i class="icon-plus-sign"></i> {{ 'Groupe-Articles'|trans }}</a></li>
+                                                                        
+
+                                                                     {% endif %}
+                                                                             <li><a href="{{ path('epost_indexstandard') }}"><i class="icon-plus-sign"></i> {{ 'Standard Blog'|trans }}</a></li>
+                                                          <li><a href="{{ path('epost_indexadmin') }}"><i class="icon-plus-sign"></i> {{ 'Tous les Articles'|trans }}</a></li>
+
+                                                                    </ul>
+                                                                </li>
+
+                                               
+                                                                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                                                          <li class="dropdown">
+                                
+                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-pencil"></i>
+                                                                        Commentaires<b class="caret"></b> </a>
+                                                                    <ul class="dropdown-menu">
+                                                                           
+                                                                         <li><a href="{{ path('epost_comment_ownerview') }}"><i class="icon-plus-sign"></i> {{ 'Mes Commentaires'|trans }}</a></li>
+                                                                        <li><a href="{{ path('epost_comment_ownerblogview') }}"><i class="icon-plus-sign"></i> {{ 'Mes Articles-Commentaires'|trans }}</a></li>
+                                                                             
+                                                  
+                                                                    </ul>
+                                                                </li>
+                                                              
+                                                                 <li class="dropdown">
+                                
+                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-tags"></i>
+                                                                        Notes<b class="caret"></b> </a>
+                                                                    <ul class="dropdown-menu">
+                                                                           
+                                                                           <li><a href="{{ path('epostnotes') }}"><i class="icon-tags"></i> {{ 'Notes-Articles'|trans }}</a></li>
+                                                                          
+                                                                    </ul>
+                                                                </li>
+                                                                 
+                                                                 <li class="dropdown">
+                                
+                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-film"></i>
+                                                                        Media<b class="caret"></b> </a>
+                                                                    <ul class="dropdown-menu">
+                                                                             <li><a href="{{ path('usermedia') }}"><i class="icon-camera"></i> {{ 'Medias'|trans }}</a></li>
+                                                       
+                                                                    </ul>
+                                                                </li>
+                                                                  {% endif %}
+                                                  
+                                           
+                                        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                                                 {% if (foo[0] == 'egroup') or  (foo[0] == 'epostroll') %}
+                                                <li class="dropdown active">
+                                    {% else %}  
+                                                    <li class="dropdown">
+                                    {% endif %}
+
+                                                            
+                                                            
+                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-user-md"></i>
+                                                                Groupes<b class="caret"></b> </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a href="{{ path('egroup_groupes') }}"><i class="icon-user"></i> {{ 'Dashboard Groupes'|trans }}</a></li>
+                                                           
+                                                                     <li><a href="{{ path('egroup_groupes_showmygroup') }}"><i class="icon-user"></i> {{ 'Mon Groupe'|trans }}</a></li>
+                                                                     <li><a href="{{ path('groupedemande') }}"><i class="icon-user"></i> {{ 'Demandes de Groupe'|trans }}</a></li>
+                                                                     <li><a href="{{ path('groupedemande_mongroupe') }}"><i class="icon-user"></i> {{ 'Demandes MonGroupe'|trans }}</a></li>
+                                                                       <li><a href="{{ path('epostroll') }}"><i class="icon-user"></i> {{ 'Roll-Groupe'|trans }}</a></li>
+                                                             <li><a href="{{ path('tags') }}"><i class="icon-user"></i> {{ 'Tags'|trans }}</a></li>
+                                                             <li><a href="{{ path('categories') }}"><i class="icon-user"></i> {{ 'Categories'|trans }}</a></li>
+                                                             
+
+                                                            </ul>
+                                                        </li>
+                                                         {% endif %}
+                                                                  {% if is_granted("ROLE_SUPERADMIN") %}  
+                                                                        <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-wrench"></i>
+                                                                                Administration<b class="caret"></b> </a>
+                                                                            <ul class="dropdown-menu">
+                                                                                 <li><a href="{{ path('egroup_groupes') }}"><i class="icon-camera"></i> {{ 'Eservice-Groupes'|trans }}</a></li>
+                                                                              {#  <li><a href="{{ path('ep_history') }}"><i class="icon-camera"></i> {{ 'Historique-Produits'|trans }}</a></li>#}
+                                                                                <li><a href="{{ path('users') }}"><i class="icon-camera"></i> {{ 'Eservices-Users(FOSUSER)'|trans }}</a></li>                            
+                                                         
+                                                                            </ul>
+                                                                        </li>
+
+                                   {% endif %}
+
+                                                                    </ul>  
+
+                                                                </div>
+   
+                
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+       
+    </div>
+
+{% endblock %}    
+
+                       

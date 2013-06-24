@@ -244,7 +244,13 @@ $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retr
                 ->leftJoin('a.idStatus', 'd')
                 ->leftJoin('a.globalnote', 'e')
                 ->leftJoin('a.imageMedia', 'f')
-                // ->leftJoin('a.tags', 't')
+               //  ->addSelect('t')
+               //  ->leftJoin('a.tags', 't')
+                
+                 ->addSelect('t')
+                //->addSelect('g')
+                ->distinct('GroupConcat(t.name)')
+                ->leftJoin('a.tags', 't')
                // ->leftJoin('a.comments', 'u')
 
         ;
@@ -280,10 +286,10 @@ $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retr
             $parameters['categoryid'] = $criteria['categorie']->getId();
         }
 
-        if (isset($criteria['alltags'])) {
-            $query->addSelect('t');
+        /*if (isset($criteria['alltags'])) {
+            //$query->addSelect('t');
             $query->leftJoin('a.tags', 't');
-        }
+        }*/
         if (isset($criteria['year'])) {
             // echo "year=" . $criteria['year'] . "<br>";exit(1);
              $query->andWhere('a.createdAt LIKE :year');
@@ -295,8 +301,8 @@ $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retr
             $parameters['date'] = '%' . $criteria['date'] . '%';
         }
         if (isset($criteria['tag'])) {
-            $query->addSelect('t');
-            $query->leftJoin('a.tags', 't');
+          //  $query->addSelect('t');
+           // $query->leftJoin('a.tags', 't');
             $query->andWhere('t.id = :tag');
             //   ->groupby('a.name');
             $parameters['tag'] = (string) $criteria['tag'];
@@ -304,7 +310,7 @@ $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retr
         }
         $query->setParameters($parameters);
         // ??
-       $query->groupby('a.name');
+       //$query->groupby('a.name');
         //>getQuery();
         //  print_r($query->getQuery());
         //  exit(1);

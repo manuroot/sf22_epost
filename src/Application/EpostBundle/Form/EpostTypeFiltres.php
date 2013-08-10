@@ -42,22 +42,22 @@ class EpostTypeFiltres extends AbstractType {
     
                 ->add('createdAt', 'filter_date_range', array(
                      'label' => 'Date de Fin',
-                    'left_date' => array(
+                    'left_date_options' => array(
                         'widget' => 'single_text'
                     /* 'time_widget' => 'single_text' */
                     ),
-                    'right_date' => array(
+                    'right_date_options' => array(
                         'widget' => 'single_text'
                     /* 'time_widget' => 'single_text' */
                     ),
                 ))
                  ->add('updatedAt', 'filter_date_range', array(
                      'label' => 'Date de Fin',
-                    'left_date' => array(
+                    'left_date_options' => array(
                         'widget' => 'single_text'
                     /* 'time_widget' => 'single_text' */
                     ),
-                    'right_date' => array(
+                    'right_date_options' => array(
                         'widget' => 'single_text'
                     /* 'time_widget' => 'single_text' */
                     ),

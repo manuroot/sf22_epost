@@ -5,6 +5,7 @@ namespace Application\EpostBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\MinLength;
 
 /**
  * EpostNotes
@@ -29,9 +30,15 @@ class EpostGlobalNotes {
      * @var integer
       /**
      * @var integer
-     * @Assert\Min(limit = "1", message = "Note minimum: 1")
-     * @Assert\Max(limit = "10", message = "Note maximum: 10")
      * @ORM\Column(name="globalnote", type="integer", length=3, nullable=false)
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "10",
+     *      minMessage = "Your name must be at least {{ limit }} characters length |
+     *  Au minimum {{ limit }} caracteres",
+     *      maxMessage = "Your first name cannot be longer than than {{ limit }} characters length |
+     *  Au maximum {{ limit }} caracteres"
+     * )
      */
     private $globalnote;
 

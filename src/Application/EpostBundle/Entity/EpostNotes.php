@@ -26,13 +26,19 @@ class EpostNotes {
      */
     private $id;
 
+    
     /**
      * @var integer
-     /**
-     * @var integer
-     * @Assert\Min(limit = "1", message = "Note minimum: 1")
-     * @Assert\Max(limit = "10", message = "Note maximum: 10")
      * @ORM\Column(name="note", type="integer", length=3, nullable=false)
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "40",
+     *      minMessage = "Your name must be at least {{ limit }} characters length |
+     *  Au minimum {{ limit }} caracteres",
+     *      maxMessage = "Your first name cannot be longer than than {{ limit }} characters length |
+     *  Au maximum {{ limit }} caracteres"
+     * )
+     * 
      */
     private $note;
 

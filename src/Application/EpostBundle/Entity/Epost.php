@@ -59,8 +59,15 @@ class Epost {
     /**
      * @var string
      *
-     * @Assert\Length(min = 5,max=100)
      * @ORM\Column(name="name", type="string", length=100, nullable=false)
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "100",
+     *      minMessage = "Your name must be at least {{ limit }} characters length |
+     *  Au minimum {{ limit }} caracteres",
+     *      maxMessage = "Your first name cannot be longer than than {{ limit }} characters length |
+     *  Au maximum {{ limit }} caracteres"
+     * )
      */
     private $name;
 

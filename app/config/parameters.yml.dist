@@ -1,0 +1,24 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     sf22_epost
+    database_user:     notes
+    database_password: notes
+
+    mailer_transport:  gmail
+    mailer_host:       smtp.gmail.com
+    mailer_user:       mroot72000
+    mailer_password:   totosixfivefour
+    mailer_encrypt:    ssl
+    locale:            fr
+    secret:            fdfdfs457889hhukolpfdgdf33
+   
+
+   # Sonata Media options
+      # Sonata Admin Options
+    sonata_admin.title:             Sonata Project
+    sonata_media.cdn.host:          /uploads/media
+     # Sonata User Options
+    sonata_user.google_authenticator.server:  demo.sonata-project.org
+

@@ -11,7 +11,16 @@ class ApplicationEpostExtension extends \Twig_Extension
             'created_ago' => new \Twig_Filter_Method($this, 'createdAgo'),
         );
     }
+    
+     public function getMyObject(){
+//$twig->addFilter( new Twig_SimpleFilter('cast_to_array', function ($stdClassObject) {
+    $response = array();
+    foreach ($this as $key => $value) {
+        $response[] = array($key, $value);
+    }
+    return $response;
 
+}
     public function createdAgo(\DateTime $dateTime)
     {
         $delta = time() - $dateTime->getTimestamp();

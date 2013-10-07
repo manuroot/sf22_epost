@@ -20,15 +20,19 @@ class AppKernel extends Kernel {
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             //----------------------------------------------------
             //MOPA
-            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+           new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             // MENUS
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new APY\DataGridBundle\APYDataGridBundle(),
+           //====================================================
             // FOSUSER   
-            new FOS\UserBundle\FOSUserBundle(),
+          //====================================================
+           new FOS\UserBundle\FOSUserBundle(),
+            //====================================================
             // SONATA
+            //====================================================
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
@@ -40,6 +44,14 @@ class AppKernel extends Kernel {
             new Sonata\IntlBundle\SonataIntlBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
+            
+            //====================================================
+            // CKEDITOR
+            //====================================================
+            new CoopTilleuls\Bundle\CKEditorSonataMediaBundle\CoopTilleulsCKEditorSonataMediaBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+
+            
            // new Sonata\NewsBundle\SonataNewsBundle(),
             new FrequenceWeb\Bundle\CalendRBundle\FrequenceWebCalendRBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),

@@ -56,24 +56,39 @@ class EpostType extends AbstractType {
                   ),
                   )) */
                 ->add('name', null, array('label' => 'Nom',
-                    'widget_addon' => array(
+                   'widget_addon' => array(
                         'icon' => 'pencil',
                         'type' => 'prepend'
-                        )))
+                        )
+                    )
+                     )
                 ->add('tags')
                 //  ->add('name',null,array('label'=>'Nom du Post'))
-                ->add('description', 'textarea', array(
+                
+                ->add('description', 'ckeditor', array(
+                    'config_name' => 'my_config',
+                ))
+                   /*   ->add('imageMedia', 'sonata_media_type', array(
+        'provider' => 'sonata.media.provider.image',
+        'context' => 'default',
+        'label' => 'Project image',
+        'required' => true
+
+    ));*/
+                /*->add('description', 'textarea', array(
                     'label' => 'Description du Post',
                     'attr' => array(
                         'cols' => "35",
                        'rows' => "15",
                         'class' => 'tinymce',
-                        )));
+                        'data-theme' => 'advanced' // simple, advanced, bbcode
+                        )))*/
+                        ;
 
 
                 // ->add('services')
                //   ->add('imageMedia')
-                if (isset($this->Username)) {
+               if (isset($this->Username)) {
             $username = $this->Username;
             $builder->add('imageMedia', 'entity', array(
                 //'class' => 'Application\EservicesBundle\Entity\CertificatsProjet',
@@ -99,12 +114,12 @@ class EpostType extends AbstractType {
                     array('link_parameters'=>array('context'=>'default',
                    'provider'=>'sonata.media.provider.image')))
            */
-                
-         /*       ->add('imageMedia', 'sonata_media_type', array('required' => false,
+     
+               /* $builder->add('imageMedia', 'sonata_media_type', array('required' => false,
                     'cascade_validation' => true,
                     'context' => 'default',
                     'provider' => 'sonata.media.provider.image'
-                ))*/
+                ));*/
                 //  ->add('imageMedia')
              /*   ->add('image', 'file', array(
                     'data_class' => 'Symfony\Component\HttpFoundation\File\File',
@@ -133,7 +148,7 @@ class EpostType extends AbstractType {
                     'widget' => 'single_text',
                     'input' => 'datetime',
                     'format' => 'yyyy-MM-dd HH:mm',
-                    'widget_addon' => array(
+                   'widget_addon' => array(
                         'icon' => 'time',
                         'type' => 'prepend'
                     ), 'required' => false,

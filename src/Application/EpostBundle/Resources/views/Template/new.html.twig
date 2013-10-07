@@ -30,11 +30,13 @@
                     </td>
                     <td>
 
+                        
  {{ form_row(form.description) }}
                         <hr>
     {# {{ form_row(form.resume) }}#}
        {{ form_errors(form.resume) }}
      {{ form_label(form.resume) }}
+                         
      {{ form_widget(form.resume, { 'attr': {'class': 'myresume'} }) }}
                     </td>
  {#<td></td>#}

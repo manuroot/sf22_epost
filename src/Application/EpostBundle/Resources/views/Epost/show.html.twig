@@ -87,7 +87,8 @@ padding: 0.1em;
        
     <div class="viewpost">
      <table width="98%"><tr><td align="top">
-        {{ entity.createdAt|created_ago }}, {{ entity.proprietaire.username }}
+        <i class="icon-time"></i> {{ entity.createdAt|created_ago }}, 
+<i class="icon-user"></i> {{ entity.proprietaire.username }}
    
            {% if entity.globalnote is not null %}
    {#    Note Globale: #}

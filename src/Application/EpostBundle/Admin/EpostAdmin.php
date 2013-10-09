@@ -120,8 +120,10 @@ public function getTemplate($name)
         $formMapper
                 ->with('General')
                  ->add('name')
-                
-                 ->add('description', 'genemu_tinymce', array('attr' => array('class' => 'tinymce')))
+                 ->add('description', 'ckeditor', array(
+                    'config_name' => 'my_config',
+                ))
+                // ->add('description', 'genemu_tinymce', array('attr' => array('class' => 'tinymce')))
                 /*->add('description', 'textarea', array(
                     'label' => 'Description du Post',
                     'attr' => array(

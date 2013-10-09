@@ -218,17 +218,7 @@ class EpostController extends Controller {
                   
                 ));
     }
-    /*public function indextestAction() {
-        $em = $this->getDoctrine()->getManager();
-          $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
-            //var_dump($query->getDql());exit(1);
-         $paginationa = $this->createpaginator($query, 10);
-
-        return $this->render('ApplicationEpostBundle:Epost:index-test3.html.twig', array(
-                    'paginationa' => $paginationa,
-                  
-                ));
-    }*/
+   
        public function indextestisotopeAction() {
         $em = $this->getDoctrine()->getManager();
           $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
@@ -403,25 +393,7 @@ class EpostController extends Controller {
             //var_dump($query->getDql());exit(1);
         }
         $paginationa = $this->createpaginator($query, 5);
-    /*     $request = $this->get('request');
-    $cookies = $request->cookies;
- // acces sous twig : {{ app.request.cookies.get('myCookie') }}
-    if (! $cookies->has('tabopen'))
-    {
-       $response = new Response();
-        //response->headers->setCookie(new Cookie('foo', 'bar'));
-$response->headers->setCookie(new Cookie('tabopen', '1'));
-
-//return $this->render(‘template_path’, array(..template_parameters…), $response);
-        return $this->render('ApplicationEpostBundle:Epost:indexall.html.twig', array(
-                    'paginationa' => $paginationa,
-                    'search_form' => $searchForm->createView(),
-                ),$response);
-    }
-    else {*/
-      
-//return $this->render(‘template_path’, array(..template_parameters…), $response);
-        return $this->render('ApplicationEpostBundle:Epost:indexall.html.twig', array(
+         return $this->render('ApplicationEpostBundle:Epost:indexall.html.twig', array(
                     'paginationa' => $paginationa,
                     'search_form' => $searchForm->createView(),
                 ));

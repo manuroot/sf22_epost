@@ -12,6 +12,9 @@ sonata_admin:
         # default global templates
         layout:  SonataAdminBundle::standard_layout.html.twig
         ajax:    SonataAdminBundle::ajax_layout.html.twig
+        #short_object_description: SonataAdminBundle:Admin:short-object-description.html.twig
+        short_object_description: ApplicationSonataAdminBundle:Admin:short-object-description.html.twig
+
 
         # default values of actions templates, they should extend global templates
         list:    SonataAdminBundle:CRUD:list.html.twig

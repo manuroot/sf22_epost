@@ -9,6 +9,7 @@
 {% block stylesheets %}
 {{ parent() }}
 {% include 'ApplicationEpostBundle:Template:blockscss.html.twig' %}
+
 {% endblock %}
 
 
@@ -23,20 +24,18 @@ EDITION: <br>
 
 {% block content %}
 <br><br>
- <table class="table table-bordered">
- <tbody>   
+ 
 <form action="{{ path('epost_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
  {% include 'ApplicationEpostBundle:Template:new.html.twig' with {'myform':form} %}
-          <tr class="single">
-              <td colspan="3">
-                <br><br>
+         
+ </form>       
+        
+        
+        
                 <form action="{{ path('epost_delete', { 'id': entity.id }) }}" method="post">
                 <input type="hidden" name="_method" value="DELETE" />
                 {{ form_widget(delete_form) }}
                 <button type="submit"  class="btn btn-medium btn-danger">Delete</button>
                 </form>
-              </td>
-          </tr>
-</tbody>
-</table>
+            
 {% endblock %}

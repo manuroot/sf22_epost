@@ -37,11 +37,11 @@ class EpostType extends AbstractType {
                 
                 ->add('resume', 'textarea', array(
                     'label' => 'Resumé du Post',
-                    'attr' => array(
-                        'cols' => "60",
+                   /* 'attr' => array(
+                        'cols' => "40",
                         'rows' => "10",
                         'class' => 'tinymce',
-                        )))
+                        ))*/))
 
                 // cyclic dependance ??
                 /*  ->add('name', 'genemu_jqueryautocomplete_entity', array(
@@ -68,27 +68,29 @@ class EpostType extends AbstractType {
                 ->add('description', 'ckeditor', array(
                     'config_name' => 'my_config',
                 ))
-                   /*   ->add('imageMedia', 'sonata_media_type', array(
-        'provider' => 'sonata.media.provider.image',
-        'context' => 'default',
-        'label' => 'Project image',
-        'required' => true
-
-    ));*/
-                /*->add('description', 'textarea', array(
-                    'label' => 'Description du Post',
-                    'attr' => array(
-                        'cols' => "35",
-                       'rows' => "15",
-                        'class' => 'tinymce',
-                        'data-theme' => 'advanced' // simple, advanced, bbcode
-                        )))*/
-                        ;
+                
+                /*->add('imageMedia', 'sonata_type_model_list', array(
+        'required' => false
+    ), array(
+        'link_parameters' => array(
+            'context' => 'default',
+            'provider' => 'sonata.media.provider.image'
+        )
+    )
+);*/
+                
+             //   ->add('imageMedia', 'sonata_type_model', array(), array('edit' => 'list'));
+      ->add('imageMedia', 'sonata_media_type', array(
+     'provider' => 'sonata.media.provider.image',
+     'context'  => 'default',
+             'required'=>false,
+));
+             
 
 
                 // ->add('services')
-               //   ->add('imageMedia')
-               if (isset($this->Username)) {
+         //     $builder->add('imageMedia');
+            /*   if (isset($this->Username)) {
             $username = $this->Username;
             $builder->add('imageMedia', 'entity', array(
                 //'class' => 'Application\EservicesBundle\Entity\CertificatsProjet',
@@ -109,7 +111,7 @@ class EpostType extends AbstractType {
             ));
         } else {
             $builder->add('imageMedia');
-        }
+        }*/
              /*   ->add('imageMedia', 'sonata_type_model_list', array('required' => false),
                     array('link_parameters'=>array('context'=>'default',
                    'provider'=>'sonata.media.provider.image')))

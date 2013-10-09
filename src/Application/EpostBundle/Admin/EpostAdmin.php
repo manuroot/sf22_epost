@@ -80,6 +80,7 @@ public function getTemplate($name)
                 ->add('proprietaire',null,array('label'=>'User'))
                 ->add('idStatus',null,array('label'=>'Status'))
                  ->add('isvisible', null, array('editable' => true))
+               // ->add('imageMedia')
                 
                 ->add('commentsDisabled', null, array('editable' => true))
             /*    ->add('_action', 'actions', array(

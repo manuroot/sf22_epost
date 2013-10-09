@@ -95,11 +95,12 @@ class Epost {
      * @var File $image
      */
     protected $image;
-
+  // @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media",cascade={"persist"})
+    
     /**
      * @var Application\Sonata\MediaBundle\Entity\Media
      *
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")))
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media",cascade={"persist"})
      * @ORM\OrderBy({"name" = "ASC"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="imageMedia", referencedColumnName="id")

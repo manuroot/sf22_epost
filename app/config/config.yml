@@ -57,6 +57,7 @@ twig:
     form:
         resources:
             - LexikFormFilterBundle:Form:form_div_layout.html.twig
+            - 'SonataMediaBundle:Form:media_widgets.html.twig'
 #==================================================
 #  ASSETIC
 #==================================================
@@ -331,6 +332,7 @@ ivory_ck_editor:
     configs:
         my_config:
               height: "400px"
+              #width: "600px"
               colorButton_colors: '00923E,F8C100,28166F'
               toolbar: "full"
               filebrowserBrowseRoute: admin_sonata_media_media_browser

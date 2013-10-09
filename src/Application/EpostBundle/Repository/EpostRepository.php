@@ -215,22 +215,6 @@ $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retr
 
     public function getMyPager(array $criteria,$ret='getquery') {
 
-        /* $query = $this->createQueryBuilder('a')
-          ->add('orderBy', 'a.id DESC')
-          ->where('a.proprietaire = :proprietaire')
-          ->leftJoin('a.proprietaire', 'b')
-          ->leftJoin('a.categorie', 'c')
-          ->leftJoin('a.idStatus', 'd')
-          ->setParameter('proprietaire', $criteria['author'])
-          ->getQuery();
-
-          return $query; */
-        /*
-          > $query = $query->getResult();
-          >
-          > $adapter = $this->get('knp_paginator.adapter');
-          > $adapter->setQuery($query)
-         */
         $parameters = array();
         $query = $this->createQueryBuilder('a')
                 ->select('a,b,c,d,e,f')

@@ -49,7 +49,7 @@ ARTICLES DU GROUPE: {{ app.user.idgroup }}
                 <th>Name</th>
                 <th{% if paginationa.isSorted('c.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(paginationa, 'Categorie', 'c.name') }}</th>
                 <th{% if paginationa.isSorted('b.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(paginationa, 'Proprietaire', 'b.username') }}</th>
-               <th{% if paginationa.isSorted('d.idStatus.nom') %} class="sorted"{% endif %}>
+               <th{% if paginationa.isSorted('d.idStatus.nom') %} class="sorted"{% endif %} style="min-width:45px;">
 {{ knp_pagination_sortable(paginationa, 'S', 'd.idStatus.nom') }}
                    <i class="icon-flag"></i></th>
                    
@@ -58,7 +58,7 @@ ARTICLES DU GROUPE: {{ app.user.idgroup }}
                      <th{% if paginationa.isSorted('e.globalnote') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(paginationa, 'Note Globale', 'e.globalnote') }}</th>
              
                  <th>Image</th>
-                   <th>Commentaires</th>
+                   <th style="min-width:30px;"><i class="icon-comment"></i> C</th>
                  <th colspan="2">Actions</th>
             </tr>
         </thead>

@@ -58,7 +58,7 @@ MES ARTICLES
     
  <th{% if paginationa.isSorted('a.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(paginationa, 'Nom', 'a.name') }}</th>
  <th{% if paginationa.isSorted('c.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(paginationa, 'Categorie', 'c.name') }}</th>
- <th{% if paginationa.isSorted('d.idStatus.nom') %} class="sorted"{% endif %}>
+ <th{% if paginationa.isSorted('d.idStatus.nom') %} class="sorted"{% endif %} style="min-width:45px;">
 {{ knp_pagination_sortable(paginationa, 'S', 'd.idStatus.nom') }}
                    <i class="icon-flag"></i></th> 
         <th{% if paginationa.isSorted('a.createdAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(paginationa, 'Date', 'a.createdAt') }}</th>
@@ -73,7 +73,7 @@ MES ARTICLES
 
    {# <th>Image</th>#}
      <th>ImageMedia</th>
-          <th{% if paginationa.isSorted('a.commentscount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(paginationa, 'Commentaires', 'a.commentscount') }}</th>
+          <th{% if paginationa.isSorted('a.commentscount') %} class="sorted"{% endif %} style="min-width:45px;">{{ knp_pagination_sortable(paginationa, 'C', 'a.commentscount') }}</th>
              
        {#    {% if is_granted("ROLE_ADMIN") %}#}
  <th colspan="3"><center>Actions</center></th>

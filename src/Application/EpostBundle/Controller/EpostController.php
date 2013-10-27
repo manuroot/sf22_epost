@@ -177,72 +177,66 @@ class EpostController extends Controller {
     public function indexdashboardAction() {
 
         return $this->render('ApplicationEpostBundle:Epost:indexdashboard.html.twig', array(
-                ));
+        ));
     }
 
-    
-     public function indextestaAction() {
+    public function indextestaAction() {
         $em = $this->getDoctrine()->getManager();
-          $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
-            //var_dump($query->getDql());exit(1);
-         $paginationa = $this->createpaginator($query, 10);
+        $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
+        //var_dump($query->getDql());exit(1);
+        $paginationa = $this->createpaginator($query, 10);
 
         return $this->render('ApplicationEpostBundle:Epost:index-test1.html.twig', array(
                     'paginationa' => $paginationa,
-                  
-                ));
-  //  }
-        
+        ));
+        //  }
     }
-    
-     public function indextestcAction() {
+
+    public function indextestcAction() {
         $em = $this->getDoctrine()->getManager();
-          $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
-            //var_dump($query->getDql());exit(1);
-         $paginationa = $this->createpaginator($query, 10);
+        $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
+        //var_dump($query->getDql());exit(1);
+        $paginationa = $this->createpaginator($query, 10);
 
         return $this->render('ApplicationEpostBundle:Epost:index-test3.html.twig', array(
                     'paginationa' => $paginationa,
-                  
-                ));
+        ));
     }
-    
+
     public function indextestquicksandAction() {
         $em = $this->getDoctrine()->getManager();
-          $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
-            //var_dump($query->getDql());exit(1);
-         $paginationa = $this->createpaginator($query, 10);
+        $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
+        //var_dump($query->getDql());exit(1);
+        $paginationa = $this->createpaginator($query, 10);
 
         return $this->render('ApplicationEpostBundle:Epost:index-testquicksand.html.twig', array(
                     'paginationa' => $paginationa,
-                  
-                ));
+        ));
     }
-   
-       public function indextestisotopeAction() {
+
+    public function indextestisotopeAction() {
         $em = $this->getDoctrine()->getManager();
-          $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
-            //var_dump($query->getDql());exit(1);
-         $paginationa = $this->createpaginator($query, 10);
+        $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
+        //var_dump($query->getDql());exit(1);
+        $paginationa = $this->createpaginator($query, 10);
 
         return $this->render('ApplicationEpostBundle:Epost:index-testisotope.html.twig', array(
                     'paginationa' => $paginationa,
-                  
-                ));
+        ));
     }
-     public function indextestbAction() {
+
+    public function indextestbAction() {
         $em = $this->getDoctrine()->getManager();
-          $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
-            //var_dump($query->getDql());exit(1);
-         $paginationa = $this->createpaginator($query, 5);
+        $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
+        //var_dump($query->getDql());exit(1);
+        $paginationa = $this->createpaginator($query, 5);
 
         return $this->render('ApplicationEpostBundle:Epost:index-test2.html.twig', array(
                     'paginationa' => $paginationa,
-                  
-                ));
-  //  }
-        
+        ));
+        //  }
     }
+
     public function indexAction() {
 
         $em = $this->getDoctrine()->getManager();
@@ -254,7 +248,7 @@ class EpostController extends Controller {
         $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
             'author' => $user_id,
             'alltags' => 'yes',
-                ));
+        ));
         $defaut_paginator_a = array('pagename' => 'page1', 'sortdir' => 'dir1', 'sortfield' => 'sort1');
         $paginationa = $this->createpaginator($query, 5, $defaut_paginator_a);
 
@@ -263,7 +257,7 @@ class EpostController extends Controller {
                 'non-author' => $user_id,
                 'group' => $group_id,
                 'alltags' => 'yes',
-                    ));
+            ));
 
 
 
@@ -276,7 +270,7 @@ class EpostController extends Controller {
                     'paginationa' => $paginationa,
                     'paginationb' => $paginationb,
                     'all_years' => $all_years,
-                ));
+        ));
     }
 
     //====================================================================
@@ -393,11 +387,11 @@ class EpostController extends Controller {
             //var_dump($query->getDql());exit(1);
         }
         $paginationa = $this->createpaginator($query, 5);
-         return $this->render('ApplicationEpostBundle:Epost:indexall.html.twig', array(
+        return $this->render('ApplicationEpostBundle:Epost:indexall.html.twig', array(
                     'paginationa' => $paginationa,
                     'search_form' => $searchForm->createView(),
-                ));
-  //  }
+        ));
+        //  }
     }
 
     //====================================================================
@@ -410,13 +404,13 @@ class EpostController extends Controller {
         $session->set('buttonretour', 'epost_indexstandard');
         $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
             'open_status' => 'OPEN',
-                ));
+        ));
         //  print_r($query);   exit(1);
         // $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPagerStandard(array(open-status));
         return $this->renderBlog(array(
                     'page' => 'ApplicationEpostBundle:Epost:standardblog.html.twig',
                     'query' => $query,
-                ));
+        ));
     }
 
     //====================================================================
@@ -428,14 +422,14 @@ class EpostController extends Controller {
         if ($year) {
             $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
                 'year' => $year,
-                    ));
+            ));
         } else {
             $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
         }
         return $this->renderBlog(array(
                     'page' => 'ApplicationEpostBundle:Epost:standardblog.html.twig',
                     'query' => $query,
-                ));
+        ));
     }
 
     //====================================================================
@@ -445,24 +439,24 @@ class EpostController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $category = $em->getRepository('ApplicationEpostBundle:EpostCategories')->findOneBy(array(
             'slug' => $categorie,
-                ));
+        ));
 
         if ($category) {
             $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
                 'categorie' => $category,
                 'open_status' => 'OPEN',
-                    ));
+            ));
         } else {
             $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
                 'open_status' => 'OPEN',
-                    ));
+            ));
         }
 
         // $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPagerStandard(array(open-status));
         return $this->renderBlog(array(
                     'page' => 'ApplicationEpostBundle:Epost:standardblog.html.twig',
                     'query' => $query,
-                ));
+        ));
 
         /* return $this->renderBlog(array(
           'page' => 'ApplicationEpostBundle:Epost:standardblog.html.twig',
@@ -478,19 +472,19 @@ class EpostController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $entity_tag = $em->getRepository('ApplicationEpostBundle:EpostTags')->findOneBy(array(
             'slug' => $tag,
-                ));
+        ));
         if ($entity_tag) {
             $id_tag = $entity_tag->getId();
             $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
                 'tag' => $id_tag,
-                    ));
+            ));
         } else {
             $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array());
         }
         return $this->renderBlog(array(
                     'page' => 'ApplicationEpostBundle:Epost:standardblog.html.twig',
                     'query' => $query,
-                ));
+        ));
     }
 
     //====================================================================
@@ -509,13 +503,13 @@ class EpostController extends Controller {
         $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
             'author' => $user_id,
             'alltags' => 'yes',
-                ));
+        ));
 
 
         $pagination = $this->createpaginator($query, 10);
         return $this->render('ApplicationEpostBundle:Epost:indexmesposts.html.twig', array(
                     'paginationa' => $pagination,
-                ));
+        ));
     }
 
     //====================================================================
@@ -536,12 +530,12 @@ class EpostController extends Controller {
             'non-author' => $user_id,
             'group' => $group_id,
             'alltags' => 'yes',
-                ));
+        ));
         //  $query = $em->getRepository('ApplicationEpostBundle:Epost')->myFindOtherAll($user_id, $group_id);
         $paginationa = $this->createpaginator($query, 5);
         return $this->render('ApplicationEpostBundle:Epost:indexpropositions.html.twig', array(
                     'paginationa' => $paginationa,
-                ));
+        ));
     }
 
     //====================================================================
@@ -578,7 +572,7 @@ class EpostController extends Controller {
                     'entity' => $entity,
                     'btnretour' => $myretour,
                     'form' => $form->createView(),
-                ));
+        ));
     }
 
     //====================================================================
@@ -597,7 +591,7 @@ class EpostController extends Controller {
                     'entity' => $entity,
                     'btnretour' => $myretour,
                     'form' => $form->createView(),
-                ));
+        ));
     }
 
     //====================================================================
@@ -651,7 +645,7 @@ class EpostController extends Controller {
         //    exit(1);
         if ($user_id != $proprietaire) {
             return $this->render('ApplicationEpostBundle:Epost:deny.html.twig', array(
-                    ));
+            ));
         }
 
         $username = $entity->getProprietaire()->getUsername();
@@ -664,13 +658,13 @@ class EpostController extends Controller {
                     'btnretour' => $myretour,
                     'form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
-                ));
+        ));
     }
 
-    /**
-     * Edits an existing Epost entity.
-     *
-     */
+    //====================================================================
+    // UPDATE ARTICLE
+    //====================================================================
+
     public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
@@ -705,13 +699,13 @@ class EpostController extends Controller {
                     'btnretour' => $myretour,
                     'form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
-                ));
+        ));
     }
 
-    /**
-     * Deletes a Epost entity.
-     *
-     */
+    //====================================================================
+    // DELETE ARTICLE
+    //====================================================================
+
     public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->bind($request);
@@ -734,6 +728,10 @@ class EpostController extends Controller {
         return $this->redirect($this->generateUrl('epost'));
     }
 
+    //====================================================================
+    // CREATE DELETE ARTICLE
+    //====================================================================
+
     /**
      * Creates a form to delete a Epost entity by id.
      *
@@ -747,6 +745,10 @@ class EpostController extends Controller {
                         ->getForm()
         ;
     }
+
+    //====================================================================
+    // AJAX: LISt PAR PROJET
+    //====================================================================
 
     public function listByProjetAction() {
         $request = $this->getRequest();
@@ -784,37 +786,38 @@ class EpostController extends Controller {
         // return new Response();
     }
 
-   
-    // TODO:
+    //====================================================================
+    // CALENDAR ARTICLE
+    //====================================================================
+
     public function CalendarEventsAction() {
 
-          
-          $request = $this->getRequest();
-          $session = $this->getRequest()->getSession();
+
+        $request = $this->getRequest();
+        $session = $this->getRequest()->getSession();
         if ($request->isXmlHttpRequest() && $request->getMethod() == 'POST') {
             $month = $request->request->get('month');
             if ($month < 10)
                 $month = "0" . $month;
             $year = $request->request->get('year');
             $date = $year . '-' . $month;
-           // $session_event=$date;
-             $current_session_events = $session->get($date);
-         if (!isset($current_session_events)){
-            // echo "year=$year month=$month<br>";exit(1); 
-            $em = $this->getDoctrine()->getManager();
-            // recuperation des parametres
-            $events_date = $em->getRepository('ApplicationEpostBundle:Epost')->getMyDate($date);
-              $session->set($date, $events_date); 
+            // $session_event=$date;
+            $current_session_events = $session->get($date);
+            if (!isset($current_session_events)) {
+                // echo "year=$year month=$month<br>";exit(1); 
+                $em = $this->getDoctrine()->getManager();
+                // recuperation des parametres
+                $events_date = $em->getRepository('ApplicationEpostBundle:Epost')->getMyDate($date);
+                $session->set($date, $events_date);
+                //  print_r($events_date); 
+            } else {
+                $events_date = $current_session_events;
+                //   print_r($events_date); 
+            }
             //  print_r($events_date); 
-              
-       }else {
-            $events_date= $current_session_events;
-          //   print_r($events_date); 
-       }
-             //  print_r($events_date); 
             $response = new Response(json_encode($events_date));
             $response->headers->set('Content-Type', 'application/json');
-      return $response;
+            return $response;
         }
         // return new Response();
     }
@@ -850,9 +853,13 @@ class EpostController extends Controller {
         return $this->render('ApplicationEpostBundle:Epost:search.html.twig', array(
                     'paginationa' => $paginationa,
                     'paginationb' => $paginationb,
-                ));
+        ));
         ;
     }
+
+    //====================================================================
+    // MEDIA MANIP
+    //====================================================================
 
     public function mediaAction(Request $request) {
 // preset a default value
@@ -886,7 +893,7 @@ class EpostController extends Controller {
         return $this->render('SonataDemoBundle:Demo:media.html.twig', array(
                     'form' => $form->createView(),
                     'media' => $mediaPreview->getMedia()
-                ));
+        ));
     }
 
     /**
@@ -895,6 +902,10 @@ class EpostController extends Controller {
     public function getSeoPage() {
         return $this->get('sonata.seo.page');
     }
+
+    //====================================================================
+    // ADD/UPDATE IMAGE
+    //====================================================================
 
     public function addmyimageAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
@@ -946,14 +957,14 @@ class EpostController extends Controller {
                             'form' => $form->createView(),
                             'entity' => $entity,
                                 // 'delete_form' => $deleteForm->createView(),
-                        ));
+                ));
             }
         }
         return $this->render('ApplicationEpostBundle:Epost:addimage.html.twig', array(
                     'form' => $form->createView(),
                     'entity' => $entity,
                         // 'delete_form' => $deleteForm->createView(),
-                ));
+        ));
     }
 
 }

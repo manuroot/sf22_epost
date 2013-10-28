@@ -1,4 +1,6 @@
  
+{% form_theme form with 'ApplicationEpostBundle:Form:media_widgets.html.twig' %}
+
 {% use '::navbar.html.twig' %}
 {#
 {% use "ApplicationEpostBundle::Template:layout.html.twig" %}#}
@@ -25,7 +27,7 @@
     </div>
     <div class="span3">
         {{ form_errors(form.imageMedia) }}
-        {{ form_label(form.imageMedia) }}
+     {#   {{ form_label(form.imageMedia) }}#}
         {{ form_widget(form.imageMedia) }}
     </div>      
 </div>

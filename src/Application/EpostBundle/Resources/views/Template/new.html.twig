@@ -29,6 +29,17 @@
         {{ form_errors(form.imageMedia) }}
      {#   {{ form_label(form.imageMedia) }}#}
         {{ form_widget(form.imageMedia) }}
+        <a class="editme" href="{{ path('certificats_documents_xhtml', { 'id': entity.id }) }}">
+        <span class="icon-stack icon-2x">
+            <i class="icon-check-empty icon-stack-base"></i>
+            <i class="icon-archive"></i>
+       </span>   
+       </a>
+       Sélectionner Fichier Existant
+                   
+                   
+                   
+                   
     </div>      
 </div>
         

@@ -59,7 +59,19 @@ class MediaController extends Controller {
                     'paginationa' => $paginationa,
                 ));
     }
-
+  /**
+     * Lists all Media entities.
+     *
+     */
+    public function indexxhtmlAction() {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('ApplicationSonataMediaBundle:Media')->myFindAll();
+        $defaut_paginator_a = array('pagename' => 'page1', 'sortdir' => 'dir1', 'sortfield' => 'sort1');
+        $paginationa = $this->createpaginator($query, 10, $defaut_paginator_a);
+        return $this->render('ApplicationSonataMediaBundle:Media:index.html.twig', array(
+                    'paginationa' => $paginationa,
+                ));
+    }
     /**
      * Creates a new Media entity.
      *

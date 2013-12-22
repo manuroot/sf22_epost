@@ -182,6 +182,7 @@ class EpostRollRepository extends EntityRepository {
         /* ->getQuery(); */
         // $parameters['proprietaire'] = $criteria['author'];
         if (isset($criteria['author'])) {
+            
             //  print_r($criteria);exit(1);
             $query->andwhere('a.proprietaire = :proprietaire');
             $parameters['proprietaire'] = $criteria['author'];

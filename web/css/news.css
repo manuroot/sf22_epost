@@ -234,7 +234,7 @@ box-shadow: 3px 3px 2px #888888;
 background-color:  #e3e3e3;
 }
 
-div.accordion{
+div.accordion,div.accordion-a{
    background:#eaeaea;  
    border:1px solid;
    border-radius:5px;
@@ -247,7 +247,7 @@ box-shadow: 2px 2px 2px #888888;
     
 }
 
-div.accordion{
+div.accordion,div.accordion-a{
    background:#eaeaea;  
    border:1px solid;
     

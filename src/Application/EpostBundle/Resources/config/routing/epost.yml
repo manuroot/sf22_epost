@@ -3,11 +3,11 @@ epost_indexadmin:
     defaults: { _controller: "ApplicationEpostBundle:Epost:indexAll" }
 
 epost:
-    pattern:  /
+    pattern:  /blogdashboard
     defaults: { _controller: "ApplicationEpostBundle:Epost:indexdashboard" }
     
 epost_indexstandard:
-    pattern:  /blog
+    pattern:  /
     defaults: { _controller: "ApplicationEpostBundle:Epost:standardblog" }
  
     

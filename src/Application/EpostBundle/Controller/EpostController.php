@@ -285,7 +285,8 @@ class EpostController extends Controller {
         $allcategories = $this->sidebar_categories();
         $lastcomments = $this->sidebar_comments();
         $all_years = $this->sidebar_years();
-
+        list($user_id, $group_id) = $this->getuserid();
+        $allrolls = $this->sidebar_rolls($group_id);
         $page = $criteria['page'];
         $query = $criteria['query'];
         // $query = $em->getRepository('ApplicationEpostBundle:Epost')->myFindActif();
@@ -296,7 +297,9 @@ class EpostController extends Controller {
             'all_years' => $all_years,
             'lastcomments' => $lastcomments,
             'alltags' => $alltags,
+              'allrolls' => $allrolls,
             'tagweight' => $tagWeights,
+            
                 // 'route' => $this->getRequest()->get('_route'),
                 //   'route_parameters' => $this->getRequest()->get('_route_params')
         );

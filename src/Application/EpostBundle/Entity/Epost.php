@@ -80,7 +80,7 @@ class Epost {
 
     /**
      * @var string
-      /* @Assert\Length(min = 10,max=500)
+      /* @Assert\Length(min = 10,max=1500)
      * @ORM\Column(name="resume", type="text", nullable=false)
      */
     private $resume;

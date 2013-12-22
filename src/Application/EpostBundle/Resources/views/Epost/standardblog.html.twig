@@ -7,35 +7,35 @@
 <link rel="stylesheet" href="{{ asset('css/news.css') }}" type="text/css" media="all"/>
 {#<link rel="stylesheet" href="{{ asset('css/datepicker.css') }}" type="text/css" media="all"/>#}
 <style>  
-        /* override free days background in jquery ui datepicker */
-        .free-day {
-            background: #2e9500;
-        }
-        div.ui-datepicker {
-            font-size: 95%;
-        }
-        .free-day a {
-            opacity: 0.7;
-        }
-      /* td.ui-datepicker-today:after{
-    content: "Today"
+    /* override free days background in jquery ui datepicker */
+    .free-day {
+        background: #2e9500;
+    }
+    div.ui-datepicker {
+        font-size: 90%;
+    }
+    .free-day a {
+        opacity: 0.7;
+    }
+    /* td.ui-datepicker-today:after{
+  content: "Today"
 }*/
-    </style>
+</style>
 {% endblock %}
 
         {% block javascripts %}
 {{ parent() }}
-    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-    <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/applicationepost/js/datenewsevents.js') }}"></script>
-    
+<script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/applicationepost/js/datenewsevents.js') }}"></script>
+
 {% endblock %}
-    
+
 
 {% block content_header '' %}
 {% block title %}
-        ARTICLES
+ARTICLES
 
 
 {% endblock %}
@@ -44,9 +44,9 @@
 
 {% for type, flashMessages in app.session.flashbag.all() %}
     {% for flashMessage in flashMessages %}
-        <div class="alert alert-{{ type }}">
+<div class="alert alert-{{ type }}">
             {{ flashMessage|trans }}
-            </div>
+</div>
     {% endfor %}
 {% endfor %}
 
@@ -54,98 +54,102 @@
 {% if is_granted("ROLE_USER") %}   
 <a href="{{ path('epost_new') }}" class="btn btn-medium btn-primary"><i class="icon-plus"></i> Ajouter un Post</a>
 {% endif %}#}
-            <br><br>
-
+<br><br>
       {% for entity in paginationa %}
 
 
-            <div class="mypost">
-                <table><tr><td>
-               <i class="icon-time icon-1x"></i> 
+<div class="mypost">
+    <table><tr><td>
+                <i class="icon-time icon-1x"></i> 
                {{ entity.createdAt|created_ago }} -    
 
         {% if entity.globalnote is not null %}
    {#    Note Globale: #}
-                                        <div class="star" data-score="{{ entity.globalnote }}"></div>
+                <div class="star" data-score="{{ entity.globalnote }}"></div>
            {#({{ entity.globalnote }})#}
         {% else %}
-                                        <div class="star" data-score="0"></div>
+                <div class="star" data-score="0"></div>
         {#({{ entity.globalnote }})#}
         {% endif %}
-                                    </td><td><i class="icon-tasks"></i> 
+            </td><td><i class="icon-tasks"></i> 
                           {% if entity.categorie is not null %}               
-                                            <span class="label">
+                <span class="label">
 
-                                                <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
+                    <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
 {{ entity.categorie.name }}</a>
-                                                </span>
+                </span>
                   {% else %}
-                                                pas de catégorie
+                pas de catégorie
                   {% endif %}
                      {#<span class="label label-inverse">#}
                 {#  {{ entity.tags|join(', ') }}    </span>#}
-                                                <i class="icon-tags"></i> 
+                <i class="icon-tags"></i> 
                    {% for tag in entity.tags %}
-                                                <span class="label label-inverse">
-                                                    <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
+                <span class="label label-inverse">
+                    <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
                             {% if not loop.last%} {%endif%}
-                                                </span>
+                </span>
                             {% else %}
-                                                Pas de Tag
+                Pas de Tag
                         {% endfor %}
 
-                                            </td><td> &nbsp; <i class="icon-user"></i> {{ entity.proprietaire.username }}</td></tr></table>
+            </td><td> &nbsp; <i class="icon-user"></i> {{ entity.proprietaire.username }}</td></tr></table>
 
 
 
-                                    <!--   <h2 class="entry-title">-->
-                                    <h3 class="sonata-blog-post-title">
-                                        <img src="{% path entity.imageMedia, 'small' %}" width="100" /> 
+    <!--   <h2 class="entry-title">-->
+    <h3 class="sonata-blog-post-title">
+        <img src="{% path entity.imageMedia, 'small' %}" width="100" /> 
 
-                                        <span class="sonata-blog-post-author"> 
+        <span class="sonata-blog-post-author"> 
 
-                                            <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+            <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
                           {{ entity.name }}</a>
     {% if entity.proprietaire is not null %}               
 
                  {% else %}
-                                                ---
+            ---
                      {% endif %}</span>
-                                        </h3>
-                                        <br>
-                                        <div class="sonata-blog-post-abtract">
-                                            Extrait:  {{ entity.resume|raw }}
-                                        </div><br>
+    </h3>
+    <br>
+    <div class="sonata-blog-post-abtract">
+        Extrait:  {{ entity.resume|raw }}
+    </div><br>
 
+      
+      
+        <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+                         <span class="badge badge-info"> <i class=" icon-hand-right icon-white"></i> Lire la suite</span></a>
+      
         {% if entity.commentscount is not null %}
             {% if entity.commentscount > 1 %}
-                <span class="badge badge-warning">{{ entity.commentscount }} commentaires</span>
+    <span class="badge badge-warning">{{ entity.commentscount }} commentaires</span>
                 {% else %}
-                    <span class="badge badge-warning">{{ entity.commentscount }} commentaire</span>
+    <span class="badge badge-warning">{{ entity.commentscount }} commentaire</span>
             {% endif %}
         {% else %}
-                <span class="badge badge-warning">0 commentaire</span>
+    <span class="badge badge-warning">0 commentaire</span>
         {% endif %}
-                
-                
+
+
      {#   TESTER Commentaires fermés: tester la date             #}
-   
+
 
  {% if entity.commentsDisabled == 1 %}
     {% if (date(entity.commentsCloseAt) > date()) %}
-                <span class="badge badge-warning">Commentaires fermés a partir du {{ entity.commentsCloseAt|date('Y-m-d H') ~ 'h' }}
-                </span>
+    <span class="badge badge-warning">Commentaires fermés a partir du {{ entity.commentsCloseAt|date('Y-m-d H') ~ 'h' }}
+    </span>
                 {% else %}
-                    <span class="badge badge-warning">Commentaires fermés</span>
+    <span class="badge badge-warning">Commentaires fermés</span>
         {% endif %}
    {% endif %}
-        
-        
- <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
-                                            <img src="{{ asset('bundles/applicationepost/images/detail.png') }}" alt="show" width="15" height="15" />
-                                        </a>
 
-                                    </div>
+
+    <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+        <img src="{{ asset('bundles/applicationepost/images/detail.png') }}" alt="show" width="15" height="15" />
+    </a>
+
+</div>
 
     {% endfor %}
  {{ knp_pagination_render(paginationa) }}
@@ -153,10 +157,15 @@
 {% endblock %}
 
 
-            
-    
-    
-    
+
+
+
+  
+{% block roll %}
+{{ parent() }}
+{% include 'ApplicationEpostBundle:sidebar:sidebarroll.html.twig' %}
+{% endblock %}
+
 {% block categories %}
 {{ parent() }}
 {% include 'ApplicationEpostBundle:sidebar:sidebarcategories.html.twig' %}
@@ -176,6 +185,11 @@
 {% include 'ApplicationEpostBundle:sidebar:sidebaryears.html.twig' %}
 {% endblock %}
 
+{% block rolls %}
+{{ parent() }}                              
+{% include 'ApplicationEpostBundle:sidebar:sidebarroll.html.twig' %}
+{% endblock %}
+  
 {% block datepick %}
 {{ parent() }}
 <div id="datepicker"></div>

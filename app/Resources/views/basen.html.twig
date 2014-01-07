@@ -12,6 +12,69 @@
         <link rel="stylesheet" href="{{ asset('css/redmond/jquery-ui-1.10.2.custom.css') }}" type="text/css" media="all"/>
         <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css" />
 
+  <style type="text/css">
+      #blur-bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url(images/background11a.png);
+    }
+ /*   
+body {
+  background-image: url(images/background11a.png); 
+
+}
+
+#bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: #FFF;
+    background-size: cover !important;
+}*/
+/*  body {
+  // background-image: url(images/background11a.png);
+     background: url(images/background11a.png) no-repeat center center fixed;
+       -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+         width: 100%;
+    height: 100%;
+}*/
+
+/*
+#bg {
+background: url(images/background11a.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    z-index: -2;
+}*/
+/*
+#bg {
+  position: absolute;
+    top: 0;
+    left: 0;
+   width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: #FFF;
+    background-size: cover !important;
+}*/
+      /*
+    .background {     
+    -webkit-filter: blur(10px);     
+    filter: blur(10px);      
+}*/
+</style>
+
  {#
 {% stylesheets 
 'css/redmond/jquery-ui-1.10.2.custom.css'
@@ -25,24 +88,34 @@
 
 {# <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-responsive.css') }}" type="text/css" />#}
 
-
+ {#
         <style>
-            body {
-                background-image:url(/images/ravenna.png);
+        
+           /* body {
+	background:url("/images/background11b.png") #A98436 no-repeat left top;
+	background-size: 100%;
+}*/
+           body {
+                
+             /*   background-image:url(/images/background11b.png);*/
+               background-image:url(/images/ravenna.png);
             }
         </style>
+#}
   {% endblock %}
 
 
     </head>
     <body>
-
-        <div class="container">
+         <div id="blur-bg">
+  
+        <div class="container" id="bg">
             <div class="page-header">
                       {{ block('NAVIGATION_BAR') }}
 
             </div>
             <div class="container-fluid">
+             
                 <div class="row-fluid">
 
                     <div class="span2">
@@ -147,7 +220,7 @@
             <p align="center">{{ 'copyright mroot72000@yahoo.fr'|trans }} © 2012-2013</p>
         </div>        
 
-
+</div>
 
 
         <!-- Le javascript ================================================== -->
@@ -158,6 +231,18 @@
         <script type="text/javascript" src="{{ asset('jquery/jquery-ui-1.9.2.custom.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('jquery/jquery.ui.datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/blur.min.js') }}"></script>
+        <script type="text/javascript">
+
+           
+          $(document).ready( function() {
+    $('#bg').blurjs({
+        source: '#blur-bg',
+        radius: 30,
+        overlay: 'rgba(0, 0, 0, .2)'
+    });
+});
+</script>
               {# <script type="text/javascript" src="{{ asset('js/paypal-button.min.js') }}"></script>#}
  {% endblock %}
 

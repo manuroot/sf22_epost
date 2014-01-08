@@ -13,22 +13,20 @@
         <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css" />
 
   <style type="text/css">
-      body{
-   /*position: fixed;*/
+      #blur-bg{
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-  /*  height:100%;*/
     background: url(images/background11a.png);
-  /*   background-size: cover !important;*/
     }
-  /*
+ /*   
 body {
   background-image: url(images/background11a.png); 
 
-}*/
-/*
+}
+
 #bg {
     position: absolute;
     top: 0;
@@ -237,13 +235,13 @@ background: url(images/background11a.png) no-repeat center center fixed;
         <script type="text/javascript">
 
            
-      /*  $(document).ready( function() {
+          $(document).ready( function() {
     $('#bg').blurjs({
-        source: 'body',
-        radius: 50,
+        source: '#blur-bg',
+        radius: 30,
         overlay: 'rgba(0, 0, 0, .2)'
     });
-});*/
+});
 </script>
               {# <script type="text/javascript" src="{{ asset('js/paypal-button.min.js') }}"></script>#}
  {% endblock %}

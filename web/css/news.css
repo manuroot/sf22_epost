@@ -1,4 +1,4 @@
-div.mypost
+div.mypost1
 {
 border:1px solid;
 border-radius:5px;
@@ -13,6 +13,20 @@ box-shadow: 7px 7px 5px #888888;
 background-color:  #f1f1f1;
 } 
 
+div.mypost
+{
+border:1px solid;
+border-radius:1px;
+-moz-border-radius:1px; /* Old Firefox */
+padding-bottom:10px;
+padding-left:10px;
+margin-bottom:20px;
+margin-left:10px;
+margin-right:10px;
+/*box-shadow: 7px 7px 5px #888888;*/
+background-color:  whitesmoke;
+/*background-color:  #f1f1f1;*/
+} 
 div.lescategories {
 border:1px solid;
 border-radius:10px;

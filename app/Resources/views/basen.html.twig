@@ -13,15 +13,35 @@
         <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css" />
 
   <style type="text/css">
-      body{
-   /*position: fixed;*/
+      body {
+  background:url('images/Blurred-Background_2.jpg') #A98436 no-repeat;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+     /*  body{
+    	
+        background-image:url('images/Blurred-Background_2.jpg');
+        background-position:top left;
+         background-repeat: no-repeat;
+    background-size: cover;
+    
+       // background-repeat:repeat;
+       
+        
+            }*/
+            
+   
+            /*body{
+  //position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-  /*  height:100%;*/
+ 
     background: url(images/background11a.png);
-  /*   background-size: cover !important;*/
+  //   background-size: cover !important;
     }
   /*
 body {
@@ -111,7 +131,7 @@ background: url(images/background11a.png) no-repeat center center fixed;
     <body>
          <div id="blur-bg">
   
-        <div class="container" id="bg">
+        <div class="container">
             <div class="page-header">
                       {{ block('NAVIGATION_BAR') }}
 
@@ -120,7 +140,7 @@ background: url(images/background11a.png) no-repeat center center fixed;
              
                 <div class="row-fluid">
 
-                    <div class="span2">
+                    <div class="span3">
                         <div class="accordion-a" id="accordion1">
                             <div class="accordion-group">
 
@@ -156,7 +176,7 @@ background: url(images/background11a.png) no-repeat center center fixed;
 
 
 
-                    <div class="span7">
+                    <div class="span6">
         {#BASEN#}
                         <center><h1>   {% block title %}CERTIFICATS{% endblock %}</h1></center>
     {% block content %}
@@ -237,10 +257,10 @@ background: url(images/background11a.png) no-repeat center center fixed;
         <script type="text/javascript">
 
            
-      /*  $(document).ready( function() {
-    $('#bg').blurjs({
+  /* $(document).ready( function() {
+    $('#blur-bg').blurjs({
         source: 'body',
-        radius: 50,
+        radius: 7,
         overlay: 'rgba(0, 0, 0, .2)'
     });
 });*/

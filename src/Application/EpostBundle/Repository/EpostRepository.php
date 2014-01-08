@@ -304,7 +304,16 @@ $end_date = date('Y-m-d', strtotime("$start_date +$cutoff days")); // never retr
         return $query->getQuery();
         //return $query->getQuery()->getResult();
     }
-
+ public function FindLastArticles($limit=20) {
+           
+         return $this->createQueryBuilder('p')
+                 ->where('p.approved = 1')
+                  ->leftJoin('p.epost', 'b')
+                 ->orderby('p.updated', 'DESC')
+                  ->setMaxResults($limit)
+                        ->getQuery()
+                 ->getResult();
+     }
     public function getMyPagerStandard(array $criteria) {
 
 

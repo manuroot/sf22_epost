@@ -55,6 +55,12 @@ class EpostController extends Controller {
         return ($lastcomments);
     }
 
+    private function sidebar_articles() {
+        $em = $this->container->get('doctrine')->getManager();
+        $lastarticles = $em->getRepository('ApplicationEpostBundle:Epost')->FindLastArticles();
+        return ($lastarticles);
+    }
+
     private function sidebar_categories() {
         $em = $this->container->get('doctrine')->getManager();
         $allcategories = $em->getRepository('ApplicationEpostBundle:EpostCategories')->findAll();
@@ -297,9 +303,8 @@ class EpostController extends Controller {
             'all_years' => $all_years,
             'lastcomments' => $lastcomments,
             'alltags' => $alltags,
-              'allrolls' => $allrolls,
+            'allrolls' => $allrolls,
             'tagweight' => $tagWeights,
-            
                 // 'route' => $this->getRequest()->get('_route'),
                 //   'route_parameters' => $this->getRequest()->get('_route_params')
         );

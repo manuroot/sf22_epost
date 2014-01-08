@@ -203,7 +203,7 @@ background: url(images/background11a.png) no-repeat center center fixed;
                             <div class="accordion-group">
                                 <div class="accordion-heading">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                                        <h4 class="ui-widget-header ui-corner-all">Commentaires</h4>
+                                        <h4 class="ui-widget-header ui-corner-all">Commentaires Récents</h4>
                                     </a>
                                 </div>
                                 <div id="collapseTwo" class="accordion-body">
@@ -226,7 +226,19 @@ background: url(images/background11a.png) no-repeat center center fixed;
                                     </div>
                                 </div>
                             </div>
-
+                        <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseFour">
+                                        <h4 class="ui-widget-header ui-corner-all">Articles Récents</h4>
+                                    </a>
+                                </div>
+                                <div id="collapseFour" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                    {% block articlesrec %}
+                                  {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
 
 
                         </div>

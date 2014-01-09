@@ -1,0 +1,184 @@
+{% block NAVIGATION_BAR %}
+ {% set foo = app.request.attributes.get('_route') %}
+ {#{{ foo }}#}
+{% set foo = foo|split('_') %}
+{#{{ foo[0] }} #}
+
+    {#        
+  <div class="navbar-inverse navbar-static-top">
+        <div class="navbar-inner">
+        <div class="container">#}
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+ {#<nav class="navbar navbar-default navbar-fixed-top" role="navigation">#}
+   {# <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">#}
+    {#navbar-static-top#}
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#"><i class="fa fa-home"></i> BLOG MRoot</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+ <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span>
+Coté Mer <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#"><i class="fa fa-globe"></i> Patrimoine historique et naturel</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-leaf"></span> Activités, loisirs et animations</a></li>
+          <li class="divider"></li>
+          <li><a href="#"><i class="fa fa-briefcase"></i> Hébergement</a></li>
+          <li class="divider"></li>
+          <li><a href="#"><i class="fa fa-cutlery"></i> Commerces et services</a></li>
+        </ul>
+      </li>
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tower"></span> Coté Ville<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+              <li><a href="#"><i class="fa fa-home"></i> La Marie</a></li>
+          <li><a href="#"><i class="fa fa-users"></i> Les Elus</a></li>
+          <li><a href="#"><i class="fa fa-pencil"></i> Les démarches administratives</a></li>
+          <li class="divider"></li>
+          <li><a href="#"><i class="fa fa-home"></i> Présentation de la commune</a></li>
+          <li><a href="#"><i class="fa fa-archive"></i> Travaux et dossiers en cours</a></li>
+          <li class="divider"></li>
+          <li><a href="#"><i class="fa fa-heart"></i> Vivre a Préfailles</a></li>
+          <li class="divider"></li>
+          <li><a href="#"><i class="fa fa-comments-o"></i> Vos questions- Nos réponses</a></li>
+        </ul>
+      </li>
+       <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-book"></span> Actualités<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+              <li><a href="#"><i class="glyphicon glyphicon-book"></i> Actualité-Mairie</a></li>
+          <li><a href="#"><i class="glyphicon glyphicon-book"></i> Actualié- Les Elus</a></li>
+          <li><a href="#"><i class="glyphicon glyphicon-book"></i> Les démarches administratives</a></li>
+         
+        </ul>
+      </li>
+        
+  </div><!-- /.navbar-collapse -->
+</nav>
+        
+        {#
+   <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container-fluid"> 
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> 
+                 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <span class="icon-bar"></span> 
+                  <span class="icon-bar"></span> 
+                 <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+                {% endif %}
+            </a>
+                     
+           <a class="brand" href="{{ path('epost') }}">
+            <i class="icon-white icon-home"></i>
+            {% block toto %}I-CHANGE(v1.2a){% endblock %}
+          </a>
+                  
+<div class="nav-collapse collapse">
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    <ul class="nav pull-right">
+            <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-user"></i> Déconnexion
+            <b class="caret"></b> </a></li>    
+   </ul>       
+   <ul class="nav pull-right">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i>
+        {{ app.user.username }} <b class="caret"></b> </a>
+        {% if is_granted("ROLE_ADMIN") %}
+            <ul class="dropdown-menu">
+            <li><a href="{{ path('sonata_admin_dashboard') }}">{{ 'Admin Dashboard' }}</a>
+            <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">{{ 'Edit Profile' }}</a></li>
+            </ul>
+        {% endif %}   
+  </ul>
+ {% else %}
+    <ul class="nav pull-right">
+        <li><a href="{{ path('fos_user_security_login') }}"><i class="icon-key"></i> Connexion</a></li>
+    </ul>
+ {% endif %}
+     
+        
+<ul class="nav">
+    
+    {% set addoncl="dropdown" %}
+    {% if foo[0] == 'epost' %}  {% set addoncl="dropdown active" %} {% endif %}
+    <li class="{{addoncl}}">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-book"></i>
+    Blog<b class="caret"></b> </a>
+    <ul class="dropdown-menu">
+    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <li><a href="{{ path('epost') }}"><i class="icon-plus-sign"></i> {{ 'DashBoard Articles'|trans }}</a></li>
+        <li><a href="{{ path('epost_mesposts') }}"><i class="icon-plus-sign"></i> {{ 'Mes Artciles'|trans }}</a></li>
+        <li><a href="{{ path('epost_propositions') }}"><i class="icon-plus-sign"></i> {{ 'Groupe-Articles'|trans }}</a></li>
+    {% endif %}
+    <li><a href="{{ path('epost_indexstandard') }}"><i class="icon-plus-sign"></i> {{ 'Standard Blog'|trans }}</a></li>
+    <li><a href="{{ path('epost_indexadmin') }}"><i class="icon-plus-sign"></i> {{ 'Tous les Articles'|trans }}</a></li>
+    </ul>
+    </li>
+
+    <!--======================== AUTENTIFIE=================-->                                           
+    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-pencil"></i>
+        Commentaires<b class="caret"></b> </a>
+        <ul class="dropdown-menu">
+        <li><a href="{{ path('epost_comment_ownerview') }}"><i class="icon-plus-sign"></i> {{ 'Mes Commentaires'|trans }}</a></li>
+        <li><a href="{{ path('epost_comment_ownerblogview') }}"><i class="icon-plus-sign"></i> {{ 'Mes Articles-Commentaires'|trans }}</a></li>
+        </ul>
+    </li>
+                                                              
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-tags"></i>
+        Notes<b class="caret"></b> </a>
+        <ul class="dropdown-menu">
+        <li><a href="{{ path('epostnotes') }}"><i class="icon-tags"></i> {{ 'Notes-Articles'|trans }}</a></li>
+        </ul>
+    </li>
+                                                              
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-film"></i>
+        Media<b class="caret"></b> </a>
+        <ul class="dropdown-menu">
+        <li><a href="{{ path('usermedia') }}"><i class="icon-camera"></i> {{ 'Medias'|trans }}</a></li>
+        </ul>
+    </li>
+   
+{% set addoncl="dropdown" %}
+     {% if (foo[0] == 'egroup') or  (foo[0] == 'epostroll') %} {% set addoncl="dropdown active" %} {% endif %}
+    <li class="{{addoncl}}">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-user-md"></i>
+    Groupes<b class="caret"></b> </a>
+    <ul class="dropdown-menu">
+        <li><a href="{{ path('egroup_groupes') }}"><i class="icon-user"></i> {{ 'Dashboard Groupes'|trans }}</a></li>
+        <li><a href="{{ path('egroup_groupes_showmygroup') }}"><i class="icon-user"></i> {{ 'Mon Groupe'|trans }}</a></li>
+        <li><a href="{{ path('groupedemande') }}"><i class="icon-user"></i> {{ 'Demandes de Groupe'|trans }}</a></li>
+        <li><a href="{{ path('groupedemande_mongroupe') }}"><i class="icon-user"></i> {{ 'Demandes MonGroupe'|trans }}</a></li>
+        <li><a href="{{ path('epostroll') }}"><i class="icon-user"></i> {{ 'Roll-Groupe'|trans }}</a></li>
+        <li><a href="{{ path('tags') }}"><i class="icon-user"></i> {{ 'Tags'|trans }}</a></li>
+        <li><a href="{{ path('categories') }}"><i class="icon-user"></i> {{ 'Categories'|trans }}</a></li>
+    </ul>
+    </li>
+{% endif %}
+
+<!--======================== END NAVBAR=================--> 
+</ul>  
+</div>
+</div><!--/.nav-collapse -->
+</div>
+</div>
+#}
+{% endblock %}    
+
+                       

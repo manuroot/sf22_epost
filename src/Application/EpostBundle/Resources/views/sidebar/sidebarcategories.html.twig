@@ -1,12 +1,15 @@
-<div><p>
+<div>
+   
 {% for category in allcategories %}
-       <span class="label">
+      {#  <a href="{{ url('epost_categories_show', {'categorie': category.slug} ) }}">{{ category.name }}</a>#}
+          {#<span class="label">#}
        <!--Catégorie: -->
-             <a href="{{ url('epost_categories_show', {'categorie': category.slug} ) }}">
-{{ category.name }}</a>
+        <span class="label label-warning">
+             <a href="{{ url('epost_categories_show', {'categorie': category.slug} ) }}">{{ category.name }}</a>
        </span>
+       
 
-{% endfor %}</p>
+{% endfor %}
 </div>
 {#
 <div><p>

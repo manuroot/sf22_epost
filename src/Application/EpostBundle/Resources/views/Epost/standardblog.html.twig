@@ -17,9 +17,57 @@
     .free-day a {
         opacity: 0.7;
     }
+    .label {margin-left:5px;margin-right:5px;}
+    .label > a {color:white;}
     /* td.ui-datepicker-today:after{
   content: "Today"
 }*/
+    .badge {
+  padding: 1px 9px 2px;
+  font-size: 12.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #ffffff;
+  background-color: #999999;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+.badge:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.badge-error {
+  background-color: #b94a48;
+}
+.badge-error:hover {
+  background-color: #953b39;
+}
+.badge-warning {
+  background-color: #f89406;
+}
+.badge-warning:hover {
+  background-color: #c67605;
+}
+.badge-success {
+  background-color: #468847;
+}
+.badge-success:hover {
+  background-color: #356635;
+}
+.badge-info {
+  background-color: #3a87ad;
+}
+.badge-info:hover {
+  background-color: #2d6987;
+}
+.badge-inverse {
+  background-color: #333333;
+}
+.badge-inverse:hover {
+  background-color: #1a1a1a;
+}
 </style>
 {% endblock %}
 
@@ -79,12 +127,12 @@ window.onload = function() {
 		TagCanvas.Start('tagcanvas','weightTags');
 	} catch(e) {
 	}
-	var i, g, gc = document.getElementById('gradient').getContext('2d');
+	/*var i, g, gc = document.getElementById('gradient').getContext('2d');
 	g = gc.createLinearGradient(0, 0, 0, gc.canvas.height);
 	for(i in TagCanvas.weightGradient)
 		g.addColorStop(i, TagCanvas.weightGradient[i]);
 	gc.fillStyle = g;
-	gc.fillRect(0,0,gc.canvas.width,gc.canvas.height);
+	gc.fillRect(0,0,gc.canvas.width,gc.canvas.height);*/
 };
 var g1 = {
  0:   'red',
@@ -119,6 +167,13 @@ ARTICLES
 <a href="{{ path('epost_new') }}" class="btn btn-medium btn-primary"><i class="icon-plus"></i> Ajouter un Post</a>
 {% endif %}#}
 <br><br>
+{#
+<span class="label label-primary">Primary</span>
+<span class="label label-success">Success</span>
+<span class="label label-info">Info</span>
+<span class="label label-warning">Warning</span>
+<span class="label label-danger">Danger</span>
+#}
       {% for entity in paginationa %}
 
 
@@ -135,9 +190,9 @@ ARTICLES
                 <div class="star" data-score="0"></div>
         {#({{ entity.globalnote }})#}
         {% endif %}
-            </td><td><i class="icon-tasks"></i> 
+            </td><td><i class="glyphicon glyphicon-tasks"></i> 
                           {% if entity.categorie is not null %}               
-                <span class="label">
+                <span class="label label-warning">
 
                     <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
 {{ entity.categorie.name }}</a>
@@ -147,9 +202,10 @@ ARTICLES
                   {% endif %}
                      {#<span class="label label-inverse">#}
                 {#  {{ entity.tags|join(', ') }}    </span>#}
-                <i class="icon-tags"></i> 
+                <i class="glyphicon glyphicon-tags"></i> 
                    {% for tag in entity.tags %}
-                <span class="label label-inverse">
+                <span class="label label-primary">
+                
                     <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
                             {% if not loop.last%} {%endif%}
                 </span>
@@ -157,7 +213,7 @@ ARTICLES
                 Pas de Tag
                         {% endfor %}
 
-            </td><td> &nbsp; <i class="icon-user"></i> {{ entity.proprietaire.username }}</td></tr></table>
+            </td><td> &nbsp; <i class="glyphicon glyphicon-user"></i> {{ entity.proprietaire.username }}</td></tr></table>
 
 
 
@@ -183,7 +239,7 @@ ARTICLES
       
       
         <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
-                         <span class="badge badge-info"> <i class=" icon-hand-right icon-white"></i> Lire la suite</span></a>
+                         <span class="badge badge-primary"> <i class="glyphicon glyphicon-hand-right"></i> Lire la suite</span></a>
       
         {% if entity.commentscount is not null %}
             {% if entity.commentscount > 1 %}

@@ -4,13 +4,15 @@
 <ul class="weighted" style="font-size: 50%" id="weightTags">
     
     {% for tag in alltags %}
+    {% if tagweight[tag.name] != 0 %}
           <li>
               
               <a data-weight="{{ tagweight[tag.name] }}" href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
              
               </li>
+              {% endif %}
            {% endfor %}
-	<li><a href="#" data-weight="14" style="font-size: 2.83ex">1000</a></li>
+	{#<li><a href="#" data-weight="14" style="font-size: 2.83ex">1000</a></li>
 	<li><a href="#" data-weight="18" style="font-size: 3.61ex">background</a></li>
 	<li><a href="#" data-weight="40" style="font-size: 9.64ex">canvas</a></li>
 	<li><a href="#" data-weight="22" style="font-size: 4.47ex">chart</a></li>
@@ -27,6 +29,7 @@
 	<li><a href="#" data-weight="17" style="font-size: 3.46ex">tagcloud</a></li>
 	<li><a href="#" data-weight="13" style="font-size: 2.65ex">text</a></li>
 	<li><a href="#" data-weight="17" style="font-size: 3.16ex">word</a></li>
+#}
 </ul>
      </div>
 <canvas id="tagcanvas" width="auto" height="300" style="float: left; margin-bottom: 20px;"></canvas>

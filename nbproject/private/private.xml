@@ -3,19 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Resources/views/Epost/show.html.twig</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Controller/EpostController.php</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/AppKernel.php</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/Resources/views/layoutblogroll.html.twig</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/composer.json</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Repository/EpostCommentsRepository.php</file>
+            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Repository/EpostCategoriesRepository.php</file>
+            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Repository/EpostRepository.php</file>
+            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Resources/views/Epost/show.html.twig</file>
+            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/AppKernel.php</file>
+            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/composer.json</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Repository/EpostGlobalNotesRepository.php</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/Resources/views/basen.html.twig</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/Resources/views/baseroll.html.twig</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/web/css/news.css</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Repository/EpostNotesRepository.php</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Repository/EpostRepository.php</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Repository/EpostCategoriesRepository.php</file>
         </group>
     </open-files>
 </project-private>

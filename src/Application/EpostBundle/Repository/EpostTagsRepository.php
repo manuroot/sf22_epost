@@ -45,7 +45,7 @@ public function getTags()
     return $tags;
 }
 
-public function getTagWeights($tags)
+public function getTagWeights($tags,$max_height=100)
 {
         //getPosts()
         $tagWeights=array();
@@ -54,21 +54,27 @@ public function getTagWeights($tags)
     {
          $a=$tag->getPosts();
          $b=count($a);
+        // if ($b > 0)
          $tagWeights[$tag->getName()] =$b;
       }
  // Shuffle the tags
    /* uksort($tagWeights, function() {
         return rand() > rand();
-    }); */   
+    }); */ 
+      // ex max=40
      $max = max($tagWeights);
     // Max of 5 weights
     $multiplier = ($max > 5) ? 5 / $max : 1;
     foreach ($tagWeights as &$tag)
     {
+        $tag = ceil(($tag/$max)*$max_height);
+        
         $tag = ceil($tag * $multiplier);
+       //  echo "tag=$tag  -- max=$max<br>"; 
     }
-
+ //var_dump($tagWeights);
   return $tagWeights;
+ 
 }
 
 }

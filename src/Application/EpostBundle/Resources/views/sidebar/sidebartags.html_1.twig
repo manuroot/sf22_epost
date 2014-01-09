@@ -1,12 +1,44 @@
 <div>
+    
+    
     <p>
-       <div id="tags" style="display: none;">
+  {#
+{% for tag in alltags %}
+    <!--<span class="badge badge-warning">-->
+        <span class="weight-{{ tagweight[tag.name] }}">
+             <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}
+                 </a>
+    </span>
+{% endfor %}</p>
+    #}
+
+    {#<div id="myCanvasContainer">
+      <canvas width="200" height="200" id="myCanvas">
+        <p>Anything in here will be replaced on browsers that support the canvas element</p>
+      </canvas>
+    </div>
+    <div id="1tags">
+      <ul>
+          {% for tag in alltags %}
+          <li>
+              
+              <a data-weight="{{ tagweight[tag.name] }}" href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
+             
+              </li>
+          
+        {% endfor %}
+ 
+      </ul>
+    </div>
+#}
+     
+         <div id="tags" style="display: none;">
 <ul class="weighted" style="font-size: 50%" id="weightTags">
     
     {% for tag in alltags %}
           <li>
               
-              <a data-weight="{{ tagweight[tag.name] }}" href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
+              <a data-weight="12" href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
              
               </li>
            {% endfor %}

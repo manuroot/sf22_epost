@@ -29,7 +29,71 @@
 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 <script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/applicationepost/js/datenewsevents.js') }}"></script>
-
+<script type="text/javascript" src="{{ asset('js/jquery.tagcanvas.min.js') }}"></script>
+<script type="text/javascript">
+     /* $(document).ready(function() {
+        if(!$('#myCanvas').tagcanvas({
+             dragControl:true,
+          textColour: '#ff0000',
+          outlineColour: '#ff00ff',
+          reverse: true,
+          depth: 0.8,
+          maxSpeed: 0.1,
+          weight: true
+     
+     //     weightFrom : "data-weight"
+        },'tags')) {
+          // something went wrong, hide the canvas container
+          $('#myCanvasContainer').hide();
+        }
+      });*/
+      
+       $(document).ready(function() {
+       /*    $("#tags").show("fade");*/
+   
+      //<![CDATA[
+window.onload = function() {
+	TagCanvas.interval = 20;
+	TagCanvas.textFont = 'Impact,Arial Black,sans-serif';
+	TagCanvas.textColour = '#00f';
+	TagCanvas.textHeight = 25;
+	TagCanvas.outlineColour = '#f96';
+	TagCanvas.outlineThickness = 5;
+	TagCanvas.maxSpeed = 0.04;
+	TagCanvas.minBrightness = 0.1;
+	TagCanvas.depth = 0.92;
+	TagCanvas.pulsateTo = 0.2;
+	TagCanvas.pulsateTime = 0.75;
+	TagCanvas.initial = [0.1,-0.1];
+	TagCanvas.decel = 0.98;
+	TagCanvas.reverse = true;
+	TagCanvas.hideTags = true;
+	TagCanvas.shadow = '#ccf';
+	TagCanvas.shadowBlur = 3;
+	TagCanvas.weight = true;
+        TagCanvas.dragControl=true;
+	TagCanvas.weightFrom = 'data-weight';
+        TagCanvas.weightMode = 'both';
+  TagCanvas.fadeIn = 800;
+	try {
+		TagCanvas.Start('tagcanvas','weightTags');
+	} catch(e) {
+	}
+	var i, g, gc = document.getElementById('gradient').getContext('2d');
+	g = gc.createLinearGradient(0, 0, 0, gc.canvas.height);
+	for(i in TagCanvas.weightGradient)
+		g.addColorStop(i, TagCanvas.weightGradient[i]);
+	gc.fillStyle = g;
+	gc.fillRect(0,0,gc.canvas.width,gc.canvas.height);
+};
+var g1 = {
+ 0:   'red',
+ 0.5: 'orange',
+ 1:   'rgba(0,0,0,0.1)'
+};
+//]]>
+  });
+    </script>
 {% endblock %}
 
 

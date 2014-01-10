@@ -15,7 +15,17 @@
 
   <style type="text/css">
       .social {margin-bottom:20px;}
-      .myhead {margin-bottom:20px;}
+      /* .myhead {margin-bottom:20px;}*/
+       
+      .myhead {
+background-color: black;
+display: inline-block;
+color: #fff;
+font-size: 32px;
+text-align: center;
+box-sizing: border-box;
+width:100%;
+opacity: .95;margin-bottom:20px;}
       div#icons{position:relative;float:right;}
       #icons i.fa-pinterest {
 background-color: #CB2027;
@@ -27,7 +37,8 @@ background-color: #CD332D;
 background-color: #D14836;
 }
 
-       #mytitle,#icons i.fa-facebook {
+      /* #mytitle,*/
+       #icons i.fa-facebook {
 background-color: #3B5998;
 }
 #icons i.fa-foursquare {
@@ -45,14 +56,17 @@ background-color: #2C4762;
 #icons i:hover {
 opacity: 1;
 }
+
 #mytitle {
 margin: .5em 0 0 .5em;
-padding: 5px;
+padding-bottom: 5px;
+float:left;
+position:static;
 display: inline-block;
 color: #fff;
 font-size: 32px;
-text-align: center;
-box-sizing: border-box;
+text-align: left;
+/*box-sizing: border-box;*/
 opacity: .75;
 }
 #icons i {
@@ -232,7 +246,7 @@ background: url(images/background11a.png) no-repeat center center fixed;
                <div class="row myhead">
    
     <div class="col-md-12  colg-lg-12 col-xs-12">
-        <center><h1><div id="mytitle">{% block title %}CERTIFICATS{% endblock %}</div> 
+      <div id="mytitle">{% block title %}CERTIFICATS{% endblock %}</div> 
                                  <div id="icons">  
   <i class="fa fa-facebook"></i>
   <i class="fa fa-twitter"></i>
@@ -241,7 +255,7 @@ background: url(images/background11a.png) no-repeat center center fixed;
   <i class="fa fa-foursquare"></i>                      
   <i class="fa fa-google-plus"></i>         
   <i class="fa fa-youtube-play"></i>  
-  <i class="fa fa-pinterest"></i>  </div>  </h1>          </center>                   
+  <i class="fa fa-pinterest"></i>  </div>  
         
          
     </div></div>

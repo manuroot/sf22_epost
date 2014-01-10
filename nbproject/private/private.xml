@@ -3,14 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Repository/EpostTagsRepository.php</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/Resources/views/layoutn.html.twig</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Controller/EpostController.php</file>
+            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Repository/EpostTagsRepository.php</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/Sonata/UserBundle/Resources/views/Security/login.html.twig</file>
+            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Controller/EpostController.php</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Resources/views/sidebar/sidebarcategories.html.twig</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Resources/views/Epost/standardblog.html.twig</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/Resources/views/base3n.html.twig</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/Resources/views/navbar3.html.twig</file>
+            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/Resources/views/base3n.html.twig</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/Sonata/UserBundle/Resources/views/layout.html.twig</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Resources/views/sidebar/sidebartags.html.twig</file>
             <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Resources/views/pagination/twitter_bootstrap_pagination.html.twig</file>

@@ -22,22 +22,6 @@
   -moz-background-size: cover;
   background-size: cover;
 }
-/*
-.affix-top,.affix{
-	position: relative;
-}*/
-
-@media (min-width: 979px) {
- /* #sidebar.affix-top {
-    position: static;
-  
-  }
-  
-  #sidebar.affix {
-    position: fixed;
-  
-  }*/
-}
      /*  body{
     	
         background-image:url('images/Blurred-Background_2.jpg');
@@ -154,17 +138,9 @@ background: url(images/background11a.png) no-repeat center center fixed;
                       {{ block('NAVIGATION_BAR') }}
 
             </div>
-               <div class="row">
-   
-    <div class="col-md-12  colg-lg-12 col-xs-12">
-                           <center><h1>   {% block title %}CERTIFICATS{% endblock %}</h1></center>
-    </div></div>
-            
            <div class="row">
    
-   
-    <div class="col-md-3  colg-lg-3 col-xs-12">
-     
+    <div class="col-md-3  col-sm-3 col-lg-pull-0 col-xs-12">
  <div class="accordion-a" id="accordion1">
                             <div class="accordion-group">
 
@@ -196,16 +172,17 @@ background: url(images/background11a.png) no-repeat center center fixed;
                         </div>
 
 {% block datepick %}        
-       
+                        <br>
                          {% endblock %}
-              
-    </div>
+                    </div>
+
+
 
                    
 
  <div class="col-md-3 col-xs-12 col-lg-push-6">
-                {# <div  class="accordion affix" id="accordion2 sidebar">#}
-                        <div  class="accordion" id="accordion2">
+                 
+                        <div class="accordion" id="accordion2">
                             <div class="accordion-group">
                                 <div class="accordion-heading">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
@@ -262,18 +239,15 @@ background: url(images/background11a.png) no-repeat center center fixed;
 
                         </div>
                         
-                    
-       </div>
+                    </div>
 <div class="col-md-6 col-xs-12 col-lg-pull-3">
         {#BASEN#}
-         
+                        <center><h1>   {% block title %}CERTIFICATS{% endblock %}</h1></center>
     {% block content %}
 
                 {% endblock %}
                     </div>
-                </div>
-      
-        </div>     
+                </div></div>     
 
         </div>  
         <div id="footer">
@@ -296,21 +270,7 @@ background: url(images/background11a.png) no-repeat center center fixed;
         <script type="text/javascript" src="{{ asset('js/blur.min.js') }}"></script>
         <script type="text/javascript">
 
-           $(document).ready( function() {
-                var $body   = $(document.body);
-                var navHeight = 100;
-           $('#leftCol').affix({
-      offset: {
-        top: 245
-      }
-});
-
-
-$body.scrollspy({
-	target: '#leftCol',
-	offset: navHeight
-});
-});
+           
   /* $(document).ready( function() {
     $('#blur-bg').blurjs({
         source: 'body',

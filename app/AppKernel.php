@@ -44,7 +44,7 @@ class AppKernel extends Kernel {
             new Sonata\IntlBundle\SonataIntlBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
-            //new \Sonata\CoreBundle\SonataCoreBundle(),
+            new \Sonata\CoreBundle\SonataCoreBundle(),
             
             //====================================================
             // CKEDITOR

@@ -140,7 +140,7 @@ background: url(images/background11a.png) no-repeat center center fixed;
             </div>
            <div class="row">
    
-    <div class="col-md-3  col-sm-3-push-3 col-lg-3">
+    <div class="col-md-3  col-sm-3 col-lg-3">
  <div class="accordion-a" id="accordion1">
                             <div class="accordion-group">
 
@@ -171,12 +171,14 @@ background: url(images/background11a.png) no-repeat center center fixed;
                             </div>
                         </div>
 
-
+{% block datepick %}        
+                        <br>
+                         {% endblock %}
                     </div>
 
 
 
-                   <div class="col-md-6 col-lg-6">
+                   <div class="col-md-6 col-sm-push-3 col-lg-6">
         {#BASEN#}
                         <center><h1>   {% block title %}CERTIFICATS{% endblock %}</h1></center>
     {% block content %}
@@ -185,7 +187,7 @@ background: url(images/background11a.png) no-repeat center center fixed;
                     </div>
 
 
-                   <div class="col-md-3 col-lg-3">
+                   <div class="col-md-3 col-sm-pull-6 col-lg-3">
                         <div class="accordion" id="accordion2">
                             <div class="accordion-group">
                                 <div class="accordion-heading">
@@ -242,9 +244,7 @@ background: url(images/background11a.png) no-repeat center center fixed;
 
 
                         </div>
-                        {% block datepick %}        
-                        <br>
-                         {% endblock %}
+                        
                     </div>
 
                 </div></div>     

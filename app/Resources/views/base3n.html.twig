@@ -10,13 +10,22 @@
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
          <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" type="text/css" />
        {# <link rel="stylesheet" href="{{ asset('bootstrap3/css/bootstrap-responsive.css') }}" type="text/css" />#}
-        <link rel="stylesheet" href="{{ asset('css/redmond/jquery-ui-1.10.2.custom.css') }}" type="text/css" media="all"/>
+        <link rel="stylesheet" href="{{ asset('/jquery/ui/dark-hive/jquery-ui-1.10.3.custom.css') }}" type="text/css" media="all"/>
             <link rel="stylesheet" href="{{ asset('css/font-awesome-4.0.3/css/font-awesome.min.css') }}" type="text/css" />
 
   <style type="text/css">
+      .ui-widget-header {
+    background-color: rgb(85, 85, 85);
+color: rgb(238, 238, 238);
+    font-weight: bold;
+}
       .social {margin-bottom:20px;}
       /* .myhead {margin-bottom:20px;}*/
-       
+       .page-header-new {
+  /* padding-bottom: 9px;*/
+    margin: 40px 0px 20px;
+   /*border-bottom: 1px solid rgb(238, 238, 238);*/
+}
       .myhead {
 background-color: black;
 display: inline-block;
@@ -104,12 +113,37 @@ line-height: 1;
 -moz-osx-font-smoothing: grayscale;
 }
       body {
-          
-  background:url('/images/Blurred-Background_2.jpg') #A98436 no-repeat;
+          background-color: rgb(238, 238, 238);
+  /*background:url('/images/Blurred-Background_2.jpg') #A98436 no-repeat;
   background-attachment: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
-  background-size: cover;
+  background-size: cover;*/
+}
+
+
+
+#masthead {
+	min-height:100px;
+        background-color: black;
+        opacity: .90;
+
+
+	/*background-color:#000044;*/
+  	color:whitesmoke;
+        margin-bottom:30px;
+}
+
+#masthead h1 {
+	font-size: 42px;
+	line-height: 1;
+}
+
+#masthead .well {
+    margin-top:3%;
+	/*margin-top:13%;*/
+	background-color:#111155;
+  	border-color:#000033;
 }
 /*
 .affix-top,.affix{
@@ -238,12 +272,47 @@ background: url(images/background11a.png) no-repeat center center fixed;
     <body>
          <div id="blur-bg">
   
+             
+
         <div class="container">
-            <div class="page-header">
+            <div class="page-header-new">
                       {{ block('NAVIGATION_BAR') }}
 
             </div>
-               <div class="row myhead">
+        </div>
+                 <div id="masthead">  
+  <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <h1>ARTICLES
+            <p class="lead">The easiest way to read my Blog</p>
+          </h1>
+        </div>
+        <div class="col-md-6 col-md-offset-1">
+            <div class="well well-lg"> 
+              <div class="row">
+                <div class="col-sm-2">
+        	      	<img src="//placehold.it/90x50" class="img-responsive">
+                </div>
+                <div class="col-sm-10">
+	              	  <div id="icons">  
+  <i class="fa fa-facebook"></i>
+  <i class="fa fa-twitter"></i>
+  <i class="fa fa-instagram"></i>      
+  <i class="fa fa-tumblr"></i>        
+  <i class="fa fa-foursquare"></i>                      
+  <i class="fa fa-google-plus"></i>         
+  <i class="fa fa-youtube-play"></i>  
+  <i class="fa fa-pinterest"></i>  </div>  
+                </div>
+              </div>
+            </div>
+        </div>
+      </div> 
+  </div><!-- /cont -->
+</div>
+        
+            {#   <div class="row myhead">
    
     <div class="col-md-12  colg-lg-12 col-xs-12">
       <div id="mytitle">{% block title %}CERTIFICATS{% endblock %}</div> 
@@ -258,8 +327,8 @@ background: url(images/background11a.png) no-repeat center center fixed;
   <i class="fa fa-pinterest"></i>  </div>  
         
          
-    </div></div>
-            
+    </div></div>#}
+        <div class="container">    
            <div class="row">
    
    

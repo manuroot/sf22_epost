@@ -224,11 +224,39 @@ var g1 = {
 
 
 <div class="mypost">
-    <table><tr><td>
-                <i class="icon-time icon-1x"></i> 
-               {{ entity.createdAt|created_ago }} -    
+          
+           
+           
+           
+           
 
-        {% if entity.globalnote is not null %}
+
+    <!--   <h2 class="entry-title">-->
+    <h3 class="sonata-blog-post-title">
+      
+        <span class="sonata-blog-post-author"> 
+
+            <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+                          {{ entity.name }}</a>
+    {% if entity.proprietaire is not null %}               
+
+                 {% else %}
+            ---
+                     {% endif %}
+        <img style="float:right;" src="{% path entity.imageMedia, 'small' %}" width="100px" /> </span>  
+
+    </h3>
+               
+
+        
+    <hr>
+    <div class="sonata-blog-post-abtract">
+        {{ entity.resume|raw }}
+    </div>
+    <hr>
+     <i class="icon-time icon-1x"></i> 
+               {{ entity.createdAt|created_ago }} -    
+{% if entity.globalnote is not null %}
    {#    Note Globale: #}
                 <div class="star" data-score="{{ entity.globalnote }}"></div>
            {#({{ entity.globalnote }})#}
@@ -236,7 +264,7 @@ var g1 = {
                 <div class="star" data-score="0"></div>
         {#({{ entity.globalnote }})#}
         {% endif %}
-            </td><td><i class="glyphicon glyphicon-tasks"></i> 
+            <i class="glyphicon glyphicon-tasks"></i> 
                           {% if entity.categorie is not null %}               
                 <span class="label label-warning">
 
@@ -259,30 +287,10 @@ var g1 = {
                 Pas de Tag
                         {% endfor %}
 
-            </td><td> &nbsp; <i class="glyphicon glyphicon-user"></i> {{ entity.proprietaire.username }}</td></tr></table>
-
-
-
-    <!--   <h2 class="entry-title">-->
-    <h3 class="sonata-blog-post-title">
-        <img src="{% path entity.imageMedia, 'small' %}" width="100" /> 
-
-        <span class="sonata-blog-post-author"> 
-
-            <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
-                          {{ entity.name }}</a>
-    {% if entity.proprietaire is not null %}               
-
-                 {% else %}
-            ---
-                     {% endif %}</span>
-    </h3>
-    <br>
-    <div class="sonata-blog-post-abtract">
-        {{ entity.resume|raw }}
-    </div><br>
-
-      
+           &nbsp; <i class="glyphicon glyphicon-user"></i> {{ entity.proprietaire.username }}
+           
+     
+           <hr>
       
         <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
                          <span class="badge badge-primary"> <i class="glyphicon glyphicon-hand-right"></i> Lire la suite</span></a>

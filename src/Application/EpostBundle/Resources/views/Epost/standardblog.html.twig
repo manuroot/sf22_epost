@@ -97,6 +97,35 @@ canvas#tagcanvas{
     max-width: 1600px;
 }
   }
+  .imgtitle{padding-top:10px;padding-right:5px;float:right;}
+  .blogpost{margin-bottom:15px;border-bottom: 1px solid transparent;
+     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.09);}
+.titlepost, .blogpost{
+    background-color: rgb(255, 255, 255);
+      padding:15px;margin-right: -15px;
+margin-left: -15px;
+padding-top:0px;
+ 
+}
+.titlepost{
+    
+
+    
+  /* background-color: #a1a1a1;*/
+
+    border-radius: 0px;
+    border-width: 0px;
+ 
+
+    padding: 10px 15px;
+   
+    margin-bottom: 10px;
+   
+}
+.titlepost a{
+    color: #4b4b4b;
+}
+
 </style>
 {% endblock %}
 
@@ -221,21 +250,16 @@ var g1 = {
 <span class="label label-danger">Danger</span>
 #}
       {% for entity in paginationa %}
-
-
-<div class="mypost">
-          
-           
-           
-           
-           
+<div class="blogpost">
+ <div class="row titlepost" >
+   
+   
+    <div class="col-md-8  colg-lg-8 col-xs-8">
 
 
     <!--   <h2 class="entry-title">-->
     <h3 class="sonata-blog-post-title">
       
-        <span class="sonata-blog-post-author"> 
-
             <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
                           {{ entity.name }}</a>
     {% if entity.proprietaire is not null %}               
@@ -243,13 +267,19 @@ var g1 = {
                  {% else %}
             ---
                      {% endif %}
-        <img style="float:right;" src="{% path entity.imageMedia, 'small' %}" width="100px" /> </span>  
+     </h3>        </div>
+    
+   
+        <div class="col-md-4  colg-lg-4 col-xs-4">
+        <img class="imgtitle" src="{% path entity.imageMedia, 'small' %}" width="100" /> </span>  
+          
+    </div>
+  
+ </div>
+     <div class="row">
+    <div class="col-md-12  colg-lg-12 col-xs-12">
 
-    </h3>
-               
-
-        
-    <hr>
+      <hr>
     <div class="sonata-blog-post-abtract">
         {{ entity.resume|raw }}
     </div>
@@ -290,7 +320,7 @@ var g1 = {
            &nbsp; <i class="glyphicon glyphicon-user"></i> {{ entity.proprietaire.username }}
            
      
-           <hr>
+           <br>
       
         <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
                          <span class="badge badge-primary"> <i class="glyphicon glyphicon-hand-right"></i> Lire la suite</span></a>
@@ -324,7 +354,8 @@ var g1 = {
     </a>
 
 </div>
-
+ </div>
+    </div>
     {% endfor %}
  {{ knp_pagination_render(paginationa) }}
 

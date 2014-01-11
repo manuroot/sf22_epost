@@ -42,7 +42,19 @@ background-color: #CD332D;
       #icons i.fa-google-plus {
 background-color: #D14836;
 }
-
+        .fa-tablet,.fa-desktop,.fa-mobile-phone{
+background-color: #3B5998;
+width: 32px;
+height: 32px;
+margin: .5em 0 0 .5em;
+padding: 8px 0;
+display: inline-block;
+color: #fff;
+font-size: 16px;
+text-align: center;
+box-sizing: border-box;
+opacity: .75;
+}
       /* #mytitle,*/
        #icons i.fa-facebook {
 background-color: #3B5998;
@@ -289,11 +301,18 @@ background: url(images/background11a.png) no-repeat center center fixed;
             <div class="well well-lg"> 
               <div class="row">
                 <div class="col-sm-2">
+                  
               <img src="{{ asset('images/me.jpeg') }}" alt="me" width="90px" height="50px" class="img-responsive">
                   
                 </div>
                 <div class="col-sm-10">
+                    
 	              	  <div id="icons">  
+                             <a href="#" id="btnPhone" title="Smartphone / mobile device preview"><i class="fa fa-desktop"></i></a>
+                             <a href="#" id="btnFullscreen" title="Fullscreen preview" target="_new"><i class="fa fa-tablet"></i></a> 
+                   
+                    <a id="btnDownload" href="#" title="Download the Javascript, CSS and HTML in a .html file"><i class="fa fa-mobile-phone"></i></a>
+                    <br>
   <i class="fa fa-facebook"></i>
   <i class="fa fa-twitter"></i>
   <i class="fa fa-instagram"></i>      

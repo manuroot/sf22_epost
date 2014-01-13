@@ -257,11 +257,11 @@ background-color:  #e3e3e3;
 
 div.accordion,div.accordion-a{
   /* background:#eaeaea;  */
-   border:1px solid;
+ /*  border:1px solid;
    border-radius:5px;
--moz-border-radius:5px; /* Old Firefox */
+-moz-border-radius:5px; */
 padding-bottom:5px;
-padding-left:5px;
+/*padding-left:5px;*/
 margin-bottom:5px;
 /*box-shadow: 2px 2px 2px #888888;*/
 
@@ -269,9 +269,9 @@ margin-bottom:5px;
 }
 
 div.accordion,div.accordion-a{
-   background-color: whitesmoke;
+   background-color: white;
    /*background:#eaeaea;  */
-   border:1px solid;
+  /* border:1px solid;*/
     
 }
 

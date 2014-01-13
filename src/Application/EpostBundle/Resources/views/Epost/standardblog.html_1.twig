@@ -82,50 +82,9 @@ canvas#tagcanvas{
     position:static; 
  }
  
-/* only apply sticky columns on wider screens */
-@media (min-width: 1200px) {
-    .affix {
-      position:static;
-}
-  
-  #sidebar {
- 	margin-left:15px;
-  }
-
-  #content {
- 	padding-right:15px;
-  }
-
- .container {
+   .container {
     max-width: 1200px;
 }
-  #sidebar.affix-top {
-      position: static;
-  }
-  
-  #sidebar.affix {
-      position: fixed !important;
-      top: 20px;
-      width:200px;
-  }
-
-  #midCol.affix-top,#midCol1.affix-top {
-      position: static;
-      margin-top:5px;
-  }
-
-  #midCol.affix-bottom,#midCol1.affix-bottom  {
-      padding-top:0;
-  }
-  
-  #midCol.affix,#midCol1.affix { 
-      position:fixed !important;
-  	  top: 150px;
-  	/*  width:292px;*/
-  }
-}
-
-
   }
    @media (min-width: 1400px) {
    .container {
@@ -259,18 +218,6 @@ var g1 = {
  1:   'rgba(0,0,0,0.1)'
 };
 //]]>
-$('#midCol1').affix({
-      offset: {
-        top: 200,
-        bottom: 50
-      }
-});	
-$('#midCol').affix({
-      offset: {
-        top: 200,
-        bottom: 50
-      }
-});	
   });
     </script>
 {% endblock %}

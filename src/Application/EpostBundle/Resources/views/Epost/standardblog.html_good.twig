@@ -1,0 +1,456 @@
+{% extends "ApplicationEpostBundle::layoutn.html.twig" %}
+
+  {% block stylesheets %}
+{{ parent() }}
+
+<link rel="stylesheet" href="{{ asset('bundles/applicationepost/css/sliding.css') }}" type="text/css" media="all"/>
+<link rel="stylesheet" href="{{ asset('css/news.css') }}" type="text/css" media="all"/>
+{#<link rel="stylesheet" href="{{ asset('css/datepicker.css') }}" type="text/css" media="all"/>#}
+<style>  
+    /* override free days background in jquery ui datepicker */
+    .free-day {
+        background: #2e9500;
+    }
+   div.ui-datepicker {
+        font-size: 90%;
+    }
+    div#datepicker{margin-top:15px;margin-bottom:15px;}
+    .free-day a {
+        opacity: 0.7;
+    }
+    .label {margin-left:5px;margin-right:5px;}
+    .label > a {color:white;}
+    /* td.ui-datepicker-today:after{
+  content: "Today"
+}*/
+    div.sonata-blog-post-abtract {margin-right:5px;}
+    .badge {
+  padding: 1px 9px 2px;
+  font-size: 12.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #ffffff;
+  background-color: #999999;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+.badge:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.badge-error {
+  background-color: #b94a48;
+}
+.badge-error:hover {
+  background-color: #953b39;
+}
+.badge-warning {
+  background-color: #f89406;
+}
+.badge-warning:hover {
+  background-color: #c67605;
+}
+.badge-success {
+  background-color: #468847;
+}
+.badge-success:hover {
+  background-color: #356635;
+}
+.badge-info {
+  background-color: #3a87ad;
+}
+.badge-info:hover {
+  background-color: #2d6987;
+}
+.badge-inverse {
+  background-color: #333333;
+}
+.badge-inverse:hover {
+  background-color: #1a1a1a;
+}
+
+canvas#tagcanvas{
+    position: relative; 
+  top: 0px;
+  left: 0px;
+ /* width:230px;margin:auto;*/
+}
+ @media (min-width: 1200px) {
+     .affixleft {
+    position:static; 
+ }
+ 
+/* only apply sticky columns on wider screens */
+@media (min-width: 1200px) {
+    .affix {
+      position:static;
+}
+  
+  #sidebar {
+ 	margin-left:15px;
+  }
+
+  #content {
+ 	padding-right:15px;
+  }
+
+ .container {
+    max-width: 1200px;
+}
+  #sidebar.affix-top {
+      position: static;
+  }
+  
+  #sidebar.affix {
+      position: fixed !important;
+      top: 20px;
+      width:200px;
+  }
+
+  #midCol.affix-top,#midCol1.affix-top {
+      position: static;
+      margin-top:5px;
+  }
+
+  #midCol.affix-bottom,#midCol1.affix-bottom  {
+      padding-top:0;
+  }
+  
+  #midCol.affix,#midCol1.affix { 
+      position:fixed !important;
+  	  top: 150px;
+  	/*  width:292px;*/
+  }
+}
+
+
+  }
+   @media (min-width: 1400px) {
+   .container {
+    max-width: 1400px;
+}
+  }
+  
+     @media (min-width: 1600px) {
+   .container {
+    max-width: 1600px;
+}
+  }
+  .imgtitle{padding-top:10px;padding-right:5px;float:right;}
+  .blogpost{margin-bottom:15px;border-bottom: 1px solid transparent;
+     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.09);}
+.titlepost, .blogpost{
+    background-color: rgb(255, 255, 255);
+      padding:15px;margin-right: -15px;
+margin-left: -15px;
+padding-top:0px;
+ 
+}
+.titlepost{
+    
+
+    
+  /* background-color: #a1a1a1;*/
+
+    border-radius: 0px;
+    border-width: 0px;
+ 
+
+    padding: 10px 15px;
+   
+    margin-bottom: 10px;
+   
+}
+.titlepost a{
+    color: #4b4b4b;
+}
+
+</style>
+{% endblock %}
+
+        {% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+<script type="text/javascript" src="{{ asset('jquery/jquery.raty.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/applicationepost/js/datenewsevents.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.tagcanvas.min.js') }}"></script>
+<script type="text/javascript">
+     /* $(document).ready(function() {
+        if(!$('#myCanvas').tagcanvas({
+             dragControl:true,
+          textColour: '#ff0000',
+          outlineColour: '#ff00ff',
+          reverse: true,
+          depth: 0.8,
+          maxSpeed: 0.1,
+          weight: true
+     
+     //     weightFrom : "data-weight"
+        },'tags')) {
+          // something went wrong, hide the canvas container
+          $('#myCanvasContainer').hide();
+        }
+      });*/
+      
+       $(document).ready(function() {
+               //Get the canvas &
+    var c = $('#tagcanvas');
+    var ct = c.get(0).getContext('2d');
+    var container = $(c).parent();
+
+    //Run function when browser resizes
+    $(window).resize( respondCanvas );
+
+    function respondCanvas(){ 
+        c.attr('width', $(container).width() ); //max width
+        c.attr('height', $(container).height() ); //max height
+
+        //Call a function to redraw other content (texts, images etc)
+    }
+
+    //Initial call 
+    respondCanvas();
+       /*    $("#tags").show("fade");*/
+   
+      //<![CDATA[
+window.onload = function() {
+	TagCanvas.interval = 20;
+	TagCanvas.textFont = 'Impact,Arial Black,sans-serif';
+	TagCanvas.textColour = '#00f';
+	TagCanvas.textHeight = 25;
+	TagCanvas.outlineColour = '#f96';
+	TagCanvas.outlineThickness = 5;
+	TagCanvas.maxSpeed = 0.04;
+	TagCanvas.minBrightness = 0.1;
+	TagCanvas.depth = 0.92;
+	TagCanvas.pulsateTo = 0.2;
+	TagCanvas.pulsateTime = 0.75;
+	TagCanvas.initial = [0.1,-0.1];
+	TagCanvas.decel = 0.98;
+	TagCanvas.reverse = true;
+	TagCanvas.hideTags = true;
+	TagCanvas.shadow = '#ccf';
+	TagCanvas.shadowBlur = 3;
+	TagCanvas.weight = true;
+        TagCanvas.dragControl=true;
+	TagCanvas.weightFrom = 'data-weight';
+        TagCanvas.weightMode = 'both';
+  TagCanvas.fadeIn = 400;
+	try {
+		TagCanvas.Start('tagcanvas','weightTags');
+	} catch(e) {
+	}
+        
+    
+    
+	/*var i, g, gc = document.getElementById('gradient').getContext('2d');
+	g = gc.createLinearGradient(0, 0, 0, gc.canvas.height);
+	for(i in TagCanvas.weightGradient)
+		g.addColorStop(i, TagCanvas.weightGradient[i]);
+	gc.fillStyle = g;
+	gc.fillRect(0,0,gc.canvas.width,gc.canvas.height);*/
+};
+var g1 = {
+ 0:   'red',
+ 0.5: 'orange',
+ 1:   'rgba(0,0,0,0.1)'
+};
+//]]>
+$('#midCol1').affix({
+      offset: {
+        top: 200,
+        bottom: 50
+      }
+});	
+$('#midCol').affix({
+      offset: {
+        top: 200,
+        bottom: 50
+      }
+});	
+  });
+    </script>
+{% endblock %}
+
+
+{% block content_header '' %}
+{% block title %}
+{% endblock %}
+{% block content %}
+
+
+{% for type, flashMessages in app.session.flashbag.all() %}
+    {% for flashMessage in flashMessages %}
+<div class="alert alert-{{ type }}">
+            {{ flashMessage|trans }}
+</div>
+    {% endfor %}
+{% endfor %}
+
+{#
+{% if is_granted("ROLE_USER") %}   
+<a href="{{ path('epost_new') }}" class="btn btn-medium btn-primary"><i class="icon-plus"></i> Ajouter un Post</a>
+{% endif %}#}
+
+{#
+<span class="label label-primary">Primary</span>
+<span class="label label-success">Success</span>
+<span class="label label-info">Info</span>
+<span class="label label-warning">Warning</span>
+<span class="label label-danger">Danger</span>
+#}
+      {% for entity in paginationa %}
+<div class="blogpost">
+ <div class="row titlepost" >
+   
+   
+    <div class="col-md-8  colg-lg-8 col-xs-8">
+
+
+    <!--   <h2 class="entry-title">-->
+    <h3 class="sonata-blog-post-title">
+      
+            <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+                          {{ entity.name }}</a>
+    {% if entity.proprietaire is not null %}               
+
+                 {% else %}
+            ---
+                     {% endif %}
+     </h3>        </div>
+    
+   
+        <div class="col-md-4  colg-lg-4 col-xs-4">
+        <img class="imgtitle" src="{% path entity.imageMedia, 'small' %}" width="100" /> </span>  
+          
+    </div>
+  
+ </div>
+     <div class="row">
+    <div class="col-md-12  colg-lg-12 col-xs-12">
+
+      <hr>
+    <div class="sonata-blog-post-abtract">
+        {{ entity.resume|raw }}
+    </div>
+    <hr>
+     <i class="icon-time icon-1x"></i> 
+               {{ entity.createdAt|created_ago }} -    
+{% if entity.globalnote is not null %}
+   {#    Note Globale: #}
+                <div class="star" data-score="{{ entity.globalnote }}"></div>
+           {#({{ entity.globalnote }})#}
+        {% else %}
+                <div class="star" data-score="0"></div>
+        {#({{ entity.globalnote }})#}
+        {% endif %}
+            <i class="glyphicon glyphicon-tasks"></i> 
+                          {% if entity.categorie is not null %}               
+                <span class="label label-warning">
+
+                    <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
+{{ entity.categorie.name }}</a>
+                </span>
+                  {% else %}
+                pas de catégorie
+                  {% endif %}
+                     {#<span class="label label-inverse">#}
+                {#  {{ entity.tags|join(', ') }}    </span>#}
+                <i class="glyphicon glyphicon-tags"></i> 
+                   {% for tag in entity.tags %}
+                <span class="label label-primary">
+                
+                    <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
+                            {% if not loop.last%} {%endif%}
+                </span>
+                            {% else %}
+                Pas de Tag
+                        {% endfor %}
+
+           &nbsp; <i class="glyphicon glyphicon-user"></i> {{ entity.proprietaire.username }}
+           
+     
+           <br>
+      
+        <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+                         <span class="badge badge-primary"> <i class="glyphicon glyphicon-hand-right"></i> Lire la suite</span></a>
+      
+        {% if entity.commentscount is not null %}
+            {% if entity.commentscount > 1 %}
+    <span class="badge badge-warning">{{ entity.commentscount }} commentaires</span>
+                {% else %}
+    <span class="badge badge-warning">{{ entity.commentscount }} commentaire</span>
+            {% endif %}
+        {% else %}
+    <span class="badge badge-warning">0 commentaire</span>
+        {% endif %}
+
+
+     {#   TESTER Commentaires fermés: tester la date             #}
+
+
+ {% if entity.commentsDisabled == 1 %}
+    {% if (date(entity.commentsCloseAt) > date()) %}
+    <span class="badge badge-warning">Commentaires fermés a partir du {{ entity.commentsCloseAt|date('Y-m-d H') ~ 'h' }}
+    </span>
+                {% else %}
+    <span class="badge badge-warning">Commentaires fermés</span>
+        {% endif %}
+   {% endif %}
+
+
+    <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+        <img src="{{ asset('bundles/applicationepost/images/detail.png') }}" alt="show" width="15" height="15" />
+    </a>
+
+</div>
+ </div>
+    </div>
+    {% endfor %}
+ {{ knp_pagination_render(paginationa) }}
+
+{% endblock %}
+
+
+
+
+
+  
+{% block roll %}
+{{ parent() }}
+{% include 'ApplicationEpostBundle:sidebar:sidebarroll.html.twig' %}
+{% endblock %}
+
+{% block categories %}
+{{ parent() }}
+{% include 'ApplicationEpostBundle:sidebar:sidebarcategories.html.twig' %}
+{% endblock %}
+
+{% block tags %}
+{{ parent() }}
+{% include 'ApplicationEpostBundle:sidebar:sidebartags.html.twig' %}
+{% endblock %}
+
+{% block comments %}
+{% include 'ApplicationEpostBundle:sidebar:lastcomments.html.twig' %}
+{% endblock %}
+
+{% block archives %}
+{{ parent() }}
+{% include 'ApplicationEpostBundle:sidebar:sidebaryears.html.twig' %}
+{% endblock %}
+
+{% block rolls %}
+{{ parent() }}                              
+{% include 'ApplicationEpostBundle:sidebar:sidebarroll.html.twig' %}
+{% endblock %}
+  
+{% block datepick %}
+{{ parent() }}
+<div id="datepicker"></div>
+
+{% endblock %}
+

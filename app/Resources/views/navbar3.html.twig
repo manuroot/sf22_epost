@@ -4,10 +4,56 @@
 {% set foo = foo|split('_') %}
 {#{{ foo[0] }} #}
 
-    {#        
-  <div class="navbar-inverse navbar-static-top">
-        <div class="navbar-inner">
-        <div class="container">#}
+
+{#
+       <!-- Begin Navbar -->
+<div class="navbar navbar-static">
+   <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://www.bootply.com" target="ext"><b>Bootply</b></a>
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="glyphicon glyphicon-chevron-down"></span>
+      </a>
+    </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">  
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Channels</a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Sub-link</a></li>
+              <li><a href="#">Sub-link</a></li>
+              <li><a href="#">Sub-link</a></li>
+              <li><a href="#">Sub-link</a></li>
+              
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav pull-right navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
+            <ul class="dropdown-menu" style="padding:12px;">
+                <form class="form-inline">
+     				<button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input class="form-control pull-left" placeholder="Search" type="text">
+                </form>
+             </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Login</a></li>
+              <li><a href="#">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="#">About</a></li>
+             </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div><!-- /.navbar -->
+
+#}
 <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
  {#<nav class="navbar navbar-default navbar-fixed-top" role="navigation">#}
    {# <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">#}
@@ -41,6 +87,7 @@
             <li><a href="{{ path('epost') }}"><i class="fa fa-briefcase"></i> {{ 'DashBoard Articles'|trans }}</a></li>
             <li><a href="{{ path('epost_mesposts') }}"><i class="fa fa-briefcase"></i> {{ 'Mes Artciles'|trans }}</a></li>
             <li><a href="{{ path('epost_propositions') }}"><i class="fa fa-briefcase"></i> {{ 'Groupe-Articles'|trans }}</a></li>
+                 <li><a href="{{ path('usermedia') }}"><i class="glyphicon glyphicon-book"></i> {{ 'Medias'|trans }}</a></li>
             <li><a href="{{ path('epost_comment_ownerview') }}"><i class="fa fa-briefcase"></i> {{ 'Mes Commentaires'|trans }}</a></li>
             <li><a href="{{ path('epost_comment_ownerblogview') }}"><i class="fa fa-briefcase"></i> {{ 'Mes Articles-Commentaires'|trans }}</a></li>
             <li><a href="{{ path('epostnotes') }}"><i class="glyphicon glyphicon-book"></i> {{ 'Notes-Articles'|trans }}</a></li>
@@ -50,7 +97,7 @@
         </ul>
     </li>
       
-      
+      {#
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tower"></span> Divers<b class="caret"></b></a>
         <ul class="dropdown-menu">
@@ -67,40 +114,43 @@
             <li><a href="#"><i class="fa fa-comments-o"></i> Vos questions- Nos réponses</a></li>
         </ul>
     </li>
-    
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-book"></span> Actualités<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-              <li><a href="#"><i class="glyphicon glyphicon-book"></i> Actualité-Mairie</a></li>
-              <li><a href="#"><i class="glyphicon glyphicon-book"></i> Actualié- Les Elus</a></li>
-              <li><a href="#"><i class="glyphicon glyphicon-book"></i> Les démarches administratives</a></li>
-       </ul>
-   </li>
-
+    #}
       
   <!--======================== AUTENTIFIE=================-->                                           
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
     {% set addoncl="dropdown" %}
      {% if (foo[0] == 'egroup') or  (foo[0] == 'epostroll') %} {% set addoncl="dropdown active" %} {% endif %}
     <li class="dropdown {{addoncl}}">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-user-md"></i>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i>
         Groupes<b class="caret"></b> </a>
         <ul class="dropdown-menu">
-            <li><a href="{{ path('egroup_groupes') }}"><i class="icon-user"></i> {{ 'Dashboard Groupes'|trans }}</a></li>
-            <li><a href="{{ path('egroup_groupes_showmygroup') }}"><i class="icon-user"></i> {{ 'Mon Groupe'|trans }}</a></li>
-            <li><a href="{{ path('groupedemande') }}"><i class="icon-user"></i> {{ 'Demandes de Groupe'|trans }}</a></li>
-            <li><a href="{{ path('groupedemande_mongroupe') }}"><i class="icon-user"></i> {{ 'Demandes MonGroupe'|trans }}</a></li>
-            <li><a href="{{ path('epostroll') }}"><i class="icon-user"></i> {{ 'Roll-Groupe'|trans }}</a></li>
-            <li><a href="{{ path('tags') }}"><i class="icon-user"></i> {{ 'Tags'|trans }}</a></li>
-            <li><a href="{{ path('categories') }}"><i class="icon-user"></i> {{ 'Categories'|trans }}</a></li>
+            <li><a href="{{ path('egroup_groupes') }}"><i class="fa fa-user"></i> {{ 'Dashboard Groupes'|trans }}</a></li>
+            <li><a href="{{ path('egroup_groupes_showmygroup') }}"><i class="fa fa-user"></i> {{ 'Mon Groupe'|trans }}</a></li>
+            <li><a href="{{ path('groupedemande') }}"><i class="fa fa-user"></i> {{ 'Demandes de Groupe'|trans }}</a></li>
+            <li><a href="{{ path('groupedemande_mongroupe') }}"><i class="fa fa-user"></i> {{ 'Demandes MonGroupe'|trans }}</a></li>
+            <li><a href="{{ path('epostroll') }}"><i class="fa fa-tasks"></i> {{ 'Roll-Groupe'|trans }}</a></li>
+            <li><a href="{{ path('tags') }}"><i class="fa fa-tag"></i> {{ 'Tags'|trans }}</a></li>
+            <li><a href="{{ path('categories') }}"><i class="fa fa-archive"></i> {{ 'Categories'|trans }}</a></li>
         </ul>
     </li>
 {% endif %}
-      
-      
-      
-      
-    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+
+    
+     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    <li class="dropdown {{addoncl}}">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-user-md"></i>
+        Groupes<b class="caret"></b> </a>
+        <ul class="dropdown-menu">
+            <li><a href="{{ path('egroup_groupes') }}"><i class="fa fa-user"></i> {{ 'Dashboard Groupes'|trans }}</a></li>
+            <li><a href="{{ path('egroup_groupes_showmygroup') }}"><i class="fa fa-user"></i> {{ 'Mon Groupe'|trans }}</a></li>
+            <li><a href="{{ path('groupedemande') }}"><i class="fa fa-user"></i> {{ 'Demandes de Groupe'|trans }}</a></li>
+            <li><a href="{{ path('groupedemande_mongroupe') }}"><i class="fa fa-user"></i> {{ 'Demandes MonGroupe'|trans }}</a></li>
+            <li><a href="{{ path('epostroll') }}"><i class="fa fa-tasks"></i> {{ 'Roll-Groupe'|trans }}</a></li>
+            <li><a href="{{ path('tags') }}"><i class="fa fa-tag"></i> {{ 'Tags'|trans }}</a></li>
+            <li><a href="{{ path('categories') }}"><i class="fa fa-archive"></i> {{ 'Categories'|trans }}</a></li>
+        </ul>
+    </li>
+    {#
     <li class="dropdown {{addoncl}}">
         <ul class="nav pull-right">
             <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-user"></i> Déconnexion
@@ -114,8 +164,9 @@
                 <li><a href="{{ path('sonata_admin_dashboard') }}">{{ 'Admin Dashboard' }}</a>
                 <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">{{ 'Edit Profile' }}</a></li>
             </ul>
-        {% endif %}   
-  </ul>
+ 
+  {% endif %}   
+    </ul> #}   
  {% else %}
     <ul class="nav pull-right">
         <li><a href="{{ path('fos_user_security_login') }}"><i class="icon-key"></i> Connexion</a></li>
@@ -123,9 +174,39 @@
  {% endif %}
    
     </ul>   
+      
+       <ul class="nav pull-right navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
+            <ul class="dropdown-menu" style="padding:12px;">
+                <form class="form-inline">
+     				<button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input class="form-control pull-left" placeholder="Search" type="text">
+                </form>
+             </ul>
+          </li>
+           {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-home"></i> Déconnexion </a></li>    
+              <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="#">About</a></li>
+             </ul>
+          </li>
+          {% else %}
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Login</a></li>
+            </ul>
+          </li>
+          {% endif %}
+        </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
-     
+   
+
       
 
       {#

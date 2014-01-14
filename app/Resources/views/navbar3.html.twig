@@ -33,107 +33,67 @@
             {% set addoncl="dropdown" %}
     {% if foo[0] == 'epost' %}  {% set addoncl="dropdown active" %} {% endif %}
     
- <li class="dropdown {{addoncl}}">
+    <li class="dropdown {{addoncl}}">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span>
-Blog <b class="caret"></b></a>
+        Blog <b class="caret"></b></a>
         <ul class="dropdown-menu">
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-        <li><a href="{{ path('epost') }}"><i class=fa fa-briefcase"></i> {{ 'DashBoard Articles'|trans }}</a></li>
-        <li><a href="{{ path('epost_mesposts') }}"><i class="fa fa-briefcase"></i> {{ 'Mes Artciles'|trans }}</a></li>
-        <li><a href="{{ path('epost_propositions') }}"><i class="fa fa-briefcase"></i> {{ 'Groupe-Articles'|trans }}</a></li>
-    {% endif %}
-    <li><a href="{{ path('epost_indexstandard') }}"><i class="fa fa-briefcase"></i> {{ 'Standard Blog'|trans }}</a></li>
-    <li><a href="{{ path('epost_indexadmin') }}"><i class="fa fa-briefcase"></i> {{ 'Tous les Articles'|trans }}</a></li>
-  
-          <li><a href="#"><i class="fa fa-globe"></i> Patrimoine historique et naturel</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-leaf"></span> Activités, loisirs et animations</a></li>
-          <li class="divider"></li>
-          <li><a href="#"><i class="fa fa-briefcase"></i> Hébergement</a></li>
-          <li class="divider"></li>
-          <li><a href="#"><i class="fa fa-cutlery"></i> Commerces et services</a></li>
+            <li><a href="{{ path('epost') }}"><i class="fa fa-briefcase"></i> {{ 'DashBoard Articles'|trans }}</a></li>
+            <li><a href="{{ path('epost_mesposts') }}"><i class="fa fa-briefcase"></i> {{ 'Mes Artciles'|trans }}</a></li>
+            <li><a href="{{ path('epost_propositions') }}"><i class="fa fa-briefcase"></i> {{ 'Groupe-Articles'|trans }}</a></li>
+            <li><a href="{{ path('epost_comment_ownerview') }}"><i class="fa fa-briefcase"></i> {{ 'Mes Commentaires'|trans }}</a></li>
+            <li><a href="{{ path('epost_comment_ownerblogview') }}"><i class="fa fa-briefcase"></i> {{ 'Mes Articles-Commentaires'|trans }}</a></li>
+            <li><a href="{{ path('epostnotes') }}"><i class="glyphicon glyphicon-book"></i> {{ 'Notes-Articles'|trans }}</a></li>
+            {% endif %}
+            <li><a href="{{ path('epost_indexstandard') }}"><i class="fa fa-briefcase"></i> {{ 'Standard Blog'|trans }}</a></li>
+            <li><a href="{{ path('epost_indexadmin') }}"><i class="fa fa-briefcase"></i> {{ 'Tous les Articles'|trans }}</a></li>
         </ul>
-      </li>
+    </li>
       
       
-        <li class="dropdown">
+    <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tower"></span> Divers<b class="caret"></b></a>
         <ul class="dropdown-menu">
-                       <li><a href="{{ path('epostnotes') }}"><i class="glyphicon glyphicon-book"></i> {{ 'Notes-Articles'|trans }}</a></li>
-      
-      
-        <li><a href="{{ path('usermedia') }}"><i class="glyphicon glyphicon-book"></i> {{ 'Medias'|trans }}</a></li>
-       
-            
-            
-              <li><a href="#"><i class="fa fa-home"></i> La Marie</a></li>
-          <li><a href="#"><i class="fa fa-users"></i> Les Elus</a></li>
-          <li><a href="#"><i class="fa fa-pencil"></i> Les démarches administratives</a></li>
-          <li class="divider"></li>
-          <li><a href="#"><i class="fa fa-home"></i> Présentation de la commune</a></li>
-          <li><a href="#"><i class="fa fa-archive"></i> Travaux et dossiers en cours</a></li>
-          <li class="divider"></li>
-          <li><a href="#"><i class="fa fa-heart"></i> Vivre a Préfailles</a></li>
-          <li class="divider"></li>
-          <li><a href="#"><i class="fa fa-comments-o"></i> Vos questions- Nos réponses</a></li>
+            <li><a href="{{ path('usermedia') }}"><i class="glyphicon glyphicon-book"></i> {{ 'Medias'|trans }}</a></li>
+            <li><a href="#"><i class="fa fa-home"></i> La Marie</a></li>
+            <li><a href="#"><i class="fa fa-users"></i> Les Elus</a></li>
+            <li><a href="#"><i class="fa fa-pencil"></i> Les démarches administratives</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="fa fa-home"></i> Présentation de la commune</a></li>
+            <li><a href="#"><i class="fa fa-archive"></i> Travaux et dossiers en cours</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="fa fa-heart"></i> Vivre a Préfailles</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="fa fa-comments-o"></i> Vos questions- Nos réponses</a></li>
         </ul>
-      </li>
-       <li class="dropdown">
+    </li>
+    
+    <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-book"></span> Actualités<b class="caret"></b></a>
         <ul class="dropdown-menu">
               <li><a href="#"><i class="glyphicon glyphicon-book"></i> Actualité-Mairie</a></li>
-          <li><a href="#"><i class="glyphicon glyphicon-book"></i> Actualié- Les Elus</a></li>
-          <li><a href="#"><i class="glyphicon glyphicon-book"></i> Les démarches administratives</a></li>
-         
-        </ul>
-      </li>
+              <li><a href="#"><i class="glyphicon glyphicon-book"></i> Actualié- Les Elus</a></li>
+              <li><a href="#"><i class="glyphicon glyphicon-book"></i> Les démarches administratives</a></li>
+       </ul>
+   </li>
+
       
-      
-      
-      
-      
-      
-      
-        <!--======================== AUTENTIFIE=================-->                                           
+  <!--======================== AUTENTIFIE=================-->                                           
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-pencil"></i>
-        Commentaires<b class="caret"></b> </a>
-        <ul class="dropdown-menu">
-        <li><a href="{{ path('epost_comment_ownerview') }}"><i class="icon-plus-sign"></i> {{ 'Mes Commentaires'|trans }}</a></li>
-        <li><a href="{{ path('epost_comment_ownerblogview') }}"><i class="icon-plus-sign"></i> {{ 'Mes Articles-Commentaires'|trans }}</a></li>
-        </ul>
-    </li>
-                                                              
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-tags"></i>
-        Notes<b class="caret"></b> </a>
-        <ul class="dropdown-menu">
-        <li><a href="{{ path('epostnotes') }}"><i class="icon-tags"></i> {{ 'Notes-Articles'|trans }}</a></li>
-        </ul>
-    </li>
-                                                              
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white  icon-film"></i>
-        Media<b class="caret"></b> </a>
-        <ul class="dropdown-menu">
-        <li><a href="{{ path('usermedia') }}"><i class="icon-camera"></i> {{ 'Medias'|trans }}</a></li>
-        </ul>
-    </li>
-   
-{% set addoncl="dropdown" %}
+    {% set addoncl="dropdown" %}
      {% if (foo[0] == 'egroup') or  (foo[0] == 'epostroll') %} {% set addoncl="dropdown active" %} {% endif %}
     <li class="dropdown {{addoncl}}">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-user-md"></i>
-    Groupes<b class="caret"></b> </a>
-    <ul class="dropdown-menu">
-        <li><a href="{{ path('egroup_groupes') }}"><i class="icon-user"></i> {{ 'Dashboard Groupes'|trans }}</a></li>
-        <li><a href="{{ path('egroup_groupes_showmygroup') }}"><i class="icon-user"></i> {{ 'Mon Groupe'|trans }}</a></li>
-        <li><a href="{{ path('groupedemande') }}"><i class="icon-user"></i> {{ 'Demandes de Groupe'|trans }}</a></li>
-        <li><a href="{{ path('groupedemande_mongroupe') }}"><i class="icon-user"></i> {{ 'Demandes MonGroupe'|trans }}</a></li>
-        <li><a href="{{ path('epostroll') }}"><i class="icon-user"></i> {{ 'Roll-Groupe'|trans }}</a></li>
-        <li><a href="{{ path('tags') }}"><i class="icon-user"></i> {{ 'Tags'|trans }}</a></li>
-        <li><a href="{{ path('categories') }}"><i class="icon-user"></i> {{ 'Categories'|trans }}</a></li>
-    </ul>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-user-md"></i>
+        Groupes<b class="caret"></b> </a>
+        <ul class="dropdown-menu">
+            <li><a href="{{ path('egroup_groupes') }}"><i class="icon-user"></i> {{ 'Dashboard Groupes'|trans }}</a></li>
+            <li><a href="{{ path('egroup_groupes_showmygroup') }}"><i class="icon-user"></i> {{ 'Mon Groupe'|trans }}</a></li>
+            <li><a href="{{ path('groupedemande') }}"><i class="icon-user"></i> {{ 'Demandes de Groupe'|trans }}</a></li>
+            <li><a href="{{ path('groupedemande_mongroupe') }}"><i class="icon-user"></i> {{ 'Demandes MonGroupe'|trans }}</a></li>
+            <li><a href="{{ path('epostroll') }}"><i class="icon-user"></i> {{ 'Roll-Groupe'|trans }}</a></li>
+            <li><a href="{{ path('tags') }}"><i class="icon-user"></i> {{ 'Tags'|trans }}</a></li>
+            <li><a href="{{ path('categories') }}"><i class="icon-user"></i> {{ 'Categories'|trans }}</a></li>
+        </ul>
     </li>
 {% endif %}
       
@@ -141,18 +101,18 @@ Blog <b class="caret"></b></a>
       
       
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-     <li class="dropdown {{addoncl}}">
-    <ul class="nav pull-right">
+    <li class="dropdown {{addoncl}}">
+        <ul class="nav pull-right">
             <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-user"></i> Déconnexion
-            <b class="caret"></b> </a></li>    
-   </ul>       
-   <ul class="nav pull-right">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i>
-        {{ app.user.username }} <b class="caret"></b> </a>
-        {% if is_granted("ROLE_ADMIN") %}
-            <ul class="dropdown-menu">
-            <li><a href="{{ path('sonata_admin_dashboard') }}">{{ 'Admin Dashboard' }}</a>
-            <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">{{ 'Edit Profile' }}</a></li>
+                <b class="caret"></b> </a></li>    
+        </ul>       
+        <ul class="nav pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i>
+            {{ app.user.username }} <b class="caret"></b> </a>
+            {% if is_granted("ROLE_ADMIN") %}
+                <ul class="dropdown-menu">
+                <li><a href="{{ path('sonata_admin_dashboard') }}">{{ 'Admin Dashboard' }}</a>
+                <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">{{ 'Edit Profile' }}</a></li>
             </ul>
         {% endif %}   
   </ul>
@@ -161,14 +121,7 @@ Blog <b class="caret"></b></a>
         <li><a href="{{ path('fos_user_security_login') }}"><i class="icon-key"></i> Connexion</a></li>
     </ul>
  {% endif %}
-       
-      
-      
-      
-      
-      
-      
-      
+   
     </ul>   
   </div><!-- /.navbar-collapse -->
 </nav>

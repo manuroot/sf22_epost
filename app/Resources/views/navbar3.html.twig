@@ -79,8 +79,8 @@
             {% set addoncl="dropdown" %}
     {% if foo[0] == 'epost' %}  {% set addoncl="dropdown active" %} {% endif %}
     
-    <li class="dropdown {{addoncl}}">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span>
+    <li class="{{addoncl}}">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-book"></span>
         Blog <b class="caret"></b></a>
         <ul class="dropdown-menu">
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
@@ -120,7 +120,7 @@
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
     {% set addoncl="dropdown" %}
      {% if (foo[0] == 'egroup') or  (foo[0] == 'epostroll') %} {% set addoncl="dropdown active" %} {% endif %}
-    <li class="dropdown {{addoncl}}">
+    <li class="{{addoncl}}">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i>
         Groupes<b class="caret"></b> </a>
         <ul class="dropdown-menu">
@@ -133,23 +133,17 @@
             <li><a href="{{ path('categories') }}"><i class="fa fa-archive"></i> {{ 'Categories'|trans }}</a></li>
         </ul>
     </li>
-{% endif %}
-
-    
-     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-    <li class="dropdown {{addoncl}}">
+  
+     {% if is_granted("ROLE_ADMIN") %}
+     <li class="dropdown {{addoncl}}">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-white icon-user-md"></i>
-        Groupes<b class="caret"></b> </a>
-        <ul class="dropdown-menu">
-            <li><a href="{{ path('egroup_groupes') }}"><i class="fa fa-user"></i> {{ 'Dashboard Groupes'|trans }}</a></li>
-            <li><a href="{{ path('egroup_groupes_showmygroup') }}"><i class="fa fa-user"></i> {{ 'Mon Groupe'|trans }}</a></li>
-            <li><a href="{{ path('groupedemande') }}"><i class="fa fa-user"></i> {{ 'Demandes de Groupe'|trans }}</a></li>
-            <li><a href="{{ path('groupedemande_mongroupe') }}"><i class="fa fa-user"></i> {{ 'Demandes MonGroupe'|trans }}</a></li>
-            <li><a href="{{ path('epostroll') }}"><i class="fa fa-tasks"></i> {{ 'Roll-Groupe'|trans }}</a></li>
-            <li><a href="{{ path('tags') }}"><i class="fa fa-tag"></i> {{ 'Tags'|trans }}</a></li>
-            <li><a href="{{ path('categories') }}"><i class="fa fa-archive"></i> {{ 'Categories'|trans }}</a></li>
-        </ul>
-    </li>
+        Admin<b class="caret"></b> </a>
+                <ul class="dropdown-menu">
+                <li><a href="{{ path('sonata_admin_dashboard') }}">{{ 'Admin Dashboard' }}</a>
+                <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">{{ 'Edit Profile' }}</a></li>
+            </ul>
+     </li>
+     {% endif %}
     {#
     <li class="dropdown {{addoncl}}">
         <ul class="nav pull-right">
@@ -167,10 +161,6 @@
  
   {% endif %}   
     </ul> #}   
- {% else %}
-    <ul class="nav pull-right">
-        <li><a href="{{ path('fos_user_security_login') }}"><i class="icon-key"></i> Connexion</a></li>
-    </ul>
  {% endif %}
    
     </ul>   
@@ -198,7 +188,9 @@
             <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Login</a></li>
+             
+                   <li><a href="{{ path('fos_user_security_login') }}"><i class="fa fa-key"></i> Connexion</a></li>
+ 
             </ul>
           </li>
           {% endif %}

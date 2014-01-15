@@ -10,7 +10,11 @@ epost_indexstandard:
     pattern:  /
     defaults: { _controller: "ApplicationEpostBundle:Epost:standardblog" }
  
-    
+epost_indexstandard1:
+    pattern:  /design1
+    defaults: { _controller: "ApplicationEpostBundle:Epost:standardblog1" }
+ 
+     
 epost_index:
     pattern:  /index
     defaults: { _controller: "ApplicationEpostBundle:Epost:index" }

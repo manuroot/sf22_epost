@@ -421,6 +421,24 @@ class EpostController extends Controller {
         ));
     }
 
+     //====================================================================
+    // BLOG STANDARD: ALL
+    //====================================================================
+
+    public function standardblog1Action() {
+        $em = $this->getDoctrine()->getManager();
+        $session = $this->getRequest()->getSession();
+        $session->set('buttonretour', 'epost_indexstandard');
+        $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPager(array(
+            'open_status' => 'OPEN',
+        ));
+        //  print_r($query);   exit(1);
+        // $query = $em->getRepository('ApplicationEpostBundle:Epost')->getMyPagerStandard(array(open-status));
+        return $this->renderBlog(array(
+                    'page' => 'ApplicationEpostBundle:Epost:standardblog1.html.twig',
+                    'query' => $query,
+        ));
+    }
     //====================================================================
     // BLOG STANDARD: index par annee
     //====================================================================

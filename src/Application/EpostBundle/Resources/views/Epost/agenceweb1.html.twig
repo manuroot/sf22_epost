@@ -1,0 +1,341 @@
+{% extends "::baseagence.html.twig" %}
+
+  {% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+
+{% block MAIN %}
+{{ parent() }}
+  	
+	<!-- Menu -->
+	<nav class="menu" id="theMenu">
+		<div class="menu-wrap">
+			<h1 class="logo"><a href="index.html#home">Onassis</a></h1>
+			<i class="fa fa-square menu-close"></i>
+			<a href="#home" class="smoothScroll">Home</a>
+			<a href="#services" class="smoothScroll">Services</a>
+			<a href="#portfolio" class="smoothScroll">Portfolio</a>
+			<a href="#about" class="smoothScroll">About</a>
+			<a href="#contact" class="smoothScroll">Contact</a>
+			<a href="#"><i class="fa fa-facebook"></i></a>
+			<a href="#"><i class="fa fa-twitter"></i></a>
+			<a href="#"><i class="fa fa-dribbble"></i></a>
+			<a href="#"><i class="fa fa-envelope"></i></a>
+		</div>
+		
+		<!-- Menu button -->
+		<div id="menuToggle"><i class="fa fa-list con-reorder"></i></div>
+	</nav>
+
+
+	
+	<!-- ========== HEADER SECTION ========== -->
+	<section id="home" name="home"></section>
+	<div id="headerwrap">
+		<div class="container">
+			<br>
+			<h1>YourProjects</h1>
+			<h2>Agence Web LE MANS</h2>
+			<div class="row">
+				<br>
+				<br>
+				<br>
+				<div class="col-lg-6 col-lg-offset-3">
+				</div>
+			</div>
+		</div><!-- /container -->
+	</div><!-- /headerwrap -->
+	
+	
+	<!-- ========== WHITE SECTION ========== -->
+	<div id="w">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+				<h3>WELCOME TO <bold>ONASSIS</bold>. <bold>A FREE BOOTSTRAP 3</bold> THEME. CRAFTED WITH LOVE BY <bold>BLACKTIE.CO</bold>. <br/>
+					<bold>IDEAL FOR</bold> AGENCIES & FREELANCERS.
+				</h3>
+				</div>
+			</div>
+		</div><!-- /container -->
+	</div><!-- /w -->
+	
+	<!-- ========== SERVICES - GREY SECTION ========== -->
+	<section id="services" name="services"></section>
+	<div id="g">
+		<div class="container">
+			<div class="row">
+				<h3>OUR SERVICES</h3>
+				<br>
+				<br>
+				<div class="col-lg-3">
+					<i class="fa fa-twitter fa-4x"></i>
+                                        
+					<h4>London</h4>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+				</div>
+				<div class="col-lg-3">
+					<i class="fa fa-facebook fa-4x"></i>
+					<h4>Berlin</h4>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+				</div>
+				<div class="col-lg-3">
+					<i class="fa fa-film fa-4x"></i>
+					<h4>Paris</h4>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+				</div>
+				<div class="col-lg-3">
+					<i class="fa fa-dropbox fa-4x"></i>
+					<h4>Tokyo</h4>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+				</div>
+			</div>
+		</div><!-- /container -->
+	</div><!-- /g -->
+	
+        
+	<!-- ========== CHARTS - DARK GREY SECTION ========== -->
+	<div id="dg">
+		<div class="container">
+			<div class="row">
+				<h3>SKILLS</h3>
+				<br>
+				<br>
+				<div class="col-lg-3">
+					<canvas id="javascript" height="130" width="130"></canvas>
+					<br>
+					<h4>Javascript</h4>
+					<br>
+					<script>
+						var doughnutData = [
+								{
+									value: 70,
+									color:"#f85c37"
+								},
+								{
+									value : 30,
+									color : "#ecf0f1"
+								}
+							];
+							var myDoughnut = new Chart(document.getElementById("javascript").getContext("2d")).Doughnut(doughnutData);
+					</script>
+
+				</div>
+				<div class="col-lg-3">
+					<canvas id="bootstrap" height="130" width="130"></canvas>
+					<br>
+					<h4>Bootstrap</h4>
+					<br>
+					<script>
+						var doughnutData = [
+								{
+									value: 90,
+									color:"#f85c37"
+								},
+								{
+									value : 10,
+									color : "#ecf0f1"
+								}
+							];
+							var myDoughnut = new Chart(document.getElementById("bootstrap").getContext("2d")).Doughnut(doughnutData);
+					</script>
+				</div>
+				<div class="col-lg-3">
+					<canvas id="wordpress" height="130" width="130"></canvas>
+					<br>
+					<h4>Wordpress</h4>
+					<br>
+					<script>
+						var doughnutData = [
+								{
+									value: 55,
+									color:"#f85c37"
+								},
+								{
+									value : 45,
+									color : "#ecf0f1"
+								}
+							];
+							var myDoughnut = new Chart(document.getElementById("wordpress").getContext("2d")).Doughnut(doughnutData);
+					</script>
+				</div>
+			<div class="col-lg-3">
+					<canvas id="wordpress1" height="130" width="130"></canvas>
+					<br>
+					<h4>Wordpress1</h4>
+					<br>
+					<script>
+						var doughnutData = [
+								{
+									value: 55,
+									color:"#f85c37"
+								},
+								{
+									value : 45,
+									color : "#ecf0f1"
+								}
+							];
+							var myDoughnut = new Chart(document.getElementById("wordpress1").getContext("2d")).Doughnut(doughnutData);
+					</script>
+				</div>
+			</div>	
+		</div><!-- /container -->
+	</div><!-- /dg -->
+	
+	<section id="portfolio" name="portfolio"></section>
+	<div id="portfoliowrap">
+		<div class="container">
+			<div class="row">
+				<h3>COOL WORKS</h3>
+				<br>
+				<br>
+				<div class="col-lg-4 port-space">
+					<a href="item.html">
+                                               <img src="{{ asset('images/work1.png') }}" alt="me" width="90px" height="50px" class="img-responsive"></a>
+				</div>
+				<div class="col-lg-4 port-space">
+                                    <a href="item.html">
+                                               <img src="{{ asset('images/work2.png') }}" alt="me" width="90px" height="50px" class="img-responsive"></a>
+					
+				</div>
+				<div class="col-lg-4 port-space">
+				<a href="item.html">
+                                               <img src="{{ asset('images/work3.png') }}" alt="me" width="90px" height="50px" class="img-responsive"></a>
+				</div>				
+			</div>	
+		</div><!-- /container -->
+	</div><!-- /portfoliowrap -->
+	
+	<!-- ========== WHITE SECTION ========== -->
+	<div id="w">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+				<h3>WE WORK HARD TO DELIVER A <bold>HIGH QUALITY SERVICE</bold>. OUR AIM IS YOUR COMPLETE <bold>SATISFACTION</bold>.
+				</h3>
+				</div>
+			</div>
+		</div><!-- /container -->
+	</div><!-- /w -->
+	
+	<!-- ========== ABOUT - GREY SECTION ========== -->
+	<section id="about" name="about"></section>
+	<div id="g">
+		<div class="container">
+			<div class="row">
+				<h3>ABOUT US</h3>
+				<br>
+				<br>
+				<div class="col-lg-2"></div>
+				<div class="col-lg-8">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lectus elit, tincidunt nec turpis sed, accumsan iaculis ipsum. Nulla at augue auctor, tristique erat in, ultricies nunc. Mauris eget metus leo. Ut in mi lacinia, mattis nisl non, ultrices risus. Vestibulum aliquet aliquam ipsum ut ullamcorper. Pellentesque fringilla, massa vel rutrum consequat, nulla velit fermentum dolor, sed scelerisque.</p>
+				<br>
+				<br>
+				</div>
+				<div class="col-lg-2"></div>
+				<div class="col-lg-3 team">
+                                     <img src="{{ asset('images/me.jpeg') }}" class="img-circle"  alt="me" width="90" height="90">
+					
+					<h4>Manuel Rottereau</h4>
+					<h5><i>Product Manager</i></h5>
+                                        <h5><i>MVC Designer</i></h5>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+					<p>
+						<a href="index.html#"><i class="fa fa-facebook"></i></a>
+						<a href="index.html#"><i class="fa fa-twitter"></i></a>
+						<a href="index.html#"><i class="fa fa-envelope"></i></a>
+
+					</p>
+				</div>
+
+				<div class="col-lg-3 team">
+                                     <img src="{{ asset('images/me.jpeg') }}" class="img-circle"  alt="me" width="90" height="90">
+					
+					<h4>Vincent Fasciaux</h4>
+					<h5><i>Web Designer</i></h5>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+					<p>
+						<a href="index.html#"><i class="fa fa-facebook"></i></a>
+						<a href="index.html#"><i class="fa fa-twitter"></i></a>
+						<a href="index.html#"><i class="fa fa-envelope"></i></a>
+
+					</p>
+				</div>
+
+				<div class="col-lg-3 team">
+					<img src="{{ asset('images/me.jpeg') }}" class="img-circle"  alt="me" width="90" height="90">
+					<h4>Christophe Lambert</h4>
+					<h5><i>MVC Designer</i></h5>
+                                        <h5><i>Java Guru</i></h5>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+					<p>
+						<a href="index.html#"><i class="fa fa-facebook"></i></a>
+						<a href="index.html#"><i class="fa fa-twitter"></i></a>
+						<a href="index.html#"><i class="fa fa-envelope"></i></a>
+
+					</p>
+				</div>
+
+				<div class="col-lg-3 team">
+					<img src="{{ asset('images/me.jpeg') }}" class="img-circle"  alt="me" width="90" height="90">
+					<h4>Tim Gates</h4>
+					<h5><i>Back-end Guru</i></h5>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+					<p>
+						<a href="index.html#"><i class="fa fa-facebook"></i></a>
+						<a href="index.html#"><i class="fa fa-twitter"></i></a>
+						<a href="index.html#"><i class="fa fa-envelope"></i></a>
+
+					</p>
+				</div>
+			</div>
+		</div><!-- /container -->
+	</div><!-- /g -->
+	
+	<!-- ========== FOOTER SECTION ========== -->
+	<section id="contact" name="contact"></section>
+	<div id="f">
+		<div class="container">
+			<div class="row">
+					<h3><b>CONTACT US</b></h3>
+					<br>
+					<div class="col-lg-4">
+						<h3><b>Send Us A Message:</b></h3>
+						<h3>onassis@blacktie.co</h3>
+						<br>
+					</div>
+					
+					<div class="col-lg-4">	
+						<h3><b>Call Us:</b></h3>
+						<h3>+55 3984-4389</h3>
+						<br>
+					</div>
+					
+					<div class="col-lg-4">
+						<h3><b>We Are Social</b></h3>
+						<p>
+							<a href="index.html#"><i class="icon-facebook"></i></a>
+							<a href="index.html#"><i class="icon-twitter"></i></a>
+							<a href="index.html#"><i class="icon-envelope"></i></a>
+						</p>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div><!-- /container -->
+	</div><!-- /f -->
+	
+	<div id="c">
+		<div class="container">
+			<p>Created by <a href="http://www.blacktie.co">BLACKTIE.CO</a></p>
+		
+		</div>
+	</div>
+{% endblock %}	
+	{% block javascripts %}
+{{ parent() }}
+     
+   
+{% endblock %}
+

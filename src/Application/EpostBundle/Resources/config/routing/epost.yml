@@ -13,6 +13,11 @@ epost_indexstandard:
 epost_indexstandard1:
     pattern:  /design1
     defaults: { _controller: "ApplicationEpostBundle:Epost:standardblog1" }
+
+epost_indexstandard1:
+    pattern:  /agenceweb1
+    defaults: { _controller: "ApplicationEpostBundle:Epost:agenceweb" }
+
  
      
 epost_index:

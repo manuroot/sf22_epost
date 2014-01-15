@@ -420,6 +420,17 @@ class EpostController extends Controller {
                     'query' => $query,
         ));
     }
+    
+    
+     //====================================================================
+    // BLOG STANDARD: ALL
+    //====================================================================
+
+    public function agencewebAction() {
+        
+        return $this->render('ApplicationEpostBundle:Epost:agenceweb1.html.twig', array(
+        ));
+    }
 
      //====================================================================
     // BLOG STANDARD: ALL

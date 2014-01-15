@@ -201,54 +201,46 @@
       		<!-- right content column-->
       		<div class="col-md-7" id="content">
             	<div class="panel">
-    			<div class="panel-heading" style="background-color:#111;color:#fff;">Les Derniers Articles</div>   
+    		<div class="panel-heading" style="background-color:#111;color:#fff;">Les Derniers Articles</div>   
               	<div class="panel-body">
                   
+                     
+           {% for entity in paginationa %}
+           <div class="row titlepost" >
+            <div class="col-md-8  colg-lg-8 col-xs-8">
+                    <h3>{{ entity.name }}</a></h3>
+            </div>
+            <div class="col-md-4  colg-lg-4 col-xs-4">
+                <img class="imgtitle" src="{% path entity.imageMedia, 'small' %}" width="70" /> </span>  
+            </div>
+           </div>
+                       <div class="row">
+        <div class="col-md-12  colg-lg-12 col-xs-12">
+            <hr>
+            <div class="sonata-blog-post-abtract">
+                {{ entity.resume|raw }}
+            </div>
+            <hr>
+            <i class="icon-time icon-1x"></i> 
+           <hr>
+           </div>
+                       </div>
+           {% endfor %}
+                   
+           
+           
+           
+           
+           
+           
+           
                   <div class="row">
                   <div class="col-md-10">
                   {% for entity in paginationa %}
-
-<h3>  
-        fdsfsfd fdsfs
- {#   <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">#}
-                          {{ entity.name }}</a></h3>
-
-    <table><tr><td>
-                <i class="icon-time icon-1x"></i> 
-               {{ entity.createdAt|created_ago }} -    
-
-        {% if entity.globalnote is not null %}
-   {#    Note Globale: #}
-                <div class="star" data-score="{{ entity.globalnote }}"></div>
-           {#({{ entity.globalnote }})#}
-        {% else %}
-                <div class="star" data-score="0"></div>
-        {#({{ entity.globalnote }})#}
-        {% endif %}
-            </td><td><i class="glyphicon glyphicon-tasks"></i> 
-                          {% if entity.categorie is not null %}               
-                <span class="label label-warning">
-
-                    <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
-{{ entity.categorie.name }}</a>
-                </span>
-                  {% else %}
-                pas de catégorie
-                  {% endif %}
-                     {#<span class="label label-inverse">#}
-                {#  {{ entity.tags|join(', ') }}    </span>#}
-                <i class="glyphicon glyphicon-tags"></i> 
-                   {% for tag in entity.tags %}
-                <span class="label label-primary">
-                
-                    <a href="{{ url('epost_tags_show', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
-                            {% if not loop.last%} {%endif%}
-                </span>
-                            {% else %}
-                Pas de Tag
-                        {% endfor %}
-
-            </td><td> &nbsp; <i class="glyphicon glyphicon-user"></i> {{ entity.proprietaire.username }}</td></tr></table>
+                    <h3>  
+                    fdsfsfd fdsfs
+                    {#   <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">#}
+                    {{ entity.name }}</a></h3>
 
 
 
@@ -256,6 +248,8 @@
     <h3 class="sonata-blog-post-title">
         <img src="{% path entity.imageMedia, 'small' %}" width="100" /> 
 
+        
+        
         <span class="sonata-blog-post-author"> 
 
             <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">

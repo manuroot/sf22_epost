@@ -296,59 +296,51 @@ $('#midCol').affix({
 #}
       {% for entity in paginationa %}
 <div class="blogpost">
- <div class="row titlepost" >
-   
-   
-    <div class="col-md-8  colg-lg-8 col-xs-8">
-
-
-    <!--   <h2 class="entry-title">-->
-    <h3 class="sonata-blog-post-title">
-      
-            <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
-                          {{ entity.name }}</a>
-    {% if entity.proprietaire is not null %}               
-
-                 {% else %}
-            ---
-                     {% endif %}
-     </h3>        </div>
-    
-   
-        <div class="col-md-4  colg-lg-4 col-xs-4">
-        <img class="imgtitle" src="{% path entity.imageMedia, 'small' %}" width="100" /> </span>  
-          
-    </div>
-  
- </div>
-     <div class="row">
-    <div class="col-md-12  colg-lg-12 col-xs-12">
-
-      <hr>
-    <div class="sonata-blog-post-abtract">
-        {{ entity.resume|raw }}
-    </div>
-    <hr>
-     <i class="icon-time icon-1x"></i> 
-               {{ entity.createdAt|created_ago }} -    
-{% if entity.globalnote is not null %}
-   {#    Note Globale: #}
-                <div class="star" data-score="{{ entity.globalnote }}"></div>
-           {#({{ entity.globalnote }})#}
+    <div class="row titlepost" >
+        <div class="col-md-8  colg-lg-8 col-xs-8">
+        <!--   <h2 class="entry-title">-->
+        <h3 class="sonata-blog-post-title">
+        <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
+        {{ entity.name }}
+        </a>
+        {% if entity.proprietaire is not null %}               
         {% else %}
-                <div class="star" data-score="0"></div>
-        {#({{ entity.globalnote }})#}
+            ---
         {% endif %}
+        </h3>
+        </div>
+    
+        <div class="col-md-4  colg-lg-4 col-xs-4">
+            <img class="imgtitle" src="{% path entity.imageMedia, 'small' %}" width="100" /> </span>  
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12  colg-lg-12 col-xs-12">
+            <hr>
+            <div class="sonata-blog-post-abtract">
+                {{ entity.resume|raw }}
+            </div>
+            <hr>
+            <i class="icon-time icon-1x"></i> 
+               {{ entity.createdAt|created_ago }} -    
+            {% if entity.globalnote is not null %}
+            {#    Note Globale: #}
+                <div class="star" data-score="{{ entity.globalnote }}"></div>
+               {#({{ entity.globalnote }})#}
+            {% else %}
+                <div class="star" data-score="0"></div>
+                {#({{ entity.globalnote }})#}
+            {% endif %}
             <i class="glyphicon glyphicon-tasks"></i> 
-                          {% if entity.categorie is not null %}               
+             {% if entity.categorie is not null %}               
                 <span class="label label-warning">
-
-                    <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
-{{ entity.categorie.name }}</a>
+                <a href="{{ url('epost_categories_show', {'categorie': entity.categorie.slug} ) }}">
+                {{ entity.categorie.name }}</a>
                 </span>
-                  {% else %}
+             {% else %}
                 pas de catégorie
-                  {% endif %}
+             {% endif %}
                      {#<span class="label label-inverse">#}
                 {#  {{ entity.tags|join(', ') }}    </span>#}
                 <i class="glyphicon glyphicon-tags"></i> 
@@ -386,13 +378,13 @@ $('#midCol').affix({
 
  {% if entity.commentsDisabled == 1 %}
     {% if (date(entity.commentsCloseAt) > date()) %}
-    <span class="badge badge-warning">Commentaires fermés a partir du {{ entity.commentsCloseAt|date('Y-m-d H') ~ 'h' }}
+    <span class="badge badge-warning">
+        Commentaires fermés a partir du {{ entity.commentsCloseAt|date('Y-m-d H') ~ 'h' }}
     </span>
-                {% else %}
+    {% else %}
     <span class="badge badge-warning">Commentaires fermés</span>
         {% endif %}
    {% endif %}
-
 
     <a href="{{ path('epost_showstandard', { 'blog_id': entity.id,'slug': entity.slug }) }}">
         <img src="{{ asset('bundles/applicationepost/images/detail.png') }}" alt="show" width="15" height="15" />

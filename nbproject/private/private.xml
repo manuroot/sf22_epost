@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/Resources/views/baseroll3n.html.twig</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/Resources/views/baseagence.html.twig</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/Resources/views/base3n.html.twig</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Resources/views/Epost/standardblog1.html.twig</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/web/js/agence/main.js</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/src/Application/EpostBundle/Resources/views/Epost/agenceweb1.html.twig</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/app/Resources/views/navbar.html.twig</file>
-            <file>file:/media/second/AA_ZEND_PROJ/Symfony_epost/web/js/agence/Chart.js</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
